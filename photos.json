@@ -348,7 +348,7 @@
         "architecture",
         "abstract"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/triangle.jpg",
       "thumb": "images/thumbs/triangle.jpg",
       "w": 2576,
@@ -621,7 +621,7 @@
         "architecture",
         "abstract"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/spiral.jpg",
       "thumb": "images/thumbs/spiral.jpg",
       "w": 2576,
@@ -641,7 +641,7 @@
       "categories": [
         "architecture"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/courtyard-skylight.jpg",
       "thumb": "images/thumbs/courtyard-skylight.jpg",
       "w": 2576,
