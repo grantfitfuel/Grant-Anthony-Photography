@@ -109,32 +109,6 @@
       "iso": "ISO 500"
     },
     {
-      "id": "empire-state-blue-hour",
-      "title": "Empire State, blue hour",
-      "description": "",
-      "location": "New York",
-      "year": "",
-      "camera": "",
-      "lens": "",
-      "focal": "",
-      "aperture": "",
-      "shutter": "",
-      "iso": "",
-      "categories": [
-        "architecture",
-        "urban-street"
-      ],
-      "featured": false,
-      "file": "images/empire-state-blue-hour.jpg",
-      "thumb": "images/thumbs/empire-state-blue-hour.jpg",
-      "w": 2576,
-      "h": 2576,
-      "tw": 1000,
-      "th": 1000,
-      "tone": "#414458",
-      "added": "2026-10-02"
-    },
-    {
       "id": "deadvlei",
       "title": "Deadvlei",
       "description": "",
