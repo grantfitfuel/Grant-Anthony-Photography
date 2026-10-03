@@ -1,0 +1,835 @@
+{
+  "site": {
+    "name": "Grant C Anthony",
+    "tagline": "Photography",
+    "aboutTitle": "Behind the lens",
+    "useSignature": true,
+    "about": "I have been taking photographs for close to thirty years. It started with my father-in-law, whose influence got me going.\n\nMy wife is also a keen photographer, and an exceptionally good one. We travel together in our camper van, and on city breaks and photography holidays.\n\nWhat I go out for is the experience: being in the moment, in the flow, where time gets lost. I keep my editing light. That side is my wife's passion more than mine.\n\nIn my bag: a Canon EOS R5 with 24-70, 70-200 and 100-400 zooms, a wide-angle and a nifty fifty. Kase filters. A Three Legged Thing Winston and Corey, a Peak Design carbon-fibre tripod for cities, and a Leica D-Lux 8: truly pocket-sized, with a brilliant monochrome mode, which makes it great for street.",
+    "email": "",
+    "instagram": "@gcanth, @lightthroughtheglass",
+    "categories": [
+      {
+        "id": "landscapes",
+        "name": "Landscapes"
+      },
+      {
+        "id": "coast",
+        "name": "Coast"
+      },
+      {
+        "id": "architecture",
+        "name": "Architecture"
+      },
+      {
+        "id": "urban-street",
+        "name": "Urban/Street"
+      },
+      {
+        "id": "urbex",
+        "name": "UrbEx"
+      },
+      {
+        "id": "woodland",
+        "name": "Woodland"
+      },
+      {
+        "id": "abstract",
+        "name": "Abstract"
+      }
+    ],
+    "learnTitle": "Light, explained",
+    "learnIntro": "What I have learned in close to thirty years behind a camera, about light, composition and the craft.",
+    "yearsShooting": "~30"
+  },
+  "photos": [
+    {
+      "id": "botallack",
+      "title": "Botallack",
+      "description": "",
+      "location": "Cornwall",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "landscapes",
+        "coast"
+      ],
+      "featured": true,
+      "file": "images/botallack.jpg",
+      "thumb": "images/thumbs/botallack.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#735426",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "rings-rising",
+      "title": "Rings, rising",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/rings-rising.jpg",
+      "thumb": "images/thumbs/rings-rising.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#6e4e2b",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "one-way",
+      "title": "One way",
+      "description": "",
+      "location": "New York",
+      "year": "2023",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/one-way.jpg",
+      "thumb": "images/thumbs/one-way.jpg",
+      "w": 1004,
+      "h": 1600,
+      "tw": 627,
+      "th": 1000,
+      "tone": "#2f4c6a",
+      "added": "2026-10-02",
+      "lens": "RF24-70mm F2.8 L IS USM",
+      "focal": "24 mm",
+      "aperture": "f/11",
+      "shutter": "1/200 s",
+      "iso": "ISO 500"
+    },
+    {
+      "id": "empire-state-blue-hour",
+      "title": "Empire State, blue hour",
+      "description": "",
+      "location": "New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "architecture",
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/empire-state-blue-hour.jpg",
+      "thumb": "images/thumbs/empire-state-blue-hour.jpg",
+      "w": 2576,
+      "h": 2576,
+      "tw": 1000,
+      "th": 1000,
+      "tone": "#414458",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "deadvlei",
+      "title": "Deadvlei",
+      "description": "",
+      "location": "Deadvlei, Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": true,
+      "file": "images/deadvlei.jpg",
+      "thumb": "images/thumbs/deadvlei.jpg",
+      "w": 1520,
+      "h": 999,
+      "tw": 1000,
+      "th": 657,
+      "tone": "#754a24",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "100 mm",
+      "aperture": "f/16",
+      "shutter": "1/125 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "speicherstadt-balconies",
+      "title": "Speicherstadt balconies",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/speicherstadt-balconies.jpg",
+      "thumb": "images/thumbs/speicherstadt-balconies.jpg",
+      "w": 2576,
+      "h": 2559,
+      "tw": 1000,
+      "th": 993,
+      "tone": "#7a571f",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "shadow-line",
+      "title": "Shadow line",
+      "description": "",
+      "location": "Deadvlei, Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": false,
+      "file": "images/shadow-line.jpg",
+      "thumb": "images/thumbs/shadow-line.jpg",
+      "w": 666,
+      "h": 999,
+      "tw": 666,
+      "th": 999,
+      "tone": "#704929",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "400 mm",
+      "aperture": "f/10",
+      "shutter": "1/80 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "xiangqi",
+      "title": "Xiangqi",
+      "description": "",
+      "location": "Chinatown, New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/xiangqi.jpg",
+      "thumb": "images/thumbs/xiangqi.jpg",
+      "w": 2576,
+      "h": 1990,
+      "tw": 1000,
+      "th": 773,
+      "tone": "#646235",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "angel",
+      "title": "Angel",
+      "description": "",
+      "location": "Gateshead",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/angel.jpg",
+      "thumb": "images/thumbs/angel.jpg",
+      "w": 2576,
+      "h": 2576,
+      "tw": 1000,
+      "th": 1000,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "sprinkenhof",
+      "title": "Sprinkenhof",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/sprinkenhof.jpg",
+      "thumb": "images/thumbs/sprinkenhof.jpg",
+      "w": 2576,
+      "h": 2197,
+      "tw": 1000,
+      "th": 853,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "first-light",
+      "title": "First light",
+      "description": "",
+      "location": "Deadvlei, Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": false,
+      "file": "images/first-light.jpg",
+      "thumb": "images/thumbs/first-light.jpg",
+      "w": 666,
+      "h": 999,
+      "tw": 666,
+      "th": 999,
+      "tone": "#584841",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "400 mm",
+      "aperture": "f/10",
+      "shutter": "1/100 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "mulberry-street",
+      "title": "Mulberry Street",
+      "description": "",
+      "location": "Little Italy, New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/mulberry-street.jpg",
+      "thumb": "images/thumbs/mulberry-street.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#5b483e",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "dahlia",
+      "title": "Dahlia",
+      "description": "",
+      "location": "",
+      "year": "",
+      "camera": "",
+      "categories": [],
+      "featured": false,
+      "file": "images/dahlia.jpg",
+      "thumb": "images/thumbs/dahlia.jpg",
+      "w": 1932,
+      "h": 2576,
+      "tw": 750,
+      "th": 1000,
+      "tone": "#7a3c1f",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "triangle",
+      "title": "Triangle",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture",
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/triangle.jpg",
+      "thumb": "images/thumbs/triangle.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#1f4d7a",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "lofoten-shore",
+      "title": "Lofoten shore",
+      "description": "",
+      "location": "Lofoten, Norway",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "landscapes",
+        "coast"
+      ],
+      "featured": false,
+      "file": "images/lofoten-shore.jpg",
+      "thumb": "images/thumbs/lofoten-shore.jpg",
+      "w": 1744,
+      "h": 2576,
+      "tw": 677,
+      "th": 1000,
+      "tone": "#444d55",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "hydrant",
+      "title": "Hydrant",
+      "description": "",
+      "location": "New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/hydrant.jpg",
+      "thumb": "images/thumbs/hydrant.jpg",
+      "w": 2576,
+      "h": 2576,
+      "tw": 1000,
+      "th": 1000,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "red-dress",
+      "title": "Red dress",
+      "description": "",
+      "location": "Deadvlei, Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": false,
+      "file": "images/red-dress.jpg",
+      "thumb": "images/thumbs/red-dress.jpg",
+      "w": 666,
+      "h": 999,
+      "tw": 666,
+      "th": 999,
+      "tone": "#762823",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "176 mm",
+      "aperture": "f/10",
+      "shutter": "1/160 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "ericusspitze-blue-hour",
+      "title": "Der Spiegel",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture",
+        "urban-street"
+      ],
+      "featured": true,
+      "file": "images/ericusspitze-blue-hour.jpg",
+      "thumb": "images/thumbs/ericusspitze-blue-hour.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#344865",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "bleached",
+      "title": "Bleached",
+      "description": "",
+      "location": "Deadvlei, Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": false,
+      "file": "images/bleached.jpg",
+      "thumb": "images/thumbs/bleached.jpg",
+      "w": 666,
+      "h": 999,
+      "tw": 666,
+      "th": 999,
+      "tone": "#5e453b",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "400 mm",
+      "aperture": "f/10",
+      "shutter": "1/25 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "chinatown",
+      "title": "Chinatown",
+      "description": "",
+      "location": "Chinatown, New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/chinatown.jpg",
+      "thumb": "images/thumbs/chinatown.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#6c652d",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "cathedral-in-motion",
+      "title": "Cathedral in motion",
+      "description": "",
+      "location": "",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/cathedral-in-motion.jpg",
+      "thumb": "images/thumbs/cathedral-in-motion.jpg",
+      "w": 1719,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#655334",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "rings",
+      "title": "Rings",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": true,
+      "file": "images/rings.jpg",
+      "thumb": "images/thumbs/rings.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#6e522b",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "storm-over-the-dunes",
+      "title": "Storm over the dunes",
+      "description": "",
+      "location": "Namibia",
+      "year": "2026",
+      "camera": "Canon EOS R5",
+      "categories": [
+        "landscapes"
+      ],
+      "featured": true,
+      "file": "images/storm-over-the-dunes.jpg",
+      "thumb": "images/thumbs/storm-over-the-dunes.jpg",
+      "w": 1498,
+      "h": 999,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#7a461f",
+      "added": "2026-10-02",
+      "lens": "EF100-400mm f/4.5-5.6L IS II USM",
+      "focal": "135 mm",
+      "aperture": "f/11",
+      "shutter": "1/800 s",
+      "iso": "ISO 100"
+    },
+    {
+      "id": "lanterns",
+      "title": "Lanterns",
+      "description": "",
+      "location": "New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/lanterns.jpg",
+      "thumb": "images/thumbs/lanterns.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#7a6d1f",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "chilehaus",
+      "title": "Chilehaus",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/chilehaus.jpg",
+      "thumb": "images/thumbs/chilehaus.jpg",
+      "w": 1928,
+      "h": 2576,
+      "tw": 748,
+      "th": 1000,
+      "tone": "#6d4b2c",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "spiral",
+      "title": "Spiral",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture",
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/spiral.jpg",
+      "thumb": "images/thumbs/spiral.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "courtyard-skylight",
+      "title": "Courtyard skylight",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/courtyard-skylight.jpg",
+      "thumb": "images/thumbs/courtyard-skylight.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#785621",
+      "added": "2026-10-02"
+    },
+    {
+      "id": "walk",
+      "title": "Walk",
+      "description": "",
+      "location": "Chinatown, New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/walk.jpg",
+      "thumb": "images/thumbs/walk.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "exposure-triangle",
+      "title": "The exposure triangle",
+      "level": "Beginner",
+      "summary": "Aperture, shutter speed and ISO decide how bright a photograph is, and each one changes how it looks. Move the controls and see for yourself.",
+      "cover": "deadvlei",
+      "body": "Every exposure comes down to three settings. Each one lets in more or less light, and each one has a side effect you can see in the picture.\n\n[[exposure]]\n\n## Aperture\n\nThe aperture is the opening in the lens, written as an f-number. **A smaller number means a bigger opening**, so f/2.8 lets in far more light than f/16.\n\nIt also controls depth of field. Wide open, only your subject is sharp and the background melts away. Stopped down to f/11 or f/16, everything from the foreground rocks to the far hills stays sharp, which is why most landscape work sits there.\n\n## Shutter speed\n\nHow long the sensor is exposed. 1/1000 s freezes a wave mid-break. A full second turns moving water into mist.\n\nThe catch is camera shake. A rough rule for handheld shooting: keep the shutter at least as fast as one over your focal length, so 1/50 s on a 50 mm lens. Any slower and you need a tripod.\n\n## ISO\n\nHow strongly the camera amplifies the signal. Doubling the ISO brightens the image by one stop, but adds grain and loses detail in the shadows. Keep it as low as the light allows.\n\n## Stops\n\nThe three are linked by **stops**. One stop is a doubling or halving of the light. Going from f/8 to f/5.6, from 1/125 s to 1/60 s, or from ISO 400 to 800 each adds one stop.\n\n> Change one setting by a stop and you can balance it by moving another the opposite way.\n\nThat trade is the whole game. f/8 at 1/125 s and f/5.6 at 1/250 s give the same brightness. The difference is what you want sharp and what you want frozen."
+    },
+    {
+      "id": "reading-the-light",
+      "title": "Reading the light",
+      "level": "Beginner",
+      "summary": "The same hill looks completely different at seven in the morning and two in the afternoon. Learn to see the light before you look for a subject.",
+      "cover": "botallack",
+      "body": "Good landscape photographs are mostly about light. The subject matters less than you think: the same view can be flat at noon and extraordinary an hour after sunrise.\n\nThe light is also why I go out at all. Watching it build and change is when I lose track of time completely, and for me that is half the point of photography.\n\n## Golden hour\n\nThe hour after sunrise and the hour before sunset. The sun is low, so light comes in from the side, warm and soft, and every ridge and wall throws a long shadow. Texture appears that simply is not there at midday.\n\nThe further north you go, the more the timing swings with the seasons. In midsummer the golden light can last for hours. In midwinter the whole short day can feel like golden hour.\n\n## Blue hour\n\nThe time just after sunset and just before sunrise, when the sun is below the horizon. The sky turns deep blue, street lights and windows come on, and towns look their best. Bring a tripod, because exposures run to several seconds.\n\n[[photo:ericusspitze-blue-hour]]\n\n## Overcast\n\nCloud works like a huge softbox. Shadows vanish and colours deepen, which suits woodland, waterfalls and close detail. When the sky is a flat white lid, leave it out of the frame.\n\n## Weather is the light\n\nSome of the best light arrives either side of rain. A break in the cloud after a squall can spotlight one hillside while everything around it stays dark.\n\n- Look for clearing showers in the forecast, not clear skies\n- Arrive early and be prepared to wait\n- Keep shooting as the weather moves through\n\n> Bad weather makes good photographs. Bad light does not."
+    },
+    {
+      "id": "rule-of-thirds",
+      "title": "The rule of thirds",
+      "level": "Beginner",
+      "summary": "Split the frame into nine and put what matters where the lines cross. The simplest way to stop every picture looking like a snapshot.",
+      "cover": "red-dress",
+      "body": "Most beginners put the subject in the middle of the frame. It is the obvious place, and it is usually the dullest. The rule of thirds is the quickest fix.\n\n[[guide:thirds]]\n\n## How it works\n\nImagine two lines across the frame and two lines down it, splitting it into nine equal parts. Place your subject on one of the four points where the lines cross, and run strong edges such as the horizon along one of the lines.\n\nAn off-centre subject creates tension. The eye has somewhere to go, and the empty part of the frame starts to matter.\n\n## Use the grid in your camera\n\nAlmost every camera and phone can show a thirds grid on screen. Turn it on and leave it on. After a few weeks you will place things on the thirds without thinking.\n\n## Give it room\n\nIf your subject is looking or moving, put the space in front of it, not behind. A walker heading left belongs on the right third, with the empty frame ahead of them.\n\n## When to break it\n\n- Symmetry and reflections usually want the centre\n- A single small subject in a big empty space can sit almost anywhere\n- Square frames often suit a central subject\n\n> The rule of thirds is a starting point, not a law. Learn it well enough that breaking it is a choice."
+    },
+    {
+      "id": "horizon-placement",
+      "title": "Where to put the horizon",
+      "level": "Beginner",
+      "summary": "High, low or dead centre. Where the horizon sits decides whether a photograph is about the land or the sky.",
+      "cover": "storm-over-the-dunes",
+      "body": "The horizon is usually the strongest line in a landscape. Where you put it tells the viewer what the photograph is about before they have looked at anything else.\n\n[[guide:horizon]]\n\n## Low horizon: sky-led\n\nPut the horizon on the lower third when the sky is doing something worth showing: storm cloud, a sunset, a big clearing after rain. The land becomes a thin base for the drama above it.\n\n## High horizon: land-led\n\nPut it on the upper third when the interest is in front of you: rocks on the shore, patterns in the sand, a path leading in. On a flat grey day this is often the only way to make a landscape work, because it leaves the dull sky out.\n\n## Centred: for reflections\n\nA horizon through the middle splits the frame in two equal halves. That usually feels static, which is exactly why it suits a mirror-calm loch. The reflection and the scene balance each other.\n\n## Keep it level\n\nA sloping horizon is the most common mistake in landscape photography, and the easiest to fix. Turn on the level in your camera, or straighten it afterwards. On the coast, a tilted sea looks as if it is draining out of the picture.\n\n> Decide what the photograph is about, then give it the most room."
+    },
+    {
+      "id": "leading-lines",
+      "title": "Leading lines",
+      "level": "Beginner",
+      "summary": "Roads, walls, rivers and shorelines can walk the eye straight to your subject. Find the line first, then the point it leads to.",
+      "cover": "sprinkenhof",
+      "body": "The eye follows lines. Put a line in the frame that runs towards your subject and you have done half the work of telling people where to look.\n\n[[guide:lines]]\n\n## Where to find them\n\n- Roads and paths running away from you\n- Dry stone walls and fences crossing a hillside\n- Rivers, burns and the curve of a shoreline\n- Piers, railings and rows of windows in town\n\n## Make them lead somewhere\n\nA line that runs out of the side of the frame takes the eye with it. The strongest lines start near a corner or the bottom edge and end at something worth looking at: a building, a peak, a figure.\n\n## Get low and go wide\n\nA wide-angle lens close to the ground stretches lines out and makes them converge faster. A wall that looks ordinary at head height can sweep right through the frame from knee height.\n\n## Curves\n\nStraight lines are direct and strong. Curves, like an S-bend in a river or a road winding through a glen, slow the eye down and make it wander. Both work. Choose the one that matches the mood.\n\n> Find the line first. Then walk until it points where you want."
+    },
+    {
+      "id": "framing",
+      "title": "Framing within the frame",
+      "level": "Intermediate",
+      "summary": "An archway, a window or a gap in the trees puts a border inside your photograph and holds the eye on what matters.",
+      "cover": "deadvlei",
+      "body": "A natural frame is anything in the scene that surrounds your subject: a doorway, branches, a window, the gap between two buildings. It adds depth, gives context and keeps the eye from drifting off the edges.\n\n[[guide:frame]]\n\n## Why it works\n\nThe frame creates layers. Something close, the subject further away, and the space between them make a flat image feel three-dimensional. It also shows where you were standing, which tells a story of its own.\n\n## Keep the frame quiet\n\nThe frame should support the subject, not compete with it. It works best when it is darker than the view, or simpler. A shadowy archway around a bright street is the classic example.\n\n## Focus and depth\n\nDecide what should be sharp. At f/11 or f/16 both the frame and the view stay crisp. At f/2.8 the frame melts into a soft border and the subject stands out. Both are valid choices.\n\n## Where to look\n\n- Doorways and arches in old towns and castles\n- Overhanging branches at the edge of a wood\n- Rock arches and caves on the coast\n- Bridges, seen from underneath\n\n> A frame does not have to be complete. Two branches can be enough."
+    },
+    {
+      "id": "symmetry-and-patterns",
+      "title": "Symmetry and patterns",
+      "level": "Intermediate",
+      "summary": "Reflections, repeating shapes and perfect balance. When to centre everything, and why breaking a pattern is often the photograph.",
+      "cover": "speicherstadt-balconies",
+      "body": "Most composition advice tells you to move the subject off-centre. Symmetry is the exception. When a scene is balanced, centring it is the strongest choice.\n\n[[guide:symmetry]]\n\n## Reflections\n\nStill water is the easiest symmetry to find. Get to a loch early, before the wind gets up, put the horizon through the middle and let the reflection mirror the scene. A low angle, close to the water, makes the reflection larger.\n\n## Built symmetry\n\nArchitecture is full of it: bridges, doorways, church interiors, corridors. Stand exactly in the middle, keep the camera level and square to the subject, and check the edges match. Being a few centimetres off-centre is very obvious in a symmetrical frame.\n\n## Patterns\n\nRepetition is pleasing to the eye: rows of windows, ripples in sand, stacked lobster creels on a harbour wall. Fill the frame so the pattern seems to carry on beyond the edges.\n\n## Break the pattern\n\nThe strongest pattern photographs often contain one thing that does not fit. A single red door in a terrace. One gull on a row of posts. The pattern sets up an expectation and the break becomes the subject.\n\n> Symmetry is calm. A broken pattern is a story."
+    },
+    {
+      "id": "golden-ratio",
+      "title": "The golden ratio",
+      "level": "Advanced",
+      "summary": "The spiral and the phi grid, where they come from, and how much weight to give them.",
+      "cover": "rings",
+      "body": "The golden ratio is about 1.618 to 1. Painters and architects have used it for centuries, and photographers borrow it as two composition guides: the golden spiral and the phi grid.\n\n[[guide:golden]]\n\n## The golden spiral\n\nDivide a golden rectangle into a square and a smaller golden rectangle, then keep going. A curve drawn through the squares makes a spiral that tightens towards one point. Line up that point with your subject, and let a curve in the scene, such as a shoreline or a sweep of cloud, follow the spiral round.\n\nThe spiral can face any of four ways. Flip it to suit the photograph, not the other way round.\n\n## The phi grid\n\nThe phi grid places its lines at about 38% and 62% of the frame, instead of the thirds at 33% and 67%. The difference is small. It pulls the subject slightly closer to the centre, which can feel calmer than a strict thirds placement.\n\n## How much it matters\n\nBe a little sceptical. There is not much evidence that the golden ratio looks better than other off-centre placements, and plenty of great photographs ignore it entirely. Treat it as one more way of checking a composition, and a useful one for curved subjects.\n\n- Most editing software can show a spiral and phi grid when cropping\n- Try it when cropping, not just in camera\n- If it does not fit naturally, do not force it\n\n> Guides help you see. They do not take the photograph for you."
+    },
+    {
+      "id": "composing-a-landscape",
+      "title": "Composing a landscape",
+      "level": "Intermediate",
+      "summary": "A wide view rarely works on its own. Give the eye a way in, a place to rest and a reason to stay.",
+      "cover": "lofoten-shore",
+      "body": "Stand in front of a great view, take a picture, and it often looks smaller and emptier than it felt. The scene needs structure.\n\n## Find a foreground\n\nGet low and put something close to the lens: rocks, heather, a fence post, ripples on the shore. It gives depth and a starting point for the eye. Use a smaller aperture such as f/11 so it stays sharp along with the distance.\n\n## Use lines\n\nRoads, rivers, walls and shorelines lead the eye through the frame. Diagonals feel more dynamic than lines running straight across.\n\n## Place the horizon on purpose\n\nThe rule of thirds is a useful starting point, not a law. If the sky is the story, give it two thirds of the frame. If it is a dull grey, give it a sliver or leave it out. Either way, keep the horizon level.\n\n## Simplify\n\nMost weak compositions have too much in them. Before you press the shutter, walk your eye round the edges of the frame and ask what each thing is doing there.\n\n- Move a few steps to separate overlapping shapes\n- Zoom in on the part of the view that drew you in\n- Try a portrait frame as well as a landscape one\n\n> If it does not add to the picture, it takes away from it."
+    },
+    {
+      "id": "architecture",
+      "title": "Architecture",
+      "level": "Intermediate",
+      "summary": "Buildings do not move and the light on them is predictable, which makes architecture the most patient subject there is. The hard part is the lines.",
+      "cover": "chilehaus",
+      "body": "A building is a composition someone has already designed. Your job is to find the angle and the light that show what the architect intended, or something they never saw.\n\nOne of my brothers is an architect, which probably explains why I notice the design of a building as much as the building itself.\n\n## Commit to an angle\n\nThere are two strong ways to photograph a building, and one weak one.\n\n- **Straight on:** stand square to the facade with the camera level, so every vertical stays vertical. Calm, graphic, exact.\n- **Looking up:** point the camera steeply upwards and let the lines rush together. Dramatic and dizzying.\n- **Half-way:** a slight upward tilt, where the walls lean just enough to look like a mistake. Avoid it.\n\n[[photo:Speicherstadt balconies]]\n\nStraight on and dead centre. Every line is parallel to the frame, so the repetition does all the work.\n\n## Converging verticals\n\nTilt the camera up and parallel walls appear to lean in towards the top. Sometimes that is the point. When it is not, you can correct it.\n\n[[guide:verticals]]\n\nThere are three ways to deal with it:\n\n- Step back and use a longer lens, so you can keep the camera level\n- Correct it in the edit with a perspective or upright tool, leaving room around the building because the correction crops the frame\n- Use a tilt-shift lens, which moves the image up without tilting the camera\n\nI sometimes straighten them in Lightroom with the Transform tool, but only when the photograph calls for it. If the lean is the point, I leave it alone.\n\n## Light\n\n**Blue hour** is the best time for buildings with lit windows. For about twenty minutes after sunset the sky and the interior lights are close in brightness, so both hold detail.\n\n[[photo:Der Spiegel]]\n\n**Side light** brings out texture in brick and stone. **Overcast** days suit detail and glass, with no hard reflections.\n\n## Look up, look closer\n\nThe best architectural photographs are often not of the whole building. Stand in a courtyard or stairwell and look straight up. Fill the frame with a single repeating detail.\n\n[[photo:Spiral]]\n\n## Practical points\n\n- Wide lenses stretch the edges of the frame. Keep important lines away from the corners\n- Many buildings, shopping centres and stations do not allow tripods. Raise the ISO instead\n\n- In cities I carry a light carbon-fibre Peak Design tripod. It is easier to carry all day and quicker to set up\n- Private buildings and their courtyards may need permission to photograph\n\n> Either keep the lines straight or make it obvious you meant them to lean."
+    },
+    {
+      "id": "long-exposure",
+      "title": "Long exposure",
+      "level": "Intermediate",
+      "summary": "Leave the shutter open for seconds or minutes and the moving world disappears. Water turns to mist, clouds to streaks, traffic to ribbons of light.",
+      "cover": "ericusspitze-blue-hour",
+      "body": "A long exposure records everything that happens while the shutter is open. Anything still stays sharp. Anything moving smears, fades or vanishes. That contrast is the whole effect.\n\n[[guide:longexp]]\n\n## ND filters\n\nIn daylight there is far too much light for a long exposure. A neutral density filter is dark glass that cuts the light without changing its colour, measured in stops.\n\n- **3 stops:** 1/125 s becomes 1/15 s. Softens waterfalls and waves\n- **6 stops:** 1/125 s becomes 1/2 s. Smooths moving water\n- **10 stops:** 1/125 s becomes 8 s. Flattens the sea and streaks clouds\n\nEvery stop doubles the time. Phone apps will do the sums, but it is worth knowing them roughly in your head.\n\n## The method\n\n- Use a solid tripod and a remote release or the 2-second timer\n- Turn off image stabilisation when the camera is on a tripod\n- Compose and focus before you screw on a dark filter, then switch to manual focus\n- With a DSLR, cover the viewfinder during the exposure so light does not leak in\n\nI use Kase ND filters on a Three Legged Thing Winston. I never rely on a single frame: I take a lot of shots at a few different exposure times and choose afterwards. A few seconds either way changes how the water looks, and it is far easier to pick the right one at home than to guess on the spot.\n\n## Water\n\nA second or two turns waves into soft texture. Thirty seconds or more turns the sea into mist around the rocks. Keep something solid in the frame, such as rocks, a pier or a post, so the smoothness has something to contrast with.\n\n[[photo:Lofoten shore]]\n\n## Light trails\n\nAt night you do not need a filter. Ten to thirty seconds at f/8 to f/11 turns traffic into streams of red and white light, while the buildings stay sharp.\n\n[[photo:Chilehaus]]\n\n## Blue hour\n\nAfter sunset the light falls fast enough that exposures of several seconds happen without any filter. Still water becomes a mirror and lit windows glow.\n\n> Find something that will not move, then let everything else go."
+    },
+    {
+      "id": "black-and-white",
+      "title": "Black and white",
+      "level": "Intermediate",
+      "summary": "Take the colour away and a photograph is only light, shadow, shape and texture. Some pictures get stronger. Some fall apart.",
+      "cover": "deadvlei",
+      "body": "Black and white is not colour with something missing. It is a different way of seeing, built entirely on tone: how light or dark each part of the picture is.\n\n## When it works\n\n- Strong light and deep shadow\n- Texture: stone, bark, weathered skin, sand\n- Shape and line, especially in architecture\n- Street scenes where colour is cluttered or distracting\n- Dull, grey days, where the colour has nothing to offer anyway\n\n[[photo:Walk]]\n\nOn a busy street, colour pulls the eye everywhere: signs, clothes, vans. In mono only the shapes and the light are left, and the woman at the crossing becomes the subject.\n\n## When it does not\n\nIf the picture is about colour, such as a sunset, autumn leaves or a red dress against sand, converting it throws away its reason to exist. Converting a weak photograph to black and white rarely rescues it.\n\n## When I decide\n\nFor me it varies. Some days I go out having decided I am only shooting black and white. Sometimes I take the shot as colour and decide in the edit. And sometimes I decide on the spot, when the textures are there in front of me.\n\n## Colour still matters\n\nTwo colours of the same brightness turn into the same grey, and the picture goes flat. Film photographers used coloured filters to control this. Digital conversions do the same thing with sliders.\n\n[[guide:mono]]\n\nA straight conversion of this photograph turns the sky and the dune into almost the same grey. A red filter darkens the sky and leaves the dune bright, which is why it was the classic landscape filter.\n\n## How to work\n\n- Shoot in colour, ideally RAW, and convert later. You keep every option\n- Set the camera's picture style to monochrome if you want to see in black and white while shooting. RAW files still keep the colour\n- Push the contrast more than feels comfortable, then back off a touch\n- Make sure something in the frame is close to pure black and something close to pure white\n\nMy own editing is light: Lightroom, with an occasional small tweak in Photoshop. A conversion and a few contrast adjustments are usually all a black and white photograph needs from me.\n\n[[photo:Sprinkenhof]]\n\n> Look for light and shape. Colour can lie about a photograph; tone cannot."
+    },
+    {
+      "id": "street",
+      "title": "Street",
+      "level": "Intermediate",
+      "summary": "Candid moments of everyday life in public places. Be ready before the moment arrives, and treat the people in your pictures with respect.",
+      "cover": "walk",
+      "body": "Street photography captures ordinary life as it happens: people, gestures, light and coincidence in public places. The best moments last a fraction of a second, so the whole craft is about being ready before they arrive.\n\n[[guide:zone]]\n\n## Zone focusing\n\nAutofocus can be too slow, or lock on the wrong thing. Instead, set the focus manually to a distance and an aperture that give a wide band of sharpness, then forget about it. At 35 mm and f/8, focus at 3 m and everything from about 1.9 m to 7 m is sharp. Anyone who steps into that zone is in focus the moment you press the shutter.\n\n## Small and quiet\n\nA small camera with a fixed 28 mm or 35 mm lens draws far less attention than a big zoom. Set a fast enough shutter to freeze people walking, around 1/250 s or faster, and let auto ISO cope with the light.\n\nThis is where a small camera earns its place. Mine is a Leica D-Lux 8. It is truly pocket-sized and its monochrome mode is brilliant, which makes it ideal for street.\n\n## Find the scene, then wait\n\nRather than chasing people, find a good background: strong light and shadow, a striking wall, a doorway, a reflection. Then wait for someone to walk into it. This is sometimes called fishing, and it produces far stronger pictures than snapping at random.\n\n## What to look for\n\n- Gesture and expression, the split second that tells a story\n- Light: low sun, hard shadows, shafts of light between buildings\n- Layers: something near, something in the middle, something far\n- Juxtaposition: two things in the frame that comment on each other\n\n[[photo:xiangqi]]\n\nGesture. A hand reaching for a piece, the other player waiting. The background is soft enough to leave the two men and the board as the whole story.\n\n[[photo:hydrant]]\n\nJuxtaposition. The hydrant and the seated man have the same pale top and dark body, and the same downward tilt. Neither would be a photograph on its own.\n\n[[photo:chinatown]]\n\nLayers. Someone close, a family in the middle, a crowd beyond, all on one pavement.\n\n## Respect\n\nIn the UK it is generally legal to photograph people in public places, but legal is not the same as right. Be open about what you are doing, smile, and if someone objects, delete the picture and move on. Take extra care with children and people in vulnerable situations. If you plan to use a picture commercially, you may need the person's written permission.\n\n> Be ready before the moment, not after it."
+    },
+    {
+      "id": "woodland",
+      "title": "Woodland",
+      "level": "Intermediate",
+      "summary": "A wood is the hardest landscape to photograph well. The trick is finding order in the chaos, and the right weather does half of it for you.",
+      "cover": "storm-over-the-dunes",
+      "body": "Walk into a wood with a camera and everything looks beautiful. Look at the pictures later and most of them are a tangle of trunks and branches with nowhere for the eye to rest. Woodland photography is mostly about simplifying.\n\n[[guide:mist]]\n\n## Wait for the right conditions\n\n**Mist and fog** are the woodland photographer's best friends. Each row of trees fades a little more than the one in front, which separates the layers and gives the picture depth. Still autumn and spring mornings after a clear, cold night are the most likely times.\n\n**Overcast days** come next. Soft light means no harsh patches of sun and deep shadow, and colours look richer. Bright sunshine through a canopy is the hardest light of all: the camera cannot hold the bright spots and the shadows at once.\n\n**After rain** the bark darkens, moss glows and colours saturate. A polarising filter cuts the glare off wet leaves and makes the difference obvious.\n\n## Find a subject\n\nA wood needs a focal point as much as any landscape. Look for one tree that stands apart: a different shape, a different colour, a trunk catching the light. A path or a burn can lead the eye through.\n\n## Use a longer lens\n\nA wide lens takes in everything, and in a wood everything is the problem. A short telephoto, somewhere around 70 to 200 mm, lets you pick out a small, tidy scene from the mess and compresses the trunks into a pattern.\n\n## Practical points\n\n- Keep the camera level so trunks stay vertical and do not lean in\n- Keep bright patches of sky out of the top of the frame\n- Bring a tripod: woods are dark, even at midday\n- Bluebell woods peak in late April and May; autumn colour usually peaks in late October\n\n> Look for one tree, not the whole wood."
+    },
+    {
+      "id": "minimalism",
+      "title": "Minimalism",
+      "level": "Intermediate",
+      "summary": "One subject, a lot of empty space and nothing else. Minimalism is the art of taking things out until the picture breaks, then putting one back.",
+      "cover": "bleached",
+      "body": "Minimalist photographs strip a scene down to as little as possible: usually one subject and a large area of empty space. Done well they are calm, strong and memorable. Done badly they are just empty.\n\n[[guide:space]]\n\n## Negative space\n\nThe empty area around the subject is called negative space. It is not wasted. It gives the subject room, sets the mood and makes something small feel significant. A lone boat on a flat calm sea is more powerful than the same boat in a busy harbour.\n\n## Where to find it\n\n- Fog and mist, which erase the background\n- Flat calm water and plain skies\n- Snow, sand and beaches at low tide\n- Long exposures, which smooth water and cloud into plain tone\n- Plain walls in towns, with one person, door or window\n\n## Keep it simple, but not empty\n\nThe subject still needs to be placed with care. Thirds work well, and so does putting a small subject low or to one side so the space reads as deliberate. Check every edge of the frame for a stray branch, post or bird that pulls the eye away.\n\n## Colour and tone\n\nLimit the palette. Two or three tones, or one colour against neutral grey, works better than a full range. Many minimalist images are slightly overexposed to keep the space clean and light.\n\n> Keep taking things out until it stops working. Then put the last one back."
+    },
+    {
+      "id": "macro",
+      "title": "Macro",
+      "level": "Intermediate",
+      "summary": "Close enough that a drop of dew becomes a landscape. Depth of field shrinks to millimetres, so focus and stillness become everything.",
+      "cover": "dahlia",
+      "body": "True macro means reproducing the subject at life size or larger on the sensor, a ratio of 1:1. A 10 mm beetle covers 10 mm of sensor. At that scale, the ordinary rules of focus and light stop applying in the way you are used to.\n\n[[guide:focus]]\n\n## The depth of field problem\n\nAt life size, depth of field is tiny. On a full-frame camera at f/8 only about a millimetre of the subject is sharp. At f/2.8 it is about a third of a millimetre, barely the thickness of a petal.\n\nClosing the aperture helps, but only up to a point. Beyond about f/16 diffraction starts to soften the whole image. f/8 to f/11 is the usual compromise.\n\n## Focusing\n\n- Set the focus manually and move the camera, not the focus ring\n- Line the sensor up parallel with the most important plane of the subject, such as a wing or the face of a flower\n- On an insect, the eyes must be sharp. Nothing else matters as much\n\n## Focus stacking\n\nTake a series of frames, each focused a little further into the subject, then blend them in software so the whole thing is sharp. It needs a still subject, a tripod and no wind. Many modern cameras can shoot the series for you.\n\n## Equipment\n\nA dedicated macro lens of 90 to 105 mm gives 1:1 and a comfortable working distance, so you do not scare insects or shade the subject. Close-up filters and extension tubes are cheaper ways to get close with lenses you already own.\n\n## When to go\n\nEarly morning is best. The air is still, dew is on everything, and insects are cold and slow until the sun warms them up.\n\n> At this scale, a breath of wind is an earthquake."
+    },
+    {
+      "id": "icm",
+      "title": "Intentional camera movement",
+      "level": "Intermediate",
+      "summary": "Move the camera during a long exposure on purpose and a wood becomes a painting. Easy to try, hard to master, and impossible to repeat exactly.",
+      "cover": "rings-rising",
+      "body": "Intentional camera movement, or ICM, breaks the first rule of photography: keep the camera still. Instead you move it deliberately while the shutter is open, turning a scene into streaks and washes of colour.\n\n[[guide:icm]]\n\n## The settings\n\nStart around 1/4 s to 1/2 s. In daylight that is a long exposure, so you will need a small aperture such as f/16, the lowest ISO, and often a neutral density filter to cut the light further. Shutter priority mode makes it easy to set the speed and let the camera handle the rest.\n\n## The movement\n\n- **Vertical sweeps** along tree trunks are the classic. Start moving before you press the shutter and keep moving after it closes\n- **Horizontal sweeps** along a horizon turn the coast into bands of sea, land and sky\n- **Zoom bursts:** turn the zoom ring during the exposure for lines radiating from the centre\n- **Small shakes or twists** give a softer, painterly texture\n\n## Choose the subject carefully\n\nICM works best with strong, simple shapes and good colour. Lines that run in the direction of the movement stay as clean streaks; anything at an angle smears. Birch trees, autumn colour, bluebells, a sunset over the sea and city lights at night are all good starting points.\n\n## Done for real\n\n[[photo:cathedral-in-motion]]\n\nA vertical sweep. The spires and tree trunks run the same way as the movement, so they hold their shape while the leaves and sky dissolve into texture.\n\n## Expect a low hit rate\n\nNo two frames are the same. Shoot dozens, vary the speed and the length of the sweep, and expect to keep a handful. That unpredictability is part of the appeal.\n\n> You are not recording the scene. You are painting with it."
+    },
+    {
+      "id": "abstract",
+      "title": "Abstract",
+      "level": "Advanced",
+      "summary": "Take away the context and a photograph stops being of something. It becomes shape, line, colour and texture. Composition matters more, not less.",
+      "cover": "spiral",
+      "body": "An abstract photograph does not ask the viewer to recognise what it shows. It works on shape, line, colour, tone and texture alone. The subject can be anything: peeling paint, sand ripples, a reflection, the corner of a building.\n\n[[guide:crop]]\n\n## Get closer\n\nThe easiest way into abstraction is to remove context. Move in or zoom in until the frame holds only part of the subject. A whole boat is a boat. A curve of its hull against a stripe of water is a composition.\n\n[[photo:angel]]\n\nA famous sculpture, cropped until it is mostly line and tone. Without the whole figure, the ribs and the diagonal of the wing become the subject.\n\n## Look for the elements\n\n- **Line:** cracks, edges, cables, the boundary between two colours\n- **Shape:** repeated forms, a single strong silhouette\n- **Colour:** two colours side by side, or one colour in many shades\n- **Texture:** rust, bark, stone, frost, best shown by light raking across from the side\n- **Tone:** blocks of light and dark, especially in black and white\n\n## The rules still apply\n\nWithout a recognisable subject, balance, contrast and placement carry the whole image. Thirds, leading lines and negative space all still work. A weak abstract is usually just a weak composition with nothing to hide behind.\n\n## Ways to make one\n\n- Shoot reflections in water, glass or polished metal\n- Use a very shallow depth of field so most of the frame is soft colour\n- Move the camera during the exposure (see the lesson on ICM)\n- Turn the camera so the viewer cannot tell which way is up\n\n## Titles\n\nA title can open an abstract up or close it down. \"Untitled\" leaves it entirely to the viewer. Naming what it is can spoil the puzzle. Choose deliberately.\n\n> Stop asking what it is. Ask whether it works."
+    },
+    {
+      "id": "behind-deadvlei",
+      "title": "Behind the shot: Deadvlei",
+      "level": "Behind the shot",
+      "summary": "One photograph, how it was made, and what I would do differently.",
+      "cover": "deadvlei",
+      "draft": true,
+      "body": "[[shot:deadvlei]]\n\n## Why I was there\n\n[Your words: how you came to be at Deadvlei, what you were hoping to find.]\n\n## The moment\n\n[What time it was, what the light was doing, how long you waited, what you were watching for.]\n\n## How I shot it\n\n[Why 100 mm rather than wide, why f/16, where you stood, tripod or handheld.]\n\n## In the edit\n\n[What you did afterwards, and how far you pushed it.]\n\n## What I would do differently\n\n[One honest thing.]"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Studio | Grant C Anthony</title>
+<meta name="theme-color" content="#0D0D0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.ad{max-width:1180px;margin:0 auto;padding:calc(28px + env(safe-area-inset-top,0px)) var(--gut) 140px}
+.ad-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.ad-head h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,6vw,64px);line-height:.95;margin:0;letter-spacing:-.02em}
+.ad-head h1 i{color:var(--accent)}
+.status{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--faint)}
+.dot.ok{background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.dot.err{background:var(--danger)}
+.tabs{display:flex;gap:28px;margin:22px 0 30px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs button{all:unset;cursor:pointer;padding:10px 0 14px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent)}
+.tabs button:focus-visible{outline:2px solid var(--accent)}
+.panel{display:grid;gap:22px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,28px)}
+.card h2{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 6px}
+.help{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:70ch}
+.help code{font-family:var(--mono);font-size:12px;background:var(--bg3);padding:2px 6px;border-radius:4px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:0 14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0 18px}
+input[type=text],input[type=password],input[type=email],textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:11px 13px;width:100%}
+input::placeholder,textarea::placeholder{color:var(--faint)}
+textarea{min-height:110px;resize:vertical;line-height:1.55}
+.field{display:grid;gap:7px;margin-bottom:16px;min-width:0}
+.field > label,.lab{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+.drop{border:1.5px dashed var(--line2);border-radius:14px;padding:clamp(28px,5vw,48px) 20px;text-align:center;transition:all .25s;background:var(--bg2)}
+.drop.over{border-color:var(--accent);background:rgba(217,198,163,.07)}
+.drop h3{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 6px}
+.drop p{color:var(--muted);margin:0 0 18px;font-size:14px}
+
+.plist{display:grid;gap:14px}
+.pitem{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px;transition:border-color .2s}
+.pitem.dirty{border-color:rgba(217,198,163,.5)}
+.pitem .thumb{width:150px;height:150px;border-radius:8px;overflow:hidden;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative}
+.pitem .thumb img{max-width:100%;max-height:100%;display:block}
+.pitem .thumb .badge{position:absolute;left:6px;top:6px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;background:var(--accent);color:var(--accent-ink);padding:3px 6px;border-radius:4px;text-transform:uppercase}
+.pitem .info{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:8px;letter-spacing:.04em;text-align:center}
+.pitem .fields{min-width:0}
+.catpick{display:flex;flex-wrap:wrap;gap:6px}
+.catpick label{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:6px 11px;border:1px solid var(--line2);border-radius:999px;cursor:pointer;user-select:none}
+.catpick input{accent-color:var(--accent);margin:0}
+.catpick label:has(input:checked){border-color:var(--accent);color:var(--accent)}
+.catpick .none{color:var(--faint);font-size:13px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+.tools .sp{flex:1}
+.tog{display:inline-flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+.tog input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+button.b.sm{padding:9px 13px;font-size:11px}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--danger)}
+@media (max-width:640px){.pitem{grid-template-columns:minmax(0,1fr)}.pitem .thumb{width:100%;height:220px}}
+
+.litem{display:block}
+.litem textarea.body{min-height:260px;font-size:14px}
+select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:11px 13px;width:100%}
+.catrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.catrow .n{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(21,21,23,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:14px var(--gut) calc(14px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;transform:translateY(110%);transition:transform .4s var(--ease)}
+.savebar.show{transform:none}
+.savebar .msg{font-size:14px;color:var(--muted);min-width:0}
+.savebar .msg b{color:var(--fg);font-weight:500}
+.progress{height:3px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-top:12px}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:11px 18px;border-radius:999px;font-size:14px;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast.err{background:var(--danger);color:#1a0d0b}
+.locked{opacity:.4;pointer-events:none}
+.steps{margin:0 0 18px;padding-left:20px;color:var(--muted);font-size:14px;max-width:72ch}
+.steps li{margin-bottom:6px}
+.steps b{color:var(--fg);font-weight:500}
+</style>
+</head>
+<body>
+<div class="ad">
+  <header class="ad-head">
+    <div>
+      <p class="eyebrow">Studio</p>
+      <h1>Manage <i>photographs</i></h1>
+    </div>
+    <div class="row">
+      <span class="status"><span class="dot" id="dot"></span><span id="statusText">Not connected</span></span>
+      <a class="btn" href="./" target="_blank" rel="noopener">View site</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="photos" aria-selected="true">Photographs</button>
+    <button role="tab" data-tab="cats" aria-selected="false">Categories</button>
+    <button role="tab" data-tab="learn" aria-selected="false">Learn</button>
+    <button role="tab" data-tab="site" aria-selected="false">Site details</button>
+    <button role="tab" data-tab="conn" aria-selected="false">Connection</button>
+  </nav>
+
+  <!-- PHOTOS -->
+  <section class="panel" data-panel="photos" id="photosPanel">
+    <div class="drop" id="drop">
+      <h3>Add photographs</h3>
+      <p>Drop JPEG, PNG or WebP files here, or choose them. Each keeps its own aspect ratio. Camera settings are read from the file where present; location data is removed.</p>
+      <button class="b primary" id="pick" type="button">Choose photographs</button>
+      <input type="file" id="fileIn" accept="image/jpeg,image/png,image/webp" multiple hidden>
+      <div class="progress" id="prog" hidden><i id="progBar"></i></div>
+    </div>
+    <div class="plist" id="plist"></div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="panel" data-panel="cats" hidden>
+    <div class="card">
+      <h2>Categories</h2>
+      <p class="help">These appear as filters along the top of your gallery, in this order. A photograph can belong to several. Categories with no photographs are hidden on the public site.</p>
+      <div id="catList"></div>
+      <div class="row" style="margin-top:18px">
+        <input type="text" id="newCat" placeholder="New category, e.g. Landscapes" style="flex:1 1 240px" maxlength="40">
+        <button class="b" id="addCat" type="button">Add category</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARN -->
+  <section class="panel" data-panel="learn" hidden>
+    <div class="card">
+      <h2>Learn section</h2>
+      <p class="help">Lessons appear on your home page in this order, and each opens in its own reader. The section is hidden when there are no lessons.</p>
+      <div class="grid2">
+        <div class="field"><label for="lTitle">Section heading</label><input type="text" id="lTitle" maxlength="60" placeholder="Light, explained"></div>
+        <div class="field"><label for="lIntro">Introduction</label><input type="text" id="lIntro" maxlength="200" placeholder="One line about what readers will learn"></div>
+      </div>
+      <details class="help" style="margin:0">
+        <summary style="cursor:pointer;color:var(--fg)">Formatting lesson text</summary>
+        <p style="margin:12px 0 6px">Leave a blank line between paragraphs. Then:</p>
+        <p style="margin:0 0 4px"><code>## Heading</code> starts a new section</p>
+        <p style="margin:0 0 4px"><code>- item</code> on each line makes a list</p>
+        <p style="margin:0 0 4px"><code>&gt; text</code> makes a large pull quote</p>
+        <p style="margin:0 0 4px"><code>**bold**</code> and <code>*italic*</code></p>
+        <p style="margin:0 0 4px"><code>[[photo:Title of photo]]</code> on its own line shows one of your gallery photographs in the lesson</p>
+        <p style="margin:0 0 4px"><code>[[shot:Title of photo]]</code> shows the photograph with its place, camera, lens and settings, for Behind the shot</p>
+        <p style="margin:12px 0 6px">Interactive tools, each on a line of its own. They use the lesson's cover photograph:</p>
+        <p style="margin:0 0 4px"><code>[[exposure]]</code> exposure simulator</p>
+        <p style="margin:0 0 4px"><code>[[guide:thirds]]</code> thirds and phi grids</p>
+        <p style="margin:0 0 4px"><code>[[guide:horizon]]</code> movable horizon (no photo needed)</p>
+        <p style="margin:0 0 4px"><code>[[guide:lines]]</code> leading lines, tap to move the point</p>
+        <p style="margin:0 0 4px"><code>[[guide:frame]]</code> archway and window frames</p>
+        <p style="margin:0 0 4px"><code>[[guide:symmetry]]</code> centre line and mirror</p>
+        <p style="margin:0 0 4px"><code>[[guide:golden]]</code> golden spiral</p>
+        <p style="margin:0 0 4px"><code>[[guide:mist]]</code> mist in a wood (no photo needed)</p>
+        <p style="margin:0 0 4px"><code>[[guide:focus]]</code> macro plane of focus and stacking</p>
+        <p style="margin:0 0 4px"><code>[[guide:crop]]</code> drag to find an abstract</p>
+        <p style="margin:0 0 4px"><code>[[guide:space]]</code> simplify a scene (no photo needed)</p>
+        <p style="margin:0 0 4px"><code>[[guide:icm]]</code> camera movement blur</p>
+        <p style="margin:0 0 4px"><code>[[guide:zone]]</code> zone focusing calculator (no photo needed)</p>
+        <p style="margin:0 0 4px"><code>[[guide:verticals]]</code> straighten converging verticals</p>
+        <p style="margin:0 0 4px"><code>[[guide:mono]]</code> black and white with colour filters (use a colour cover photo)</p>
+        <p style="margin:0"><code>[[guide:longexp]]</code> long exposure and ND filters (no photo needed)</p>
+      </details>
+    </div>
+    <div class="row"><button class="b primary" id="addLesson" type="button">New lesson</button></div>
+    <div class="plist" id="llist"></div>
+  </section>
+
+  <!-- SITE -->
+  <section class="panel" data-panel="site" hidden>
+    <div class="card">
+      <h2>Site details</h2>
+      <p class="help">Your signature is used as the logo. The name is used for the browser tab, search results and screen readers. Leave About empty to hide that section.</p>
+      <label class="tog" style="margin-bottom:18px"><input type="checkbox" id="sSig"> Use my signature as the logo (untick to show the name in type instead)</label>
+      <label class="tog" style="margin-bottom:18px;display:flex"><input type="checkbox" id="sSet"> Show camera, lens and settings with each photograph</label>
+      <div class="grid2">
+        <div class="field"><label for="sName">Name</label><input type="text" id="sName" maxlength="60"></div>
+        <div class="field"><label for="sTag">Tagline</label><input type="text" id="sTag" maxlength="120" placeholder="Photography"></div>
+      </div>
+      <div class="field"><label for="sYears">Years taking photographs (shown in About; leave empty to hide)</label><input type="text" id="sYears" maxlength="8" placeholder="~30"></div>
+      <div class="field"><label for="sAboutTitle">About heading</label><input type="text" id="sAboutTitle" maxlength="60" placeholder="Behind the lens"></div>
+      <div class="field"><label for="sAbout">About</label><textarea id="sAbout" style="min-height:180px" placeholder="A few paragraphs about you and your work. Leave a blank line between paragraphs."></textarea></div>
+      <div class="grid2">
+        <div class="field"><label for="sEmail">Contact email</label><input type="email" id="sEmail" placeholder="you@example.com"></div>
+        <div class="field"><label for="sInsta">Instagram accounts</label><input type="text" id="sInsta" placeholder="@gcanth, @lightthroughtheglass"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECTION -->
+  <section class="panel" data-panel="conn" hidden>
+    <div class="card">
+      <h2>Connect to GitHub</h2>
+      <p class="help">This page saves straight to your site's GitHub repository. You need a fine-grained access token that can only touch this one repository.</p>
+      <ol class="steps">
+        <li>On GitHub, open <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b> and choose <b>Generate new token</b>.</li>
+        <li>Under <b>Repository access</b> pick <b>Only select repositories</b> and choose your site's repository.</li>
+        <li>Under <b>Permissions → Repository permissions</b> set <b>Contents</b> to <b>Read and write</b>. Leave everything else as it is.</li>
+        <li>Generate it, copy it, and paste it below.</li>
+      </ol>
+      <div class="grid2">
+        <div class="field"><label for="cOwner">GitHub username</label><input type="text" id="cOwner" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+        <div class="field"><label for="cRepo">Repository name</label><input type="text" id="cRepo" autocapitalize="off" spellcheck="false"></div>
+        <div class="field"><label for="cBranch">Branch</label><input type="text" id="cBranch" value="main" autocapitalize="off" spellcheck="false"></div>
+      </div>
+      <div class="field"><label for="cToken">Access token</label><input type="password" id="cToken" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></div>
+      <p class="help">The token is stored only in this browser on this device. Use <b>Forget token</b> on shared computers.</p>
+      <div class="row">
+        <button class="b primary" id="connect" type="button">Connect</button>
+        <button class="b" id="forget" type="button">Forget token</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="savebar" id="savebar">
+  <span class="msg" id="saveMsg"><b>Unsaved changes</b></span>
+  <div class="row">
+    <button class="b" id="discard" type="button">Discard</button>
+    <button class="b primary" id="save" type="button">Publish changes</button>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/exif.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
