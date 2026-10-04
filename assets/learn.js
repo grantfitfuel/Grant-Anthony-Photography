@@ -90,7 +90,15 @@
     $("rdCount").textContent = "Lesson " + pad(i + 1) + " / " + pad(lessons.length);
     const cov = $("rdCover"); cov.textContent = ""; const ph = photoFor(l);
     cov.classList.toggle("none", !ph);
-    if (ph) { const im = el("img"); im.src = ph.file; im.alt = ph.title || ""; cov.append(im); }
+    cov.classList.remove("fit");
+    if (ph) {
+      const im = el("img"); im.src = ph.file; im.alt = ph.title || "";
+      /* A file narrower than the band would be stretched and look soft, so show it whole over a blurred copy of itself instead */
+      if (ph.w && ph.w < cov.clientWidth * 1.2) {
+        cov.classList.add("fit"); const bg = el("img", "bg"); bg.src = ph.thumb || ph.file; bg.alt = ""; bg.setAttribute("aria-hidden", "true");
+        im.className = "fg"; cov.append(bg, im);
+      } else cov.append(im);
+    }
     $("rdMeta").textContent = [l.level, minutes(l) + " min read"].filter(Boolean).join(DOT);
     $("rdTitle").textContent = l.title; $("rdSum").textContent = l.summary || ""; $("rdSum").hidden = !l.summary;
     renderBody($("rdBody"), l.body, l);
