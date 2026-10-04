@@ -5,7 +5,7 @@
   const pad = n => String(n).padStart(2, "0");
   const setUrl = u => { try { history.replaceState(null, "", u); } catch (e) {} };
   const DOT = " \u00b7 ";
-  let lessons = [], photos = [], current = -1, lastFocus = null, glossary = [];
+  let lessons = [], photos = [], current = -1, lastFocus = null, glossary = [], siteName = "", learnTitle = "";
 
   const minutes = l => Math.max(1, Math.ceil(((l.summary || "") + " " + (l.body || "")).split(/\s+/).filter(Boolean).length / 200)) + (/\[\[exposure\]\]/.test(l.body || "") ? 2 : 0) + ((l.body || "").match(/\[\[guide:/g) || []).length;
   const photoFor = l => photos.find(p => p.id === l.cover) || null;
@@ -13,6 +13,7 @@
   function init(data) {
     photos = (data.photos || []).filter(p => p && p.file);
     glossary = ((data.site || {}).glossary || []).filter(g => g && g.term && g.def);
+    siteName = (data.site || {}).name || ""; learnTitle = (data.site || {}).learnTitle || "Learn";
     lessons = (data.lessons || []).filter(l => l && l.id && l.title && !l.draft);
     const site = data.site || {};
     $("learn").hidden = !lessons.length; $("learnLink").hidden = !lessons.length;
@@ -74,6 +75,7 @@
       const gm = block.match(/^\[\[guide:([a-z]+)\]\]$/); if (gm) { target.append(guide(gm[1], lesson)); return; }
       if (block.startsWith("## ")) { const h = el("h2"); h.innerHTML = inline(block.slice(3)); target.append(h); return; }
       const lines = block.split("\n");
+      if (lines.every(x => /^\d+\. /.test(x.trim()))) { const ol = el("ol"); lines.forEach(x => { const li = el("li"); li.innerHTML = inline(x.trim().replace(/^\d+\.\s+/, "")); ol.append(li); }); target.append(ol); return; }
       if (lines.every(x => /^[-*] /.test(x.trim()))) { const ul = el("ul"); lines.forEach(x => { const li = el("li"); li.innerHTML = inline(x.trim().slice(2)); ul.append(li); }); target.append(ul); return; }
       if (lines.every(x => x.trim().startsWith(">"))) { const q = el("blockquote"); q.innerHTML = inline(lines.map(x => x.trim().replace(/^>\s?/, "")).join(" ")); target.append(q); return; }
       const p = el("p"); p.innerHTML = lines.map(inline).join("<br>"); target.append(p);
@@ -102,6 +104,7 @@
     $("rdMeta").textContent = [l.level, minutes(l) + " min read"].filter(Boolean).join(DOT);
     $("rdTitle").textContent = l.title; $("rdSum").textContent = l.summary || ""; $("rdSum").hidden = !l.summary;
     renderBody($("rdBody"), l.body, l);
+    toc($("rdBody"));
     linkGlossary($("rdBody"));
     extras($("rdBody"), l);
     const nx = $("rdNext"); nx.textContent = "";
@@ -685,31 +688,96 @@
       });
       sec.append(score); target.append(sec);
     }
-    const pr = el("div", "print-row"); const pb = el("button", "b", "Print cheat sheet"); pb.type = "button";
-    pb.onclick = () => printCheat(l); pr.append(pb); target.append(pr);
+    if (cheatSections(l).length) {
+      const pr = el("div", "print-row"); const pb = el("button", "b", "Print cheat sheet"); pb.type = "button";
+      pb.onclick = () => printCheat(l); pr.append(pb); target.append(pr);
+    }
+  }
+  /* ---------- printable one-page cheat sheet ---------- */
+  function cheatSections(l) {
+    // Optional hand-written sheet: "## Heading" then "- item" lines
+    const src = (l.cheat || "").trim();
+    const secs = [];
+    if (src) {
+      let cur = null;
+      src.replace(/\r/g, "").split("\n").map(x => x.trim()).filter(Boolean).forEach(x => {
+        if (x.startsWith("## ")) { cur = { h: x.slice(3), items: [], num: false }; secs.push(cur); }
+        else if (/^([-*]|\d+\.) /.test(x)) { if (!cur) { cur = { h: "Key points", items: [], num: false }; secs.push(cur); } if (/^\d+\./.test(x)) cur.num = true; cur.items.push(x.replace(/^([-*]|\d+\.)\s+/, "")); }
+      });
+      return secs;
+    }
+    // Otherwise build it from the lesson: each section's lists, cut down to their first sentence
+    const short = t => {
+      const m = t.match(/^\*\*([^*]+)\*\*\s*(.*)$/);
+      const first = x => { const k = x.search(/\.\s+[A-Z]/); return (k > 0 ? x.slice(0, k + 1) : x).replace(/\.$/, ""); };
+      if (m) { const rest = first(m[2]).replace(/^[,:;]\s*/, ""); return "**" + m[1].replace(/[.:,]\s*$/, "") + (rest ? ":** " + rest : "**"); }
+      return first(t);
+    };
+    let head = "Key points";
+    (l.body || "").replace(/\r/g, "").split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).forEach(b => {
+      if (b.startsWith("## ")) { head = b.slice(3); return; }
+      const lines = b.split("\n").map(x => x.trim());
+      const num = lines.every(x => /^\d+\. /.test(x)), bul = lines.every(x => /^[-*] /.test(x));
+      if (!num && !bul) return;
+      if (lines.filter(x => / = /.test(x)).length * 2 > lines.length) return; // a list of sums is a worked example, not a checklist
+      const items = lines.map(x => { const t = x.replace(/^([-*]|\d+\.)\s+/, ""); return num && t.length <= 150 ? t.replace(/\.$/, "") : short(t); }).slice(0, num ? 8 : 6);
+      const last = secs[secs.length - 1];
+      if (last && last.h === head) last.items.push(...items); else secs.push({ h: head, items, num });
+    });
+    // Practical sections first, and keep it to one page
+    const rank = h => /worked|example|scenario/i.test(h) ? 9 : /method|step|field|setting|need|kit|mistake|check|working out|exposure/i.test(h) ? 0 : /further/i.test(h) ? 2 : 1;
+    const order = secs.map((x, i) => [x, i]).sort((a, b) => rank(a[0].h) - rank(b[0].h) || a[1] - b[1]).map(x => x[0]);
+    const out = []; let budget = 2400;
+    for (const x of order) {
+      const cost = x.h.length + x.items.reduce((n, t) => n + t.length + 20, 0);
+      if (rank(x.h) === 9 || out.length >= 6 || cost > budget) continue;
+      out.push(x); budget -= cost;
+    }
+    return secs.filter(x => out.includes(x));
   }
   function printCheat(l) {
     const old = document.getElementById("cheat"); if (old) old.remove();
     const c = el("div"); c.id = "cheat";
-    c.append(el("p", "ch-name", (document.title || "").split("|")[0].trim()), el("h1", null, l.title));
+    const head = el("header", "ch-head");
+    const idx = lessons.indexOf(l);
+    head.append(el("p", "ch-name", [siteName, learnTitle].filter(Boolean).join(" \u00b7 ")), el("p", "ch-no", "Lesson " + pad(idx + 1) + " of " + pad(lessons.length)));
+    c.append(head, el("h1", null, l.title));
     if (l.summary) c.append(el("p", "ch-sum", l.summary));
-    const blocks = (l.body || "").replace(/\r/g, "").split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
-    let head = null;
-    blocks.forEach(b => {
-      if (b.startsWith("## ")) { head = b.slice(3); return; }
-      const lines = b.split("\n");
-      const isList = lines.every(x => /^[-*] /.test(x.trim())), isQuote = lines.every(x => x.trim().startsWith(">"));
-      if (isList) { if (head) { c.append(el("h2", null, head)); head = null; } const ul = el("ul"); lines.forEach(x => { const li = el("li"); li.innerHTML = inline(x.trim().slice(2)); ul.append(li); }); c.append(ul); }
-      else if (isQuote) c.append(el("blockquote", null, lines.map(x => x.trim().replace(/^>\s?/, "")).join(" ")));
+    const grid = el("div", "ch-grid");
+    cheatSections(l).forEach(x => {
+      const box = el("section", "ch-box"); box.append(el("h2", null, x.h));
+      const list = el(x.num ? "ol" : "ul");
+      x.items.forEach(t => { const li = el("li"); li.innerHTML = inline(t); list.append(li); });
+      box.append(list); grid.append(box);
     });
-    if (l.challenge) { c.append(el("h2", null, "Try this")); c.append(el("p", null, l.challenge)); }
-    c.append(el("p", "ch-foot", location.hostname || ""));
+    c.append(grid);
+    const foot = el("div", "ch-end");
+    const q = ((l.body || "").match(/^>\s?(.+)$/m) || [])[1];
+    if (q) foot.append(el("blockquote", null, q));
+    if (l.challenge) { const t = el("div", "ch-try"); t.append(el("h2", null, "Try this"), el("p", null, l.challenge)); foot.append(t); }
+    c.append(foot);
+    c.append(el("p", "ch-foot", (location.hostname ? location.hostname + "/#l/" + l.id : "")));
     document.body.append(c);
+    // Measure it at A4 width and shrink slightly if it would run onto a second page
+    c.classList.add("measure");
+    const mm = 96 / 25.4, room = 271 * mm, h = c.offsetHeight;
+    c.classList.remove("measure");
+    c.style.zoom = h > room ? (room / h).toFixed(3) : "";
     const done = () => { c.remove(); removeEventListener("afterprint", done); };
     addEventListener("afterprint", done);
     try { window.print(); } catch (e) {}
   }
 
+  /* ---------- contents list for longer lessons ---------- */
+  function toc(root) {
+    const hs = [...root.querySelectorAll(":scope > h2")]; if (hs.length < 6) return;
+    const nav = el("nav", "toc"); nav.setAttribute("aria-label", "In this lesson"); nav.append(el("p", "eyebrow", "In this lesson"));
+    const ol = el("ol");
+    hs.forEach((h, i) => { h.id = "s" + (i + 1); const b = el("button", null, h.textContent); b.type = "button";
+      b.onclick = () => { const r = $("reader"); r.scrollTo({ top: h.getBoundingClientRect().top - r.getBoundingClientRect().top + r.scrollTop - 84, behavior: "smooth" }); };
+      const li = el("li"); li.append(b); ol.append(li); });
+    nav.append(ol); root.prepend(nav);
+  }
   /* ---------- glossary ---------- */
   let glPop = null;
   function linkGlossary(root) {

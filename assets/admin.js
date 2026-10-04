@@ -258,6 +258,7 @@
       it.append(field("Summary", input("ls-" + l.id, l.summary, v => l.summary = v, { area: true, max: 300, style: "min-height:70px", ph: "One or two sentences shown on the home page" })));
       const body = input("lb-" + l.id, l.body, v => l.body = v, { area: true, ph: "Write the lesson. See Formatting lesson text above." }); body.classList.add("body");
       it.append(field("Lesson", body));
+      it.append(field("Cheat sheet (optional; leave empty to build it from the lesson)", input("lcs-" + l.id, l.cheat, v => l.cheat = v, { area: true, style: "min-height:90px", ph: "## Heading\n- Short point\n- Short point" })));
       it.append(field("Try this (a challenge shown at the end)", input("lch-" + l.id, l.challenge, v => l.challenge = v, { area: true, style: "min-height:70px", ph: "One exercise for readers to go and shoot" })));
       const qz = input("lqz-" + l.id, l.quiz, v => l.quiz = v, { area: true, style: "min-height:150px;font-family:var(--mono);font-size:13px", ph: "Q: Your question\n* The right answer\n- A wrong answer\n- Another wrong answer" });
       it.append(field("Quick check (questions at the end)", qz));
