@@ -5,7 +5,7 @@ A photography portfolio for GitHub Pages. Photographs are added from your browse
 ## One-time setup (about 10 minutes)
 
 1. **Create the repository.** On GitHub, choose **New repository**. Name it whatever you like (for example `photography`). Set it to **Public**. GitHub Pages is free for public repositories; private ones need a paid plan.
-2. **Upload the files.** In the new repository, choose **Add file → Upload files** and drag in everything from this folder, including the `assets` and `images` folders. Commit. Your 28 photographs, their titles and categories, and all 18 lessons are already included, so the site goes live complete.
+2. **Upload the files.** In the new repository, choose **Add file → Upload files** and drag in everything from this folder, including the `assets` and `images` folders. Commit. Your 27 photographs, their titles and categories, and all 24 lessons are already included, so the site goes live complete.
    - GitHub's web uploader takes up to 100 files at a time. If it complains, upload the `images` folder in a second go.
    - The `.nojekyll` file is hidden on some computers. If it doesn't upload, create it on GitHub with **Add file → Create new file**, name it `.nojekyll`, leave it empty and commit.
 3. **Turn on GitHub Pages.** In the repository go to **Settings → Pages**. Under **Build and deployment**, set Source to **Deploy from a branch**, Branch to **main** and folder to **/ (root)**. Save.
@@ -32,14 +32,16 @@ The token is saved only in that browser on that device. Do this once on each dev
 - **Categories:** manage them on the Categories tab. A photograph can be in several. Empty categories are hidden on the public site.
 - **Order:** Move up / Move down. The top of the list shows first.
 - **About and contact:** Site details tab.
+- **Lessons:** Studio → Learn. Each lesson has a topic, cover photo, body text, an optional **Try this** challenge and an optional **Quick check** quiz (the format is shown under the box). Tick Draft to hide a lesson while you work on it. Every lesson also gets a Print cheat sheet button automatically.
+- **Glossary:** the terms that readers can tap for a definition are stored under `glossary` in `photos.json`. Each term is linked once per lesson.
 
 The public site updates about a minute after you publish, once GitHub Pages rebuilds.
 
 ## Before you publish
 
-- Titles and places on the 28 starter photographs were set as working names. Check them in the Studio and change any that are wrong.
+- Titles and places on the 27 starter photographs were set as working names. Check them in the Studio and change any that are wrong.
 - The starter photographs are the web-sized copies you sent (about 1500 to 2600 px). For the sharpest result, re-upload full-size originals over time and delete the smaller copies.
-- 21 of the photographs have no camera settings because their metadata had been removed. Type them in if you want them shown.
+- 20 of the photographs have no camera settings because their metadata had been removed. Type them in if you want them shown.
 - Opening `index.html` directly from this folder now works as a preview. The Studio page only works once the site is on GitHub.
 
 ## Good to know
