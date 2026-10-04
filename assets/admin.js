@@ -230,7 +230,7 @@
   };
   $("newCat").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); $("addCat").click(); } });
 
-  const LEVELS = ["", "Beginner", "Intermediate", "Advanced", "Behind the shot"];
+  const LEVELS = ["", "Behind the shot"];
   function renderLessons() {
     const s = data.site;
     $("lTitle").value = s.learnTitle || ""; $("lTitle").oninput = () => { s.learnTitle = $("lTitle").value; touch(); };
@@ -243,9 +243,12 @@
       it.append(el("p", "eyebrow", "Lesson " + String(i + 1).padStart(2, "0") + (l.draft ? "  \u00b7  Draft, hidden from the site" : "")));
       it.append(field("Title", input("lt-" + l.id, l.title, v => l.title = v, { max: 120 })));
       const g = el("div", "grid2");
-      const lv = el("select"); lv.id = "lv-" + l.id; LEVELS.forEach(x => { const o = el("option", null, x || "No level"); o.value = x; lv.append(o); }); lv.value = l.level || "";
-      lv.onchange = () => { l.level = lv.value; touch(); };
-      g.append(field("Level", lv));
+      const lv = el("select"); lv.id = "lv-" + l.id;
+      const noTopic = el("option", null, "No topic"); noTopic.value = ""; lv.append(noTopic);
+      (data.site.lessonTopics || []).forEach(t => { const o = el("option", null, t.name); o.value = t.id; lv.append(o); });
+      lv.value = l.topic || "";
+      lv.onchange = () => { l.topic = lv.value; l.level = lv.value === "behind" ? "Behind the shot" : ""; touch(); };
+      g.append(field("Topic", lv));
       const cv = el("select"); cv.id = "lc-" + l.id; const none = el("option", null, "No cover photo"); none.value = ""; cv.append(none);
       data.photos.forEach(p => { const o = el("option", null, p.title || p.id); o.value = p.id; cv.append(o); });
       cv.value = data.photos.some(p => p.id === l.cover) ? l.cover : "";
@@ -255,6 +258,9 @@
       it.append(field("Summary", input("ls-" + l.id, l.summary, v => l.summary = v, { area: true, max: 300, style: "min-height:70px", ph: "One or two sentences shown on the home page" })));
       const body = input("lb-" + l.id, l.body, v => l.body = v, { area: true, ph: "Write the lesson. See Formatting lesson text above." }); body.classList.add("body");
       it.append(field("Lesson", body));
+      it.append(field("Try this (a challenge shown at the end)", input("lch-" + l.id, l.challenge, v => l.challenge = v, { area: true, style: "min-height:70px", ph: "One exercise for readers to go and shoot" })));
+      const qz = input("lqz-" + l.id, l.quiz, v => l.quiz = v, { area: true, style: "min-height:150px;font-family:var(--mono);font-size:13px", ph: "Q: Your question\n* The right answer\n- A wrong answer\n- Another wrong answer" });
+      it.append(field("Quick check (questions at the end)", qz));
       const tools = el("div", "tools");
       const dt = el("label", "tog"); const dcb = el("input"); dcb.type = "checkbox"; dcb.checked = !!l.draft; dcb.onchange = () => { l.draft = dcb.checked; renderLessons(); touch(); };
       dt.append(dcb, "Draft (hidden from the site)"); tools.append(dt, el("span", "sp"));

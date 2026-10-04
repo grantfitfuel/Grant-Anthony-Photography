@@ -5,25 +5,45 @@
   const pad = n => String(n).padStart(2, "0");
   const setUrl = u => { try { history.replaceState(null, "", u); } catch (e) {} };
   const DOT = " \u00b7 ";
-  let lessons = [], photos = [], current = -1, lastFocus = null;
+  let lessons = [], photos = [], current = -1, lastFocus = null, glossary = [];
 
   const minutes = l => Math.max(1, Math.ceil(((l.summary || "") + " " + (l.body || "")).split(/\s+/).filter(Boolean).length / 200)) + (/\[\[exposure\]\]/.test(l.body || "") ? 2 : 0) + ((l.body || "").match(/\[\[guide:/g) || []).length;
   const photoFor = l => photos.find(p => p.id === l.cover) || null;
 
   function init(data) {
     photos = (data.photos || []).filter(p => p && p.file);
+    glossary = ((data.site || {}).glossary || []).filter(g => g && g.term && g.def);
     lessons = (data.lessons || []).filter(l => l && l.id && l.title && !l.draft);
     const site = data.site || {};
     $("learn").hidden = !lessons.length; $("learnLink").hidden = !lessons.length;
     $("learnIntro").textContent = site.learnIntro || "";
     $("learnIntro").hidden = !site.learnIntro;
     if (site.learnTitle) { const t = $("learnTitle"); t.textContent = ""; const w = site.learnTitle.trim().split(/\s+/); t.append(w.length > 1 ? w.slice(0, -1).join(" ") + " " : ""); t.append(el("i", null, w[w.length - 1])); }
+    topics = (site.lessonTopics || []).filter(t => t && t.id && t.name && lessons.some(l => l.topic === t.id));
+    if (!topics.some(t => t.id === topic)) topic = "all";
+    renderTopics(); renderList();
+  }
+  let topics = [], topic = "all";
+  function renderTopics() {
+    let bar = $("ltopics");
+    if (!bar) { bar = el("div", "ltopics"); bar.id = "ltopics"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Filter lessons by topic"); $("lessons").before(bar); }
+    bar.textContent = ""; bar.hidden = topics.length < 2;
+    [["all", "All lessons", lessons.length]].concat(topics.map(t => [t.id, t.name, lessons.filter(l => l.topic === t.id).length])).forEach(([id, name, n]) => {
+      const b = el("button"); b.type = "button"; b.dataset.id = id; b.append(name, el("sup", null, pad(n)));
+      b.setAttribute("aria-pressed", topic === id);
+      b.onclick = () => { topic = id; [...bar.children].forEach(x => x.setAttribute("aria-pressed", x.dataset.id === id)); renderList(); };
+      bar.append(b);
+    });
+  }
+  function renderList() {
     const list = $("lessons"); list.textContent = "";
-    lessons.forEach((l, i) => {
+    lessons.filter(l => topic === "all" || l.topic === topic).forEach((l, i) => {
       const li = el("li", "lesson"); const b = el("button"); b.type = "button";
       const ph = photoFor(l); if (ph && ph.tone) b.style.setProperty("--tone", ph.tone);
       const lt = el("div", "lt"); lt.append(el("h3", null, l.title), el("p", null, l.summary || ""));
-      const lm = el("div", "lm"); if (l.level) lm.append(el("span", "lvl", l.level)); lm.append(el("span", null, minutes(l) + " min read"));
+      const lm = el("div", "lm"); const tn = (topics.find(t => t.id === l.topic) || {}).name;
+      if (topic === "all" && tn) lm.append(el("span", "lvl", tn)); else if (l.level) lm.append(el("span", "lvl", l.level));
+      lm.append(el("span", null, minutes(l) + " min read"));
       const lc = el("div", "lc"); if (ph) { const im = el("img"); im.src = ph.thumb || ph.file; im.alt = ""; im.loading = "lazy"; lc.append(im); }
       b.append(el("span", "ln", pad(i + 1)), lt, lm, lc);
       b.onclick = () => open(l.id);
@@ -74,6 +94,8 @@
     $("rdMeta").textContent = [l.level, minutes(l) + " min read"].filter(Boolean).join(DOT);
     $("rdTitle").textContent = l.title; $("rdSum").textContent = l.summary || ""; $("rdSum").hidden = !l.summary;
     renderBody($("rdBody"), l.body, l);
+    linkGlossary($("rdBody"));
+    extras($("rdBody"), l);
     const nx = $("rdNext"); nx.textContent = "";
     const next = lessons[i + 1] || (lessons.length > 1 ? lessons[0] : null);
     if (next) { const b = el("button"); b.type = "button"; b.append(el("small", null, lessons[i + 1] ? "Next lesson" : "Back to the first lesson"), el("span", null, next.title)); b.onclick = () => open(next.id); nx.append(b); }
@@ -102,9 +124,9 @@
     const view = el("div", "exp-view");
     let bg, fg;
     if (ph) { bg = el("img", "bg"); fg = el("img", "fg"); bg.src = fg.src = ph.file; bg.alt = ""; fg.alt = "Simulated exposure of " + (ph.title || "a photograph"); view.append(bg, fg); }
-    const cv = document.createElement("canvas"); cv.width = 240; cv.height = 160;
-    const cx = cv.getContext("2d"); const id = cx.createImageData(240, 160);
-    for (let i = 0; i < id.data.length; i += 4) { const v = Math.random() * 255; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
+    const cv = document.createElement("canvas"); cv.width = 1200; cv.height = 800;
+    const cx = cv.getContext("2d"); const id = cx.createImageData(1200, 800);
+    for (let i = 0; i < id.data.length; i += 4) { const v = 128 + (Math.random() + Math.random() + Math.random() - 1.5) * 70; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
     cx.putImageData(id, 0, 0); view.append(cv, el("div", "focus"));
     const hud = el("div", "exp-hud"); const set = el("span"); const meter = el("span", "meter"); const evt = el("span");
     for (let k = -4; k <= 4; k++) { const m = el("i"); if (k === 0) m.className = "mid"; meter.append(m); }
@@ -137,7 +159,7 @@
       const base = `brightness(${bright.toFixed(3)}) contrast(${ev > 1 ? 0.85 : 1})` + (shake ? " url(#mblur)" : "");
       if (bg) { bg.style.filter = base + ` blur(${DOFPX[st.a]}px)`; fg.style.filter = base; }
       else view.style.filter = `brightness(${bright.toFixed(3)})`;
-      cv.style.opacity = Math.max(0, Math.log2(iso / 100) * 0.075).toFixed(3);
+      cv.style.opacity = Math.max(0, Math.log2(iso / 400) * 0.16).toFixed(3);
       const parts = [];
       parts.push(Math.abs(evr) < 0.17 ? "<b>Correct exposure.</b> " : evr > 0 ? `<b>Over by ${Math.abs(evr).toFixed(1).replace(/\.0$/, "")} stop${Math.abs(evr) >= 1.5 ? "s" : ""}.</b> Highlights are blowing out. ` : `<b>Under by ${Math.abs(evr).toFixed(1).replace(/\.0$/, "")} stop${Math.abs(evr) >= 1.5 ? "s" : ""}.</b> Shadows are filling in. `);
       parts.push(N <= 2.8 ? "A wide aperture throws the background out of focus. " : N >= 16 ? "A narrow aperture keeps near and far sharp. " : "");
@@ -180,6 +202,11 @@
     if (type === "space") return space(box, cap);
     if (type === "zone") return zone(box, cap);
     if (type === "longexp") return longexp(box, cap);
+    const T = window.LearnTools;
+    if (T && type === "focal") return T.focal(box, cap);
+    if (T && type === "polariser") return T.polariser(box, cap);
+    if (T && type === "planner") return T.planner(box, cap);
+    if (T && type === "beforeafter") return T.beforeafter(box, cap, photoFor(lesson) || photos.find(p => p.w >= p.h) || photos[0]);
 
     const { view, ph, r } = photoView(lesson, type === "symmetry" ? (p => p.w > p.h) : null);
     box.append(view);
@@ -612,6 +639,112 @@
     inp.oninput = draw; draw();
     return box;
   }
+
+
+  /* ---------- try this, self-check, cheat sheet ---------- */
+  function parseQuiz(text) {
+    const qs = []; let q = null;
+    (text || "").replace(/\r/g, "").split("\n").map(x => x.trim()).filter(Boolean).forEach(line => {
+      if (/^q:/i.test(line)) { q = { q: line.replace(/^q:\s*/i, ""), opts: [] }; qs.push(q); }
+      else if (q && /^[*-]\s+/.test(line)) q.opts.push({ t: line.replace(/^[*-]\s+/, ""), ok: line[0] === "*" });
+    });
+    return qs.filter(x => x.q && x.opts.length >= 2 && x.opts.some(o => o.ok));
+  }
+  function extras(target, l) {
+    if (l.challenge) {
+      const c = el("section", "try"); c.append(el("p", "eyebrow", "Try this"), el("p", "try-t", l.challenge)); target.append(c);
+    }
+    const qs = parseQuiz(l.quiz);
+    if (qs.length) {
+      const sec = el("section", "quiz"); sec.append(el("p", "eyebrow", "Quick check"));
+      let right = 0, answered = 0; const score = el("p", "quiz-score");
+      qs.forEach((x, qi) => {
+        for (let i = x.opts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [x.opts[i], x.opts[j]] = [x.opts[j], x.opts[i]]; }
+        const block = el("div", "quiz-q"); block.append(el("p", "quiz-qt", (qi + 1) + ". " + x.q));
+        const opts = el("div", "quiz-opts"); const fb = el("p", "quiz-fb");
+        x.opts.forEach(o => {
+          const b = el("button", "quiz-o", o.t); b.type = "button";
+          b.onclick = () => {
+            if (block.dataset.done) return; block.dataset.done = "1"; answered++;
+            [...opts.children].forEach((bb, k) => { bb.disabled = true; if (x.opts[k].ok) bb.classList.add("ok"); });
+            if (o.ok) { right++; b.classList.add("ok"); fb.textContent = "Correct."; }
+            else { b.classList.add("no"); fb.textContent = "Not quite. The right answer is highlighted."; }
+            if (answered === qs.length) score.textContent = right + " out of " + qs.length + (right === qs.length ? ". Well done." : ".");
+          };
+          opts.append(b);
+        });
+        block.append(opts, fb); sec.append(block);
+      });
+      sec.append(score); target.append(sec);
+    }
+    const pr = el("div", "print-row"); const pb = el("button", "b", "Print cheat sheet"); pb.type = "button";
+    pb.onclick = () => printCheat(l); pr.append(pb); target.append(pr);
+  }
+  function printCheat(l) {
+    const old = document.getElementById("cheat"); if (old) old.remove();
+    const c = el("div"); c.id = "cheat";
+    c.append(el("p", "ch-name", (document.title || "").split("|")[0].trim()), el("h1", null, l.title));
+    if (l.summary) c.append(el("p", "ch-sum", l.summary));
+    const blocks = (l.body || "").replace(/\r/g, "").split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+    let head = null;
+    blocks.forEach(b => {
+      if (b.startsWith("## ")) { head = b.slice(3); return; }
+      const lines = b.split("\n");
+      const isList = lines.every(x => /^[-*] /.test(x.trim())), isQuote = lines.every(x => x.trim().startsWith(">"));
+      if (isList) { if (head) { c.append(el("h2", null, head)); head = null; } const ul = el("ul"); lines.forEach(x => { const li = el("li"); li.innerHTML = inline(x.trim().slice(2)); ul.append(li); }); c.append(ul); }
+      else if (isQuote) c.append(el("blockquote", null, lines.map(x => x.trim().replace(/^>\s?/, "")).join(" ")));
+    });
+    if (l.challenge) { c.append(el("h2", null, "Try this")); c.append(el("p", null, l.challenge)); }
+    c.append(el("p", "ch-foot", location.hostname || ""));
+    document.body.append(c);
+    const done = () => { c.remove(); removeEventListener("afterprint", done); };
+    addEventListener("afterprint", done);
+    try { window.print(); } catch (e) {}
+  }
+
+  /* ---------- glossary ---------- */
+  let glPop = null;
+  function linkGlossary(root) {
+    if (!glossary.length) return;
+    const used = new Set();
+    const terms = glossary.slice().sort((a, b) => b.term.length - a.term.length);
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => {
+      const p = n.parentElement; if (!p || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      if (p.closest(".exp, h2, button, figure, blockquote, .quiz, .try, .gl-term")) return NodeFilter.FILTER_REJECT;
+      return p.closest("p, li") ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; } });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      let text = node.nodeValue;
+      for (const g of terms) {
+        if (used.has(g.term.toLowerCase())) continue;
+        const re = new RegExp("\\b(" + g.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")(s?)\\b", "i");
+        const m = re.exec(text); if (!m) continue;
+        used.add(g.term.toLowerCase());
+        const before = text.slice(0, m.index), word = m[0], after = text.slice(m.index + word.length);
+        const b = el("button", "gl-term", word); b.type = "button"; b.dataset.term = g.term; b.setAttribute("aria-expanded", "false");
+        b.onclick = e => { e.stopPropagation(); showGloss(b, g); };
+        const parent = node.parentNode;
+        parent.insertBefore(document.createTextNode(before), node);
+        parent.insertBefore(b, node);
+        node.nodeValue = after; text = after;
+      }
+    });
+  }
+  function showGloss(btn, g) {
+    if (glPop && glPop._for === btn) { hideGloss(); return; }
+    hideGloss();
+    const pop = el("div", "gl-pop"); pop.setAttribute("role", "dialog"); pop.append(el("b", null, g.term), el("p", null, g.def));
+    pop._for = btn; btn.setAttribute("aria-expanded", "true");
+    $("reader").append(pop);
+    const r = btn.getBoundingClientRect(), R = $("reader").getBoundingClientRect();
+    const w = Math.min(320, R.width - 32); pop.style.width = w + "px";
+    let left = r.left - R.left + r.width / 2 - w / 2; left = Math.max(16, Math.min(R.width - w - 16, left));
+    pop.style.left = left + "px"; pop.style.top = (r.bottom - R.top + $("reader").scrollTop + 8) + "px";
+    glPop = pop;
+  }
+  function hideGloss() { if (glPop) { glPop._for.setAttribute("aria-expanded", "false"); glPop.remove(); glPop = null; } }
+  document.addEventListener("click", e => { if (glPop && !glPop.contains(e.target)) hideGloss(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") hideGloss(); });
 
   window.Learn = { init, open, close, isOpen: () => !$("reader").hidden };
 })();
