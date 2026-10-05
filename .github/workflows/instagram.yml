@@ -1,0 +1,47 @@
+name: Instagram
+
+# Posts the next photograph ticked "Share to Instagram" in the Studio.
+# Schedule: Tuesdays and Fridays at 18:00 UTC (19:00 in summer, 18:00 in winter, UK time).
+# To post straight away or check what would go out next: Actions tab > Instagram > Run workflow.
+
+on:
+  schedule:
+    - cron: "0 18 * * 2,5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run shows the next photo and caption without posting; post publishes it"
+        type: choice
+        options: [dry-run, post]
+        default: dry-run
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pillow
+      - name: Post next photograph
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
+        run: python scripts/instagram.py
+      - name: Keep the prepared image for checking
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-preview
+          path: ig/
+          if-no-files-found: ignore
+          retention-days: 7
