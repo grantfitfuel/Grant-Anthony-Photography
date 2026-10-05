@@ -60,7 +60,8 @@ def next_photo(data, log):
 def camera_tags(p, site):
     """Tags for the camera that took the photograph, from the Camera field.
     site.igCameraTags lines look like:  Canon EOS R5 = #canonr5"""
-    norm = lambda x: "".join(ch for ch in x.lower() if ch.isalnum())
+    # Ignore case, spaces, hyphens and the word "EOS", so "Canon R5" matches "Canon EOS R5"
+    norm = lambda x: "".join(ch for ch in x.lower().replace("eos", "") if ch.isalnum())
     cam = norm(p.get("camera") or "")
     if not cam:
         return ""
