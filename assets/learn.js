@@ -743,12 +743,13 @@
     head.append(el("p", "ch-name", [siteName, learnTitle].filter(Boolean).join(" \u00b7 ")), el("p", "ch-no", "Lesson " + pad(idx + 1) + " of " + pad(lessons.length)));
     c.append(head, el("h1", null, l.title));
     if (l.summary) c.append(el("p", "ch-sum", l.summary));
-    const grid = el("div", "ch-grid");
-    cheatSections(l).forEach(x => {
+    const grid = el("div", "ch-grid"), colA = el("div", "ch-col"), colB = el("div", "ch-col");
+    grid.append(colA, colB);
+    const boxes = cheatSections(l).map(x => {
       const box = el("section", "ch-box"); box.append(el("h2", null, x.h));
       const list = el(x.num ? "ol" : "ul");
       x.items.forEach(t => { const li = el("li"); li.innerHTML = inline(t); list.append(li); });
-      box.append(list); grid.append(box);
+      box.append(list); return box;
     });
     c.append(grid);
     const foot = el("div", "ch-end");
@@ -757,13 +758,19 @@
     if (l.challenge) { const t = el("div", "ch-try"); t.append(el("h2", null, "Try this"), el("p", null, l.challenge)); foot.append(t); }
     c.append(foot);
     c.append(el("p", "ch-foot", (location.hostname ? location.hostname + "/#l/" + l.id : "")));
-    document.body.append(c);
-    // Measure it at A4 width and shrink slightly if it would run onto a second page
+    document.body.append(c); document.body.classList.add("cheat-print");
+    // Lay the boxes out in two fixed columns (browsers balance print columns unpredictably),
+    // then measure the whole sheet and shrink it if it would run onto a second page.
+    // The target leaves room for US Letter paper and browser headers and footers.
     c.classList.add("measure");
-    const mm = 96 / 25.4, room = 271 * mm, h = c.offsetHeight;
+    boxes.forEach(bx => colA.append(bx));
+    const hs = boxes.map(bx => bx.offsetHeight); colA.textContent = "";
+    let ha = 0, hb = 0;
+    boxes.forEach((bx, i) => { if (ha <= hb) { colA.append(bx); ha += hs[i]; } else { colB.append(bx); hb += hs[i]; } });
+    const mm = 96 / 25.4, room = 245 * mm, h = c.offsetHeight;
     c.classList.remove("measure");
     c.style.zoom = h > room ? (room / h).toFixed(3) : "";
-    const done = () => { c.remove(); removeEventListener("afterprint", done); };
+    const done = () => { c.remove(); document.body.classList.remove("cheat-print"); removeEventListener("afterprint", done); };
     addEventListener("afterprint", done);
     try { window.print(); } catch (e) {}
   }

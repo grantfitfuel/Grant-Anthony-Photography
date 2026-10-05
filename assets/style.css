@@ -420,15 +420,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .pl-row.gold span::before{background:#e2a24d}.pl-row.blue span::before{background:#2f4fa0}
 
 /* Cheat sheet: only used when printing */
-#cheat{display:none;width:184mm;box-sizing:border-box;background:#fff}
+#cheat{display:none;width:184mm;max-width:100%;box-sizing:border-box;background:#fff}
 #cheat.measure{display:block;position:absolute;left:-10000px;top:0}
 #cheat{font-family:"Hanken Grotesk",Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:9.8pt;line-height:1.4;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 #cheat .ch-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2pt solid #1a1a1a;padding-bottom:4pt;margin:0 0 10pt}
 #cheat .ch-name,#cheat .ch-no{margin:0;font-family:"JetBrains Mono",Menlo,monospace;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#555}
 #cheat h1{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;font-size:30pt;line-height:1;letter-spacing:-.01em;margin:0 0 5pt}
 #cheat .ch-sum{font-size:11pt;color:#444;margin:0 0 11pt;max-width:150mm}
-#cheat .ch-grid{columns:2;column-gap:7mm}
-#cheat .ch-box{break-inside:avoid;border:0.6pt solid #bbb;border-top:2pt solid #9a7b4f;border-radius:2pt;padding:6pt 8pt 5pt;margin:0 0 6mm}
+#cheat .ch-grid{display:flex;gap:7mm;align-items:flex-start}
+#cheat .ch-col{flex:1;min-width:0}
+#cheat .ch-box{break-inside:avoid;page-break-inside:avoid;border:0.6pt solid #bbb;border-top:2pt solid #9a7b4f;border-radius:2pt;padding:6pt 8pt 5pt;margin:0 0 6mm}
 #cheat h2{font-family:"JetBrains Mono",Menlo,monospace;font-size:8pt;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin:0 0 4pt;color:#7a5f38}
 #cheat ul,#cheat ol{margin:0;padding:0 0 0 11pt}
 #cheat li{margin:0 0 3pt}
@@ -441,8 +442,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 #cheat .ch-foot{margin:8pt 0 0;padding-top:4pt;border-top:0.6pt solid #ccc;font-family:"JetBrains Mono",Menlo,monospace;font-size:7pt;color:#777;letter-spacing:.06em}
 @media print{
   @page{size:A4;margin:12mm 13mm}
-  body > *:not(#cheat){display:none!important}
-  html,body{background:#fff!important;color:#111!important}
+  body.cheat-print > *:not(#cheat){display:none!important}
+  body.cheat-print,html:has(body.cheat-print){background:#fff!important;color:#111!important}
   #cheat{display:block!important;position:static}
 }
 

@@ -11,6 +11,7 @@
   let pendingDeletes = [];               // photos removed locally, files deleted on publish
   const previews = {};                   // id -> object URL for freshly uploaded thumbs
   const confirmFor = new Set();
+  let igLog = { posted: [] };            // instagram-log.json, written only by the posting job
 
   /* ---------- small utils ---------- */
   function toast(msg, err, ms = 3200) {
@@ -101,11 +102,28 @@
       data = normalise(json || clone(DEFAULT)); jsonSha = sha;
       savedStr = json ? JSON.stringify(data) : "";
       pendingDeletes = [];
+      await loadIgLog();
       setStatus("ok", conn.owner + "/" + conn.repo);
       lock(false); renderAll(); if (!silent) { toast("Connected"); showTab("photos"); }
     } catch (e) {
       setStatus("err", "Connection failed"); lock(true); showTab("conn"); toast(e.message, true, 7000);
     }
+  }
+  async function loadIgLog() {
+    try {
+      const meta = await gh("GET", contentPath("instagram-log.json") + "?ref=" + encodeURIComponent(conn.branch));
+      igLog = JSON.parse(textFromB64(meta.content)); igLog.posted = igLog.posted || [];
+    } catch (e) { igLog = { posted: [] }; }
+  }
+  function igStatus(p) {
+    const done = igLog.posted.find(x => x.id === p.id);
+    if (done) return { posted: true, text: "Posted to Instagram " + new Date(done.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), link: done.link };
+    if (igLog.lastError && igLog.lastError.id === p.id && p.instagram) return { text: "Last attempt failed: " + igLog.lastError.message, err: true };
+    if (!p.instagram) return null;
+    const posted = new Set(igLog.posted.map(x => x.id));
+    const q = data.photos.filter(x => x.instagram && !posted.has(x.id));
+    const n = q.indexOf(p) + 1;
+    return { text: n === 1 ? "Next to post" : "Queued: " + n + (n === 2 ? "nd" : n === 3 ? "rd" : "th") + " in line" };
   }
   function normalise(j) {
     j.site = Object.assign(clone(DEFAULT.site), j.site || {});
@@ -181,7 +199,20 @@
       const tools = el("div", "tools");
       const tg = el("label", "tog"); const fcb = el("input"); fcb.type = "checkbox"; fcb.checked = !!p.featured;
       fcb.onchange = () => { p.featured = fcb.checked; renderPhotos(); touch(); };
-      tg.append(fcb, "Feature in opening slideshow"); tools.append(tg, el("span", "sp"));
+      tg.append(fcb, "Feature in opening slideshow"); tools.append(tg);
+      const st = igStatus(p);
+      if (st && st.posted) {
+        const ps = el("span", "igstat ok"); ps.append(st.text + " ");
+        if (st.link) { const a = el("a", null, "View"); a.href = st.link; a.target = "_blank"; a.rel = "noopener"; ps.append(a); }
+        tools.append(ps);
+      } else {
+        const ig = el("label", "tog"); const icb = el("input"); icb.type = "checkbox"; icb.checked = !!p.instagram;
+        icb.onchange = () => { if (icb.checked) p.instagram = true; else delete p.instagram; renderPhotos(); touch(); };
+        ig.append(icb, "Share to Instagram"); tools.append(ig);
+        if (st) tools.append(el("span", "igstat" + (st.err ? " err" : ""), st.text));
+        if (p.instagram && Math.max(p.w || 0, Math.round((p.h || 0) * 0.8)) < 1080) tools.append(el("span", "igstat err", "Small file: will look soft on Instagram. Replace it with a larger export first."));
+      }
+      tools.append(el("span", "sp"));
       const mv = (label, d, dis) => { const b = el("button", "b sm", label); b.type = "button"; b.disabled = dis; b.onclick = () => { const a = data.photos; [a[i], a[i + d]] = [a[i + d], a[i]]; renderPhotos(); touch(); }; return b; };
       tools.append(mv("Move up", -1, i === 0), mv("Move down", 1, i === data.photos.length - 1));
       if (confirmFor.has(p.id)) {
@@ -293,6 +324,15 @@
     $("sSig").onchange = () => { s.useSignature = $("sSig").checked; touch(); };
     $("sSet").checked = s.showSettings !== false;
     $("sSet").onchange = () => { s.showSettings = $("sSet").checked; touch(); };
+    [["sIgAcc", "igAccount"], ["sIgLink", "igLink"], ["sIgTags", "igHashtags"], ["sIgCams", "igCameraTags"]].forEach(([id, k]) => {
+      const i = $(id); i.value = s[k] || ""; i.oninput = () => { s[k] = i.value.trim() ? i.value : ""; touch(); };
+    });
+    const ic = $("sIgCats"); ic.textContent = "";
+    s.categories.forEach(c => {
+      ic.append(field(c.name, input("sIgCat-" + c.id, (s.igCategoryTags || {})[c.id], v => { s.igCategoryTags = s.igCategoryTags || {}; if (v.trim()) s.igCategoryTags[c.id] = v; else delete s.igCategoryTags[c.id]; }, { ph: "#" + c.name.toLowerCase().replace(/[^a-z0-9]/g, "") + "photography" })));
+    });
+    $("sIgBorder").value = s.igBorder || "#ffffff";
+    $("sIgBorder").onchange = () => { s.igBorder = $("sIgBorder").value; touch(); };
   }
 
   /* ---------- image processing ---------- */
