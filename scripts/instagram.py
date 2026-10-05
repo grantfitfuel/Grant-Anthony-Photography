@@ -49,10 +49,33 @@ def load_json(path, default):
         return default
 
 
+def last_posted(log):
+    """id -> date of its most recent post"""
+    last = {}
+    for x in log.get("posted", []):
+        if x.get("id") and x.get("date", "") > last.get(x["id"], ""):
+            last[x["id"]] = x["date"]
+    return last
+
+
+def is_due(p, last):
+    """Ticked and never posted, or 'Post again' pressed in the Studio since its last post."""
+    if not p.get("instagram"):
+        return False
+    when = last.get(p["id"])
+    if not when:
+        return True
+    again = p.get("igRepostAfter") or ""
+    try:
+        return bool(again) and datetime.fromisoformat(again.replace("Z", "+00:00")) > datetime.fromisoformat(when)
+    except ValueError:
+        return False
+
+
 def next_photo(data, log):
-    done = {p["id"] for p in log.get("posted", [])}
+    last = last_posted(log)
     for p in data.get("photos", []):
-        if p.get("instagram") and p["id"] not in done:
+        if is_due(p, last):
             return p
     return None
 
