@@ -335,7 +335,7 @@
       "description": "",
       "location": "Gateshead",
       "year": "",
-      "camera": "",
+      "camera": "Leica D-Lux 8",
       "categories": [
         "abstract"
       ],
@@ -347,7 +347,8 @@
       "tw": 1000,
       "th": 1000,
       "tone": "#4c4c4c",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "instagram": true
     },
     {
       "id": "sprinkenhof",
@@ -757,7 +758,7 @@
       "description": "",
       "location": "Chinatown, New York",
       "year": "",
-      "camera": "",
+      "camera": "Canon R5",
       "lens": "",
       "focal": "",
       "aperture": "",
@@ -774,7 +775,8 @@
       "tw": 667,
       "th": 1000,
       "tone": "#4c4c4c",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "instagram": true
     }
   ],
   "lessons": [
