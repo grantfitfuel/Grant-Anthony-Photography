@@ -232,12 +232,38 @@ def post(image_url, caption, expected_user):
 
 
 # ---------- main ----------
+LOCAL_TZ = "Europe/London"
+LOCAL_HOUR = 18          # scheduled posts go out at 18:00 UK time, summer and winter
+
+
+def scheduled_slot_ok(log, now=None):
+    """GitHub schedules run on UTC, which does not follow the clocks changing.
+    The workflow wakes at 17:00 and 18:00 UTC; this keeps only the run that falls
+    at or after 18:00 UK time, and never posts twice on the same UK day."""
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo(LOCAL_TZ)
+    now = (now or datetime.now(timezone.utc)).astimezone(tz)
+    if now.hour < LOCAL_HOUR:
+        say(f"It is {now:%H:%M} UK time; scheduled posts wait until {LOCAL_HOUR}:00. Nothing to do on this run.")
+        return False
+    for x in log.get("posted", []):
+        try:
+            if datetime.fromisoformat(x["date"]).astimezone(tz).date() == now.date():
+                say("Already posted today (UK time). Nothing to do on this run.")
+                return False
+        except (KeyError, ValueError):
+            pass
+    return True
+
+
 def main():
     data = load_json(os.path.join(ROOT, "photos.json"), None)
     if not data:
         fail("photos.json not found.")
     site = data.get("site", {})
     log = load_json(LOG_PATH, {"posted": []})
+    if os.environ.get("SCHEDULED") == "1" and not scheduled_slot_ok(log):
+        return
     p = next_photo(data, log)
     if not p:
         say("Nothing queued. Tick 'Share to Instagram' on a photograph in the Studio and publish.")
