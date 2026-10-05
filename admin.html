@@ -57,6 +57,11 @@ textarea{min-height:110px;resize:vertical;line-height:1.55}
 .catpick .none{color:var(--faint);font-size:13px}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
 .tools .sp{flex:1}
+.igstat{font-size:13px;color:var(--muted)}
+.igstat.ok{color:var(--ok)}
+.igstat.err{color:var(--danger)}
+.igstat a{color:inherit;text-decoration:underline}
+select{font:inherit}
 .tog{display:inline-flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
 .tog input{accent-color:var(--accent);width:16px;height:16px;margin:0}
 button.b.sm{padding:9px 13px;font-size:11px}
@@ -194,6 +199,19 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
         <div class="field"><label for="sEmail">Contact email</label><input type="email" id="sEmail" placeholder="you@example.com"></div>
         <div class="field"><label for="sInsta">Instagram accounts</label><input type="text" id="sInsta" placeholder="@gcanth, @lightthroughtheglass"></div>
       </div>
+    </div>
+    <div class="card">
+      <h2>Instagram posting</h2>
+      <p class="help">Tick <b>Share to Instagram</b> on a photograph and publish. Twice a week (Tuesday and Friday evening) the next one in the queue is posted automatically, in the order the photographs appear in your list. The caption is built from the title, place, year, description and settings, then the link and hashtags below. Setup steps are in the README.</p>
+      <div class="grid2">
+        <div class="field"><label for="sIgAcc">Account to post to (checked before every post)</label><input type="text" id="sIgAcc" maxlength="40" placeholder="gcanth"></div>
+        <div class="field"><label for="sIgLink">Line before the hashtags</label><input type="text" id="sIgLink" maxlength="120" placeholder="grantanthony.co.uk"></div>
+      </div>
+      <div class="field"><label for="sIgTags">Hashtags on every post</label><input type="text" id="sIgTags" placeholder="#photography #canonr5"></div>
+      <div class="field"><label for="sIgCams">Hashtags for each camera (one per line: camera = hashtags). Matched against the Camera field of each photograph</label><textarea id="sIgCams" style="min-height:64px" placeholder="Canon EOS R5 = #canonr5"></textarea></div>
+      <p class="help" style="margin:4px 0 10px">Hashtags for each category. A post gets the tags above plus those for each category the photograph is in, up to Instagram's limit of 30.</p>
+      <div id="sIgCats"></div>
+      <div class="field"><label for="sIgBorder">Border for photos taller than 4:5 or wider than 1.91:1</label><select id="sIgBorder"><option value="#ffffff">White</option><option value="#000000">Black</option><option value="#0d0d0e">Site dark grey</option></select></div>
     </div>
   </section>
 

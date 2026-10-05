@@ -44,6 +44,35 @@ The public site updates about a minute after you publish, once GitHub Pages rebu
 - 20 of the photographs have no camera settings because their metadata had been removed. Type them in if you want them shown.
 - Opening `index.html` directly from this folder now works as a preview. The Studio page only works once the site is on GitHub.
 
+## Instagram posting (@gcanth)
+
+Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tuesday and Friday at 18:00 UTC (19:00 in summer, 18:00 in winter) GitHub posts the next ticked photograph, in the order they appear in your list. One photograph per run. Each photograph is only ever posted once.
+
+- **Caption:** title, place and year, description, camera settings (if shown on the site), then the line from Studio > Site details > Instagram posting, the hashtags set there for every post, and the hashtags for each of the photograph's categories (up to 30 in total).
+- **Shape:** Instagram accepts 4:5 portrait to 1.91:1 landscape. Taller or wider photographs get a plain border (white, black or dark grey; your choice in Site details) rather than a crop. Prepared copies are kept in the `ig` folder.
+- **Status:** each photograph in the Studio shows "Next to post", its place in the queue, "Posted to Instagram" with a link, or the reason the last attempt failed. A photograph under 1080 px wide is flagged, because it will look soft.
+- **Safety:** before every post the job checks the token belongs to the account named in Site details, and stops if it does not.
+- **Record:** what has been posted is kept in `instagram-log.json`. Only the posting job writes it. Do not delete it, or photographs will be posted again.
+
+### One-time setup (about 20 minutes)
+
+The menu names below were right at the time of writing. Meta changes its screens often, so if something is labelled differently, look for the nearest match.
+
+1. **Switch @gcanth to a professional account.** In the Instagram app: Settings > Account type and tools > Switch to professional account > Creator. It is free and can be switched back.
+2. **Create a Meta app.** Go to developers.facebook.com and log in (Meta asks for a Facebook login here). My Apps > Create app. Choose the use case for managing content on Instagram (the "Instagram API" with Instagram login), and Business as the type if asked.
+3. **Get a token.** In the app: Instagram > API setup with Instagram login > Generate access tokens > Add account, and log in as @gcanth. Allow the permissions it asks for (basic profile and content publishing). Copy the token it shows. If it asks you to add the account as a tester first, do that under App roles > Roles.
+4. **Store the token in GitHub.** In the repository: Settings > Secrets and variables > Actions > New repository secret. Name: `IG_TOKEN`. Value: the token.
+5. **Let it renew itself (recommended).** Tokens last 60 days; the job renews it on every run, but needs permission to save the new one. Create a fine-grained GitHub token (as for the Studio) for this repository only, with **Secrets: Read and write**. Store it as a second repository secret named `GH_PAT`. Without it, you would need to repeat step 3 every 60 days.
+6. **Test without posting.** Actions tab > Instagram > Run workflow > mode: dry-run. Open the run to read the caption it would use; the prepared image is under Artifacts as "instagram-preview".
+7. **First real post.** Run workflow again with mode: post. After that the schedule takes over.
+
+### Good to know
+
+- To post straight away, use Run workflow with mode: post. To change the days or time, ask for the schedule line in `.github/workflows/instagram.yml` to be changed.
+- GitHub can start scheduled runs a few minutes to an hour late when it is busy.
+- GitHub pauses scheduled jobs in a repository with no activity for 60 days. Publishing from the Studio, or any post, counts as activity. If it does pause, the Actions tab shows a button to turn it back on.
+- Instagram may flag accounts that behave like bots. Two posts a week is ordinary use.
+
 ## Good to know
 
 - Photographs are stored at 2560 px on the long edge, plus a 1000 px thumbnail. That's sharp on large screens while keeping pages fast. Keep your full-size originals elsewhere.
@@ -60,6 +89,9 @@ The public site updates about a minute after you publish, once GitHub Pages rebu
 | --- | --- |
 | `index.html` | The public site |
 | `admin.html` | The Studio page |
+| `scripts/instagram.py` | Prepares and posts the next queued photograph to Instagram |
+| `.github/workflows/instagram.yml` | Runs the Instagram posting on a schedule |
+| `instagram-log.json` | Created by the posting job: what has been posted. Do not edit |
 | `photos.json` | Your titles, text, categories and settings. The Studio page writes this for you |
 | `images/` | Your photographs and thumbnails |
 | `assets/` | Styles, scripts, signature and site icon |

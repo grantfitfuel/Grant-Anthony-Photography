@@ -151,7 +151,21 @@
         "term": "tilt-shift",
         "def": "A lens that can shift the image up or down without tilting the camera, keeping verticals straight."
       }
-    ]
+    ],
+    "igAccount": "gcanth",
+    "igLink": "More at grantanthony.co.uk",
+    "igHashtags": "#photography",
+    "igBorder": "#ffffff",
+    "igCategoryTags": {
+      "landscapes": "#landscapephotography #landscape #naturephotography",
+      "coast": "#coastalphotography #seascape #coast",
+      "architecture": "#architecturephotography #architecture #buildings",
+      "urban-street": "#urbanphotography #streetphotography #cityscape",
+      "urbex": "#urbex #abandonedplaces #urbanexploration",
+      "woodland": "#woodlandphotography #forest #trees",
+      "abstract": "#abstractphotography #abstract #minimalism"
+    },
+    "igCameraTags": "Canon EOS R5 = #canonr5 #canonphotography\nLeica D-Lux 8 = #leica #leicadlux8 #leicaphotography"
   },
   "photos": [
     {
