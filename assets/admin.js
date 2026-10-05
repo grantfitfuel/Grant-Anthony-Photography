@@ -115,13 +115,14 @@
       igLog = JSON.parse(textFromB64(meta.content)); igLog.posted = igLog.posted || [];
     } catch (e) { igLog = { posted: [] }; }
   }
+  const lastPost = id => igLog.posted.filter(x => x.id === id).sort((a, b) => a.date < b.date ? 1 : -1)[0];
+  const igDue = p => { if (!p.instagram) return false; const l = lastPost(p.id); return !l || (!!p.igRepostAfter && new Date(p.igRepostAfter) > new Date(l.date)); };
   function igStatus(p) {
-    const done = igLog.posted.find(x => x.id === p.id);
-    if (done) return { posted: true, text: "Posted to Instagram " + new Date(done.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), link: done.link };
+    const done = lastPost(p.id);
+    if (done && !igDue(p)) return { posted: true, text: "Posted to Instagram " + new Date(done.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), link: done.link };
     if (igLog.lastError && igLog.lastError.id === p.id && p.instagram) return { text: "Last attempt failed: " + igLog.lastError.message, err: true };
     if (!p.instagram) return null;
-    const posted = new Set(igLog.posted.map(x => x.id));
-    const q = data.photos.filter(x => x.instagram && !posted.has(x.id));
+    const q = data.photos.filter(igDue);
     const n = q.indexOf(p) + 1;
     return { text: n === 1 ? "Next to post" : "Queued: " + n + (n === 2 ? "nd" : n === 3 ? "rd" : "th") + " in line" };
   }
@@ -204,10 +205,12 @@
       if (st && st.posted) {
         const ps = el("span", "igstat ok"); ps.append(st.text + " ");
         if (st.link) { const a = el("a", null, "View"); a.href = st.link; a.target = "_blank"; a.rel = "noopener"; ps.append(a); }
-        tools.append(ps);
+        const again = el("button", "b sm", "Post again"); again.type = "button";
+        again.onclick = () => { p.instagram = true; p.igRepostAfter = new Date().toISOString(); renderPhotos(); touch(); };
+        tools.append(ps, again);
       } else {
         const ig = el("label", "tog"); const icb = el("input"); icb.type = "checkbox"; icb.checked = !!p.instagram;
-        icb.onchange = () => { if (icb.checked) p.instagram = true; else delete p.instagram; renderPhotos(); touch(); };
+        icb.onchange = () => { if (icb.checked) p.instagram = true; else { delete p.instagram; delete p.igRepostAfter; } renderPhotos(); touch(); };
         ig.append(icb, "Share to Instagram"); tools.append(ig);
         if (st) tools.append(el("span", "igstat" + (st.err ? " err" : ""), st.text));
         if (p.instagram && Math.max(p.w || 0, Math.round((p.h || 0) * 0.8)) < 1080) tools.append(el("span", "igstat err", "Small file: will look soft on Instagram. Replace it with a larger export first."));

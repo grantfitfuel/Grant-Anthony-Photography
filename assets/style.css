@@ -208,6 +208,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .slide img{transform:none!important}
+  .slide{transition:opacity .6s linear!important}
   .tile img{opacity:1}
 }
 

@@ -110,8 +110,20 @@
     const p = heroSet[heroIdx];
     $("heroNow").textContent = pad(heroIdx + 1) + " / " + pad(heroSet.length) + "  \u00b7  " + (p.title || "Untitled");
     clearTimeout(heroTimer);
-    if (heroSet.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) heroTimer = setTimeout(() => showSlide(heroIdx + 1), HERO_MS);
+    // Photos keep changing even with Reduce Motion on; that setting only removes the slow zoom (see style.css)
+    if (heroSet.length > 1) heroTimer = setTimeout(() => showSlide(heroIdx + 1), HERO_MS);
   }
+  // Swipe left or right on the slideshow to move between photos
+  (() => {
+    let x0 = null, y0 = 0;
+    const top = $("top");
+    top.addEventListener("touchstart", e => { if (e.touches.length === 1) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; } }, { passive: true });
+    top.addEventListener("touchend", e => {
+      if (x0 === null || heroSet.length < 2) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) showSlide(heroIdx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+  })();
   $("heroOpen").onclick = () => { const p = heroSet[heroIdx]; if (!p) return; setFilter("all", false); openById(p.id); };
   document.addEventListener("visibilitychange", () => { if (document.hidden) clearTimeout(heroTimer); else if (heroSet.length) showSlide(heroIdx); });
 
