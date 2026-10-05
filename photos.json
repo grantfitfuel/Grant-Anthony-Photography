@@ -232,7 +232,8 @@
       "focal": "24 mm",
       "aperture": "f/11",
       "shutter": "1/200 s",
-      "iso": "ISO 500"
+      "iso": "ISO 500",
+      "instagram": true
     },
     {
       "id": "deadvlei",
