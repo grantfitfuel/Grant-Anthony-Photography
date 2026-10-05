@@ -46,7 +46,7 @@ The public site updates about a minute after you publish, once GitHub Pages rebu
 
 ## Instagram posting (@gcanth)
 
-Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tuesday and Friday at 18:00 UTC (19:00 in summer, 18:00 in winter) GitHub posts the next ticked photograph, in the order they appear in your list. One photograph per run. Each photograph is only ever posted once.
+Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tuesday and Friday at 18:00 UK time, summer and winter, GitHub posts the next ticked photograph, in the order they appear in your list. One photograph per run. Each photograph is only ever posted once.
 
 - **Caption:** title, place and year, description, camera settings (if shown on the site), then the line from Studio > Site details > Instagram posting, the hashtags set there for every post, and the hashtags for each of the photograph's categories (up to 30 in total).
 - **Shape:** Instagram accepts 4:5 portrait to 1.91:1 landscape. Taller or wider photographs get a plain border (white, black or dark grey; your choice in Site details) rather than a crop. Prepared copies are kept in the `ig` folder.
@@ -68,7 +68,7 @@ The menu names below were right at the time of writing. Meta changes its screens
 
 ### Good to know
 
-- To post straight away, use Run workflow with mode: post. To change the days or time, ask for the schedule line in `.github/workflows/instagram.yml` to be changed.
+- To post straight away, use Run workflow with mode: post. A scheduled post is skipped on a day when something has already been posted, so a manual post on a Tuesday or Friday replaces that evening's one. To change the days or time, ask for the schedule line in `.github/workflows/instagram.yml` to be changed.
 - GitHub can start scheduled runs a few minutes to an hour late when it is busy.
 - GitHub pauses scheduled jobs in a repository with no activity for 60 days. Publishing from the Studio, or any post, counts as activity. If it does pause, the Actions tab shows a button to turn it back on.
 - Instagram may flag accounts that behave like bots. Two posts a week is ordinary use.
