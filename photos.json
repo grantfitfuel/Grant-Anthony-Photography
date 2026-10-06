@@ -511,6 +511,28 @@
       "instagram": true
     },
     {
+      "id": "cathedral-in-motion",
+      "title": "Cathedral in motion",
+      "description": "York Minster, one of the largest Gothic cathedrals in northern Europe, photographed with the camera moving. A vertical sweep during the exposure keeps the spires and tree trunks standing, because they run the same way as the movement, while the leaves and sky dissolve into brushstrokes. Warm light on the stone, green below.",
+      "location": "York Minster, York",
+      "year": "2025",
+      "camera": "Canon R5",
+      "categories": [
+        "abstract",
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/cathedral-in-motion.jpg",
+      "thumb": "images/thumbs/cathedral-in-motion.jpg",
+      "w": 1719,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#655334",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
       "id": "walk",
       "title": "Walk",
       "description": "A walk signal, and the one person standing still. Chinatown, New York.",
@@ -533,27 +555,6 @@
       "tw": 667,
       "th": 1000,
       "tone": "#4c4c4c",
-      "added": "2026-10-02",
-      "instagram": true
-    },
-    {
-      "id": "cathedral-in-motion",
-      "title": "Cathedral in motion",
-      "description": "",
-      "location": "",
-      "year": "",
-      "camera": "",
-      "categories": [
-        "abstract"
-      ],
-      "featured": false,
-      "file": "images/cathedral-in-motion.jpg",
-      "thumb": "images/thumbs/cathedral-in-motion.jpg",
-      "w": 1719,
-      "h": 2576,
-      "tw": 667,
-      "th": 1000,
-      "tone": "#655334",
       "added": "2026-10-02",
       "instagram": true
     },
