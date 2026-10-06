@@ -190,26 +190,6 @@
       "added": "2026-10-02"
     },
     {
-      "id": "rings-rising",
-      "title": "Rings, rising",
-      "description": "",
-      "location": "Hamburg",
-      "year": "",
-      "camera": "",
-      "categories": [
-        "architecture"
-      ],
-      "featured": false,
-      "file": "images/rings-rising.jpg",
-      "thumb": "images/thumbs/rings-rising.jpg",
-      "w": 1718,
-      "h": 2576,
-      "tw": 667,
-      "th": 1000,
-      "tone": "#6e4e2b",
-      "added": "2026-10-02"
-    },
-    {
       "id": "one-way",
       "title": "One way",
       "description": "Staple Street, Tribeca. One of the shortest streets in Manhattan, still cobbled, with the green skybridge built in 1907 overhead. A blue Vespa parked under the One Way sign, and the whole street to itself.",
@@ -233,6 +213,27 @@
       "aperture": "f/11",
       "shutter": "1/200 s",
       "iso": "ISO 500",
+      "instagram": true
+    },
+    {
+      "id": "rings-rising",
+      "title": "Rings, rising",
+      "description": "Hamburg. Standing under a glass atrium at dusk and looking straight up: rings of light hung on steel poles, rising through a grid of glass into the blue. The building does the composing. All you have to do is find the spot where it lines up.",
+      "location": "Hamburg",
+      "year": "2024",
+      "camera": "Canon R5",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/rings-rising.jpg",
+      "thumb": "images/thumbs/rings-rising.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#6e4e2b",
+      "added": "2026-10-02",
       "instagram": true
     },
     {
@@ -278,7 +279,34 @@
       "tw": 1000,
       "th": 993,
       "tone": "#7a571f",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "xiangqi",
+      "title": "Xiangqi",
+      "description": "",
+      "location": "Chinatown, New York",
+      "year": "",
+      "camera": "",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/xiangqi.jpg",
+      "thumb": "images/thumbs/xiangqi.jpg",
+      "w": 2576,
+      "h": 1990,
+      "tw": 1000,
+      "th": 773,
+      "tone": "#646235",
+      "added": "2026-10-02",
+      "instagram": true
     },
     {
       "id": "shadow-line",
@@ -304,31 +332,6 @@
       "aperture": "f/10",
       "shutter": "1/80 s",
       "iso": "ISO 100"
-    },
-    {
-      "id": "xiangqi",
-      "title": "Xiangqi",
-      "description": "",
-      "location": "Chinatown, New York",
-      "year": "",
-      "camera": "",
-      "lens": "",
-      "focal": "",
-      "aperture": "",
-      "shutter": "",
-      "iso": "",
-      "categories": [
-        "urban-street"
-      ],
-      "featured": false,
-      "file": "images/xiangqi.jpg",
-      "thumb": "images/thumbs/xiangqi.jpg",
-      "w": 2576,
-      "h": 1990,
-      "tw": 1000,
-      "th": 773,
-      "tone": "#646235",
-      "added": "2026-10-02"
     },
     {
       "id": "angel",
@@ -504,6 +507,75 @@
       "tw": 1000,
       "th": 1000,
       "tone": "#4c4c4c",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "walk",
+      "title": "Walk",
+      "description": "A walk signal, and the one person standing still. Chinatown, New York.",
+      "location": "Chinatown, New York",
+      "year": "2023",
+      "camera": "Canon R5",
+      "lens": "",
+      "focal": "",
+      "aperture": "",
+      "shutter": "",
+      "iso": "",
+      "categories": [
+        "urban-street"
+      ],
+      "featured": false,
+      "file": "images/walk.jpg",
+      "thumb": "images/thumbs/walk.jpg",
+      "w": 1718,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#4c4c4c",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "cathedral-in-motion",
+      "title": "Cathedral in motion",
+      "description": "",
+      "location": "",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/cathedral-in-motion.jpg",
+      "thumb": "images/thumbs/cathedral-in-motion.jpg",
+      "w": 1719,
+      "h": 2576,
+      "tw": 667,
+      "th": 1000,
+      "tone": "#655334",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "ericusspitze-blue-hour",
+      "title": "Der Spiegel",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture",
+        "urban-street"
+      ],
+      "featured": true,
+      "file": "images/ericusspitze-blue-hour.jpg",
+      "thumb": "images/thumbs/ericusspitze-blue-hour.jpg",
+      "w": 2576,
+      "h": 1718,
+      "tw": 1000,
+      "th": 667,
+      "tone": "#344865",
       "added": "2026-10-02"
     },
     {
@@ -530,27 +602,6 @@
       "aperture": "f/10",
       "shutter": "1/160 s",
       "iso": "ISO 100"
-    },
-    {
-      "id": "ericusspitze-blue-hour",
-      "title": "Der Spiegel",
-      "description": "",
-      "location": "Hamburg",
-      "year": "",
-      "camera": "",
-      "categories": [
-        "architecture",
-        "urban-street"
-      ],
-      "featured": true,
-      "file": "images/ericusspitze-blue-hour.jpg",
-      "thumb": "images/thumbs/ericusspitze-blue-hour.jpg",
-      "w": 2576,
-      "h": 1718,
-      "tw": 1000,
-      "th": 667,
-      "tone": "#344865",
-      "added": "2026-10-02"
     },
     {
       "id": "bleached",
@@ -600,26 +651,6 @@
       "tw": 667,
       "th": 1000,
       "tone": "#6c652d",
-      "added": "2026-10-02"
-    },
-    {
-      "id": "cathedral-in-motion",
-      "title": "Cathedral in motion",
-      "description": "",
-      "location": "",
-      "year": "",
-      "camera": "",
-      "categories": [
-        "abstract"
-      ],
-      "featured": false,
-      "file": "images/cathedral-in-motion.jpg",
-      "thumb": "images/thumbs/cathedral-in-motion.jpg",
-      "w": 1719,
-      "h": 2576,
-      "tw": 667,
-      "th": 1000,
-      "tone": "#655334",
       "added": "2026-10-02"
     },
     {
@@ -752,32 +783,6 @@
       "th": 667,
       "tone": "#785621",
       "added": "2026-10-02"
-    },
-    {
-      "id": "walk",
-      "title": "Walk",
-      "description": "A walk signal, and the one person standing still. Chinatown, New York.",
-      "location": "Chinatown, New York",
-      "year": "2023",
-      "camera": "Canon R5",
-      "lens": "",
-      "focal": "",
-      "aperture": "",
-      "shutter": "",
-      "iso": "",
-      "categories": [
-        "urban-street"
-      ],
-      "featured": false,
-      "file": "images/walk.jpg",
-      "thumb": "images/thumbs/walk.jpg",
-      "w": 1718,
-      "h": 2576,
-      "tw": 667,
-      "th": 1000,
-      "tone": "#4c4c4c",
-      "added": "2026-10-02",
-      "instagram": true
     }
   ],
   "lessons": [
