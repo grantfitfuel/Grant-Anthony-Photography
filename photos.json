@@ -262,30 +262,9 @@
       "iso": "ISO 100"
     },
     {
-      "id": "speicherstadt-balconies",
-      "title": "Speicherstadt balconies",
-      "description": "",
-      "location": "Hamburg",
-      "year": "",
-      "camera": "",
-      "categories": [
-        "architecture"
-      ],
-      "featured": false,
-      "file": "images/speicherstadt-balconies.jpg",
-      "thumb": "images/thumbs/speicherstadt-balconies.jpg",
-      "w": 2576,
-      "h": 2559,
-      "tw": 1000,
-      "th": 993,
-      "tone": "#7a571f",
-      "added": "2026-10-02",
-      "instagram": true
-    },
-    {
       "id": "xiangqi",
       "title": "Xiangqi",
-      "description": "",
+      "description": "Xiangqi, Chinese chess, played on a paper board laid across a stone ledge in Chinatown, New York. One hand reaching for a piece, the other man waiting, hands on his knees. The street carries on behind them and neither of them notices.",
       "location": "Chinatown, New York",
       "year": "",
       "camera": "",
@@ -305,6 +284,27 @@
       "tw": 1000,
       "th": 773,
       "tone": "#646235",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "speicherstadt-balconies",
+      "title": "Speicherstadt balconies",
+      "description": "",
+      "location": "Hamburg",
+      "year": "",
+      "camera": "",
+      "categories": [
+        "architecture"
+      ],
+      "featured": false,
+      "file": "images/speicherstadt-balconies.jpg",
+      "thumb": "images/thumbs/speicherstadt-balconies.jpg",
+      "w": 2576,
+      "h": 2559,
+      "tw": 1000,
+      "th": 993,
+      "tone": "#7a571f",
       "added": "2026-10-02",
       "instagram": true
     },
