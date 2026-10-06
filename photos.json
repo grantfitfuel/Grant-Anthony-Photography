@@ -292,7 +292,7 @@
       "title": "Speicherstadt balconies",
       "description": "The Speicherstadt, Hamburg's old warehouse district and a UNESCO World Heritage Site. At night the red brick goes almost black, and one column of balconies lights up floor after floor. Straight on and dead centre, because a facade this ordered doesn't need anything else.",
       "location": "Hamburg",
-      "year": "",
+      "year": "2024",
       "camera": "Canon R5",
       "categories": [
         "architecture"
@@ -305,6 +305,27 @@
       "tw": 1000,
       "th": 993,
       "tone": "#7a571f",
+      "added": "2026-10-02",
+      "instagram": true
+    },
+    {
+      "id": "angel",
+      "title": "Angel",
+      "description": "Antony Gormley's Angel of the North has stood on a hill above Gateshead since 1998: 20 metres tall, with wings 54 metres across. Everyone photographs the whole figure. Up close it becomes something else: rusted steel ribs and the clean diagonal of a wing against the sky.",
+      "location": "Gateshead",
+      "year": "2025",
+      "camera": "Leica D-Lux 8",
+      "categories": [
+        "abstract"
+      ],
+      "featured": false,
+      "file": "images/angel.jpg",
+      "thumb": "images/thumbs/angel.jpg",
+      "w": 2576,
+      "h": 2576,
+      "tw": 1000,
+      "th": 1000,
+      "tone": "#4c4c4c",
       "added": "2026-10-02",
       "instagram": true
     },
@@ -332,27 +353,6 @@
       "aperture": "f/10",
       "shutter": "1/80 s",
       "iso": "ISO 100"
-    },
-    {
-      "id": "angel",
-      "title": "Angel",
-      "description": "Antony Gormley's Angel of the North has stood on a hill above Gateshead since 1998: 20 metres tall, with wings 54 metres across. Everyone photographs the whole figure. Up close it becomes something else: rusted steel ribs and the clean diagonal of a wing against the sky.",
-      "location": "Gateshead",
-      "year": "2025",
-      "camera": "Leica D-Lux 8",
-      "categories": [
-        "abstract"
-      ],
-      "featured": false,
-      "file": "images/angel.jpg",
-      "thumb": "images/thumbs/angel.jpg",
-      "w": 2576,
-      "h": 2576,
-      "tw": 1000,
-      "th": 1000,
-      "tone": "#4c4c4c",
-      "added": "2026-10-02",
-      "instagram": true
     },
     {
       "id": "sprinkenhof",
