@@ -171,16 +171,19 @@
     {
       "id": "wall-of-fame-muzyix9iqrv",
       "title": "Wall of Fame",
-      "description": "",
-      "location": "",
+      "description": "The Wall of Fame on Mathew Street, Liverpool, where each brick carries the name of an act that played the Cavern Club. In one stretch you get Chuck Berry, Howlin' Wolf, The Kinks, Eric Clapton, Elton John, The Stranglers and Oasis, with visitors' own names scratched in between. Shooting along the wall at an angle makes it run on and on, which is what it feels like reading it.",
+      "location": "Mathew Street, Liverpool",
       "year": "2024",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "lens": "EF16-35mm f/4L IS USM",
       "focal": "35 mm",
       "aperture": "f/4",
       "shutter": "1/40 s",
       "iso": "ISO 200",
-      "categories": [],
+      "categories": [
+        "urban-street",
+        "abstract"
+      ],
       "featured": false,
       "file": "images/wall-of-fame-muzyix9iqrv.jpg",
       "thumb": "images/thumbs/wall-of-fame-muzyix9iqrv.jpg",
@@ -189,7 +192,8 @@
       "tw": 1000,
       "th": 667,
       "tone": "#4c4d4c",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "rotten-muzyf94ial6",
