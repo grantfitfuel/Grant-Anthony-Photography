@@ -170,9 +170,9 @@
   "photos": [
     {
       "id": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
-      "title": "Reflections and shadows Loften beach unsigned",
-      "description": "",
-      "location": "",
+      "title": "Reflections and Shadows ",
+      "description": "Storsandnes beach, Lofoten, Norway. Low sun lights the mountains in warm gold, while the sky above stays grey and blue. As the waves pull back, the wet sand turns into a mirror, so the peaks appear twice: once in the light and once in the reflection.",
+      "location": "Storsandnes beach, Lofoten",
       "year": "2022",
       "camera": "Canon EOS 5D Mark IV",
       "lens": "EF16-35mm f/4L IS USM",
@@ -180,7 +180,10 @@
       "aperture": "f/11",
       "shutter": "1/100 s",
       "iso": "ISO 800",
-      "categories": [],
+      "categories": [
+        "coast",
+        "landscapes"
+      ],
       "featured": false,
       "file": "images/reflections-and-shadows-loften-beach-uns-muzyn980n6g.jpg",
       "thumb": "images/thumbs/reflections-and-shadows-loften-beach-uns-muzyn980n6g.jpg",
@@ -189,7 +192,8 @@
       "tw": 1000,
       "th": 667,
       "tone": "#3b545e",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "wall-of-fame-muzyix9iqrv",
