@@ -170,17 +170,19 @@
   "photos": [
     {
       "id": "reflections-of-bath-grant-anthony-muzxkg9jl68",
-      "title": "Reflections of Bath Grant Anthony",
-      "description": "",
-      "location": "",
+      "title": "Reflections of Bath",
+      "description": "The Great Bath at the Roman Baths, the heart of the bathing complex the Romans built around Bath's hot springs. With the water still, the colonnade and Bath Abbey's tower are mirrored almost perfectly, and black and white keeps the attention on the stone, the cloud and the reflection.",
+      "location": "Roman Baths, Bath",
       "year": "2024",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "lens": "RF24-70mm F2.8 L IS USM",
       "focal": "24 mm",
       "aperture": "f/13",
       "shutter": "1/100 s",
       "iso": "ISO 200",
-      "categories": [],
+      "categories": [
+        "architecture"
+      ],
       "featured": false,
       "file": "images/reflections-of-bath-grant-anthony-muzxkg9jl68.jpg",
       "thumb": "images/thumbs/reflections-of-bath-grant-anthony-muzxkg9jl68.jpg",
