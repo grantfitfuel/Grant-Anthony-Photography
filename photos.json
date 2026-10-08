@@ -171,7 +171,7 @@
     {
       "id": "loch-maree-muzx0s79fsh",
       "title": "Loch Maree",
-      "description": "",
+      "description": "Loch Maree, Wester Ross. A small island of Scots pines, shot straight into the sun. f/16 turns the sun into a star, and a 20-second exposure smooths the loch into a soft sheen around the rocks. Black and white, because the light and the shapes were the whole story.",
       "location": "",
       "year": "2024",
       "camera": "Canon EOS R5",
@@ -189,7 +189,8 @@
       "tw": 1000,
       "th": 1000,
       "tone": "#4d4d4c",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "botallack",
