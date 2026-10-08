@@ -171,8 +171,8 @@
     {
       "id": "lofoten-boat-muzz3lxyria",
       "title": "Lofoten Boat",
-      "description": "",
-      "location": "",
+      "description": "Autumn in Lofoten. A small boat sits on still water below a mountain with cloud drifting across its shoulder. Orange trees line the far shore, and in the foreground golden seaweed and mossy rocks run down to the water, so the colour carries from front to back under a grey sky.",
+      "location": "Lofoten",
       "year": "2022",
       "camera": "Canon EOS 5D Mark IV",
       "lens": "EF16-35mm f/4L IS USM",
@@ -180,7 +180,10 @@
       "aperture": "f/11",
       "shutter": "1/250 s",
       "iso": "ISO 500",
-      "categories": [],
+      "categories": [
+        "landscapes",
+        "coast"
+      ],
       "featured": false,
       "file": "images/lofoten-boat-muzz3lxyria.jpg",
       "thumb": "images/thumbs/lofoten-boat-muzz3lxyria.jpg",
