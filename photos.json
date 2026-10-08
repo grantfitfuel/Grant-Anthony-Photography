@@ -170,17 +170,20 @@
   "photos": [
     {
       "id": "the-caledonian-railway-bridge-muzxyqihvnu",
-      "title": "the caledonian railway bridge",
-      "description": "",
-      "location": "",
+      "title": "The Caledonian Railway Bridge",
+      "description": "The Caledonian Railway Bridge carries trains over the Clyde into Glasgow Central. From the water's edge you see what most people crossing it never do: rows of riveted arches, stone piers rising out of the river, and the whole structure running off into the distance. Most people only notice it as a sound overhead.",
+      "location": "Glasgow",
       "year": "2023",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "lens": "EF16-35mm f/4L IS USM",
       "focal": "28 mm",
       "aperture": "f/11",
       "shutter": "1/400 s",
       "iso": "ISO 400",
-      "categories": [],
+      "categories": [
+        "architecture",
+        "urban-street"
+      ],
       "featured": false,
       "file": "images/the-caledonian-railway-bridge-muzxyqihvnu.jpg",
       "thumb": "images/thumbs/the-caledonian-railway-bridge-muzxyqihvnu.jpg",
@@ -189,7 +192,8 @@
       "tw": 667,
       "th": 1000,
       "tone": "#504e49",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "spikey-muzxrkrz926",
