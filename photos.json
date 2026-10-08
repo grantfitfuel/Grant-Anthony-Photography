@@ -170,9 +170,9 @@
   "photos": [
     {
       "id": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
-      "title": "Uttakleiv beach 2 unsigned",
-      "description": "",
-      "location": "",
+      "title": "Uttakleiv beach",
+      "description": "Uttakleiv beach, Lofoten, Norway. During a one-second exposure the outgoing waves smooth into soft trails around the rocks, while the sand stays sharp. Across the bay, low sun picks out the jagged ridge under a heavy sky.",
+      "location": "Uttakleiv Beach, Lofoten",
       "year": "2022",
       "camera": "Canon EOS 5D Mark IV",
       "lens": "EF16-35mm f/4L IS USM",
@@ -180,7 +180,10 @@
       "aperture": "f/16",
       "shutter": "1 s",
       "iso": "ISO 800",
-      "categories": [],
+      "categories": [
+        "landscapes",
+        "coast"
+      ],
       "featured": false,
       "file": "images/uttakleiv-beach-2-unsigned-muzytkxpmlc.jpg",
       "thumb": "images/thumbs/uttakleiv-beach-2-unsigned-muzytkxpmlc.jpg",
@@ -189,7 +192,8 @@
       "tw": 667,
       "th": 1000,
       "tone": "#615138",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
