@@ -180,7 +180,9 @@
       "aperture": "f/11",
       "shutter": "10 s",
       "iso": "ISO 50",
-      "categories": [],
+      "categories": [
+        "architecture"
+      ],
       "featured": false,
       "file": "images/green-staircase-muzx6wxbhfz.jpg",
       "thumb": "images/thumbs/green-staircase-muzx6wxbhfz.jpg",
@@ -203,7 +205,9 @@
       "aperture": "f/16",
       "shutter": "20 s",
       "iso": "ISO 100",
-      "categories": [],
+      "categories": [
+        "landscapes"
+      ],
       "featured": false,
       "file": "images/loch-maree-muzx0s79fsh.jpg",
       "thumb": "images/thumbs/loch-maree-muzx0s79fsh.jpg",
