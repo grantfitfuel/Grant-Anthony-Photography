@@ -171,16 +171,18 @@
     {
       "id": "spikey-muzxrkrz926",
       "title": "Spikey",
-      "description": "",
-      "location": "",
+      "description": "Iron spikes set into a ledge in Liverpool, there to stop pigeons landing. Up close, in black and white, they look more like something from a dark fairy tale.",
+      "location": "Liverpool",
       "year": "2024",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5 ",
       "lens": "RF24-70mm F2.8 L IS USM",
       "focal": "64 mm",
       "aperture": "f/9",
       "shutter": "1/400 s",
       "iso": "ISO 200",
-      "categories": [],
+      "categories": [
+        "abstract"
+      ],
       "featured": false,
       "file": "images/spikey-muzxrkrz926.jpg",
       "thumb": "images/thumbs/spikey-muzxrkrz926.jpg",
@@ -189,7 +191,8 @@
       "tw": 1000,
       "th": 667,
       "tone": "#4c4d4c",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "reflections-of-bath-grant-anthony-muzxkg9jl68",
