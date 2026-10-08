@@ -171,16 +171,20 @@
     {
       "id": "luskentyre-icm-muzy45wewod",
       "title": "Luskentyre ICM",
-      "description": "",
-      "location": "",
+      "description": "Luskentyre, on the Isle of Harris, is known for its pale sand and clear, turquoise water. Here the camera was swept sideways through a quarter-second exposure, so the detail gives way to the colours: sand, sea, the hills across the water and a clear blue sky, laid down in long horizontal strokes.",
+      "location": "Luskentyre, Harris",
       "year": "2025",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "lens": "RF24-70mm F2.8 L IS USM",
       "focal": "24 mm",
       "aperture": "f/22",
       "shutter": "1/4 s",
       "iso": "ISO 50",
-      "categories": [],
+      "categories": [
+        "landscapes",
+        "coast",
+        "abstract"
+      ],
       "featured": false,
       "file": "images/luskentyre-icm-muzy45wewod.jpg",
       "thumb": "images/thumbs/luskentyre-icm-muzy45wewod.jpg",
@@ -189,7 +193,8 @@
       "tw": 1000,
       "th": 264,
       "tone": "#2c4d6d",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "the-caledonian-railway-bridge-muzxyqihvnu",
