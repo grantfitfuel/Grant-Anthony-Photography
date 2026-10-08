@@ -171,16 +171,18 @@
     {
       "id": "rotten-muzyf94ial6",
       "title": "Rotten",
-      "description": "",
-      "location": "",
+      "description": "Iron spikes set into a ledge in Liverpool, there to stop pigeons landing. Up close, in black and white, they look more like something from a dark fairy tale.",
+      "location": "Liverpool",
       "year": "2024",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "lens": "EF16-35mm f/4L IS USM",
       "focal": "35 mm",
       "aperture": "f/6.3",
       "shutter": "1/15 s",
       "iso": "ISO 100",
-      "categories": [],
+      "categories": [
+        "urban-street"
+      ],
       "featured": false,
       "file": "images/rotten-muzyf94ial6.jpg",
       "thumb": "images/thumbs/rotten-muzyf94ial6.jpg",
@@ -189,7 +191,8 @@
       "tw": 663,
       "th": 1000,
       "tone": "#4e4c4b",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "instagram": true
     },
     {
       "id": "fab4-and-liver-birds-muzy9yxp7yp",
