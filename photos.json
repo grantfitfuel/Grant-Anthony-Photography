@@ -171,8 +171,8 @@
     {
       "id": "south-uist-muzxduu15bc",
       "title": "South Uist",
-      "description": "",
-      "location": "",
+      "description": "South Uist, in the Outer Hebrides. A small stone building on the machair edge, its roof facing the hills and the sea loch beyond. Built from the same rock that's scattered across the grass around it, so it looks as if it grew there.",
+      "location": "South Uist, Outer Hebrides",
       "year": "2019",
       "camera": "Canon EOS 600D",
       "lens": "EF28-105mm f/3.5-4.5 USM",
@@ -180,7 +180,10 @@
       "aperture": "f/11",
       "shutter": "1/100 s",
       "iso": "ISO 100",
-      "categories": [],
+      "categories": [
+        "landscapes",
+        "coast"
+      ],
       "featured": false,
       "file": "images/south-uist-muzxduu15bc.jpg",
       "thumb": "images/thumbs/south-uist-muzxduu15bc.jpg",
@@ -229,7 +232,8 @@
       "shutter": "20 s",
       "iso": "ISO 100",
       "categories": [
-        "landscapes"
+        "landscapes",
+        "coast"
       ],
       "featured": false,
       "file": "images/loch-maree-muzx0s79fsh.jpg",
