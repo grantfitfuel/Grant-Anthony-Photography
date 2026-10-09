@@ -2,14 +2,15 @@ name: Instagram
 
 # Posts the next photograph ticked "Share to Instagram" in the Studio.
 # Schedule: Tuesdays and Fridays from 18:00 UK time, all year.
-# GitHub schedules run on UTC and can drop runs at busy times (especially on the hour),
-# so it wakes at 3, 23 and 43 minutes past 17:00 and 18:00 UTC. The script posts on the
-# first run at or after 18:00 UK time and every other run does nothing (one post a day).
+# GitHub's scheduler is unreliable: it drops many scheduled runs and delays others by hours.
+# So it wakes every 15 minutes from 17:07 to 22:52 UTC (24 chances each posting day).
+# The script posts on the first run at or after 18:00 UK time, summer or winter, and every
+# other run that day does nothing (one post a day). A run that never comes costs nothing.
 # To post straight away or check what would go out next: Actions tab > Instagram > Run workflow.
 
 on:
   schedule:
-    - cron: "3,23,43 17,18 * * 2,5"
+    - cron: "7,22,37,52 17-22 * * 2,5"
   workflow_dispatch:
     inputs:
       mode:
