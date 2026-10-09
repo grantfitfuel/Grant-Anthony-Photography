@@ -1,3 +1,8 @@
+/* Fonts are served from this site (SIL Open Font License, see fonts-OFL.txt). No third-party requests. */
+@font-face{font-family:"Bodoni Moda";src:url("bodoni-moda.woff") format("woff");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Bodoni Moda";src:url("bodoni-moda-italic.woff") format("woff");font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url("hanken-grotesk.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("jetbrains-mono.woff") format("woff");font-weight:100 800;font-style:normal;font-display:swap}
 /* Layout: a dark, full-bleed gallery. Hero slideshow of featured work, a sticky category index, a justified grid at true ratios, and an immersive lightbox lit by each photograph's own tone. Deliberately single-theme: photographs read best on a dark ground. */
 :root{
   --bg:#0D0D0E; --bg2:#151517; --bg3:#1E1E21; --fg:#EEECE7; --muted:#8E8C87; --faint:#5A5955;
