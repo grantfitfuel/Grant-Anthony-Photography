@@ -6,6 +6,8 @@ name: Instagram
 # So it wakes every 15 minutes from 17:07 to 22:52 UTC (24 chances each posting day).
 # The script posts on the first run at or after 18:00 UK time, summer or winter, and every
 # other run that day does nothing (one post a day). A run that never comes costs nothing.
+# An outside timer (cron-job.org) also starts it at 18:00 UK with scheduled=1, so it posts on time
+# even when GitHub's own schedule is late. Whichever arrives first posts; the others do nothing.
 # To post straight away or check what would go out next: Actions tab > Instagram > Run workflow.
 
 on:
@@ -18,6 +20,10 @@ on:
         type: choice
         options: [dry-run, post]
         default: dry-run
+      scheduled:
+        description: "1 = behave like the schedule (post only after 18:00 UK, once a day). Used by the outside timer."
+        type: string
+        default: "0"
 
 permissions:
   contents: write
@@ -40,7 +46,7 @@ jobs:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
           MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
-          SCHEDULED: ${{ github.event_name == 'schedule' && '1' || '0' }}
+          SCHEDULED: ${{ (github.event_name == 'schedule' || inputs.scheduled == '1') && '1' || '0' }}
         run: python scripts/instagram.py
       - name: Keep the prepared image for checking
         if: always()
