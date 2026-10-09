@@ -204,6 +204,55 @@
     const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "gsvg", "aria-hidden": "true" });
     view.append(svg); return { svg, W, H };
   }
+  /* ---------- exposure triangle diagram ---------- */
+  function triangle(box, cap) {
+    box.classList.add("tri");
+    box.setAttribute("aria-label", "The exposure triangle: aperture, shutter speed and ISO together set the exposure");
+    const W = 600, H = 540;
+    const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "tri-svg", role: "img", "aria-label": "Triangle with aperture at the top, shutter speed bottom left and ISO bottom right, exposure in the middle" });
+    const A = [300, 92], S = [62, 436], I = [538, 436];
+    svg.append(sv("polygon", { points: [A, S, I].map(p => p.join(",")).join(" "), class: "tri-edge" }));
+    const t = (x, y, txt, cls, anchor) => { const e = sv("text", { x, y, class: cls, "text-anchor": anchor || "middle" }); e.textContent = txt; svg.append(e); return e; };
+    [A, S, I].forEach(p => svg.append(sv("circle", { cx: p[0], cy: p[1], r: 7, class: "tri-dot" })));
+    // labels outside the corners
+    t(300, 36, "Aperture", "tri-name"); t(300, 66, "depth of field", "tri-sub");
+    t(14, 482, "Shutter speed", "tri-name", "start"); t(14, 512, "motion", "tri-sub", "start");
+    t(586, 482, "ISO", "tri-name", "end"); t(586, 512, "noise", "tri-sub", "end");
+    // aperture icon: ring with a six-sided opening, just inside the top corner
+    const ax = 300, ay = 178, hex = [...Array(6)].map((_, k) => { const a = Math.PI / 6 + k * Math.PI / 3; return [ax + 13 * Math.cos(a), ay + 13 * Math.sin(a)].join(","); }).join(" ");
+    svg.append(sv("circle", { cx: ax, cy: ay, r: 24, class: "tri-ico" }), sv("polygon", { points: hex, class: "tri-ico-fill" }));
+    // shutter icon: a dot with motion lines, inside the bottom-left corner
+    const sx = 140, sy = 398;
+    svg.append(sv("circle", { cx: sx + 18, cy: sy, r: 9, class: "tri-ico-fill" }));
+    [-10, 0, 10].forEach((dy, k) => svg.append(sv("line", { x1: sx - 22 + k * 4, y1: sy + dy, x2: sx + 4, y2: sy + dy, class: "tri-ico" })));
+    // ISO icon: a square of grain, inside the bottom-right corner
+    const gx = 424, gy = 380;
+    svg.append(sv("rect", { x: gx, y: gy, width: 36, height: 36, class: "tri-ico" }));
+    [[6, 8], [16, 5], [27, 10], [9, 19], [21, 17], [30, 24], [5, 29], [15, 30], [25, 31], [12, 12], [24, 26]].forEach(([dx, dy]) => svg.append(sv("circle", { cx: gx + dx, cy: gy + dy, r: 1.8, class: "tri-ico-fill" })));
+    // centre
+    t(300, 300, "EXPOSURE", "tri-centre"); t(300, 334, "how bright", "tri-sub"); t(300, 358, "the picture is", "tri-sub");
+    box.append(svg);
+
+    const rows = [
+      ["Aperture", ["f/22", "f/11", "f/5.6", "f/2.8", "f/1.4"], "Everything sharp", "Background blurred"],
+      ["Shutter speed", ["1/1000", "1/250", "1/60", "1/15", "1/4", "1 s"], "Motion frozen", "Motion blurred"],
+      ["ISO", ["100", "400", "1600", "6400"], "Clean", "Grainy"]
+    ];
+    const scales = el("div", "tri-scales");
+    const head = el("div", "tri-head"); head.append(el("span", null, "← Less light"), el("span", null, "More light →")); scales.append(head);
+    rows.forEach(([name, stops, lo, hi]) => {
+      const r = el("div", "tri-row");
+      r.append(el("div", "tri-rname", name));
+      const bar = el("div", "tri-bar"); stops.forEach(v => bar.append(el("span", null, v))); r.append(bar);
+      const fx = el("div", "tri-fx"); fx.append(el("span", null, lo), el("span", null, hi)); r.append(fx);
+      scales.append(r);
+    });
+    box.append(scales);
+    cap.innerHTML = "<b>Each mark is two stops.</b> Move any one setting towards more light and the picture gets brighter, but you get its side effect too. To keep the same brightness, move another setting the same number of stops the other way.";
+    box.append(cap);
+    return box;
+  }
+
   function guide(type, lesson) {
     const box = el("div", "exp guide"); box.setAttribute("role", "group");
     const cap = el("p", "exp-note");
@@ -213,6 +262,7 @@
     if (type === "space") return space(box, cap);
     if (type === "zone") return zone(box, cap);
     if (type === "longexp") return longexp(box, cap);
+    if (type === "triangle") return triangle(box, cap);
     const T = window.LearnTools;
     if (T && type === "focal") return T.focal(box, cap);
     if (T && type === "polariser") return T.polariser(box, cap);
