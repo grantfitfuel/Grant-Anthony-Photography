@@ -19,9 +19,9 @@ on:
         options: [fiction, nonfiction, auto]
         default: fiction
       mode:
-        description: "dry-run shows the next post and caption without posting; post publishes it"
+        description: "dry-run shows the next post without posting; post publishes it; check confirms both accounts can post"
         type: choice
-        options: [dry-run, post]
+        options: [dry-run, post, check]
         default: dry-run
       scheduled:
         description: "1 = behave like the schedule (post only after 18:00 UK, once a day). Used by an outside timer."
