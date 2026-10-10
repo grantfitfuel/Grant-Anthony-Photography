@@ -585,7 +585,7 @@
       "th": 667,
       "tone": "#735426",
       "added": "2026-10-02",
-      "lens": "16 - 35 mm",
+      "lens": "EF 16 - 35 mm",
       "focal": "16 mm",
       "aperture": "f/11",
       "shutter": "1/100 s",
@@ -637,7 +637,12 @@
       "th": 1000,
       "tone": "#6e4e2b",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "lens": "EF 16 - 35 mm",
+      "focal": "19 mm",
+      "aperture": "f/8",
+      "shutter": "5 s",
+      "iso": "ISO 125"
     },
     {
       "id": "deadvlei",
@@ -715,10 +720,10 @@
     {
       "id": "shadow-line",
       "title": "Shadow line",
-      "description": "",
+      "description": "Deadvlei, Namibia. At 400 mm everything else falls away: no horizon, no sky, just one dead camel thorn tree against the side of a dune. Low sun is starting to reach the white clay pan in front, while a shadow line runs diagonally across the dune behind, splitting it into light and shade.",
       "location": "Deadvlei, Namibia",
       "year": "2026",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "categories": [
         "landscapes"
       ],
