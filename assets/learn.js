@@ -356,7 +356,7 @@
       t(fx + FW, fy + FH + 30, kept + "% kept", "dg-sub", "end");
       t(fx, fy + FH + 56, ig ? "Instagram: fits" : "Instagram: too wide", ig ? "dg-acc" : "dg-sub", "start");
     });
-    cap.innerHTML = "<b>Every crop throws pixels away.</b> Each box is a 3:2 camera frame, with the solid area showing what a crop to that shape keeps at full width or height. Instagram accepts anything from 4:5 tall to 1.91:1 wide.";
+    cap.innerHTML = "<b>Every crop throws pixels away.</b> Each box is a 3:2 camera frame, with the solid area showing what a crop to that shape keeps at full width or height. Instagram accepts anything from 4:5 tall to 1.91:1 wide, and its app now also takes 3:4 tall.";
     return box;
   }
 
@@ -410,6 +410,26 @@
     return box;
   }
 
+  // Organising and backing up: three copies on three storage points
+  function dgBackup(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 420, "Three copies of your photographs on three different storage points, one away from home");
+    add("rect", { x: 8, y: 64, width: 384, height: 270, rx: 12, class: "dg-home" });
+    t(24, 46, "At home", "dg-name", "start");
+    t(500, 46, "Away", "dg-name");
+    const disk = (x, y, label, l1, l2) => {
+      add("rect", { x: x - 82, y: y - 70, width: 164, height: 140, rx: 12, class: "dg-store" });
+      add("circle", { cx: x, cy: y - 22, r: 28, class: "dg-ico" }); add("circle", { cx: x, cy: y - 22, r: 6, class: "dg-dot" });
+      t(x, y + 30, l1, "dg-sub"); if (l2) t(x, y + 54, l2, "dg-sub");
+      t(x, y + 108, label, "dg-acc");
+    };
+    disk(105, 185, "Copy 1", "computer");
+    disk(295, 185, "Copy 2", "external", "drive");
+    disk(500, 185, "Copy 3", "cloud, or", "elsewhere");
+    t(300, 400, "three copies, three storage points", "dg-sub");
+    cap.innerHTML = "<b>Three copies, three storage points.</b> If the computer fails, the drive has them. If the house floods or is burgled, the copy away from home survives. A sync service on its own is not a backup, because a deletion syncs too.";
+    return box;
+  }
+
   function guide(type, lesson) {
     const box = el("div", "exp guide"); box.setAttribute("role", "group");
     const cap = el("p", "exp-note");
@@ -427,6 +447,7 @@
     if (type === "tides") return dgTides(box, cap);
     if (type === "sunstar") return dgSunstar(box, cap);
     if (type === "ghosts") return dgGhosts(box, cap);
+    if (type === "backup") return dgBackup(box, cap);
     const T = window.LearnTools;
     if (T && type === "focal") return T.focal(box, cap);
     if (T && type === "polariser") return T.polariser(box, cap);
@@ -594,6 +615,34 @@
           "<b>Fully corrected.</b> The walls are vertical, but look at the edges: the correction stretches the top and crops into the frame. Leave room around the building when you shoot.");
       };
       inp.oninput = draw; box.append(row, cap); draw();
+    }
+
+    else if (type === "sharpen") {
+      box.setAttribute("aria-label", "Sharpening demonstration");
+      svg.remove();
+      const im = view.querySelector(".gimg");
+      const fid = "shp" + Math.random().toString(36).slice(2, 7);
+      const fsvg = document.createElementNS(NS, "svg"); fsvg.setAttribute("width", "0"); fsvg.setAttribute("height", "0"); fsvg.setAttribute("aria-hidden", "true"); fsvg.style.position = "absolute";
+      const filt = sv("filter", { id: fid, "color-interpolation-filters": "sRGB" });
+      const conv = sv("feConvolveMatrix", { order: "3", kernelMatrix: "0 0 0 0 1 0 0 0 0", preserveAlpha: "true", edgeMode: "duplicate" });
+      filt.append(conv); fsvg.append(filt); view.append(fsvg);
+      if (im) { im.style.filter = `url(#${fid})`; im.style.transformOrigin = "50% 45%"; im.style.transition = "transform .25s ease-out"; }
+      const row = el("div", "exp-row"); row.style.marginTop = "18px";
+      const lab = el("label", null, "Amount"); const inp = el("input"); inp.type = "range"; inp.min = 0; inp.max = 100; inp.value = 0; inp.id = "sh" + fid; lab.htmlFor = inp.id;
+      const out = el("output"); row.append(lab, inp, out);
+      let zoom = 3;
+      const draw = () => {
+        const k = +inp.value / 100, a = 1.6 * k;
+        conv.setAttribute("kernelMatrix", `0 ${-a} 0 ${-a} ${1 + 4 * a} ${-a} 0 ${-a} 0`);
+        if (im) im.style.transform = `scale(${zoom})`;
+        out.textContent = Math.round(k * 100) + "%";
+        say(k < 0.05 ? "<b>No sharpening.</b> A straight file looks slightly soft at this size." :
+          k <= 0.4 ? "<b>About right.</b> Edges look crisp and there is no visible outline round them." :
+          k <= 0.7 ? "<b>Getting heavy.</b> Look along strong edges: thin light and dark outlines are starting to appear." :
+          "<b>Halos.</b> Bright and dark rims along every edge, and noise in smooth areas turned to grit. Back off until they go.");
+      };
+      inp.oninput = draw;
+      box.append(row, chips([["1", "Whole frame"], ["3", "Zoom 3x"]], k => { zoom = +k; draw(); }, "3"), cap); draw();
     }
 
     else if (type === "orton") {

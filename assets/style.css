@@ -518,3 +518,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* Orton effect demo */
 .orton-glow{mix-blend-mode:multiply;transform:scale(1.04);pointer-events:none}
+
+/* backup diagram */
+.dg-home{fill:rgba(217,198,163,.06);stroke:var(--line2);stroke-width:2;stroke-dasharray:8 6}
+.dg-store{fill:var(--bg3);stroke:var(--fg);stroke-width:2}
+.dg-ico{fill:none;stroke:var(--fg);stroke-width:2;opacity:.85}
