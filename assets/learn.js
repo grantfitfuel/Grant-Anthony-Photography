@@ -253,6 +253,163 @@
     return box;
   }
 
+  /* ---------- explanatory diagrams ---------- */
+  function diagram(box, cap, W, H, label) {
+    box.classList.add("dgm"); box.setAttribute("aria-label", label);
+    const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, class: "dg-svg", role: "img", "aria-label": label });
+    const t = (x, y, txt, cls, anchor) => { const e = sv("text", { x, y, class: cls || "dg-t", "text-anchor": anchor || "middle" }); e.textContent = txt; svg.append(e); return e; };
+    const add = (tag, attrs) => { const e = sv(tag, attrs); svg.append(e); return e; };
+    box.append(svg, cap);
+    return { svg, t, add };
+  }
+  const sunAt = (add, x, y, r) => {
+    add("circle", { cx: x, cy: y, r, class: "dg-sun" });
+    for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4; add("line", { x1: x + Math.cos(a) * (r + 5), y1: y + Math.sin(a) * (r + 5), x2: x + Math.cos(a) * (r + 13), y2: y + Math.sin(a) * (r + 13), class: "dg-ray" }); }
+  };
+  const cameraAt = (add, x, y) => {
+    add("rect", { x: x - 22, y: y - 14, width: 44, height: 28, rx: 4, class: "dg-cam" });
+    add("circle", { cx: x, cy: y, r: 8, class: "dg-camlens" });
+  };
+
+  // Reading the light: where the sun is decides where the shadow falls
+  function dgLightdir(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 560, "Front, side and back light seen from above");
+    const rows = [
+      ["Front light", "sun behind you: shadow hidden, flat", 20, 0, "front"],
+      ["Side light", "sun to one side: shadow shows shape", 0, -1, "side"],
+      ["Back light", "sun behind subject: rim light, silhouette", 580, 0, "back"]
+    ];
+    rows.forEach(([name, note, sx, sy, kind], i) => {
+      const y = 70 + i * 180, cx = 110, ox = 340;
+      t(20, y - 34, name, "dg-name", "start"); t(20, y + 84, note, "dg-sub", "start");
+      cameraAt(add, cx, y);
+      add("line", { x1: cx + 26, y1: y, x2: ox - 30, y2: y, class: "dg-sight" });
+      // shadow: away from the sun
+      const shadow = kind === "front" ? `${ox},${y - 18} ${ox + 120},${y - 10} ${ox + 120},${y + 10} ${ox},${y + 18}`
+        : kind === "side" ? `${ox - 18},${y} ${ox - 8},${y + 62} ${ox + 8},${y + 62} ${ox + 18},${y}`
+        : `${ox},${y - 18} ${ox - 120},${y - 10} ${ox - 120},${y + 10} ${ox},${y + 18}`;
+      add("polygon", { points: shadow, class: "dg-shadow" });
+      add("circle", { cx: ox, cy: y, r: 22, class: "dg-subject" });
+      if (kind === "front") sunAt(add, 40, y, 12);
+      if (kind === "side") sunAt(add, ox, y - 52, 12);
+      if (kind === "back") sunAt(add, 545, y, 12);
+    });
+    t(110, 548, "you", "dg-sub"); t(340, 548, "subject", "dg-sub");
+    cap.innerHTML = "<b>Seen from above.</b> The shadow always falls away from the sun. Front light hides it behind the subject, side light lays it across the scene where you can see it, and back light throws it towards you.";
+    return box;
+  }
+
+  // Reflections: the reflected subject is as far below the surface as the real one is above it
+  function dgReflect(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 540, "Side view of a building and its reflection in water");
+    const wy = 290;
+    add("rect", { x: 0, y: wy, width: 600, height: 250, class: "dg-water" });
+    add("line", { x1: 0, y1: wy, x2: 600, y2: wy, class: "dg-surface" });
+    add("rect", { x: 440, y: 110, width: 70, height: wy - 110, class: "dg-building" });
+    add("rect", { x: 440, y: wy, width: 70, height: wy - 110, class: "dg-ghost" });
+    cameraAt(add, 70, 252);
+    const lx = 92, ly = 252, vy = 2 * wy - 110;                 // lens, and the mirrored top of the building
+    const hx = lx + (wy - ly) / (vy - ly) * (475 - lx);           // where the line of sight meets the water
+    add("line", { x1: lx, y1: ly, x2: hx, y2: wy, class: "dg-ray2" });
+    add("line", { x1: hx, y1: wy, x2: 475, y2: 110, class: "dg-ray2" });
+    add("line", { x1: hx, y1: wy, x2: 475, y2: vy, class: "dg-raydash" });
+    add("circle", { cx: 475, cy: vy, r: 7, class: "dg-dot" });
+    t(30, 46, "The camera sees the reflection here,", "dg-sub", "start");
+    t(30, 72, "as far below the water as the", "dg-sub", "start");
+    t(30, 98, "building stands above it", "dg-sub", "start");
+    t(475, 100, "building", "dg-sub"); t(475, 525, "focus here", "dg-acc");
+    t(200, 330, "water surface: not here", "dg-sub");
+    cap.innerHTML = "<b>Focus on the reflection, not the water.</b> The reflected building is about as far from the lens as the real one. Lower the camera and the angle to the water gets shallower, so the same puddle holds more of the scene.";
+    return box;
+  }
+
+  // Macro: one frame's sharp slice against a stack
+  function dgDof(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 560, "Depth of field in one macro frame compared with a focus stack");
+    const x0 = 210, mm = 30, d = 10;   // 10 mm deep subject, 30 px per mm
+    const subj = (y) => add("ellipse", { cx: x0 + d * mm / 2, cy: y, rx: d * mm / 2, ry: 70, class: "dg-subject" });
+    [[150, "One frame at f/8, 1:1", "about 1 mm sharp"], [390, "Focus stack", "20 frames, 0.5 mm apart"]].forEach(([y, name, note], i) => {
+      cameraAt(add, 60, y); add("line", { x1: 84, y1: y, x2: x0 - 10, y2: y, class: "dg-sight" });
+      subj(y);
+      if (i === 0) add("rect", { x: x0 + 30, y: y - 80, width: mm, height: 160, class: "dg-sharp" });
+      else for (let k = 0; k < 20; k++) add("rect", { x: x0 + k * mm / 2, y: y - 80, width: mm, height: 160, class: "dg-sharp dg-stack" });
+      t(x0 + d * mm / 2, y - 92, name, "dg-name"); t(x0 + d * mm / 2, y + 108, note, "dg-sub");
+    });
+    t(x0 + d * mm / 2, 548, "subject: 10 mm deep", "dg-sub");
+    cap.innerHTML = "<b>At life size the sharp zone is a thin slice.</b> One frame at f/8 holds about a millimetre. Stepping the focus 0.5 mm at a time, so the slices overlap, and blending 20 frames covers the whole 10 mm subject.";
+    return box;
+  }
+
+  // Cropping: what each common shape keeps from a 3:2 frame
+  function dgAspects(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 730, "Common crops drawn inside a 3:2 frame, with the share of the picture each one keeps");
+    const shapes = [["3:2", 3 / 2], ["1:1", 1], ["4:5", 4 / 5], ["16:9", 16 / 9], ["2:1", 2], ["3:1", 3]];
+    const FW = 240, FH = 160;
+    shapes.forEach(([name, r], i) => {
+      const col = i % 2, row = Math.floor(i / 2), fx = 30 + col * 300, fy = 20 + row * 240;
+      add("rect", { x: fx, y: fy, width: FW, height: FH, class: "dg-frame" });
+      let w = FW, h = FW / r; if (h > FH) { h = FH; w = FH * r; }
+      add("rect", { x: fx + (FW - w) / 2, y: fy + (FH - h) / 2, width: w, height: h, class: "dg-crop" });
+      const kept = Math.round(w * h / (FW * FH) * 100);
+      const ig = r >= 0.8 - 1e-9 && r <= 1.91 + 1e-9;
+      t(fx, fy + FH + 30, name, "dg-name", "start");
+      t(fx + FW, fy + FH + 30, kept + "% kept", "dg-sub", "end");
+      t(fx, fy + FH + 56, ig ? "Instagram: fits" : "Instagram: too wide", ig ? "dg-acc" : "dg-sub", "start");
+    });
+    cap.innerHTML = "<b>Every crop throws pixels away.</b> Each box is a 3:2 camera frame, with the solid area showing what a crop to that shape keeps at full width or height. Instagram accepts anything from 4:5 tall to 1.91:1 wide.";
+    return box;
+  }
+
+  // Seascapes: the tide through a day, and spring against neap
+  function dgTides(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 620, "Tide height through a day, and spring tides compared with neap tides");
+    const X0 = 40, X1 = 580, per = 12.42, hours = 24;
+    const xs = h => X0 + (h / hours) * (X1 - X0);
+    const curve = (mid, amp, phase) => { let d = ""; for (let h = 0; h <= hours; h += 0.25) { const y = mid - amp * Math.cos(2 * Math.PI * (h - phase) / per); d += (h ? " L" : "M") + xs(h).toFixed(1) + " " + y.toFixed(1); } return d; };
+    t(X0, 34, "One day", "dg-name", "start");
+    add("line", { x1: X0, y1: 150, x2: X1, y2: 150, class: "dg-axis" });
+    add("path", { d: curve(150, 80, 3), class: "dg-tide" });
+    [3, 3 + per].forEach(h => { add("circle", { cx: xs(h), cy: 70, r: 6, class: "dg-dot" }); t(xs(h), 58, "high", "dg-sub"); });
+    [3 + per / 2, 3 + 1.5 * per].forEach(h => { if (h <= hours) { add("circle", { cx: xs(h), cy: 230, r: 6, class: "dg-dot" }); t(xs(h), 258, "low", "dg-sub"); } });
+    add("line", { x1: xs(3), y1: 304, x2: xs(3 + per / 2), y2: 304, class: "dg-meas" });
+    add("line", { x1: xs(3), y1: 296, x2: xs(3), y2: 312, class: "dg-meas" }); add("line", { x1: xs(3 + per / 2), y1: 296, x2: xs(3 + per / 2), y2: 312, class: "dg-meas" });
+    t((xs(3) + xs(3 + per / 2)) / 2, 334, "a little over 6 hours", "dg-acc");
+    ["00", "06", "12", "18", "24"].forEach((hh, k) => t(xs(k * 6), 284, hh, "dg-tiny"));
+    t(X0, 392, "Spring and neap tides", "dg-name", "start");
+    add("line", { x1: X0, y1: 486, x2: X1, y2: 486, class: "dg-axis" });
+    add("path", { d: curve(486, 70, 3), class: "dg-tide" });
+    add("path", { d: curve(486, 30, 3), class: "dg-tide2" });
+    t(X0, 586, "solid: spring, near new and full moon", "dg-acc", "start");
+    t(X0, 610, "dashed: neap, near half moon", "dg-sub", "start");
+    cap.innerHTML = "<b>Two highs and two lows a day</b>, each a little over six hours apart, arriving later each day. Spring tides, around new and full moon, rise highest and fall lowest. Neap tides, in between, have the smallest range. The shape is typical; check a tide table for real times.";
+    return box;
+  }
+
+  // Shooting into the sun: blades and sunstar points
+  function dgSunstar(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 330, "Sunstars from lenses with 8 and 9 aperture blades");
+    const star = (cx, cy, n) => { add("circle", { cx, cy, r: 9, class: "dg-sun" }); for (let k = 0; k < n; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / n; add("line", { x1: cx, y1: cy, x2: cx + Math.cos(a) * 100, y2: cy + Math.sin(a) * 100, class: "dg-spike" }); } };
+    star(150, 150, 8); star(450, 150, 18);
+    t(150, 290, "8 blades: 8 points", "dg-name"); t(450, 290, "9 blades: 18 points", "dg-name");
+    t(150, 318, "even: same number", "dg-sub"); t(450, 318, "odd: double", "dg-sub");
+    cap.innerHTML = "<b>Count the blades.</b> Each blade edge throws a spike from each side. With an even number the spikes overlap in pairs, so you see as many points as blades. With an odd number they do not, so you see twice as many.";
+    return box;
+  }
+
+  // Shooting into the sun: where ghosts land
+  function dgGhosts(box, cap) {
+    const { t, add } = diagram(box, cap, 600, 420, "Lens ghosts fall on a line from the sun through the centre of the frame");
+    add("rect", { x: 30, y: 30, width: 540, height: 360, class: "dg-frame" });
+    const sx = 130, sy = 100, cx = 300, cy = 210;
+    add("line", { x1: sx, y1: sy, x2: 2 * cx - sx, y2: 2 * cy - sy, class: "dg-raydash" });
+    sunAt(add, sx, sy, 16);
+    add("circle", { cx, cy, r: 5, class: "dg-dot" }); t(cx + 14, cy - 10, "centre", "dg-sub", "start");
+    [[0.62, 9], [0.78, 16], [0.95, 24]].forEach(([f, r]) => add("circle", { cx: sx + (cx - sx) * 2 * f, cy: sy + (cy - sy) * 2 * f, r, class: "dg-ghostb" }));
+    t(540, 372, "ghosts", "dg-acc", "end");
+    cap.innerHTML = "<b>Ghosts line up with the sun and the centre of the frame.</b> Move the sun and they move the opposite way, so a small change of position can push them onto plain sky or out of the frame.";
+    return box;
+  }
+
   function guide(type, lesson) {
     const box = el("div", "exp guide"); box.setAttribute("role", "group");
     const cap = el("p", "exp-note");
@@ -263,6 +420,13 @@
     if (type === "zone") return zone(box, cap);
     if (type === "longexp") return longexp(box, cap);
     if (type === "triangle") return triangle(box, cap);
+    if (type === "lightdir") return dgLightdir(box, cap);
+    if (type === "reflect") return dgReflect(box, cap);
+    if (type === "dof") return dgDof(box, cap);
+    if (type === "aspects") return dgAspects(box, cap);
+    if (type === "tides") return dgTides(box, cap);
+    if (type === "sunstar") return dgSunstar(box, cap);
+    if (type === "ghosts") return dgGhosts(box, cap);
     const T = window.LearnTools;
     if (T && type === "focal") return T.focal(box, cap);
     if (T && type === "polariser") return T.polariser(box, cap);
