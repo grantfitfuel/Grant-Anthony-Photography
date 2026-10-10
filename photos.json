@@ -715,7 +715,11 @@
       "th": 1000,
       "tone": "#4c4c4c",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "focal": "34 mm",
+      "aperture": "f/11",
+      "shutter": "1/500 s",
+      "iso": "ISO 400"
     },
     {
       "id": "shadow-line",
