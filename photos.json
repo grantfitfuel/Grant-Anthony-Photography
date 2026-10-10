@@ -749,10 +749,10 @@
     {
       "id": "sprinkenhof",
       "title": "Sprinkenhof",
-      "description": "",
+      "description": "The Sprinkenhof, one of the great brick office buildings of Hamburg’s Kontorhaus district, which is a UNESCO World Heritage Site together with the Speicherstadt. At night, in black and white, the dark brick almost disappears and the building becomes a grid of lit windows around the curved central tower. Rain on the paving carries the light down to the bottom of the frame.",
       "location": "Hamburg",
-      "year": "",
-      "camera": "",
+      "year": "2024",
+      "camera": "Canon R5",
       "categories": [
         "architecture"
       ],
@@ -764,7 +764,13 @@
       "tw": 1000,
       "th": 853,
       "tone": "#4c4c4c",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "instagram": true,
+      "lens": "EF 16 - 35 mm",
+      "focal": "16 mm",
+      "aperture": "f/8",
+      "shutter": "13 s",
+      "iso": "ISO 100"
     },
     {
       "id": "first-light",
