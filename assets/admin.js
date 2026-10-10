@@ -65,19 +65,50 @@
       await gh("DELETE", contentPath(path), { message, sha: meta.sha, branch: conn.branch });
     } catch (e) { if (e.status !== 404) throw e; }
   }
+  /* Three-way merge, so a Studio tab opened earlier never wipes changes made since
+     (an uploaded photos.json, or edits from another device). Anything you did not change
+     in this tab is taken from the latest version on GitHub; anything you did change wins. */
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  function mergeList(base, mine, theirs) {
+    const B = new Map(base.map(x => [x.id, x])), M = new Map(mine.map(x => [x.id, x])), T = new Map(theirs.map(x => [x.id, x]));
+    const pick = id => {
+      if (M.has(id)) { if (B.has(id) && same(M.get(id), B.get(id))) return T.get(id); return M.get(id); }
+      if (B.has(id)) return undefined;                          // deleted in this tab
+      return T.get(id);                                         // added elsewhere
+    };
+    const order = same(mine.map(x => x.id), base.map(x => x.id)) ? theirs.map(x => x.id).concat(mine.map(x => x.id)) : mine.map(x => x.id).concat(theirs.map(x => x.id));
+    const out = [], seen = new Set();
+    order.forEach(id => { if (seen.has(id)) return; seen.add(id); const v = pick(id); if (v) out.push(v); });
+    return out;
+  }
+  function merge3(base, mine, theirs) {
+    const out = {};
+    new Set([...Object.keys(theirs), ...Object.keys(mine)]).forEach(k => {
+      if (k === "photos" || k === "lessons") { out[k] = mergeList(base[k] || [], mine[k] || [], theirs[k] || []); return; }
+      if (k === "site") {
+        const s = {}, bs = base.site || {}, ms = mine.site || {}, ts = theirs.site || {};
+        new Set([...Object.keys(ts), ...Object.keys(ms)]).forEach(f => { s[f] = (f in ms && !same(ms[f], bs[f])) ? ms[f] : (f in ts ? ts[f] : ms[f]); });
+        out.site = s; return;
+      }
+      out[k] = (k in mine && !same(mine[k], base[k])) ? mine[k] : (k in theirs ? theirs[k] : mine[k]);
+    });
+    return out;
+  }
   async function writeJson(message) {
-    const out = clone(data);
-    const txt = JSON.stringify(out, null, 2) + "\n";
-    try {
-      const r = await putFile("photos.json", b64Text(txt), message, jsonSha);
-      jsonSha = r.content.sha;
-    } catch (e) {
-      if (e.status !== 409 && e.status !== 422) throw e;
-      const cur = await getJson(); jsonSha = cur.sha;           // file moved on since we loaded it: retry against latest
-      const r = await putFile("photos.json", b64Text(txt), message, jsonSha);
-      jsonSha = r.content.sha;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const cur = await getJson();
+      if (cur.json && savedStr && cur.sha !== jsonSha) {
+        const merged = merge3(JSON.parse(savedStr), data, normalise(cur.json));
+        if (!same(merged, data)) { data = merged; try { renderAll(); } catch (e) {} }
+      }
+      jsonSha = cur.sha;
+      const txt = JSON.stringify(data, null, 2) + "\n";
+      try {
+        const r = await putFile("photos.json", b64Text(txt), message, jsonSha);
+        jsonSha = r.content.sha; savedStr = JSON.stringify(data); return;
+      } catch (e) { if (e.status !== 409 && e.status !== 422) throw e; }   // changed again in the meantime: merge and retry
     }
-    savedStr = JSON.stringify(data);
+    throw new Error("photos.json kept changing while publishing. Reload the Studio and try again.");
   }
 
   /* ---------- connection ---------- */
