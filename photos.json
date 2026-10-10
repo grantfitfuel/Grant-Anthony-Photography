@@ -800,15 +800,15 @@
     {
       "id": "mulberry-street",
       "title": "Mulberry Street",
-      "description": "",
+      "description": "Mulberry Street, the heart of Little Italy in New York. Lights strung across the street spell out lines from the song “Volare”, and restaurant terraces line the pavement. The street, the railings and the overhead lights all lead the eye down to the Empire State Building rising at the far end, while people walk towards the camera.",
       "location": "Little Italy, New York",
-      "year": "",
-      "camera": "",
-      "lens": "",
-      "focal": "",
-      "aperture": "",
-      "shutter": "",
-      "iso": "",
+      "year": "2023",
+      "camera": "Canon R5",
+      "lens": "RF 70 - 200 mm",
+      "focal": "92 mm",
+      "aperture": "f/8",
+      "shutter": "1/125 s",
+      "iso": "ISO 400",
       "categories": [
         "urban-street"
       ],
