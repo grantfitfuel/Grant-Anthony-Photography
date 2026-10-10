@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /admin.html
-
-Sitemap: https://grantanthony.co.uk/sitemap.xml
