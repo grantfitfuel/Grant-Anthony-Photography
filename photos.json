@@ -843,10 +843,10 @@
     {
       "id": "triangle",
       "title": "Triangle",
-      "description": "",
+      "description": "Hamburg, looking straight up between modern office buildings. The facades lean in from three sides and frame a triangle of pale sky. The whole frame sits in cool blue light, with only a few warm windows. The buildings are there, but the picture is really the shape of the gap between them.",
       "location": "Hamburg",
-      "year": "",
-      "camera": "",
+      "year": "2024",
+      "camera": "Canon R5",
       "categories": [
         "architecture",
         "abstract"
@@ -859,7 +859,12 @@
       "tw": 1000,
       "th": 667,
       "tone": "#1f4d7a",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "lens": "EF 16 - 35 mm",
+      "focal": "16 mm",
+      "aperture": "f/8",
+      "shutter": "3/10 s",
+      "iso": "ISO 100"
     },
     {
       "id": "lofoten-shore",
