@@ -1,0 +1,63 @@
+name: Books Instagram
+
+# Posts the next book post from books/posts.json.
+#   Fiction    @grantcanthony  Mondays and Thursdays from 18:00 UK time
+#   Nonfiction @g_c_anthony    Wednesdays and Saturdays from 18:00 UK time
+# GitHub's scheduler drops and delays runs, so it wakes every 15 minutes from 17:07 to
+# 22:52 UTC on those days. The script picks the account for the day, posts on the first
+# run at or after 18:00 UK time (summer or winter), and every later run that day does nothing.
+# To post now, or see what would go out next: Actions tab > Books Instagram > Run workflow.
+
+on:
+  schedule:
+    - cron: "7,22,37,52 17-22 * * 1,3,4,6"
+  workflow_dispatch:
+    inputs:
+      account:
+        description: "Which account. auto = whichever posts today"
+        type: choice
+        options: [fiction, nonfiction, auto]
+        default: fiction
+      mode:
+        description: "dry-run shows the next post and caption without posting; post publishes it"
+        type: choice
+        options: [dry-run, post]
+        default: dry-run
+      scheduled:
+        description: "1 = behave like the schedule (post only after 18:00 UK, once a day). Used by an outside timer."
+        type: string
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: books-instagram
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pillow
+      - name: Post next book post
+        env:
+          IG_TOKEN_FICTION: ${{ secrets.IG_TOKEN_FICTION }}
+          IG_TOKEN_NONFICTION: ${{ secrets.IG_TOKEN_NONFICTION }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          ACCOUNT: ${{ github.event_name == 'schedule' && 'auto' || inputs.account }}
+          MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
+          SCHEDULED: ${{ (github.event_name == 'schedule' || inputs.scheduled == '1') && '1' || '0' }}
+        run: python scripts/books_instagram.py
+      - name: Keep the prepared image for checking
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: books-instagram-preview
+          path: books/ig/
+          if-no-files-found: ignore
+          retention-days: 7
