@@ -589,7 +589,8 @@
       "focal": "16 mm",
       "aperture": "f/11",
       "shutter": "1/100 s",
-      "iso": "ISO 800"
+      "iso": "ISO 800",
+      "instagram": true
     },
     {
       "id": "one-way",
