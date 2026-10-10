@@ -642,10 +642,10 @@
     {
       "id": "deadvlei",
       "title": "Deadvlei",
-      "description": "",
+      "description": "Deadvlei, in the Namib desert. The camel thorn trees on this white clay pan died centuries ago, and the dry air has kept them standing ever since. I was there on a photography holiday, and the best light came before the sun cleared the dunes: the pan was still in shadow while the dune behind was lit orange. I used the 100-400 to stand well back, which also kept the other photographers out of my shot.",
       "location": "Deadvlei, Namibia",
       "year": "2026",
-      "camera": "Canon EOS R5",
+      "camera": "Canon R5",
       "categories": [
         "landscapes"
       ],
@@ -662,7 +662,8 @@
       "focal": "100 mm",
       "aperture": "f/16",
       "shutter": "1/125 s",
-      "iso": "ISO 100"
+      "iso": "ISO 100",
+      "instagram": true
     },
     {
       "id": "xiangqi",
