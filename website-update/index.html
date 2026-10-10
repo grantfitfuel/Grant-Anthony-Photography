@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Grant C Anthony | Photography</title>
+<meta name="description" content="Photography by Grant C Anthony: landscapes, coast, architecture and street, with free lessons on light, composition and editing.">
+<meta name="theme-color" content="#0D0D0E">
+<link rel="canonical" href="https://grantanthony.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grant C Anthony Photography">
+<meta property="og:title" content="Grant C Anthony | Photography">
+<meta property="og:description" content="Landscapes, coast, architecture and street photography, with free lessons on light, composition and editing.">
+<meta property="og:url" content="https://grantanthony.co.uk/">
+<meta property="og:image" content="https://grantanthony.co.uk/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sunset over the sea at Botallack, Cornwall">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/signature.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="brand" href="#top" id="brand" aria-label="Grant C Anthony, home"><img class="sig-nav" src="assets/signature-sm.png" alt="Grant C Anthony" width="800" height="311"></a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#learn" id="learnLink" hidden>Learn</a>
+    <a href="#about" class="hide-sm" id="aboutLink">About</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div id="slides"></div>
+  <div class="hero-copy">
+    <div class="rise">
+      <h1 class="hero-title" id="heroTitle"><img class="sig-hero" src="assets/signature.png" alt="Grant C Anthony" width="2400" height="933"></h1>
+      <p class="hero-tag" id="heroTag" hidden></p>
+    </div>
+    <div class="hero-meta rise" id="heroMeta" hidden>
+      <div class="bars" id="bars"></div>
+      <div class="now" id="heroNow"></div>
+      <button type="button" id="heroOpen">View photograph</button>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</header>
+
+<main>
+  <section class="section" id="work">
+    <p class="eyebrow">Selected work</p>
+    <h2 class="h2" id="workTitle">The <i>collection</i></h2>
+    <div class="index" id="index" role="group" aria-label="Filter by category"></div>
+    <div class="jgrid" id="grid" aria-live="polite"></div>
+    <div class="empty" id="empty" hidden>
+      <h3>New work coming soon</h3>
+      <p>Photographs added through the admin page will appear here.</p>
+    </div>
+  </section>
+
+  <section class="section" id="learn" hidden>
+    <div class="learn-head">
+      <div>
+        <p class="eyebrow">Learn</p>
+        <h2 class="h2" id="learnTitle">Light, <i>explained</i></h2>
+      </div>
+      <p class="learn-intro" id="learnIntro"></p>
+    </div>
+    <ol class="lessons" id="lessons"></ol>
+  </section>
+
+  <section class="section" id="insta" hidden>
+    <p class="eyebrow">On Instagram</p>
+    <h2 class="h2">Recently <i>posted</i></h2>
+    <div class="ig-strip" id="igStrip"></div>
+    <p class="ig-follow"><a id="igFollow" target="_blank" rel="noopener"></a></p>
+  </section>
+
+  <section class="section" id="about" hidden>
+    <div class="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 class="h2" id="aboutTitle"></h2>
+        <div class="stats" id="stats"></div>
+      </div>
+      <div>
+        <div class="about-body" id="aboutBody"></div>
+        <div class="contact" id="contact"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span id="footName"></span>
+  <span id="footYear"></span>
+  <span class="foot-links"><a href="copyright.html" style="text-decoration:none">Copyright</a> &middot; <a href="privacy.html" style="text-decoration:none">Privacy</a></span>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb-top">
+    <button class="b" id="lbClose" type="button">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>Close
+    </button>
+    <div class="seg" role="group" aria-label="View mode">
+      <button type="button" id="vPrint" aria-pressed="true">Photograph</button>
+      <button type="button" id="vWall" aria-pressed="false">On the wall</button>
+    </div>
+    <span class="lb-count" id="lbCount"></span>
+  </div>
+  <div class="lb-body">
+    <div class="lb-stage" id="stage">
+      <button class="arrow prev" id="prev" type="button" aria-label="Previous photograph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div id="stageInner" style="display:contents"></div>
+      <button class="arrow next" id="next" type="button" aria-label="Next photograph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <aside class="lb-side">
+      <p class="no" id="lbNo"></p>
+      <h2 id="lbTitle"></h2>
+      <div class="tags" id="lbTags"></div>
+      <dl class="facts" id="lbFacts"></dl>
+      <div class="desc" id="lbDesc"></div>
+      <div id="wallCtl" hidden></div>
+    </aside>
+  </div>
+</div>
+
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="rdTitle">
+  <div class="rd-progress" id="rdProgress"></div>
+  <div class="rd-top">
+    <button class="b" id="rdClose" type="button">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>Close
+    </button>
+    <span class="lb-count" id="rdCount"></span>
+  </div>
+  <article class="rd">
+    <div class="rd-cover" id="rdCover"></div>
+    <header class="rd-head">
+      <p class="no" id="rdMeta"></p>
+      <h1 id="rdTitle"></h1>
+      <p class="rd-sum" id="rdSum"></p>
+    </header>
+    <div class="rd-body" id="rdBody"></div>
+    <nav class="rd-next" id="rdNext" aria-label="Next lesson"></nav>
+  </article>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="mblur" x="-5%" y="0" width="110%" height="100%"><feGaussianBlur id="mblurStd" stdDeviation="0 0"/></filter></svg>
+
+<script src="assets/tools2.js"></script>
+<script src="assets/learn.js"></script>
+<script src="assets/gallery.js"></script>
+</body>
+</html>
