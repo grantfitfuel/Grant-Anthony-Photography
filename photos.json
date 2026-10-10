@@ -568,10 +568,10 @@
     {
       "id": "botallack",
       "title": "Botallack",
-      "description": "",
-      "location": "Cornwall",
-      "year": "",
-      "camera": "",
+      "description": "Botallack, on the far west coast of Cornwall. The old tin mine engine houses cling to the cliffs above the Atlantic, part of the Cornish mining landscape that is now a World Heritage Site. Here the sun is low over the sea, lighting a path across the water, while pink flowers along the clifftop path lead the eye down to the cove and out to the engine houses.",
+      "location": "Botallack, St Just, Cornwall",
+      "year": "2023",
+      "camera": "Canon R5",
       "categories": [
         "landscapes",
         "coast"
@@ -584,7 +584,12 @@
       "tw": 1000,
       "th": 667,
       "tone": "#735426",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "lens": "16 - 35 mm",
+      "focal": "16 mm",
+      "aperture": "f/11",
+      "shutter": "1/100 s",
+      "iso": "ISO 800"
     },
     {
       "id": "one-way",
