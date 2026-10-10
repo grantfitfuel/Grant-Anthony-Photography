@@ -515,3 +515,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .dg-meas{stroke:var(--accent);stroke-width:2;marker-start:none}
 .dg-ghostb{fill:rgba(120,190,170,.18);stroke:rgba(120,190,170,.6);stroke-width:2}
 @media print{.dg-water{fill:#dde5f3}.dg-shadow{fill:#999}}
+
+/* Orton effect demo */
+.orton-glow{mix-blend-mode:multiply;transform:scale(1.04);pointer-events:none}

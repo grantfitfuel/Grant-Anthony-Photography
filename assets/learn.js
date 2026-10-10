@@ -596,6 +596,29 @@
       inp.oninput = draw; box.append(row, cap); draw();
     }
 
+    else if (type === "orton") {
+      box.setAttribute("aria-label", "Orton effect demonstration");
+      svg.remove();
+      const base = view.querySelector(".gimg");
+      const glow = el("img", "gimg orton-glow"); glow.alt = ""; if (ph) glow.src = ph.file; view.append(glow);
+      const row = el("div", "exp-row"); row.style.marginTop = "18px";
+      const lab = el("label", null, "Glow"); const inp = el("input"); inp.type = "range"; inp.min = 0; inp.max = 100; inp.value = 35; inp.id = "or" + Math.random().toString(36).slice(2, 6); lab.htmlFor = inp.id;
+      const out = el("output"); row.append(lab, inp, out);
+      let blur = 0.012;
+      const draw = () => {
+        const k = +inp.value / 100, w = view.getBoundingClientRect().width || 600;
+        if (base) base.style.filter = `brightness(${(1 + 0.22 * k).toFixed(3)})`;        // the Screen step lifts the base
+        glow.style.filter = `blur(${(blur * w).toFixed(1)}px) brightness(1.25) saturate(1.15)`;
+        glow.style.opacity = (0.85 * k).toFixed(3);                                         // the blurred copy, in Multiply
+        out.textContent = Math.round(k * 100) + "%";
+        say(k < 0.05 ? "<b>No glow.</b> The photograph as it is." :
+          k <= 0.45 ? "<b>Subtle.</b> Edges stay sharp, but light areas bloom softly and colours deepen. This is the range most people keep." :
+          "<b>Strong.</b> The glow takes over and shadows thicken. It can suit a misty or dreamlike scene, but it is easy to overdo.");
+      };
+      inp.oninput = draw; new ResizeObserver(draw).observe(view);
+      box.append(row, chips([["0.006", "Fine blur"], ["0.012", "Medium blur"], ["0.024", "Wide blur"]], k => { blur = +k; draw(); }, "0.012"), cap); draw();
+    }
+
     else if (type === "mono") {
       box.setAttribute("aria-label", "Black and white conversion with colour filters");
       const im = view.querySelector(".gimg"); svg.remove();
