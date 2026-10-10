@@ -1,0 +1,334 @@
+{
+ "link": "grantanthony.co.uk/books",
+ "accounts": {
+  "fiction": {
+   "handle": "grantcanthony",
+   "secret": "IG_TOKEN_FICTION",
+   "days": [
+    "Mon",
+    "Thu"
+   ],
+   "tags": "#bookstagram #booksofinstagram #scottishbooks #indieauthor #newbooks"
+  },
+  "nonfiction": {
+   "handle": "g_c_anthony",
+   "secret": "IG_TOKEN_NONFICTION",
+   "days": [
+    "Wed",
+    "Sat"
+   ],
+   "tags": "#bookstagram #nonfictionbooks #mentalhealthbooks #brainscience #indieauthor"
+  }
+ },
+ "books": {
+  "debunked": {
+   "title": "Debunked",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "out",
+   "cover": "covers/debunked-large.jpg",
+   "theme": {
+    "bg": "#121a3a",
+    "fg": "#f4f0f7",
+    "accent": "#ff4fa3"
+   },
+   "tags": "#psychologicalthriller #thrillerbooks #glasgow #scepticism #debunked"
+  },
+  "inherited": {
+   "title": "Inherited",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/inherited-large.jpg",
+   "theme": {
+    "bg": "#141a2c",
+    "fg": "#eef2f1",
+    "accent": "#2ee6d0"
+   },
+   "tags": "#psychologicalthriller #thrillerbooks #glasgow #booksequel"
+  },
+  "pentimento": {
+   "title": "Pentimento",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/pentimento-large.jpg",
+   "theme": {
+    "bg": "#1d1612",
+    "fg": "#f3ead9",
+    "accent": "#d8b47a"
+   },
+   "tags": "#scottishnoir #tartannoir #crimefiction #paisley #artworld"
+  },
+  "roots": {
+   "title": "The Roots That Breathe",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/roots-large.jpg",
+   "theme": {
+    "bg": "#16231a",
+    "fg": "#ece6d4",
+    "accent": "#c9b26a"
+   },
+   "tags": "#epicfantasy #fantasybooks #dragons #booksofinstagram #thedimmingcanopy"
+  },
+  "noisy": {
+   "title": "The Noisy Mind",
+   "account": "nonfiction",
+   "byline": "G C Anthony",
+   "status": "out",
+   "cover": "covers/noisy-large.jpg",
+   "theme": {
+    "bg": "#0a1222",
+    "fg": "#f4f4f6",
+    "accent": "#ff6a13"
+   },
+   "tags": "#overthinking #rumination #anxietyhelp #highlysensitive #mentalhealth"
+  },
+  "calibrated": {
+   "title": "The Calibrated Mind",
+   "account": "nonfiction",
+   "byline": "G C Anthony",
+   "status": "soon",
+   "cover": "covers/calibrated-large.jpg",
+   "theme": {
+    "bg": "#0b0b0c",
+    "fg": "#f5f5f5",
+    "accent": "#ff5a1f"
+   },
+   "tags": "#anxiety #panic #ocd #neuroscience #predictiveprocessing"
+  },
+  "pain": {
+   "title": "Rewiring Pain",
+   "account": "nonfiction",
+   "byline": "G C Anthony",
+   "status": "out",
+   "cover": "covers/pain-large.jpg",
+   "theme": {
+    "bg": "#0f1e36",
+    "fg": "#f6efe2",
+    "accent": "#f05a28"
+   },
+   "tags": "#chronicpain #persistentpain #painscience #neuroscience #painrecovery"
+  }
+ },
+ "posts": [
+  {
+   "id": "f01-debunked-cover",
+   "book": "debunked",
+   "type": "cover",
+   "caption": "Debunked is out now.\n\nCallum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing.\n\nA psychological thriller with real science in it, and a narrator who copes with almost anything by making a joke of it."
+  },
+  {
+   "id": "f02-pentimento-opening",
+   "book": "pentimento",
+   "type": "quote",
+   "text": "The scaffolding on Fotheringay Road had been up for six weeks, and Mara Kerr had learned to read it the way other people read weather. This morning it told her nothing had moved since Friday.",
+   "attribution": "Pentimento, opening lines",
+   "caption": "The first lines of Pentimento, book one of The Provenance Series.\n\nMara Kerr is an architectural conservation officer in Glasgow. She reads old buildings for what they're hiding. Coming soon."
+  },
+  {
+   "id": "f03-debunked-opening",
+   "book": "debunked",
+   "type": "excerpt",
+   "text": "I have watched, in a professional capacity, forty-one people greet on cue for strangers pretending to be their dead husbands. I have a spreadsheet. It has colour-coded tabs.\n\nNone of the forty-one prepared me for my own grandmother.",
+   "attribution": "Debunked, chapter one",
+   "caption": "How Debunked begins.\n\nCallum Ferris has a spreadsheet for everything, including other people's grief. Then grief stops being other people's."
+  },
+  {
+   "id": "f04-roots-precise",
+   "book": "roots",
+   "type": "quote",
+   "text": "He thought of himself as precise, and precision in the upper sky was a form of power that did not require permission.",
+   "attribution": "The Roots That Breathe, prologue",
+   "caption": "Threnvald, high above the valley of Edrath, in the first pages of The Roots That Breathe.\n\nBook one of The Dimming Canopy, a five-book epic fantasy about power, restraint, and what a bond costs when it's used without asking. Coming soon."
+  },
+  {
+   "id": "f05-debunked-jumper",
+   "book": "debunked",
+   "type": "quote",
+   "text": "\"There's your grandfather,\" she said. \"In his good jumper.\"",
+   "attribution": "Debunked",
+   "caption": "Six words, an hour before the end. The exact jumper he was buried in, twenty-two years earlier.\n\nCallum has a professional explanation for this. Several, in fact. None of them will stick."
+  },
+  {
+   "id": "f06-pentimento-meaning",
+   "book": "pentimento",
+   "type": "talk",
+   "label": "Pentimento, noun",
+   "headline": "What shows through.",
+   "sub": "A pentimento is the trace of an earlier image beneath a painting's surface, where the artist changed their mind and painted over it. Time and thinning paint let the first version back out. The word comes from the Italian for repenting.",
+   "caption": "Why the book is called Pentimento.\n\nDr Alec Muir authenticates paintings for a living. He is very good at finding what lies beneath. The Provenance Series is about people, families and towns that carry earlier versions of themselves just under the surface.\n\nWhich word from art or science do you love the sound of?"
+  },
+  {
+   "id": "f07-inherited-cover",
+   "book": "inherited",
+   "type": "cover",
+   "caption": "Inherited. The sequel to Debunked.\n\nEleven names from a 1950s test cohort. One of them belongs to Callum's own great-uncle. What began as one family's secret has become an app on millions of phones.\n\nComing soon."
+  },
+  {
+   "id": "f08-debunked-science",
+   "book": "debunked",
+   "type": "talk",
+   "label": "Behind the book",
+   "headline": "The strange science is real.",
+   "sub": "Princeton ran a lab testing whether minds could nudge machines for nearly thirty years. The Global Consciousness Project has watched random number generators around the world since 1998. The US government paid for remote viewing. Debunked invents the people and the danger. Not the research.",
+   "caption": "Everything odd that Callum investigates in Debunked has a real history behind it: the Princeton Engineering Anomalies Research lab, the Global Consciousness Project, the remote-viewing programmes, placebo studies and meditation neuroscience.\n\nThe question the book asks is simple. What if someone found a way to make money from it?"
+  },
+  {
+   "id": "f09-roots-cover",
+   "book": "roots",
+   "type": "cover",
+   "caption": "The Roots That Breathe. Book one of The Dimming Canopy.\n\nIn Thessaria the ground has started to go wrong. The fortress of Vaelmoor holds its border with dragon fire, the wandering Telaru listen to the roots, and between them stand the dragon Threnvald and the man bound to him.\n\nComing soon."
+  },
+  {
+   "id": "f10-pentimento-cover",
+   "book": "pentimento",
+   "type": "cover",
+   "caption": "Pentimento. Book one of The Provenance Series.\n\nWhen a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions. They lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.\n\nThe past doesn't stay buried. It shows through. Coming soon."
+  },
+  {
+   "id": "f11-roots-listen",
+   "book": "roots",
+   "type": "quote",
+   "text": "Somewhere beneath the waiting, for the first time, the ground had begun to listen back.",
+   "attribution": "The Roots That Breathe",
+   "caption": "The Telaru don't fight with fire. They listen to the roots.\n\nThe Roots That Breathe, book one of The Dimming Canopy. Coming soon."
+  },
+  {
+   "id": "f12-inherited-priti",
+   "book": "inherited",
+   "type": "quote",
+   "text": "At some point, Callum, this stops being boundaries and starts being a full-time occupation.",
+   "attribution": "Priti, Callum's agent, in Inherited",
+   "caption": "Eighteen months after Debunked, Callum is turning down every offer to talk about the worst year of his life. His agent has noticed.\n\nInherited, the sequel to Debunked. Coming soon."
+  },
+  {
+   "id": "f13-debunked-words",
+   "book": "debunked",
+   "type": "quote",
+   "text": "Eleven months later, not one of those words has agreed to stick to my grandfather's jumper. They just sort of slide off it and sit there, looking at me.",
+   "attribution": "Debunked",
+   "caption": "Confabulation. Terminal lucidity. Callum has used these words with real confidence on television.\n\nThen he needed them for himself."
+  },
+  {
+   "id": "f14-pentimento-surface",
+   "book": "pentimento",
+   "type": "quote",
+   "text": "Sometimes the surface is just the surface. Sometimes there's nothing hidden underneath it at all, and looking harder just means you're the one putting something there that was never actually part of the object.",
+   "attribution": "Leanne, in Pentimento",
+   "caption": "Leanne Boyd restores paper and photographs. She says this to Alec Muir, a man who believes patience always reveals the truth.\n\nPentimento. Coming soon."
+  },
+  {
+   "id": "f15-roots-epithets",
+   "book": "roots",
+   "type": "talk",
+   "label": "World of the Dimming Canopy",
+   "headline": "Threnvald Ash-Above-Cloud.",
+   "sub": "Every dragon in Thessaria carries a name and an epithet: Threnvald Ash-Above-Cloud, Ryen Wing-Over-Ember. The full name is given once, at a dragon's introduction. After that, only the name.",
+   "caption": "A small piece of how the world of The Dimming Canopy works.\n\nWhat would your dragon epithet be?\n\nThe Roots That Breathe. Coming soon."
+  },
+  {
+   "id": "f16-inherited-biscuit",
+   "book": "inherited",
+   "type": "talk",
+   "label": "From Inherited",
+   "headline": "“You're the biscuit man.”",
+   "sub": "A woman at a petrol station outside Perth, filling her tank at the next pump. Callum didn't have the heart to correct either the nickname or its source.",
+   "caption": "Minor fame, as experienced by a professional sceptic.\n\nInherited picks up eighteen months after Debunked. Coming soon."
+  },
+  {
+   "id": "n01-noisy-cover",
+   "book": "noisy",
+   "type": "cover",
+   "caption": "The Noisy Mind is out now, in paperback, hardback and Kindle.\n\nFor anyone whose mind replays the conversation, rereads the text, and keeps checking long after everyone else has moved on."
+  },
+  {
+   "id": "n02-calibrated-question",
+   "book": "calibrated",
+   "type": "quote",
+   "text": "If I know my fear isn't rational, why does it still feel so real?",
+   "attribution": "The Calibrated Mind, introduction",
+   "caption": "Almost everyone who lives with anxiety arrives at this question.\n\nThe Calibrated Mind answers it with how the brain actually works: it runs slightly ahead of the world, predicting what is about to happen. Anxiety is what happens when those predictions have been tuned toward danger. Coming soon."
+  },
+  {
+   "id": "n03-pain-cover",
+   "book": "pain",
+   "type": "cover",
+   "caption": "Rewiring Pain is out now.\n\nHow the brain learns pain, and how it can learn safety again. A plain guide to modern pain science for anyone who has lived with pain longer than anyone expected.\n\nThis book is not about pretending pain isn't real. It's about understanding what your nervous system has been trying to do."
+  },
+  {
+   "id": "n04-noisy-relationship",
+   "book": "noisy",
+   "type": "quote",
+   "text": "You do not need a quieter mind.\n\nYou need a better relationship with the one you have.",
+   "attribution": "The Noisy Mind",
+   "caption": "The idea the whole book is built on.\n\nThe Noisy Mind. Out now."
+  },
+  {
+   "id": "n05-calibrated-cover",
+   "book": "calibrated",
+   "type": "cover",
+   "caption": "The Calibrated Mind. Retraining anxiety, panic, OCD and trauma-related fear using modern brain science.\n\nYou are not broken. You are miscalibrated.\n\nComing soon."
+  },
+  {
+   "id": "n06-pain-safety",
+   "book": "pain",
+   "type": "quote",
+   "text": "A nervous system that has learned pain can also learn safety.",
+   "attribution": "Rewiring Pain",
+   "caption": "Pain is real. It's also a protective output of the brain and nervous system, which is why it can carry on after tissues have healed, and why understanding it can change it.\n\nRewiring Pain. Out now."
+  },
+  {
+   "id": "n07-noisy-opening",
+   "book": "noisy",
+   "type": "excerpt",
+   "text": "There was a stretch of time when I cried at the wheel on the way to work, three or four mornings a week, for no reason I could point to. Same drive I'd done for years. Nothing had changed except what was running underneath it, and that had become more than I could carry quietly. I assumed for a long time that this was just what a mind did. It isn't.",
+   "attribution": "The Noisy Mind, chapter one",
+   "caption": "Where The Noisy Mind begins.\n\nIf your mind rarely goes quiet, you are not alone in it, and none of it means something is wrong with you."
+  },
+  {
+   "id": "n08-calibrated-alarm",
+   "book": "calibrated",
+   "type": "talk",
+   "label": "The Calibrated Mind",
+   "headline": "The smoke alarm isn't broken.",
+   "sub": "It goes off when the toast browns because it is doing the one thing alarms do. What has moved is the threshold. Anxiety works the same way: the signals are real, and the point where they get read as an emergency has shifted.",
+   "caption": "A thermometer that reads a few degrees high isn't broken. Every part of it works. What has drifted is the relationship between what it reads and what is true.\n\nThat's calibration, and it's what The Calibrated Mind is about. Coming soon."
+  },
+  {
+   "id": "n09-pain-hope",
+   "book": "pain",
+   "type": "quote",
+   "text": "Hope does not mean promising a pain-free life. Hope means restoring choice.",
+   "attribution": "Rewiring Pain",
+   "caption": "It means pain no longer runs the conversation.\n\nRewiring Pain. Out now."
+  },
+  {
+   "id": "n10-noisy-investigation",
+   "book": "noisy",
+   "type": "quote",
+   "text": "You didn't choose to open this investigation. It opened itself, and now some part of you is standing inside it, going through the evidence.",
+   "attribution": "The Noisy Mind",
+   "caption": "Someone pauses half a second too long, or a text comes back shorter than usual.\n\nIf you know what happens next in your head, this book was written for you. The Noisy Mind. Out now."
+  },
+  {
+   "id": "n11-calibrated-tuned",
+   "book": "calibrated",
+   "type": "quote",
+   "text": "Anxiety is not a failure of logic. It is what happens when the predictions have been tuned toward danger. And a system that has been tuned can be tuned again.",
+   "attribution": "The Calibrated Mind",
+   "caption": "Panic, OCD, generalised anxiety and trauma look different on the surface. The Calibrated Mind shows the one machine running underneath all of them, and how it changes.\n\nComing soon."
+  },
+  {
+   "id": "n12-pain-louder",
+   "book": "pain",
+   "type": "talk",
+   "label": "Rewiring Pain",
+   "headline": "Pain grows louder in a body that does not feel safe.",
+   "sub": "A nervous system that feels threatened tightens muscles, sharpens attention and heightens sensation. That isn't imagined. It is physiology, and safety can be learned.",
+   "caption": "Why fear and pain feed each other, and why the way out is gradual, patient and possible.\n\nRewiring Pain. Out now."
+  }
+ ]
+}

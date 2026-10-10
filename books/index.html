@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Books by Grant C Anthony (fiction) and G C Anthony (nonfiction): psychological thrillers, Scottish noir, epic fantasy, and books on anxiety, overthinking and pain.">
+<meta property="og:title" content="Grant C Anthony Books">
+<meta property="og:description" content="Thrillers, noir and fantasy as Grant C Anthony. Books on the mind as G C Anthony.">
+<meta property="og:image" content="https://grantanthony.co.uk/books/covers/debunked-large.jpg">
+<meta property="og:url" content="https://grantanthony.co.uk/books/">
+<link rel="icon" href="../assets/favicon.png">
+<title>Grant C Anthony Books</title>
+<style>
+@font-face{font-family:"Bricolage Grotesque";src:url(assets/fonts/bricolage-700.woff) format("woff");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url(assets/fonts/bricolage-800.woff) format("woff");font-weight:800;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url(assets/fonts/source-serif-400.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url(assets/fonts/source-serif-400-italic.woff) format("woff");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(assets/fonts/plex-mono-500.woff) format("woff");font-weight:500;font-display:swap}
+/* Layout: one deliberate night-time look. Two bylines = two signal colours (thistle for fiction, sea-glass for nonfiction) over deep Clyde indigo. Kinetic ticker, tilted covers, a soundtrack. */
+:root{
+  --night:#100f24; --deep:#1a1838; --ink:#f2eef8; --muted:#a9a3c4; --rule:#2e2b55;
+  --fic:#ff4fa3; --nf:#2ee6d0; --sun:#ffd23f;
+  --display:"Bricolage Grotesque","Arial Black",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--night);color:var(--ink);font:400 1.06rem/1.6 var(--body);margin:0;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
+.label{font:500 .72rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--night) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:12px;flex-wrap:wrap}
+.mark{font:800 1.1rem/1 var(--display);text-decoration:none;letter-spacing:-.01em}
+.mark i{font-style:normal;color:var(--fic)}
+nav{display:flex;gap:18px;font:500 .74rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em}
+nav a{text-decoration:none;color:var(--muted)} nav a:hover{color:var(--ink)}
+
+/* Hero */
+.hero{padding-block:56px 32px;position:relative}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;z-index:-1;pointer-events:none}
+.blob.a{width:340px;height:340px;background:var(--fic);top:10px;right:4%}
+.blob.b{width:280px;height:280px;background:var(--nf);top:220px;right:28%;opacity:.35}
+.hero h1{font:800 clamp(2.9rem,10vw,7.4rem)/.9 var(--display);letter-spacing:-.035em;margin:0 0 26px;text-wrap:balance}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.hero h1 .f{color:var(--fic)} .hero h1 .n{color:var(--nf)}
+.hero p{max-width:56ch;color:var(--muted);margin:0;font-size:1.15rem}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.names a{text-decoration:none;padding:22px;border-radius:22px;display:grid;gap:4px;transition:transform .2s}
+.names a:hover{transform:translateY(-4px) rotate(-.6deg)}
+.names .f{background:var(--fic);color:#1a0716} .names .n{background:var(--nf);color:#05201d}
+.names .label{color:inherit;opacity:.75}
+.names b{font:800 1.9rem/1 var(--display);letter-spacing:-.02em}
+.names span.d{font-size:.95rem}
+
+/* Ticker */
+.ticker{border-block:1px solid var(--rule);overflow:hidden;background:var(--deep);margin-block:28px 0}
+.ticker .run{display:flex;width:max-content;gap:0;padding-block:14px;font:700 1.35rem/1 var(--display);white-space:nowrap}
+.ticker span{padding-inline:22px}
+.ticker span:nth-child(3n+1){color:var(--fic)} .ticker span:nth-child(3n+2){color:var(--ink)} .ticker span:nth-child(3n){color:var(--nf)}
+@media (prefers-reduced-motion:no-preference){.ticker .run{animation:slide 38s linear infinite}}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Shelves */
+section.shelf{padding-block:64px 24px}
+.shelf-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:40px}
+.shelf-head h2{font:800 clamp(2.6rem,7vw,5.2rem)/.9 var(--display);letter-spacing:-.03em;margin:8px 0 0}
+.fiction h2{color:var(--fic)} .nonfiction h2{color:var(--nf)}
+.shelf-head p{margin:0;max-width:42ch;color:var(--muted)}
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:44px 34px}
+.book{display:grid;grid-template-columns:128px 1fr;gap:22px;align-items:start}
+.book>div{min-width:0}
+.book h3{font:700 1.65rem/1.05 var(--display);letter-spacing:-.02em;margin:4px 0 8px;text-wrap:balance}
+.series{font:500 .7rem/1.35 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0}
+.tag{font-style:italic;color:var(--sun);margin:0;font-size:.97rem}
+.blurb{margin:10px 0 14px;font-size:.98rem}
+.status{display:inline-block;font:500 .68rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;padding:7px 10px;border-radius:99px;border:1px solid var(--rule);color:var(--muted)}
+.status.out{background:var(--sun);border-color:var(--sun);color:#221a00}
+
+.act{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.buy{font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:7px 12px;border-radius:99px;border:1px solid var(--sun);color:var(--sun)}
+.buy:hover{background:var(--sun);color:#221a00}
+/* Typeset covers */
+.cover{aspect-ratio:2/3;max-width:100%;position:relative;overflow:hidden;border-radius:6px 12px 12px 6px;padding:12px 11px;display:flex;flex-direction:column;justify-content:space-between;
+  background:var(--c1);color:var(--ct);transform:rotate(-3deg);box-shadow:inset 4px 0 0 rgba(0,0,0,.22),10px 14px 0 -2px var(--shadow,var(--deep));transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.book:nth-child(even) .cover{transform:rotate(2.5deg)}
+.book:hover .cover{transform:rotate(0) scale(1.04)}
+.cover::before{content:"";position:absolute;inset:0;background:var(--art)}
+.cover .ct{font:800 1.08rem/1 var(--display);letter-spacing:-.02em;position:relative;text-wrap:balance}
+.cover .ca{font:500 .5rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.12em;position:relative}
+.fiction .cover{--shadow:color-mix(in srgb,var(--fic) 45%,var(--night))}
+.nonfiction .cover{--shadow:color-mix(in srgb,var(--nf) 40%,var(--night))}
+.cover.img{padding:0;display:block;width:100%;height:auto;object-fit:cover}
+.c-debunked{--c1:#121a3a;--ct:#fff;--art:radial-gradient(circle at 75% 30%,#e0428a 0 18%,transparent 42%),radial-gradient(circle at 20% 80%,#1fb7b0 0 14%,transparent 38%)}
+.c-inherited{--c1:#20262e;--ct:#eef2f1;--art:repeating-linear-gradient(0deg,transparent 0 13px,rgba(120,220,200,.25) 13px 14px),linear-gradient(160deg,transparent 50%,#3b6e6a)}
+.c-pentimento{--c1:#4a3b33;--ct:#f6efe7;--art:radial-gradient(ellipse 38% 30% at 50% 42%,rgba(230,205,180,.5),transparent 70%),linear-gradient(180deg,transparent 58%,#22323a)}
+.c-roots{--c1:#162a20;--ct:#eaf2df;--art:radial-gradient(circle at 50% 112%,#e07a2e 0 22%,transparent 52%),repeating-radial-gradient(circle at 50% 120%,transparent 0 9px,rgba(200,230,170,.14) 9px 10px)}
+.c-noisy{--c1:#f2ead4;--ct:#132026;--art:repeating-linear-gradient(115deg,rgba(255,79,163,.28) 0 2px,transparent 2px 9px)}
+.c-calibrated{--c1:#0f4a52;--ct:#effaf8;--art:repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 1px,transparent 1px 12px),linear-gradient(0deg,transparent 48%,rgba(46,230,208,.8) 48% 50%,transparent 50%)}
+.c-pain{--c1:#6a1d2a;--ct:#fff1ee;--art:radial-gradient(circle at 30% 35%,rgba(255,170,150,.4) 0 10%,transparent 30%),radial-gradient(circle at 70% 65%,rgba(255,210,63,.3) 0 14%,transparent 34%)}
+
+.desk{margin-top:60px;padding:28px;border-radius:22px;background:var(--deep);border:1px solid var(--rule)}
+.desk h3{font:500 .74rem/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 20px}
+.desk ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px 30px}
+.desk li{padding-left:16px;border-left:3px solid var(--rule)}
+.fiction .desk li{border-color:var(--fic)} .nonfiction .desk li{border-color:var(--nf)}
+.desk b{font:700 1.2rem/1.15 var(--display);display:block}
+.desk span{color:var(--muted);font-size:.93rem;display:block;margin-top:4px}
+
+section.about{padding-block:64px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 2fr;gap:32px}
+section.about>div{min-width:0}
+section.about h2{font:800 3rem/.9 var(--display);letter-spacing:-.03em;margin:8px 0 0;color:var(--sun)}
+section.about p{max-width:62ch;margin:0 0 14px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.links a{font:500 .76rem/1 var(--mono);letter-spacing:.06em;text-decoration:none;padding:12px 16px;border-radius:99px;border:1px solid var(--ink)}
+.links a:hover{background:var(--ink);color:var(--night)}
+footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--muted);font:500 .74rem/1.5 var(--mono)}
+
+/* Soundtrack player */
+.player{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:12px;
+  background:var(--ink);color:var(--night);border:0;border-radius:99px;padding:10px 18px 10px 10px;font:700 .9rem/1 var(--display);cursor:pointer;box-shadow:0 8px 30px -8px var(--fic)}
+.player .disc{width:36px;height:36px;border-radius:50%;background:conic-gradient(var(--fic),var(--sun),var(--nf),var(--fic));display:grid;place-items:center}
+.player .disc::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.player.on .disc{animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eq{display:flex;gap:3px;align-items:flex-end;height:16px}
+.eq i{width:3px;height:4px;background:var(--night);border-radius:2px}
+.player.on .eq i{animation:bar .5s ease-in-out infinite alternate}
+.eq i:nth-child(2){animation-delay:.15s!important}.eq i:nth-child(3){animation-delay:.3s!important}.eq i:nth-child(4){animation-delay:.08s!important}
+@keyframes bar{to{height:16px}}
+@media (prefers-reduced-motion:reduce){.player.on .disc,.player.on .eq i{animation:none}}
+
+@media (max-width:640px){
+  .names{grid-template-columns:1fr}
+  section.about{grid-template-columns:1fr;gap:12px}
+  .book{grid-template-columns:100px 1fr;gap:18px}
+  .blob.a{width:220px;height:220px}
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="mark" href="#top">Grant <i>C</i> Anthony</a>
+  <nav><a href="#fiction">Fiction</a><a href="#nonfiction">Nonfiction</a><a href="#about">About</a></nav>
+</div></header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="blob a"></div><div class="blob b"></div>
+    <h1><span class="o">Two</span> names.<br><span class="f">Stories</span> and <span class="n">the mind.</span></h1>
+    <p>Thrillers, Scottish noir and epic fantasy as Grant C Anthony. Books on anxiety, overthinking and pain as G C Anthony. Written in Scotland by a Paisley man who works in general practice.</p>
+    <div class="names">
+      <a class="f" href="#fiction"><span class="label">Fiction</span><b>Grant C Anthony</b><span class="d">Psychological thrillers, noir, fantasy</span></a>
+      <a class="n" href="#nonfiction"><span class="label">Nonfiction</span><b>G C Anthony</b><span class="d">The mind and the body</span></a>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="run">
+    <span>Debunked</span><span>✶</span><span>The Noisy Mind</span><span>Pentimento</span><span>✶</span><span>The Calibrated Mind</span><span>Inherited</span><span>✶</span><span>Rewiring Pain</span><span>The Roots That Breathe</span><span>✶</span><span>Levern Press</span>
+    <span>Debunked</span><span>✶</span><span>The Noisy Mind</span><span>Pentimento</span><span>✶</span><span>The Calibrated Mind</span><span>Inherited</span><span>✶</span><span>Rewiring Pain</span><span>The Roots That Breathe</span><span>✶</span><span>Levern Press</span>
+  </div></div>
+
+  <section id="fiction" class="shelf fiction wrap">
+    <div class="shelf-head">
+      <div><span class="label">Fiction · Levern Press · <a href="https://www.instagram.com/grantcanthony/" target="_blank" rel="noopener">@grantcanthony</a></span><h2>Grant C Anthony</h2></div>
+      <p>Glasgow and Paisley on the page, real science where it belongs, and characters who give themselves away by what they do.</p>
+    </div>
+    <div class="books">
+      <article class="book">
+        <img class="cover img" src="covers/debunked.jpg" alt="Cover of Debunked" width="400" height="600" loading="lazy">
+        <div>
+          <p class="series">Psychological thriller</p>
+          <h3>Debunked</h3>
+          <p class="tag">Some truths are stranger than fiction. Some lies are better.</p>
+          <p class="blurb">Callum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing. Following a run of deaths among fringe consciousness researchers, he finds an operation that turned the strangest science of the last century into a trading edge, and people prepared to kill to keep it.</p>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=Debunked+Grant+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover img" src="covers/inherited.jpg" alt="Cover of Inherited" width="400" height="600" loading="lazy">
+        <div>
+          <p class="series">Sequel to Debunked</p>
+          <h3>Inherited</h3>
+          <p class="tag">The past is in your blood. The future is in their hands.</p>
+          <p class="blurb">Eleven names from a 1950s test cohort. One of them belongs to Callum's own great-uncle. What began as one family's secret has become an app on millions of phones, and Callum has fourteen days to stop what comes next.</p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover img" src="covers/pentimento.jpg" alt="Cover of Pentimento" width="400" height="623" loading="lazy">
+        <div>
+          <p class="series">The Provenance Series · Book One</p>
+          <h3>Pentimento</h3>
+          <p class="tag">The past doesn't stay buried. It shows through.</p>
+          <p class="blurb">Dr Alec Muir authenticates paintings, and nobody in Scotland is better at seeing what lies beneath. When a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions that lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.</p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover img" src="covers/roots.jpg" alt="Cover of The Roots That Breathe" width="400" height="600" loading="lazy">
+        <div>
+          <p class="series">The Dimming Canopy · Book One</p>
+          <h3>The Roots That Breathe</h3>
+          <p class="blurb">In Thessaria the ground has started to go wrong. The fortress of Vaelmoor holds its border with dragon fire, the wandering Telaru listen to the roots, and between them stand the dragon Threnvald and the man bound to him. Epic fantasy about power, restraint, and what a bond costs when it is used without asking.</p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+    </div>
+    <div class="desk">
+      <h3>On the desk</h3>
+      <ul>
+        <li><b>The Cable and the Quiet</b><span>A novel set in an overloaded GP practice, about a practice manager carrying more grief than he lets anyone see.</span></li>
+        <li><b>Clarity</b><span>Glasgow noir. DCI Malcolm Strachan, and a man the city comes to call the Clarity Man.</span></li>
+        <li><b>Underpainting</b><span>The Provenance Series, Book Two. A portrait with a second figure hidden beneath it.</span></li>
+        <li><b>The Deep That Listens</b><span>The Dimming Canopy, Book Two.</span></li>
+        <li><b>Veilborn</b><span>A fantasy trilogy. Nine characters from nine broken realms, beginning with Echoes of the Shattered.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="nonfiction" class="shelf nonfiction wrap">
+    <div class="shelf-head">
+      <div><span class="label">Nonfiction · <a href="https://www.instagram.com/g_c_anthony/" target="_blank" rel="noopener">@g_c_anthony</a></span><h2>G C Anthony</h2></div>
+      <p>Plain, warm books on how the brain predicts, worries and hurts, written for the person living with it.</p>
+    </div>
+    <div class="books">
+      <article class="book">
+        <img class="cover img" src="covers/noisy.jpg" alt="Cover of The Noisy Mind" width="480" height="750" loading="lazy">
+        <div>
+          <p class="series">Second edition · Paperback, hardback, Kindle</p>
+          <h3>The Noisy Mind</h3>
+          <p class="blurb">Living with an overactive brain in a world that never switches off. Forty-one short chapters on rumination, sleep, stress, the inner critic and the pull of quick relief, written from inside the experience, with practical ways to turn the volume down.</p>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=The+Noisy+Mind+G+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover img" src="covers/calibrated.jpg" alt="Cover of The Calibrated Mind" width="480" height="750" loading="lazy">
+        <div>
+          <p class="series">Anxiety, panic, OCD and trauma</p>
+          <h3>The Calibrated Mind</h3>
+          <p class="tag">You are not broken. You are miscalibrated.</p>
+          <p class="blurb">Your brain is a prediction machine, and anxiety is what happens when its forecasts of danger run hot. A clear guide to how fear is learned, why reassurance and avoidance keep it in place, and how it can be recalibrated.</p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+      <article class="book">
+        <img class="cover img" src="covers/pain.jpg" alt="Cover of Rewiring Pain" width="480" height="750" loading="lazy">
+        <div>
+          <p class="series">Pain neuroscience</p>
+          <h3>Rewiring Pain</h3>
+          <p class="blurb">What the science of the nervous system tells us about persistent pain, and how understanding it can change the way it is felt and lived with.</p>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=Rewiring+Pain+G+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="desk">
+      <h3>On the desk</h3>
+      <ul>
+        <li><b>Using Copilot Safely in General Practice</b><span>A short guide for practice managers, clinicians and admin teams in Scotland. What it is good for, and where it must never go.</span></li>
+        <li><b>A book on grief</b><span>Anticipatory grief and the long road after loss, whether that loss is a person, an animal, or a home.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" class="about wrap">
+    <div><span class="label">About</span><h2>The author</h2></div>
+    <div>
+      <p>Grant Anthony was born in Paisley and works as a practice manager in Scottish general practice. He writes fiction as Grant C Anthony and nonfiction as G C Anthony.</p>
+      <p>His novels lean on real places and real science: Glasgow, Paisley and Renfrewshire, the history of consciousness research, the trade in art and its forgeries. His nonfiction grows out of years spent close to how people cope, and don't, with their own minds.</p>
+      <p>He is also a photographer.</p>
+      <div class="links">
+        <a href="https://grantanthony.co.uk" target="_blank" rel="noopener">grantanthony.co.uk</a>
+        <a href="https://www.instagram.com/grantcanthony/" target="_blank" rel="noopener">Fiction · @grantcanthony</a>
+        <a href="https://www.instagram.com/g_c_anthony/" target="_blank" rel="noopener">Nonfiction · @g_c_anthony</a>
+        <a href="https://www.instagram.com/gcanth/" target="_blank" rel="noopener">Photography · @gcanth</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Grant C Anthony. Fiction published by Levern Press. Soundtrack generated live in your browser. <a href="../">Photography</a></div></footer>
+
+<button class="player" id="player" type="button" aria-pressed="false"><span class="disc"></span><span id="ptxt">Play the soundtrack</span><span class="eq"><i></i><i></i><i></i><i></i></span></button>
+
+<script>
+(function(){
+  const btn=document.getElementById('player'), txt=document.getElementById('ptxt');
+  let ctx=null, master=null, timer=null, step=0, nextT=0, noise=null, on=false;
+  const BPM=86, S=60/BPM/4; // sixteenth length
+  const mtof=m=>440*Math.pow(2,(m-69)/12);
+  // Am9, Fmaj7, Cmaj7, G6 : moody, Clyde-at-night
+  const chords=[[57,60,64,67,71],[53,57,60,64,67],[48,55,59,62,64],[55,59,62,64,69]];
+  const bass=[45,41,36,43];
+  const lead=[76,74,72,71,72,74,76,79,77,76,74,72,71,72,69,67];
+
+  function init(){
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain(); master.gain.value=0;
+    const comp=ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination);
+    const len=ctx.sampleRate*.5; noise=ctx.createBuffer(1,len,ctx.sampleRate);
+    const d=noise.getChannelData(0); for(let i=0;i<len;i++)d[i]=Math.random()*2-1;
+  }
+  function env(g,t,a,peak,rel){g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+a);g.gain.exponentialRampToValueAtTime(0.0001,t+a+rel);}
+  function kick(t){const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(42,t+.18);env(g,t,.005,.9,.3);o.connect(g);g.connect(master);o.start(t);o.stop(t+.4);}
+  function hat(t,v){const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=noise;f.type='highpass';f.frequency.value=7500;env(g,t,.002,v,.05);s.connect(f);f.connect(g);g.connect(master);s.start(t);s.stop(t+.1);}
+  function snare(t){const s=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain();s.buffer=noise;f.type='bandpass';f.frequency.value=1800;f.Q.value=.7;env(g,t,.003,.35,.18);s.connect(f);f.connect(g);g.connect(master);s.start(t);s.stop(t+.3);}
+  function pad(notes,t,dur){
+    const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(700,t);f.frequency.linearRampToValueAtTime(1600,t+dur*.5);f.frequency.linearRampToValueAtTime(800,t+dur);f.connect(master);
+    notes.forEach(n=>[-6,6].forEach(det=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sawtooth';o.frequency.value=mtof(n);o.detune.value=det;
+      g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(.022,t+.6);g.gain.setValueAtTime(.022,t+dur-.5);g.gain.linearRampToValueAtTime(0.0001,t+dur);
+      o.connect(g);g.connect(f);o.start(t);o.stop(t+dur+.05);}));
+  }
+  function bassNote(n,t,len){const o=ctx.createOscillator(),f=ctx.createBiquadFilter(),g=ctx.createGain();o.type='triangle';o.frequency.value=mtof(n);f.type='lowpass';f.frequency.value=500;env(g,t,.01,.38,len);o.connect(f);f.connect(g);g.connect(master);o.start(t);o.stop(t+len+.1);}
+  function bell(n,t){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=mtof(n);env(g,t,.01,.07,.7);o.connect(g);g.connect(master);o.start(t);o.stop(t+.9);}
+
+  function schedule(){
+    while(nextT<ctx.currentTime+.15){
+      const t=nextT+(step%2?S*.12:0); // light swing
+      const bar=Math.floor(step/16)%4, s=step%16, cycle=Math.floor(step/64);
+      if(s===0) pad(chords[bar],t,S*16);
+      if(s===0||s===7||s===10) kick(t);
+      if(s===4||s===12) snare(t);
+      if(s%2===0) hat(t,s%4===2?.12:.05);
+      if(s===0) bassNote(bass[bar],t,S*6);
+      if(s===10) bassNote(bass[bar]+12,t,S*3);
+      if(s===14) bassNote(bass[bar]+7,t,S*2);
+      if(cycle%2===1 && s%4===2) bell(lead[(bar*4+s/4|0)%16],t);
+      nextT+=S; step++;
+    }
+  }
+  btn.addEventListener('click',()=>{
+    if(!ctx) init();
+    if(!on){
+      ctx.resume(); nextT=ctx.currentTime+.05; step=0;
+      master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.8,ctx.currentTime,.4);
+      timer=setInterval(schedule,25); on=true;
+    }else{
+      master.gain.setTargetAtTime(0,ctx.currentTime,.2); clearInterval(timer); on=false;
+      setTimeout(()=>{if(!on)ctx.suspend();},800);
+    }
+    btn.classList.toggle('on',on); btn.setAttribute('aria-pressed',on); txt.textContent=on?'Pause':'Play the soundtrack';
+  });
+})();
+</script>
+</body>
+</html>
