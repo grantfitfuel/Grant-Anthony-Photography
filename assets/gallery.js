@@ -56,6 +56,34 @@
       renderSite(); renderHero(); renderIndex(); applyHash(true);
     });
 
+  /* ---------- recently on Instagram (from the posting job's own log; nothing is loaded from Instagram) ---------- */
+  fetch("instagram-log.json?v=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null).then(log => {
+    const sec = $("insta"); if (!sec || !log || !Array.isArray(log.posted)) return;
+    let tries = 0;
+    const wait = () => { if (photos.length) draw(); else if (++tries < 50) setTimeout(wait, 200); };
+    const draw = () => {
+      const seen = new Set();
+      const items = log.posted.slice().sort((a, b) => a.date < b.date ? 1 : -1)
+        .filter(x => x.link && !seen.has(x.id) && seen.add(x.id))
+        .map(x => [x, photos.find(p => p.id === x.id)]).filter(([, p]) => p).slice(0, 6);
+      if (!items.length) return;
+      const strip = $("igStrip"); strip.textContent = "";
+      items.forEach(([x, p]) => {
+        const a = el("a", "ig-tile"); a.href = x.link; a.target = "_blank"; a.rel = "noopener";
+        a.setAttribute("aria-label", (p.title || "Photograph") + ", view on Instagram");
+        const im = el("img"); im.src = p.thumb || p.file; im.alt = ""; im.loading = "lazy"; im.decoding = "async";
+        const d = new Date(x.date);
+        const cap = el("span", "ig-cap"); cap.append(el("b", null, p.title || "Untitled"), el("small", null, isNaN(d) ? "" : d.toLocaleDateString("en-GB", { day: "numeric", month: "short" })));
+        a.append(im, cap); strip.append(a);
+      });
+      const acc = (site.igAccount || "").replace(/^@/, "");
+      const f = $("igFollow"); f.hidden = !acc;
+      if (acc) { f.href = "https://instagram.com/" + encodeURIComponent(acc); f.textContent = "Follow @" + acc + " on Instagram"; }
+      sec.hidden = false;
+    };
+    wait();
+  });
+
   function renderSite() {
     const name = site.name || "Grant C Anthony";
     document.title = name + (site.tagline ? " | " + site.tagline : "");
@@ -82,6 +110,15 @@
     }
   }
 
+  /* Let the browser pick the smallest file that is sharp enough: thumbnail, medium or full size */
+  const srcsetOf = p => [p.thumb && p.tw ? `${p.thumb} ${p.tw}w` : "", p.medium && p.mw ? `${p.medium} ${p.mw}w` : "", `${p.file} ${p.w}w`].filter(Boolean).join(", ");
+  // In the lightbox a tall photograph is limited by the screen height, so it needs a narrower file than a wide one
+  const lbSizes = p => `(max-width: 900px) 100vw, min(70vw, ${(p.w / p.h * 90).toFixed(1)}vh)`;
+  const setSrc = (img, p, sizes) => {
+    if (p.w) { img.srcset = srcsetOf(p); img.sizes = sizes; }
+    img.src = p.file;
+    img.addEventListener("error", () => { if (img.srcset) { img.removeAttribute("srcset"); img.src = p.file; } }, { once: true });   // fall back to the full file if a smaller copy is missing
+  };
   /* ---------- hero ---------- */
   let heroIdx = 0, heroTimer = null, heroSet = [];
   const HERO_MS = 6500;
@@ -93,7 +130,7 @@
     if (!heroSet.length) { $("top").classList.add("no-photos"); return; }
     heroSet.forEach((p, i) => {
       const s = el("div", "slide"); const img = el("img");
-      img.src = p.file; img.alt = ""; img.decoding = "async"; if (i > 0) img.loading = "lazy";
+      setSrc(img, p, "100vw"); img.alt = ""; img.decoding = "async"; if (i > 0) img.loading = "lazy";
       img.style.objectPosition = (p.focus || "50% 50%");
       s.append(img); box.append(s);
     });
@@ -226,7 +263,7 @@
     current = i; $("lb").hidden = false; document.body.style.overflow = "hidden";
     const p = list[i]; setUrl("#p/" + encodeURIComponent(p.id));
     renderLb(); $("lbClose").focus({ preventScroll: true });
-    [list[i - 1], list[i + 1]].forEach(n => { if (n) { const im = new Image(); im.src = n.file; } });
+    [list[i - 1], list[i + 1]].forEach(n => { if (n) { const im = new Image(); setSrc(im, n, lbSizes(n)); } });
   }
   function close(fromHash) {
     $("lb").hidden = true; document.body.style.overflow = ""; current = -1;
@@ -274,12 +311,21 @@
     }
     facts.forEach(([k, v]) => f.append(el("dt", null, k), el("dd", null, v)));
     paragraphs($("lbDesc"), p.description);
+    let pa = $("lbPrint");
+    if (!pa) { pa = el("a", "print-ask"); pa.id = "lbPrint"; $("lbDesc").after(pa); }
+    pa.hidden = !site.email || site.printEnquiries === false;
+    if (!pa.hidden) {
+      const t = p.title || "Untitled", link = location.origin + location.pathname + "#p/" + encodeURIComponent(p.id);
+      pa.textContent = "Ask about a print";
+      pa.href = "mailto:" + site.email + "?subject=" + encodeURIComponent("Print enquiry: " + t) +
+        "&body=" + encodeURIComponent("Hello Grant,\n\nI'm interested in a print of \"" + t + "\".\n" + link + "\n\nSize I have in mind:\n\nThanks,\n");
+    }
     $("prev").disabled = current <= 0; $("next").disabled = current >= list.length - 1;
     $("vPrint").setAttribute("aria-pressed", view === "print"); $("vWall").setAttribute("aria-pressed", view === "wall");
     $("wallCtl").hidden = view !== "wall";
     const st = $("stageInner"); st.textContent = "";
     if (view === "print") {
-      const img = el("img", "print"); img.src = p.file; img.alt = p.title || "Untitled photograph"; img.width = p.w; img.height = p.h;
+      const img = el("img", "print"); setSrc(img, p, lbSizes(p)); img.alt = p.title || "Untitled photograph"; img.width = p.w; img.height = p.h;
       st.append(img);
     } else { st.append(buildScene(p)); renderWallCtl(); }
   }

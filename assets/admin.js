@@ -3,7 +3,7 @@
   const API = "https://api.github.com";
   const $ = id => document.getElementById(id);
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
-  const FULL_EDGE = 2560, THUMB_EDGE = 1000;
+  const FULL_EDGE = 2560, THUMB_EDGE = 1000, MEDIUM_EDGE = 1600;
   const DEFAULT = { site: { name: "Grant C Anthony", tagline: "Photography", aboutTitle: "Behind the lens", useSignature: true, about: "", email: "", instagram: "", categories: [] }, photos: [] };
 
   let conn = { owner: "", repo: "", branch: "main", token: "" };
@@ -416,6 +416,7 @@
         const loaded = await loadImage(file); url = loaded.url;
         const full = await render(loaded.img, FULL_EDGE, 0.88);
         const thumb = await render(loaded.img, THUMB_EDGE, 0.82);
+        const medium = Math.max(loaded.img.naturalWidth, loaded.img.naturalHeight) > MEDIUM_EDGE * 1.15 ? await render(loaded.img, MEDIUM_EDGE, 0.84) : null;
         const tone = toneOf(loaded.img);
         const title = file.name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
         const id = uid(title);
@@ -423,8 +424,9 @@
         $("progBar").style.width = ((done * 2 + 1) / total * 100) + "%";
         await putFile(`images/thumbs/${id}.jpg`, await blobB64(thumb.blob), `Add thumbnail ${id}`);
         previews[id] = URL.createObjectURL(thumb.blob);
+        if (medium) await putFile(`images/medium/${id}.jpg`, await blobB64(medium.blob), `Add medium size ${id}`);
         data.photos.unshift({ id, title, description: "", location: "", year: ex.year || "", camera: ex.camera || "", lens: ex.lens || "", focal: ex.focal || "", aperture: ex.aperture || "", shutter: ex.shutter || "", iso: ex.iso || "", categories: [], featured: false,
-          file: `images/${id}.jpg`, thumb: `images/thumbs/${id}.jpg`, w: full.w, h: full.h, tw: thumb.w, th: thumb.h, tone, added: new Date().toISOString().slice(0, 10) });
+          file: `images/${id}.jpg`, thumb: `images/thumbs/${id}.jpg`, w: full.w, h: full.h, tw: thumb.w, th: thumb.h, ...(medium ? { medium: `images/medium/${id}.jpg`, mw: medium.w, mh: medium.h } : {}), tone, added: new Date().toISOString().slice(0, 10) });
         done++;
       } catch (e) { failed.push(file.name + ": " + e.message); console.warn(e); }
       finally { if (url) URL.revokeObjectURL(url); }
@@ -460,6 +462,7 @@
         $("saveMsg").innerHTML = "<b>Removing files…</b>";
         await deleteFile(p.file, `Remove photograph ${p.id}`);
         if (p.thumb) await deleteFile(p.thumb, `Remove thumbnail ${p.id}`);
+        if (p.medium) await deleteFile(p.medium, `Remove medium size ${p.id}`);
         pendingDeletes = pendingDeletes.filter(x => x !== p);
       }
       busy = false; toast("Published. Your site updates in about a minute.", false, 5000);

@@ -196,7 +196,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#7a5a1f",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "medium": "images/medium/lofoten-boat-muzz3lxyria.jpg",
+      "mw": 1066,
+      "mh": 1600
     },
     {
       "id": "wall-of-fame-muzyix9iqrv",
@@ -223,7 +226,10 @@
       "th": 667,
       "tone": "#4c4d4c",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/wall-of-fame-muzyix9iqrv.jpg",
+      "mw": 1600,
+      "mh": 1068
     },
     {
       "id": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
@@ -250,7 +256,10 @@
       "th": 1000,
       "tone": "#615138",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/uttakleiv-beach-2-unsigned-muzytkxpmlc.jpg",
+      "mw": 1066,
+      "mh": 1600
     },
     {
       "id": "rotten-muzyf94ial6",
@@ -276,7 +285,10 @@
       "th": 1000,
       "tone": "#4e4c4b",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/rotten-muzyf94ial6.jpg",
+      "mw": 1061,
+      "mh": 1600
     },
     {
       "id": "lindisfarne-castle-2-muzz9zliw36",
@@ -304,7 +316,10 @@
       "th": 1000,
       "tone": "#626435",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/lindisfarne-castle-2-muzz9zliw36.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "fab4-and-liver-birds-muzy9yxp7yp",
@@ -331,7 +346,10 @@
       "th": 1000,
       "tone": "#4a4e4f",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/fab4-and-liver-birds-muzy9yxp7yp.jpg",
+      "mw": 1068,
+      "mh": 1600
     },
     {
       "id": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
@@ -358,7 +376,10 @@
       "th": 667,
       "tone": "#3b545e",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/reflections-and-shadows-loften-beach-uns-muzyn980n6g.jpg",
+      "mw": 1600,
+      "mh": 1066
     },
     {
       "id": "the-caledonian-railway-bridge-muzxyqihvnu",
@@ -385,7 +406,10 @@
       "th": 1000,
       "tone": "#504e49",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "luskentyre-icm-muzy45wewod",
@@ -439,7 +463,10 @@
       "th": 667,
       "tone": "#4c4d4c",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/spikey-muzxrkrz926.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "south-uist-muzxduu15bc",
@@ -465,7 +492,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#756224",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "medium": "images/medium/south-uist-muzxduu15bc.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "reflections-of-bath-grant-anthony-muzxkg9jl68",
@@ -490,7 +520,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#4d4d4c",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "medium": "images/medium/reflections-of-bath-grant-anthony-muzxkg9jl68.jpg",
+      "mw": 1068,
+      "mh": 1600
     },
     {
       "id": "speicherstadt-balconies",
@@ -511,7 +544,10 @@
       "th": 993,
       "tone": "#7a571f",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/speicherstadt-balconies.jpg",
+      "mw": 1600,
+      "mh": 1589
     },
     {
       "id": "loch-maree-muzx0s79fsh",
@@ -538,7 +574,10 @@
       "th": 1000,
       "tone": "#4d4d4c",
       "added": "2026-10-08",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/loch-maree-muzx0s79fsh.jpg",
+      "mw": 1600,
+      "mh": 1600
     },
     {
       "id": "green-staircase-muzx6wxbhfz",
@@ -563,7 +602,10 @@
       "tw": 1000,
       "th": 667,
       "tone": "#7a411f",
-      "added": "2026-10-08"
+      "added": "2026-10-08",
+      "medium": "images/medium/green-staircase-muzx6wxbhfz.jpg",
+      "mw": 1600,
+      "mh": 1068
     },
     {
       "id": "botallack",
@@ -590,7 +632,10 @@
       "aperture": "f/11",
       "shutter": "1/100 s",
       "iso": "ISO 800",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/botallack.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "one-way",
@@ -642,7 +687,10 @@
       "focal": "19 mm",
       "aperture": "f/8",
       "shutter": "5 s",
-      "iso": "ISO 125"
+      "iso": "ISO 125",
+      "medium": "images/medium/rings-rising.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "deadvlei",
@@ -694,7 +742,10 @@
       "th": 773,
       "tone": "#646235",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/xiangqi.jpg",
+      "mw": 1600,
+      "mh": 1236
     },
     {
       "id": "angel",
@@ -719,7 +770,10 @@
       "focal": "34 mm",
       "aperture": "f/11",
       "shutter": "1/500 s",
-      "iso": "ISO 400"
+      "iso": "ISO 400",
+      "medium": "images/medium/angel.jpg",
+      "mw": 1600,
+      "mh": 1600
     },
     {
       "id": "shadow-line",
@@ -770,7 +824,10 @@
       "focal": "16 mm",
       "aperture": "f/8",
       "shutter": "13 s",
-      "iso": "ISO 100"
+      "iso": "ISO 100",
+      "medium": "images/medium/sprinkenhof.jpg",
+      "mw": 1600,
+      "mh": 1365
     },
     {
       "id": "first-light",
@@ -820,7 +877,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#5b483e",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/mulberry-street.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "dahlia",
@@ -838,7 +898,10 @@
       "tw": 750,
       "th": 1000,
       "tone": "#7a3c1f",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/dahlia.jpg",
+      "mw": 1200,
+      "mh": 1600
     },
     {
       "id": "triangle",
@@ -864,7 +927,10 @@
       "focal": "16 mm",
       "aperture": "f/8",
       "shutter": "3/10 s",
-      "iso": "ISO 100"
+      "iso": "ISO 100",
+      "medium": "images/medium/triangle.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "lofoten-shore",
@@ -885,7 +951,10 @@
       "tw": 677,
       "th": 1000,
       "tone": "#444d55",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/lofoten-shore.jpg",
+      "mw": 1083,
+      "mh": 1600
     },
     {
       "id": "hydrant",
@@ -911,7 +980,10 @@
       "th": 1000,
       "tone": "#4c4c4c",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/hydrant.jpg",
+      "mw": 1600,
+      "mh": 1600
     },
     {
       "id": "cathedral-in-motion",
@@ -933,7 +1005,10 @@
       "th": 1000,
       "tone": "#655334",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/cathedral-in-motion.jpg",
+      "mw": 1068,
+      "mh": 1600
     },
     {
       "id": "walk",
@@ -959,7 +1034,10 @@
       "th": 1000,
       "tone": "#4c4c4c",
       "added": "2026-10-02",
-      "instagram": true
+      "instagram": true,
+      "medium": "images/medium/walk.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "ericusspitze-blue-hour",
@@ -980,7 +1058,10 @@
       "tw": 1000,
       "th": 667,
       "tone": "#344865",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/ericusspitze-blue-hour.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "red-dress",
@@ -1055,7 +1136,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#6c652d",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/chinatown.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "rings",
@@ -1075,7 +1159,10 @@
       "tw": 1000,
       "th": 667,
       "tone": "#6e522b",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/rings.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "storm-over-the-dunes",
@@ -1125,7 +1212,10 @@
       "tw": 667,
       "th": 1000,
       "tone": "#7a6d1f",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/lanterns.jpg",
+      "mw": 1067,
+      "mh": 1600
     },
     {
       "id": "chilehaus",
@@ -1145,7 +1235,10 @@
       "tw": 748,
       "th": 1000,
       "tone": "#6d4b2c",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/chilehaus.jpg",
+      "mw": 1198,
+      "mh": 1600
     },
     {
       "id": "spiral",
@@ -1166,7 +1259,10 @@
       "tw": 1000,
       "th": 667,
       "tone": "#4c4c4c",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/spiral.jpg",
+      "mw": 1600,
+      "mh": 1067
     },
     {
       "id": "courtyard-skylight",
@@ -1186,7 +1282,10 @@
       "tw": 1000,
       "th": 667,
       "tone": "#785621",
-      "added": "2026-10-02"
+      "added": "2026-10-02",
+      "medium": "images/medium/courtyard-skylight.jpg",
+      "mw": 1600,
+      "mh": 1067
     }
   ],
   "lessons": [

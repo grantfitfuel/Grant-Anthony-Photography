@@ -6,9 +6,23 @@
   const setUrl = u => { try { history.replaceState(null, "", u); } catch (e) {} };
   const DOT = " \u00b7 ";
   let lessons = [], photos = [], current = -1, lastFocus = null, glossary = [], siteName = "", learnTitle = "";
+  let path = [], seq = [];
+  /* Progress is kept only in this browser: which lessons have been read, and the best quiz score for each */
+  const PKEY = "learnProgress";
+  let prog = { read: {}, quiz: {} };
+  try { const v = JSON.parse(localStorage.getItem(PKEY) || "null"); if (v && typeof v === "object") prog = { read: v.read || {}, quiz: v.quiz || {} }; } catch (e) {}
+  const saveProg = () => { try { localStorage.setItem(PKEY, JSON.stringify(prog)); } catch (e) {} };
+  const DEFAULT_PATH = ["exposure-triangle", "reading-the-light", "rule-of-thirds", "horizon-placement", "leading-lines", "composing-a-landscape", "editing-lightly", "organising", "long-exposure", "black-and-white", "street", "exporting"];
 
   const minutes = l => Math.max(1, Math.ceil(((l.summary || "") + " " + (l.body || "")).split(/\s+/).filter(Boolean).length / 200)) + (/\[\[exposure\]\]/.test(l.body || "") ? 2 : 0) + ((l.body || "").match(/\[\[guide:/g) || []).length;
   const photoFor = l => photos.find(p => p.id === l.cover) || null;
+  /* Let the browser pick the smallest file that is sharp enough: thumbnail, medium or full size */
+  const srcsetOf = p => [p.thumb && p.tw ? `${p.thumb} ${p.tw}w` : "", p.medium && p.mw ? `${p.medium} ${p.mw}w` : "", `${p.file} ${p.w}w`].filter(Boolean).join(", ");
+  const setSrc = (img, p, sizes) => {
+    if (p.w) { img.srcset = srcsetOf(p); img.sizes = sizes; }
+    img.src = p.file;
+    img.addEventListener("error", () => { if (img.srcset) { img.removeAttribute("srcset"); img.src = p.file; } }, { once: true });   // fall back to the full file if a smaller copy is missing
+  };
 
   function init(data) {
     photos = (data.photos || []).filter(p => p && p.file);
@@ -21,6 +35,8 @@
     $("learnIntro").hidden = !site.learnIntro;
     if (site.learnTitle) { const t = $("learnTitle"); t.textContent = ""; const w = site.learnTitle.trim().split(/\s+/); t.append(w.length > 1 ? w.slice(0, -1).join(" ") + " " : ""); t.append(el("i", null, w[w.length - 1])); }
     topics = (site.lessonTopics || []).filter(t => t && t.id && t.name && lessons.some(l => l.topic === t.id));
+    path = (Array.isArray(site.startHere) && site.startHere.length ? site.startHere : DEFAULT_PATH).map(id => lessons.find(l => l.id === id)).filter(Boolean);
+    if (path.length) topics.unshift({ id: "start", name: "Start here" });
     if (!topics.some(t => t.id === topic)) topic = "all";
     renderTopics(); renderList();
   }
@@ -29,22 +45,38 @@
     let bar = $("ltopics");
     if (!bar) { bar = el("div", "ltopics"); bar.id = "ltopics"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Filter lessons by topic"); $("lessons").before(bar); }
     bar.textContent = ""; bar.hidden = topics.length < 2;
-    [["all", "All lessons", lessons.length]].concat(topics.map(t => [t.id, t.name, lessons.filter(l => l.topic === t.id).length])).forEach(([id, name, n]) => {
+    [["all", "All lessons", lessons.length]].concat(topics.map(t => [t.id, t.name, t.id === "start" ? path.length : lessons.filter(l => l.topic === t.id).length])).forEach(([id, name, n]) => {
       const b = el("button"); b.type = "button"; b.dataset.id = id; b.append(name, el("sup", null, pad(n)));
       b.setAttribute("aria-pressed", topic === id);
       b.onclick = () => { topic = id; [...bar.children].forEach(x => x.setAttribute("aria-pressed", x.dataset.id === id)); renderList(); };
       bar.append(b);
     });
   }
+  function renderProgLine() {
+    let line = $("lprog");
+    if (!line) { line = el("p", "lprog"); line.id = "lprog"; $("lessons").before(line); }
+    line.textContent = "";
+    const n = lessons.filter(l => prog.read[l.id]).length;
+    line.hidden = !n;
+    if (!n) return;
+    line.append(el("span", null, `You have read ${n} of ${lessons.length} lessons`));
+    if (topic === "start") line.append(el("span", null, ` \u00b7 ${path.filter(l => prog.read[l.id]).length} of ${path.length} on the starting route`));
+    const r = el("button", "lprog-reset", "Reset progress"); r.type = "button";
+    r.onclick = () => { prog = { read: {}, quiz: {} }; try { localStorage.removeItem(PKEY); } catch (e) {} renderList(); };
+    line.append(r);
+  }
   function renderList() {
     const list = $("lessons"); list.textContent = "";
-    lessons.filter(l => topic === "all" || l.topic === topic).forEach((l, i) => {
+    renderProgLine();
+    (topic === "start" ? path : lessons.filter(l => topic === "all" || l.topic === topic)).forEach((l, i) => {
       const li = el("li", "lesson"); const b = el("button"); b.type = "button";
       const ph = photoFor(l); if (ph && ph.tone) b.style.setProperty("--tone", ph.tone);
       const lt = el("div", "lt"); lt.append(el("h3", null, l.title), el("p", null, l.summary || ""));
       const lm = el("div", "lm"); const tn = (topics.find(t => t.id === l.topic) || {}).name;
       if (topic === "all" && tn) lm.append(el("span", "lvl", tn)); else if (l.level) lm.append(el("span", "lvl", l.level));
       lm.append(el("span", null, minutes(l) + " min read"));
+      if (prog.read[l.id]) lm.append(el("span", "done", "\u2713 Read"));
+      if (prog.quiz[l.id]) lm.append(el("span", "qdone", "Quiz " + prog.quiz[l.id]));
       const lc = el("div", "lc"); if (ph) { const im = el("img"); im.src = ph.thumb || ph.file; im.alt = ""; im.loading = "lazy"; lc.append(im); }
       b.append(el("span", "ln", pad(i + 1)), lt, lm, lc);
       b.onclick = () => open(l.id);
@@ -61,7 +93,7 @@
       if (block === "[[exposure]]") { target.append(exposure(lesson)); return; }
       const sm = block.match(/^\[\[shot:(.+)\]\]$/);
       if (sm) { const key = sm[1].trim().toLowerCase(); const ph = photos.find(p => p.id.toLowerCase() === key || (p.title || "").trim().toLowerCase() === key);
-        if (ph) { const f = el("figure", "rd-fig shot"); const im = el("img"); im.src = ph.file; im.alt = ph.title || ""; im.width = ph.w; im.height = ph.h; f.append(im);
+        if (ph) { const f = el("figure", "rd-fig shot"); const im = el("img"); setSrc(im, ph, "(max-width: 900px) 100vw, 900px"); im.alt = ph.title || ""; im.width = ph.w; im.height = ph.h; f.append(im);
           const dl = el("dl", "shot-facts"); const add = (k, v) => { if (v) dl.append(el("dt", null, k), el("dd", null, v)); };
           add("Photograph", ph.title); add("Place", ph.location); add("Year", ph.year); add("Camera", ph.camera); add("Lens", ph.lens);
           add("Settings", [ph.focal, ph.aperture, ph.shutter, ph.iso].filter(Boolean).map(x => String(x).replace(/ /g, "\u00a0")).join(" \u00b7 "));
@@ -69,7 +101,7 @@
         return; }
       const pm = block.match(/^\[\[photo:(.+)\]\]$/);
       if (pm) { const key = pm[1].trim().toLowerCase(); const ph = photos.find(p => p.id.toLowerCase() === key || (p.title || "").trim().toLowerCase() === key);
-        if (ph) { const f = el("figure", "rd-fig"); const im = el("img"); im.src = ph.file; im.alt = ph.title || ""; im.loading = "lazy"; im.width = ph.w; im.height = ph.h;
+        if (ph) { const f = el("figure", "rd-fig"); const im = el("img"); setSrc(im, ph, "(max-width: 900px) 100vw, 900px"); im.alt = ph.title || ""; im.loading = "lazy"; im.width = ph.w; im.height = ph.h;
           const cap = el("figcaption"); cap.append(el("b", null, ph.title || "Untitled")); if (ph.location) cap.append(" \u00b7 " + ph.location); f.append(im, cap); target.append(f); }
         return; }
       const gm = block.match(/^\[\[guide:([a-z]+)\]\]$/); if (gm) { target.append(guide(gm[1], lesson)); return; }
@@ -87,14 +119,16 @@
     const i = lessons.findIndex(l => l.id === id); if (i < 0) return;
     if ($("reader").hidden) lastFocus = document.activeElement;
     current = i; const l = lessons[i];
+    seq = (topic === "start" && path.includes(l)) ? path : lessons;
+    const si = seq.indexOf(l);
     $("reader").hidden = false; document.body.style.overflow = "hidden"; $("reader").scrollTop = 0;
     setUrl("#l/" + encodeURIComponent(l.id));
-    $("rdCount").textContent = "Lesson " + pad(i + 1) + " / " + pad(lessons.length);
+    $("rdCount").textContent = (seq === path ? "Start here " : "Lesson ") + pad(si + 1) + " / " + pad(seq.length);
     const cov = $("rdCover"); cov.textContent = ""; const ph = photoFor(l);
     cov.classList.toggle("none", !ph);
     cov.classList.remove("fit");
     if (ph) {
-      const im = el("img"); im.src = ph.file; im.alt = ph.title || "";
+      const im = el("img"); setSrc(im, ph, "100vw"); im.alt = ph.title || "";
       /* A file narrower than the band would be stretched and look soft, so show it whole over a blurred copy of itself instead */
       if (ph.w && ph.w < cov.clientWidth * 1.2) {
         cov.classList.add("fit"); const bg = el("img", "bg"); bg.src = ph.thumb || ph.file; bg.alt = ""; bg.setAttribute("aria-hidden", "true");
@@ -108,8 +142,8 @@
     linkGlossary($("rdBody"));
     extras($("rdBody"), l);
     const nx = $("rdNext"); nx.textContent = "";
-    const next = lessons[i + 1] || (lessons.length > 1 ? lessons[0] : null);
-    if (next) { const b = el("button"); b.type = "button"; b.append(el("small", null, lessons[i + 1] ? "Next lesson" : "Back to the first lesson"), el("span", null, next.title)); b.onclick = () => open(next.id); nx.append(b); }
+    const next = seq[si + 1] || (seq.length > 1 ? seq[0] : null);
+    if (next) { const b = el("button"); b.type = "button"; b.append(el("small", null, seq[si + 1] ? (seq === path ? "Next on the starting route" : "Next lesson") : (seq === path ? "Back to the start of the route" : "Back to the first lesson")), el("span", null, next.title)); b.onclick = () => { markRead(l.id); open(next.id); }; nx.append(b); }
     $("rdClose").focus({ preventScroll: true });
     progress();
   }
@@ -118,7 +152,12 @@
     setUrl(location.pathname + "#learn");
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
-  function progress() { const r = $("reader"); const max = r.scrollHeight - r.clientHeight; $("rdProgress").style.width = (max > 0 ? r.scrollTop / max * 100 : 0) + "%"; }
+  function markRead(id) { if (!id || prog.read[id]) return; prog.read[id] = 1; saveProg(); renderList(); }
+  function progress() {
+    const r = $("reader"); const max = r.scrollHeight - r.clientHeight, f = max > 0 ? r.scrollTop / max : 0;
+    $("rdProgress").style.width = (f * 100) + "%";
+    if (f > 0.9 && current >= 0 && lessons[current]) markRead(lessons[current].id);
+  }
   $("reader").addEventListener("scroll", progress, { passive: true });
   $("rdClose").onclick = close;
   document.addEventListener("keydown", e => { if (!$("reader").hidden && e.key === "Escape") close(); });
@@ -196,7 +235,7 @@
     const view = el("div", "gview");
     const r = ph ? Math.min(2, Math.max(0.8, ph.w / ph.h)) : 1.5;
     view.style.aspectRatio = r.toFixed(4); view.style.width = `min(100%, calc(74svh * ${r.toFixed(4)}))`;
-    if (ph) { const im = el("img", "gimg"); im.src = ph.file; im.alt = ph.title || ""; view.append(im); }
+    if (ph) { const im = el("img", "gimg"); setSrc(im, ph, "(max-width: 900px) 100vw, 900px"); im.alt = ph.title || ""; view.append(im); }
     return { view, ph, r };
   }
   function overlay(view, r) {
@@ -966,7 +1005,11 @@
             [...opts.children].forEach((bb, k) => { bb.disabled = true; if (x.opts[k].ok) bb.classList.add("ok"); });
             if (o.ok) { right++; b.classList.add("ok"); fb.textContent = "Correct."; }
             else { b.classList.add("no"); fb.textContent = "Not quite. The right answer is highlighted."; }
-            if (answered === qs.length) score.textContent = right + " out of " + qs.length + (right === qs.length ? ". Well done." : ".");
+            if (answered === qs.length) {
+              score.textContent = right + " out of " + qs.length + (right === qs.length ? ". Well done." : ".");
+              const prev = prog.quiz[l.id] ? parseInt(prog.quiz[l.id], 10) : -1;
+              if (right > prev) { prog.quiz[l.id] = right + "/" + qs.length; saveProg(); renderList(); }
+            }
           };
           opts.append(b);
         });
