@@ -202,6 +202,58 @@ def post(token, image_url, caption, expected):
     return mid, link, name
 
 
+def check_access(data):
+    """Confirm every account can post, without posting anything."""
+    ok = True
+    for name, acc in data["accounts"].items():
+        handle, secret = acc["handle"], acc["secret"]
+        say(f"\n@{handle} ({name})")
+        token = os.environ.get(secret, "").strip()
+        if not token:
+            say(f"  FAIL  No {secret} secret is set in GitHub.")
+            ok = False
+            continue
+        say(f"  ok    {secret} secret is set")
+        try:
+            try:
+                me = call("GET", f"{API}/me", {"fields": "user_id,username,account_type", "access_token": token})
+            except RuntimeError:
+                me = call("GET", f"{API}/me", {"fields": "user_id,username", "access_token": token})
+        except RuntimeError as e:
+            say(f"  FAIL  Instagram did not accept the token ({str(e).replace('Instagram said: ', '')}). Generate it again.")
+            ok = False
+            continue
+        who = me.get("username", "")
+        if who.lower() != handle.lower():
+            say(f"  FAIL  The token belongs to @{who}, not @{handle}.")
+            ok = False
+            continue
+        say(f"  ok    Token belongs to @{who}")
+        kind = (me.get("account_type") or "").upper()
+        if kind and kind not in ("BUSINESS", "MEDIA_CREATOR", "CREATOR"):
+            say(f"  FAIL  @{who} is a {kind.lower()} account. Switch it to professional (Creator) in the Instagram app.")
+            ok = False
+        elif kind:
+            say(f"  ok    Professional account ({kind.lower().replace('media_', '')})")
+        user = me.get("user_id") or me.get("id")
+        try:
+            lim = call("GET", f"{API}/{user}/content_publishing_limit", {"fields": "quota_usage,config", "access_token": token})
+            used = (lim.get("data") or [{}])[0].get("quota_usage", 0)
+            say(f"  ok    Allowed to publish (posts in the last 24 hours: {used})")
+        except RuntimeError as e:
+            say(f"  FAIL  Not allowed to publish ({str(e).replace('Instagram said: ', '')}). Generate the token again and allow 'Access and publish content'.")
+            ok = False
+    pat = os.environ.get("GH_PAT", "").strip()
+    say("")
+    if pat:
+        say("ok    GH_PAT is set, so renewed tokens can be saved.")
+    else:
+        say("::warning::No GH_PAT secret, so tokens will need replacing by hand every 60 days.")
+    if not ok:
+        fail("Access check failed. Fix the items marked FAIL above, then run the check again.")
+    say("\nAll set. Both accounts can post.")
+
+
 # ---------- main ----------
 def main():
     data = load_json(QUEUE_PATH, None)
@@ -212,6 +264,8 @@ def main():
     scheduled = os.environ.get("SCHEDULED") == "1"
 
     account = (os.environ.get("ACCOUNT") or "auto").strip().lower()
+    if MODE == "check":
+        return check_access(data)
     if account == "auto":
         account = account_for_today(data, now)
         if not account:
