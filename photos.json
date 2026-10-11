@@ -757,7 +757,7 @@
       "categories": [
         "abstract"
       ],
-      "featured": true,
+      "featured": false,
       "file": "images/angel.jpg",
       "thumb": "images/thumbs/angel.jpg",
       "w": 2576,
@@ -914,7 +914,7 @@
         "architecture",
         "abstract"
       ],
-      "featured": true,
+      "featured": false,
       "file": "images/triangle.jpg",
       "thumb": "images/thumbs/triangle.jpg",
       "w": 2576,
