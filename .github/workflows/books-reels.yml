@@ -1,0 +1,44 @@
+name: Books Reels reminder
+
+# Every Sunday morning, opens a GitHub issue naming this week's two Reels
+# (one for @grantcanthony, one for @g_c_anthony) with links to download them.
+# GitHub emails you the issue and shows it in the GitHub app. Close it once both are posted.
+# The Reels go round in order, so after the last one the list starts again.
+
+on:
+  schedule:
+    - cron: "41 8 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Open this week's Reels issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY' > body.md
+          import json, datetime
+          reels = json.load(open("books/reels/reels.json"))["reels"]
+          week = (datetime.date.today() - datetime.date(2026, 10, 18)).days // 7
+          page = "https://grantanthony.co.uk/books/reels/"
+          print("@grantfitfuel, this week's Reels are ready. Each is silent, ready for a trending sound.\n")
+          for handle in ("grantcanthony", "g_c_anthony"):
+              mine = [r for r in reels if r["account"] == handle]
+              r = mine[week % len(mine)]
+              print(f"### @{handle}: {r['book']}")
+              print(f"- Open on your phone: {page}#{r['id']}")
+              print(f"- Video: {page}{r['video']}\n")
+              print("Caption:\n")
+              print("```")
+              print(r["caption"])
+              print("```\n")
+          print("Steps: download the video, copy the caption, then in Instagram tap + > Reel, add a sound from Trending, paste the caption and share.")
+          PY
+          gh issue create --title "Reels for the week of $(date +'%-d %B')" --body-file body.md
