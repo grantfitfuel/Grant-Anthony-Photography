@@ -217,7 +217,7 @@
         "urban-street",
         "abstract"
       ],
-      "featured": true,
+      "featured": false,
       "file": "images/wall-of-fame-muzyix9iqrv.jpg",
       "thumb": "images/thumbs/wall-of-fame-muzyix9iqrv.jpg",
       "w": 2560,
@@ -454,7 +454,7 @@
       "categories": [
         "abstract"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/spikey-muzxrkrz926.jpg",
       "thumb": "images/thumbs/spikey-muzxrkrz926.jpg",
       "w": 2560,
