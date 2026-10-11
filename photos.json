@@ -757,7 +757,7 @@
       "categories": [
         "abstract"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/angel.jpg",
       "thumb": "images/thumbs/angel.jpg",
       "w": 2576,
