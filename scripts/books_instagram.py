@@ -178,21 +178,35 @@ def refresh_token(token, secret):
         say(f"::warning::Token renewed but could not be saved to {secret}: " + res.stderr.strip())
 
 
-def post(token, image_url, caption, expected):
+def wait_ready(token, cid):
+    for _ in range(30):
+        st = call("GET", f"{API}/{cid}", {"fields": "status_code", "access_token": token}).get("status_code")
+        if st == "FINISHED":
+            return
+        if st in ("ERROR", "EXPIRED"):
+            raise RuntimeError(f"Instagram could not process the image (status {st}).")
+        time.sleep(float(os.environ.get("IG_POLL_SECONDS", "5")))
+    raise RuntimeError("Instagram took too long to process the image.")
+
+
+def post(token, image_urls, caption, expected):
+    """One image posts as a single image; two to ten post as a carousel."""
     me = call("GET", f"{API}/me", {"fields": "user_id,username", "access_token": token})
     user, name = me.get("user_id") or me.get("id"), me.get("username", "")
     if name.lower() != expected.lower().lstrip("@"):
         raise PermissionError(f"The token belongs to @{name}, not @{expected.lstrip('@')}. Nothing was posted.")
-    cid = call("POST", f"{API}/{user}/media", {"image_url": image_url, "caption": caption, "access_token": token})["id"]
-    for _ in range(30):
-        st = call("GET", f"{API}/{cid}", {"fields": "status_code", "access_token": token}).get("status_code")
-        if st == "FINISHED":
-            break
-        if st in ("ERROR", "EXPIRED"):
-            raise RuntimeError(f"Instagram could not process the image (status {st}).")
-        time.sleep(float(os.environ.get("IG_POLL_SECONDS", "5")))
+    if len(image_urls) == 1:
+        cid = call("POST", f"{API}/{user}/media", {"image_url": image_urls[0], "caption": caption, "access_token": token})["id"]
     else:
-        raise RuntimeError("Instagram took too long to process the image.")
+        if len(image_urls) > 10:
+            raise RuntimeError("A carousel can have at most 10 slides.")
+        children = []
+        for url in image_urls:
+            child = call("POST", f"{API}/{user}/media", {"image_url": url, "is_carousel_item": "true", "access_token": token})["id"]
+            wait_ready(token, child)
+            children.append(child)
+        cid = call("POST", f"{API}/{user}/media", {"media_type": "CAROUSEL", "children": ",".join(children), "caption": caption, "access_token": token})["id"]
+    wait_ready(token, cid)
     mid = call("POST", f"{API}/{user}/media_publish", {"creation_id": cid, "access_token": token})["id"]
     link = ""
     try:
@@ -297,8 +311,8 @@ def main():
         return
 
     cap = caption_for(p, data)
-    out = books_cards.save(p, data, OUT_DIR)
-    say(f"Next up: {p['id']}")
+    outs = books_cards.save(p, data, OUT_DIR)
+    say(f"Next up: {p['id']}" + (f"  (carousel, {len(outs)} slides)" if len(outs) > 1 else ""))
     say("----- caption -----\n" + cap + "\n-------------------")
     if MODE != "post":
         say("Dry run: nothing was posted. Run again with 'post' to publish this one.")
@@ -312,11 +326,11 @@ def main():
     if who.lower() != acc["handle"].lower():
         fail(f"{acc['secret']} belongs to @{who}, not @{acc['handle']}. Nothing was posted.")
     refresh_token(token, acc["secret"])
-    rel = os.path.relpath(out, ROOT)
-    sha = commit_and_push([rel], f"Books Instagram: prepare {p['id']}")
+    rels = [os.path.relpath(o, ROOT) for o in outs]
+    sha = commit_and_push(rels, f"Books Instagram: prepare {p['id']}")
     base = os.environ.get("IG_IMAGE_BASE", f"https://raw.githubusercontent.com/{REPO}/{sha}/").rstrip("/")
     try:
-        mid, link, name = post(token, base + "/" + rel, cap, acc["handle"])
+        mid, link, name = post(token, [base + "/" + r for r in rels], cap, acc["handle"])
     except (RuntimeError, PermissionError) as e:
         log.setdefault("lastError", {})[account] = {"id": p["id"], "date": now.astimezone(timezone.utc).isoformat(timespec="seconds"), "message": str(e)}
         write_log(log)

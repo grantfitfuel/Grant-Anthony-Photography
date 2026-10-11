@@ -10,6 +10,7 @@ Card types:
   excerpt  a longer passage, usually the opening lines
   talk     a headline and a short paragraph about the book
   blurb    a typographic card for a book with no cover image yet
+  carousel up to 10 slides ("slides": [...]), each a page (a passage) or one of the types above
 """
 import json, os, re, sys
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
@@ -172,16 +173,44 @@ def render(post, data):
         tf = font("bricolage-800", 40)
         d.text((M, H - M - 70), book["byline"], font=tf, fill=fg)
         d.text((M, H - M - 18), data.get("link", "grantanthony.co.uk/books"), font=font("plex-mono-500", 24), fill=fg)
+    elif kind == "page":
+        # One slide of a carousel: a passage set large, with its place in the set
+        header(d, theme, f"{book['title']}   {post.get('_n', 1)}/{post.get('_of', 1)}")
+        box_w = W - 2 * M
+        top = 230
+        bottom = H - M - 190
+        f, lines, step = fit(d, post["text"], "source-serif-400", box_w, bottom - top, 72, 36, 1.34)
+        y = draw_lines(d, lines, f, M, top, step, fg)
+        if post.get("attribution"):
+            d.text((M, y + 30), post["attribution"].upper(), font=font("plex-mono-500", 26), fill=ac)
+        d.text((M, H - M - 70), book["byline"], font=font("bricolage-800", 40), fill=fg)
+        d.text((M, H - M - 18), data.get("link", "grantanthony.co.uk/books"), font=font("plex-mono-500", 24), fill=fg)
+        if post.get("_n") == 1:
+            d.text((W - M, H - M - 26), "Swipe \u2192", font=font("bricolage-700", 40), fill=ac, anchor="rs")
     else:
         raise ValueError(f"{post['id']}: unknown card type '{kind}'")
     return im
 
 
+def slides_of(post):
+    """A carousel's slides as individual posts, numbered. Anything else is a single slide."""
+    if post["type"] != "carousel":
+        return [post]
+    out, n = [], len(post["slides"])
+    for i, sl in enumerate(post["slides"], 1):
+        out.append({**sl, "id": f"{post['id']}-{i}", "book": sl.get("book", post["book"]), "_n": i, "_of": n})
+    return out
+
+
 def save(post, data, out_dir):
+    """Write the image(s) for a post. Returns a list of paths, one per slide."""
     os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, post["id"] + ".jpg")
-    render(post, data).save(path, "JPEG", quality=92, optimize=True)
-    return path
+    paths = []
+    for sl in slides_of(post):
+        path = os.path.join(out_dir, sl["id"] + ".jpg")
+        render(sl, data).save(path, "JPEG", quality=92, optimize=True)
+        paths.append(path)
+    return paths
 
 
 if __name__ == "__main__":
@@ -190,4 +219,4 @@ if __name__ == "__main__":
     only = sys.argv[1:]
     for p in data["posts"]:
         if not only or p["id"] in only:
-            print(save(p, data, out))
+            print(*save(p, data, out), sep="\n")
