@@ -5,12 +5,11 @@
 
   let site = {}, photos = [], cats = [];
   let filter = "all", list = [], current = -1, view = "print";
-  const wall = { wall: "chalk", frame: "black", mat: true, size: 50, furniture: "sideboard" };
+  const wall = { wall: "chalk", frame: "black", mount: "standard", size: 50, furniture: "sideboard", finish: "paint", light: "day", person: false, sofa: "gray" };
   try { Object.assign(wall, JSON.parse(localStorage.getItem("wallPrefs") || "{}")); } catch (e) {}
 
-  const WALLS = { chalk:["Chalk","#ECEAE4"], stone:["Stone","#CFC9BE"], sage:["Sage","#B9C2AF"], slate:["Slate","#58616B"], forest:["Forest","#2C3A32"], ink:["Ink","#22252B"] };
-  const FRAMES = { black:["Black","#1A1A1A","#2A2A2A"], oak:["Oak","#C79D66","#A47A47"], walnut:["Walnut","#5C3F2B","#3F2A1C"], white:["White","#F5F4F0","#DCDAD3"], brass:["Brass","#C9A75E","#8E7134"] };
-  const SIZES = [30, 50, 70, 100];
+  const WALLS = { chalk:["Chalk","#ECEAE4"], stone:["Stone","#CFC9BE"], sage:["Sage","#B9C2AF"], clay:["Clay","#C9A08A"], slate:["Slate","#58616B"], navy:["Navy","#2E3B55"], forest:["Forest","#2C3A32"], ink:["Ink","#22252B"] };
+  const FRAMES = { black:["Black","#1A1A1A","#2A2A2A"], oak:["Oak","#C79D66","#A47A47"], ash:["Ash","#E2D3B6","#C7B591"], walnut:["Walnut","#5C3F2B","#3F2A1C"], white:["White","#F5F4F0","#DCDAD3"], brass:["Brass","#C9A75E","#8E7134"], silver:["Silver","#D9DBDD","#9DA1A6"] };
 
   const setUrl = u => { try { history.replaceState(null, "", u); } catch (e) {} };
   /* ---------- helpers ---------- */
@@ -331,73 +330,224 @@
   }
 
   /* ---------- wall scene (modelled in cm) ---------- */
-  const SW = 375, SH = 250;
-  function buildScene(p) {
-    const pc = (cm, t) => (cm / t * 100) + "%";
-    const floorCm = 16, skirtCm = 9;
-    const yb = cm => pc(cm + floorCm, SH);
-    const wrap = el("div", "scene-wrap"); const sc = el("div", "scene"); sc.style.background = WALLS[wall.wall][1]; wrap.append(sc);
-    const add = (cls, style) => { const d = el("div", cls); Object.assign(d.style, style); sc.append(d); return d; };
-    add("floor", { height: pc(floorCm, SH) });
-    add("skirt", { bottom: pc(floorCm, SH), height: pc(skirtCm, SH) });
-    let top, furnLabel;
-    if (wall.furniture === "sofa") {
-      // three-seat sofa, 214 cm wide: seat 44 cm, arms 62 cm, back 84 cm
-      const sw_ = 214, sx = (SW - sw_) / 2, legH = 9, armW = 20, seatH = 44, armH = 62, backH = 84;
-      [sx + 8, sx + sw_ - 8 - 3].forEach(x => add("sleg", { left: pc(x, SW), bottom: yb(0), height: pc(legH, SH) }));
-      add("sback", { left: pc(sx + armW - 4, SW), width: pc(sw_ - 2 * armW + 8, SW), bottom: yb(legH + 16), height: pc(backH - legH - 16, SH) });
-      add("sbase", { left: pc(sx, SW), width: pc(sw_, SW), bottom: yb(legH), height: pc(16, SH) });
-      const cw = (sw_ - 2 * armW) / 3;
-      [0, 1, 2].forEach(k => add("scush", { left: pc(sx + armW + k * cw + 0.6, SW), width: pc(cw - 1.2, SW), bottom: yb(legH + 16), height: pc(seatH - legH - 16, SH) }));
-      [sx, sx + sw_ - armW].forEach(x => add("sarm", { left: pc(x, SW), width: pc(armW, SW), bottom: yb(legH), height: pc(armH - legH, SH) }));
-      add("spillow", { left: pc(sx + armW + 6, SW), width: pc(34, SW), bottom: yb(seatH - 2), height: pc(30, SH) });
-      add("spillow b", { left: pc(sx + sw_ - armW - 40, SW), width: pc(34, SW), bottom: yb(seatH - 2), height: pc(30, SH) });
-      top = backH; furnLabel = "Sofa 214 cm";
-    } else {
-      const bw = 170, bh = 56, legH = 14, bx = (SW - bw) / 2;
-      const board = add("board", { left: pc(bx, SW), width: pc(bw, SW), bottom: yb(legH), height: pc(bh, SH) });
-      board.innerHTML = '<div class="doors"><span></span><span></span><span></span></div>';
-      [bx + 7, bx + bw - 7 - 3.3].forEach(x => add("leg", { left: pc(x, SW), bottom: yb(0), height: pc(legH, SH) }));
-      top = legH + bh;
-      const vx = bx + bw - 36;
-      [[-14, 52], [6, 60], [22, 46], [-30, 40]].forEach(([deg, len]) => {
-        const s = add("stem", { left: pc(vx + 6.5, SW), bottom: yb(top + 18), height: pc(len, SH) }); s.style.transform = `rotate(${deg}deg)`;
-      });
-      add("vase", { left: pc(vx, SW), width: pc(14, SW), height: pc(26, SH), bottom: yb(top) });
-      const bk = add("books", { left: pc(bx + 14, SW), bottom: yb(top), height: pc(24, SH), width: pc(22, SW) });
-      [["#3d4a57", 18, 100], ["#b8a07a", 14, 88], ["#6d3b33", 22, 94], ["#d6d0c4", 12, 80]].forEach(([c, w, h]) => { const s = el("span"); s.style.cssText = `background:${c};width:${w}%;height:${h}%`; bk.append(s); });
-      furnLabel = "Sideboard 170 cm";
-    }
+  // Everything is laid out in real centimetres, then scaled to fit. The scene widens
+  // when the arrangement or the furniture needs more room, so sizes stay true to life.
+  const ROOMS = {
+    sideboard: { name: "Sideboard", w: 170, top: 72, span: 210 },
+    sofa:      { name: "Sofa",      w: 219, top: 79, span: 410 },
+    bed:       { name: "Bed",       w: 270, top: 118 },
+    desk:      { name: "Desk",      w: 140, top: 121 },
+    fireplace: { name: "Fireplace", w: 150, top: 140 }
+  };
+  const SIZES = [30, 40, 50, 60, 70, 90, 100, 120];
+  const MOUNTS = { none: ["None", 0], standard: ["Standard", 0.12], wide: ["Wide", 0.2] };
+  const FINISH = { paint: "Paint", panel: "Panelling", brick: "Brick", plaster: "Plaster" };
 
-    const r = p.w / p.h, L = wall.size;
-    const iw = r >= 1 ? L : L * r, ih = r >= 1 ? L / r : L;
-    const mat = wall.mat ? Math.max(5, L * 0.12) : 0, mould = L >= 70 ? 3.5 : 2.5;
-    const fw = iw + 2 * (mat + mould), fh = ih + 2 * (mat + mould);
-    let bottom = top + 24;
-    if (bottom + fh > SH - floorCm - 6) bottom = Math.max(top + 6, SH - floorCm - 6 - fh);
-    const [, c1, c2] = FRAMES[wall.frame];
-    const fr = add("frame", { left: pc((SW - fw) / 2, SW), width: pc(fw, SW), bottom: yb(bottom), height: pc(fh, SH), background: `linear-gradient(135deg, ${c1}, ${c2})` });
-    const inner = (x, y, w, h) => ({ left: pc(x, fw), top: pc(y, fh), width: pc(w, fw), height: pc(h, fh) });
-    if (wall.mat) { const m = el("div", "mat"); Object.assign(m.style, inner(mould, mould, fw - 2 * mould, fh - 2 * mould)); fr.append(m); }
-    const img = el("img"); img.src = p.file; img.alt = (p.title || "Photograph") + ", framed on a wall";
-    Object.assign(img.style, inner(mould + mat, mould + mat, iw, ih)); fr.append(img);
-    sc.append(el("div", "wallgrain"));
-    wrap.append(el("div", "scale-note", `Print ${Math.round(iw)} \u00d7 ${Math.round(ih)} cm  \u00b7  Framed ${Math.round(fw)} \u00d7 ${Math.round(fh)} cm  \u00b7  ${furnLabel}`));
+  function migrateWall() {
+    if (typeof wall.mat === "boolean") { if (!wall.mount) wall.mount = wall.mat ? "standard" : "none"; delete wall.mat; }
+    if (!ROOMS[wall.furniture]) wall.furniture = "sideboard";
+    if (!WALLS[wall.wall]) wall.wall = "chalk";
+    if (!FRAMES[wall.frame] && wall.frame !== "canvas") wall.frame = "black";
+    if (!MOUNTS[wall.mount]) wall.mount = "standard";
+    if (!FINISH[wall.finish]) wall.finish = "paint";
+    if (!SIZES.includes(wall.size)) wall.size = 50;
+    delete wall.count;
+    if (wall.light !== "evening") wall.light = "day";
+    wall.person = !!wall.person;
+    if (!SOFAS[wall.sofa]) wall.sofa = "gray";
+  }
+
+  function buildScene(p) {
+    migrateWall();
+    const room = ROOMS[wall.furniture];
+    const canvas = wall.frame === "canvas";
+    const L = wall.size;
+
+    const n = 1, group = [p];
+    // every print shares the height of the chosen one, so the row lines up
+    const r0 = p.w / p.h, ih = r0 >= 1 ? L / r0 : L;
+    const matCm = canvas ? 0 : Math.max(MOUNTS[wall.mount][1] ? 5 : 0, L * MOUNTS[wall.mount][1]);
+    const mould = canvas ? 0 : (L >= 90 ? 4 : L >= 60 ? 3.2 : 2.4);
+    const items = group.map(q => {
+      const iw = ih * (q.w / q.h);
+      return { q, iw, ih, fw: iw + 2 * (matCm + mould), fh: ih + 2 * (matCm + mould) };
+    });
+    const gap = n > 1 ? Math.max(6, L * 0.12) : 0;
+    const groupW = items.reduce((s, it) => s + it.fw, 0) + gap * (n - 1);
+    const groupH = Math.max(...items.map(it => it.fh));
+
+    // hang with the centre near eye level, and at least 20 cm clear of the furniture
+    const floorCm = 16, skirtCm = 9;
+    const bottom = Math.max(room.top + 20, 150 - groupH / 2);
+    let SW = Math.max(375, groupW + 120, room.w + 120, room.span || 0, wall.person ? Math.max(groupW, room.w) + 240 : 0);
+    let SH = Math.max(SW / 1.5, floorCm + bottom + groupH + 30);
+    SW = Math.max(SW, SH * 1.5); SH = SW / 1.5;
+
+    const pc = (cm, t) => (cm / t * 100) + "%";
+    const X = cm => pc(cm, SW), Y = cm => pc(cm, SH), yb = cm => pc(cm + floorCm, SH);
+    const wrap = el("div", "scene-wrap");
+    const sc = el("div", "scene" + (wall.light === "evening" ? " evening" : ""));
+    sc.style.setProperty("--wall", WALLS[wall.wall][1]);
+    sc.style.setProperty("--cm", `calc(100cqw / ${SW})`);
+    sc.dataset.finish = wall.finish;
+    wrap.append(sc);
+    const add = (cls, style, parent) => { const d = el("div", cls); Object.assign(d.style, style); (parent || sc).append(d); return d; };
+
+    add("finish", {});
+    add("floor", { height: Y(floorCm) });
+    add("skirt", { bottom: Y(floorCm), height: Y(skirtCm) });
+
+    const cx = SW / 2;
+    const furn = FURNITURE[wall.furniture];
+    furn({ add, X, Y, yb, cx, SW, SH });
+
+    // the person, for scale
+    if (wall.person) {
+      const ph = 175, pw = 48, px = Math.max(12, cx - Math.max(groupW, room.w) / 2 - 95 - pw);
+      const fig = add("person", { left: X(px), bottom: yb(0), width: X(pw), height: Y(ph) });
+      fig.innerHTML = PERSON_SVG;
+      fig.title = "175 cm";
+    }
+    add("daylight", {});
+
+    // the frames
+    let x = cx - groupW / 2;
+    const yTop = bottom + groupH;
+    items.forEach((it, k) => {
+      const fy = yTop - (groupH - it.fh) / 2 - it.fh;
+      const fr = add("frame" + (canvas ? " canvas" : ""), { left: X(x), width: X(it.fw), bottom: yb(fy), height: Y(it.fh) });
+      if (!canvas) {
+        const [, c1, c2] = FRAMES[wall.frame];
+        fr.style.setProperty("--f1", c1); fr.style.setProperty("--f2", c2);
+      }
+      const inner = (ix, iy, w, h) => ({ left: pc(ix, it.fw), top: pc(iy, it.fh), width: pc(w, it.fw), height: pc(h, it.fh) });
+      if (matCm) add("mat", inner(mould, mould, it.fw - 2 * mould, it.fh - 2 * mould), fr);
+      const img = el("img");
+      setSrc(img, it.q, "60vw");
+      img.alt = (it.q.title || "Photograph") + ", framed on a wall";
+      img.loading = "eager"; img.decoding = "async";
+      Object.assign(img.style, inner(mould + matCm, mould + matCm, it.iw, it.ih));
+      if (matCm) img.classList.add("bevel");
+      fr.append(img);
+      if (!canvas) add("glass", {}, fr);
+      if (wall.light === "evening") {
+        add("lamp", { left: X(x + it.fw / 2 - Math.min(it.fw * 0.55, 60) / 2), width: X(Math.min(it.fw * 0.55, 60)), bottom: yb(fy + it.fh + 6), height: Y(3.2) });
+        add("pool", { left: X(x - it.fw * 0.25), width: X(it.fw * 1.5), bottom: yb(fy - it.fh * 0.35), height: Y(it.fh * 1.45) });
+      }
+      x += it.fw + gap;
+    });
+    add("shade", {});
+
+    const ea = items[group.indexOf(p)] || items[0];
+    const bits = [
+      `${n > 1 ? "Each print" : "Print"} ${Math.round(ea.iw)} × ${Math.round(ea.ih)} cm`,
+      `${canvas ? "Canvas" : "Framed"} ${Math.round(ea.fw)} × ${Math.round(ea.fh)} cm`
+    ];
+    if (n > 1) bits.push(`Group ${Math.round(groupW)} cm wide`);
+    bits.push(`${room.name} ${room.w} cm`);
+    if (wall.person) bits.push("Person 175 cm");
+    wrap.append(el("div", "scale-note", bits.join("  ·  ")));
     return wrap;
   }
+
+  const PERSON_SVG = '<svg viewBox="0 0 48 175" preserveAspectRatio="none" aria-hidden="true"><g fill="currentColor">' +
+    '<ellipse cx="24" cy="11" rx="8.5" ry="10.5"/>' +
+    '<path d="M18 22h12l2 4c7 1.5 11 5 12 11l3 34c.3 3-4 4-4.6 1L39 44l-1 33 2 92c0 3-6 3-6.5 0L26 92h-4l-7.5 77c-.5 3-6.5 3-6.5 0l2-92-1-33-3.4 28c-.6 3-4.9 2-4.6-1l3-34c1-6 5-9.5 12-11z"/>' +
+    '</g></svg>';
+
+  /* ---------- rendered furniture ---------- */
+  // Sideboard and sofa are 3D renders with their own soft shadows (transparent WebP).
+  // Each image covers a known rectangle of wall, in cm from the furniture's centre line.
+  const SOFAS = { gray: ["Grey", "#adadaa"], champagne: ["Taupe", "#8a7560"], navy: ["Navy", "#28407e"] };
+  const ROOM_IMG = "assets/room/";
+  function render3d(add, X, Y, yb, cx, file, r, alt) {
+    const d = add("r3d", { left: X(cx + r[0]), width: X(r[1] - r[0]), bottom: yb(r[2]), height: Y(r[3] - r[2]) });
+    const im = el("img"); im.src = ROOM_IMG + file; im.alt = ""; im.decoding = "async"; im.draggable = false;
+    d.append(im);
+    return d;
+  }
+
+  const FURNITURE = {
+    sideboard({ add, X, Y, yb, cx }) {
+      const eve = wall.light === "evening";
+      render3d(add, X, Y, yb, cx, eve ? "sideboard-eve.webp" : "sideboard-day.webp", [-100, 100, -16, 150]);
+      if (eve) {
+        add("lampglow", { left: X(cx - 55 - 70), width: X(140), bottom: yb(64), height: Y(130) });
+        render3d(add, X, Y, yb, cx, "lampshade.webp", [-75, -35, 106, 138]).classList.add("lit");
+      }
+    },
+    sofa({ add, X, Y, yb, cx }) {
+      render3d(add, X, Y, yb, cx, "sofa-" + wall.sofa + ".webp", [-128, 200, -16, 104]);
+    },
+    bed({ add, X, Y, yb, cx }) {
+      const bw = 160, hb = 118, base = 30, mat = 24, tw = 45, th = 55;
+      const hbx = cx - (bw + 10) / 2;
+      const head = add("headboard", { left: X(hbx), width: X(bw + 10), bottom: yb(0), height: Y(hb) });
+      head.innerHTML = "<span></span>".repeat(7);
+      add("bedbase", { left: X(cx - bw / 2), width: X(bw), bottom: yb(6), height: Y(base - 6) });
+      add("duvet", { left: X(cx - bw / 2 - 2), width: X(bw + 4), bottom: yb(base - 2), height: Y(mat + 6) });
+      add("pillow", { left: X(cx - bw / 2 + 8), width: X(64), bottom: yb(base + mat + 2), height: Y(24) });
+      add("pillow", { left: X(cx + bw / 2 - 72), width: X(64), bottom: yb(base + mat + 2), height: Y(24) });
+      add("cushion", { left: X(cx - 22), width: X(44), bottom: yb(base + mat), height: Y(26) });
+      [cx - bw / 2 - 12 - tw, cx + bw / 2 + 12].forEach(tx => {
+        add("table", { left: X(tx), width: X(tw), bottom: yb(0), height: Y(th) });
+        add("lamp-base", { left: X(tx + tw / 2 - 6), width: X(12), bottom: yb(th), height: Y(26) });
+        add("lamp-shade", { left: X(tx + tw / 2 - 15), width: X(30), bottom: yb(th + 24), height: Y(22) });
+      });
+    },
+    desk({ add, X, Y, yb, cx }) {
+      const dw = 140, dh = 75, dx = cx - dw / 2;
+      [dx + 4, dx + dw - 4 - 3].forEach(x => add("leg thin", { left: X(x), width: X(3), bottom: yb(0), height: Y(dh - 3) }));
+      add("desktop", { left: X(dx), width: X(dw), bottom: yb(dh - 3), height: Y(3) });
+      add("drawer", { left: X(dx + dw - 46), width: X(40), bottom: yb(dh - 15), height: Y(12) });
+      add("stand", { left: X(cx - 4), width: X(8), bottom: yb(dh), height: Y(12) });
+      add("monitor", { left: X(cx - 30), width: X(60), bottom: yb(dh + 12), height: Y(34) });
+      add("mug", { left: X(cx + 38), width: X(8), bottom: yb(dh), height: Y(10) });
+      add("pot small", { left: X(dx + 10), width: X(16), bottom: yb(dh), height: Y(16) });
+      [[-20, 30], [0, 38], [22, 28]].forEach(([deg, len]) => {
+        const s = add("frond", { left: X(dx + 15), width: X(7), bottom: yb(dh + 14), height: Y(len) }); s.style.transform = `rotate(${deg}deg)`;
+      });
+      add("chair", { left: X(cx - 25), width: X(50), bottom: yb(42), height: Y(52) });
+      add("chairseat", { left: X(cx - 27), width: X(54), bottom: yb(42), height: Y(6) });
+      add("chairpost", { left: X(cx - 2), width: X(4), bottom: yb(6), height: Y(36) });
+      add("chairfoot", { left: X(cx - 28), width: X(56), bottom: yb(0), height: Y(6) });
+    },
+    fireplace({ add, X, Y, yb, cx }) {
+      const sw_ = 150, sh = 112, fw = 74, fh = 66;
+      add("breast", { left: X(cx - 95), width: X(190), bottom: yb(0), height: "100%" });
+      add("hearth", { left: X(cx - 85), width: X(170), bottom: yb(0), height: Y(5) });
+      const s = add("surround", { left: X(cx - sw_ / 2), width: X(sw_), bottom: yb(5), height: Y(sh - 5) });
+      add("firebox", { left: X(cx - fw / 2), width: X(fw), bottom: yb(5), height: Y(fh) });
+      add("logs", { left: X(cx - 22), width: X(44), bottom: yb(7), height: Y(10) });
+      add("mantel", { left: X(cx - sw_ / 2 - 8), width: X(sw_ + 16), bottom: yb(sh), height: Y(6) });
+      [cx - sw_ / 2 + 6, cx + sw_ / 2 - 12].forEach(x => {
+        add("candle-stick", { left: X(x), width: X(5), bottom: yb(sh + 6), height: Y(16) });
+        add("candle", { left: X(x + 0.8), width: X(3.4), bottom: yb(sh + 22), height: Y(12) });
+      });
+      add("vase", { left: X(cx + 34), width: X(10), height: Y(18), bottom: yb(sh + 6) });
+      s.innerHTML = "<i></i>";
+    }
+  };
+
   function renderWallCtl() {
+    migrateWall();
     const c = $("wallCtl"); c.textContent = "";
     const box = el("div", "wall-ctl");
-    const row = (label, items) => { const r = el("div", "ctl"); r.append(el("span", null, label), ...items); box.append(r); };
     const save = () => { try { localStorage.setItem("wallPrefs", JSON.stringify(wall)); } catch (e) {} renderLb(); };
-    const sw = (k, label, bg, key) => { const b = el("button", "sw"); b.type = "button"; b.style.background = bg; b.title = label; b.setAttribute("aria-label", label); b.setAttribute("aria-pressed", wall[key] === k); b.onclick = () => { wall[key] = k; save(); }; return b; };
-    const chipF = (label, on, fn) => { const b = el("button", "chip", label); b.type = "button"; b.setAttribute("aria-pressed", on); b.onclick = fn; return b; };
-    row("Room", [chipF("Sideboard", wall.furniture !== "sofa", () => { wall.furniture = "sideboard"; save(); }), chipF("Sofa", wall.furniture === "sofa", () => { wall.furniture = "sofa"; save(); })]);
+    const row = (label, items) => { const r = el("div", "ctl"); r.setAttribute("role", "group"); r.setAttribute("aria-label", label); r.append(el("span", null, label), ...items); box.append(r); };
+    const chip = (label, on, fn, title) => { const b = el("button", "chip", label); b.type = "button"; b.setAttribute("aria-pressed", on); if (title) b.title = title; b.onclick = fn; return b; };
+    const sw = (k, label, bg, key, cls) => { const b = el("button", "sw" + (cls ? " " + cls : "")); b.type = "button"; b.style.background = bg; b.title = label; b.setAttribute("aria-label", label); b.setAttribute("aria-pressed", wall[key] === k); b.onclick = () => { wall[key] = k; save(); }; return b; };
+
+    row("Room", Object.entries(ROOMS).map(([k, r]) => chip(r.name, wall.furniture === k, () => { wall.furniture = k; save(); })));
+    if (wall.furniture === "sofa") row("Sofa", Object.entries(SOFAS).map(([k, [n, col]]) => sw(k, n + " velvet", col, "sofa")));
     row("Wall", Object.entries(WALLS).map(([k, [n, col]]) => sw(k, n + " wall", col, "wall")));
-    row("Frame", Object.entries(FRAMES).map(([k, [n, a, b]]) => sw(k, n + " frame", `linear-gradient(135deg,${a},${b})`, "frame")));
-    const chip = (label, on, fn) => { const b = el("button", "chip", label); b.type = "button"; b.setAttribute("aria-pressed", on); b.onclick = fn; return b; };
-    row("Mount", [chip("Mounted", wall.mat, () => { wall.mat = true; save(); }), chip("Full bleed", !wall.mat, () => { wall.mat = false; save(); })]);
-    row("Size", SIZES.map(s => chip(s + " cm", wall.size === s, () => { wall.size = s; save(); })));
+    row("Finish", Object.entries(FINISH).map(([k, n]) => chip(n, wall.finish === k, () => { wall.finish = k; save(); })));
+    row("Frame", [...Object.entries(FRAMES).map(([k, [n, a, b]]) => sw(k, n + " frame", `linear-gradient(135deg,${a},${b})`, "frame")),
+      sw("canvas", "Canvas, no frame", "conic-gradient(from 210deg,#6f8b92,#c9b48c,#506a52,#6f8b92)", "frame", "canvas-sw")]);
+    if (wall.frame !== "canvas") row("Mount", Object.entries(MOUNTS).map(([k, [n]]) => chip(n, wall.mount === k, () => { wall.mount = k; save(); })));
+    row("Size", SIZES.map(s => chip(s + "", wall.size === s, () => { wall.size = s; save(); }, "Longest edge of the print, " + s + " cm")).concat(el("em", "unit", "cm")));
+    row("Light", [chip("Day", wall.light === "day", () => { wall.light = "day"; save(); }), chip("Evening", wall.light === "evening", () => { wall.light = "evening"; save(); })]);
+    row("Scale", [chip("Show a person", wall.person, () => { wall.person = !wall.person; save(); }, "A 175 cm figure for scale")]);
     c.append(box);
   }
 })();
