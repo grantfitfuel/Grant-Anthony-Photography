@@ -125,7 +125,7 @@ def render(post, data):
     kind = post["type"]
 
     if kind == "cover":
-        status = post.get("label") or ("Out now" if book.get("status") == "out" else "Coming soon")
+        status = post.get("label") or ("Out now" if book.get("status") == "out" else ("Expected release " + book["release"] if book.get("release") else "Coming soon"))
         header(d, theme, status)
         cov = cover_image(book, 900)
         if cov is None:
