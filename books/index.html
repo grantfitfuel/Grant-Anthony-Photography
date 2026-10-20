@@ -332,6 +332,8 @@ section.shelf{padding-block:64px 24px}
 .tag{font-style:italic;color:var(--sun);margin:0;font-size:.97rem}
 .blurb{margin:10px 0 14px;font-size:.98rem}
 .status{display:inline-block;font:500 .68rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;padding:7px 10px;border-radius:99px;border:1px solid var(--rule);color:var(--muted)}
+.status.due{display:inline-flex;flex-direction:column;gap:5px;border-radius:12px;padding:8px 12px;line-height:1.1;color:var(--ink,#fff)}
+.status.due small{font-size:.58rem;color:var(--muted);letter-spacing:.14em}
 .status.out{background:var(--sun);border-color:var(--sun);color:#221a00}
 
 .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
@@ -440,7 +442,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
           <p class="series">Literary fiction</p>
           <h3>The Cable and the Quiet</h3>
           <p class="blurb">Ewan McLeod keeps a GP practice running: the phones, the complaints, the rota, and the store cupboard where a spare network cable sits coiled on the lower shelf. On Thursdays he visits his father, in a house that has been quieter since his mother died. Everyone depends on Ewan. Nobody asks who he depends on.</p>
-          <span class="status">Coming soon</span>
+          <span class="status due"><small>Expected release</small>Autumn 2027</span>
         </div>
       </article>
       <article class="book" id="inherited">
@@ -450,7 +452,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
           <h3>Inherited</h3>
           <p class="tag">The past is in your blood. The future is in their hands.</p>
           <p class="blurb">Eleven names from a 1950s test cohort. One of them belongs to Callum's own great-uncle. What began as one family's secret has become an app on millions of phones, and Callum has fourteen days to stop what comes next.</p>
-          <span class="status">Coming soon</span>
+          <span class="status due"><small>Expected release</small>Spring 2027</span>
         </div>
       </article>
       <article class="book" id="pentimento">
@@ -460,7 +462,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
           <h3>Pentimento</h3>
           <p class="tag">The past doesn't stay buried. It shows through.</p>
           <p class="blurb">Dr Alec Muir authenticates paintings, and nobody in Scotland is better at seeing what lies beneath. When a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions that lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.</p>
-          <span class="status">Coming soon</span>
+          <span class="status due"><small>Expected release</small>Winter 2026</span>
         </div>
       </article>
       <article class="book" id="the-roots-that-breathe">
@@ -469,7 +471,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
           <p class="series">The Dimming Canopy · Book One</p>
           <h3>The Roots That Breathe</h3>
           <p class="blurb">In Thessaria the ground has started to go wrong. The fortress of Vaelmoor holds its border with dragon fire, the wandering Telaru listen to the roots, and between them stand the dragon Threnvald and the man bound to him. Epic fantasy about power, restraint, and what a bond costs when it is used without asking.</p>
-          <span class="status">Coming soon</span>
+          <span class="status due"><small>Expected release</small>Summer 2027</span>
         </div>
       </article>
       <article class="book" id="the-deep-that-listens">
@@ -478,7 +480,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
           <p class="series">The Dimming Canopy · Book Two</p>
           <h3>The Deep That Listens</h3>
           <p class="blurb">The ground beneath Thessaria has begun to stir. Root-Fathers are dying, a remote listening post has gone silent, and the dragon Threnvald and the man bound to him must learn to work together again, by asking rather than taking, before something far older than the war decides what it wants.</p>
-          <span class="status">Coming soon</span>
+          <span class="status due"><small>Expected release</small>Winter 2027</span>
         </div>
       </article>
     </div>
@@ -595,17 +597,51 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
       nextT+=S; step++;
     }
   }
+  // iPhone: Web Audio is silenced by the ring/silent switch unless the page asks for
+  // media playback. Ask directly where Safari allows it, and also keep a silent
+  // <audio> element playing, which switches the page to playback on older iOS.
+  let keepAlive=null;
+  function silentWav(){
+    const rate=8000,n=rate/2,b=new ArrayBuffer(44+n*2),v=new DataView(b);
+    const w=(o,str)=>{for(let i=0;i<str.length;i++)v.setUint8(o+i,str.charCodeAt(i));};
+    w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);
+    v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);
+    v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
+    return URL.createObjectURL(new Blob([b],{type:'audio/wav'}));
+  }
+  function unlock(){
+    try{ if(navigator.audioSession) navigator.audioSession.type='playback'; }catch(e){}
+    if(!keepAlive){
+      keepAlive=document.createElement('audio');
+      keepAlive.src=silentWav(); keepAlive.loop=true;
+      keepAlive.setAttribute('playsinline',''); keepAlive.setAttribute('x-webkit-airplay','deny');
+    }
+    const p=keepAlive.play(); if(p&&p.catch)p.catch(()=>{});
+    // a one-sample buffer started inside the tap wakes older Safari
+    const b=ctx.createBuffer(1,1,22050),src=ctx.createBufferSource();src.buffer=b;src.connect(ctx.destination);src.start(0);
+  }
+  function start(){
+    nextT=ctx.currentTime+.08; step=0;
+    master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setValueAtTime(0,ctx.currentTime);master.gain.setTargetAtTime(.8,ctx.currentTime,.4);
+    clearInterval(timer); timer=setInterval(schedule,25);
+  }
   btn.addEventListener('click',()=>{
     if(!ctx) init();
     if(!on){
-      ctx.resume(); nextT=ctx.currentTime+.05; step=0;
-      master.gain.cancelScheduledValues(ctx.currentTime);master.gain.setTargetAtTime(.8,ctx.currentTime,.4);
-      timer=setInterval(schedule,25); on=true;
+      on=true; unlock();
+      const r=ctx.resume(); // resume must be called inside the tap on iOS
+      if(r&&r.then) r.then(start,start); else start();
     }else{
-      master.gain.setTargetAtTime(0,ctx.currentTime,.2); clearInterval(timer); on=false;
-      setTimeout(()=>{if(!on)ctx.suspend();},800);
+      on=false; master.gain.setTargetAtTime(0,ctx.currentTime,.2); clearInterval(timer);
+      setTimeout(()=>{if(!on){ctx.suspend(); if(keepAlive)keepAlive.pause();}},800);
     }
     btn.classList.toggle('on',on); btn.setAttribute('aria-pressed',on); txt.textContent=on?'Pause':'Play the soundtrack';
+  });
+  // iOS suspends audio when the phone locks or the tab is hidden; pick up again on return
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible'&&on&&ctx&&ctx.state!=='running'){
+      ctx.resume().then(start,()=>{}); if(keepAlive)keepAlive.play().catch(()=>{});
+    }
   });
 })();
 </script>
