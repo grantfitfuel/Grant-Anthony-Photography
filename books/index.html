@@ -312,10 +312,12 @@ nav a{text-decoration:none;color:var(--muted)} nav a:hover{color:var(--ink)}
 
 /* Ticker */
 .ticker{border-block:1px solid var(--rule);overflow:hidden;background:var(--deep);margin-block:28px 0}
-.ticker .run{display:flex;width:max-content;gap:0;padding-block:14px;font:700 1.35rem/1 var(--display);white-space:nowrap}
+.ticker .run{display:flex;will-change:transform;width:max-content;gap:0;padding-block:14px;font:700 1.35rem/1 var(--display);white-space:nowrap}
 .ticker span{padding-inline:22px}
 .ticker span:nth-child(3n+1){color:var(--fic)} .ticker span:nth-child(3n+2){color:var(--ink)} .ticker span:nth-child(3n){color:var(--nf)}
 @media (prefers-reduced-motion:no-preference){.ticker .run{animation:slide 38s linear infinite}}
+/* with Reduce Motion on (common on iPhone) the ticker stays still, so let it be swiped instead */
+@media (prefers-reduced-motion:reduce){.ticker{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}.ticker::-webkit-scrollbar{display:none}}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* Shelves */
