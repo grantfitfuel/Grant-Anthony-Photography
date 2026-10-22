@@ -17,6 +17,8 @@ BOOKS = SITE + "/books/"
 AUTHOR_ID = BOOKS + "#author"
 # where the small line above a book's title is not a description of the book, say what it is about instead
 ABOUT = {"the-noisy-mind": "Living with an overactive brain"}
+# genre for search engines where the series line does not say it
+GENRE = {"echoes-of-the-shattered": "Fantasy"}
 
 
 def read(p):
@@ -117,6 +119,11 @@ def book_extras(b, posts):
                 quotes.append((p["text"], ""))
             elif t == "talk" and p.get("headline"):
                 notes.append((p.get("label", ""), p["headline"], p.get("sub", "")))
+    # a book can name its own lines for the web page (books.<key>.lines); otherwise the quote posts are used
+    if key and posts["books"][key].get("opening"):
+        opening = list(posts["books"][key]["opening"])
+    if key and posts["books"][key].get("lines"):
+        quotes = [(t, "") for t in posts["books"][key]["lines"]]
     return key, opening, quotes, notes
 
 
@@ -166,7 +173,7 @@ def book_page(b, all_books, posts, style):
     book = {
         "@type": "Book", "@id": url + "#book", "name": b["title"], "url": url,
         "author": {"@type": "Person", "@id": AUTHOR_ID, "name": b["byline"]},
-        "genre": series_plain, "description": b["blurb"], "image": cover_abs, "inLanguage": "en-GB",
+        "genre": GENRE.get(b["slug"], series_plain), "description": b["blurb"], "image": cover_abs, "inLanguage": "en-GB",
     }
     if b["fiction"]:
         book["publisher"] = {"@type": "Organization", "name": "Levern Press"}
@@ -235,7 +242,7 @@ def book_page(b, all_books, posts, style):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{cover_abs}">
 {f'<meta property="og:image:width" content="{w}">' + chr(10) + f'<meta property="og:image:height" content="{h}">' + chr(10) if w else ""}<meta property="og:image:alt" content="Cover of {esc(b["title"])} by {esc(b["byline"])}">
-<meta property="book:tag" content="{esc(series_plain)}">
+<meta property="book:tag" content="{esc(GENRE.get(b["slug"], series_plain))}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(b["title"])} by {esc(b["byline"])}">
 <meta name="twitter:description" content="{esc(clip(b["tag"] or b["blurb"], 200))}">
