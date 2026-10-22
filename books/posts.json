@@ -147,6 +147,29 @@
    },
    "tags": "#epicfantasy #fantasybooks #dragons #booksofinstagram #thedimmingcanopy",
    "release": "Winter 2027"
+  },
+  "veilborn": {
+   "title": "Echoes of the Shattered",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/veilborn-large.jpg",
+   "theme": {
+    "bg": "#2a0a06",
+    "fg": "#fff1e6",
+    "accent": "#ffb03a"
+   },
+   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "opening": [
+    "The Archive received the dead.",
+    "Not their bodies, Lyrinth had other institutions for bodies, and the dead themselves, in the Archive's taxonomy, were not the point. What the Archive received were their moments: the crystallised instants of experience that certain Glassborn could fix and hold, the way amber fixed insects, the way ice fixed the shape of a footprint until the thaw. Moment-echoes. The dead left them scattered through the fabric of where they had lived, snagged on doorframes and window-glass and the surfaces of still water, and the Archive's work was to collect them, catalogue them, and make them available to those who needed to find something in the past.",
+    "It was an honest work. Tselin had decided this early and had not reconsidered. The alternative, that she had spent seventeen years in a building full of other people's moments because she was afraid of her own, she had considered and set aside. Repeatedly. With the focused deliberateness of someone who knew exactly what they were setting aside."
+   ],
+   "lines": [
+    "A Grannakh hillside, read correctly, was a biography.",
+    "Vaelra had been eating grief for forty-one years.",
+    "She was beginning to understand that the line had always been a choice, not a fact."
+   ]
   }
  },
  "posts": [
