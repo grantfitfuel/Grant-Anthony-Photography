@@ -1,7 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://grantanthony.co.uk/</loc></url>
-  <url><loc>https://grantanthony.co.uk/privacy.html</loc></url>
-  <url><loc>https://grantanthony.co.uk/copyright.html</loc></url>
-  <url><loc>https://grantanthony.co.uk/books/</loc><changefreq>weekly</changefreq></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://grantanthony.co.uk/</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/lofoten-boat-muzz3lxyria.jpg</image:loc>
+      <image:title>Lofoten Boat</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/wall-of-fame-muzyix9iqrv.jpg</image:loc>
+      <image:title>Wall of Fame</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/uttakleiv-beach-2-unsigned-muzytkxpmlc.jpg</image:loc>
+      <image:title>Uttakleiv beach</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/rotten-muzyf94ial6.jpg</image:loc>
+      <image:title>Rotten</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/lindisfarne-castle-2-muzz9zliw36.jpg</image:loc>
+      <image:title>Lindisfarne</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/fab4-and-liver-birds-muzy9yxp7yp.jpg</image:loc>
+      <image:title>Fab4 and Liver Birds</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/reflections-and-shadows-loften-beach-uns-muzyn980n6g.jpg</image:loc>
+      <image:title>Reflections and Shadows </image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/the-caledonian-railway-bridge-muzxyqihvnu.jpg</image:loc>
+      <image:title>The Caledonian Railway Bridge</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/luskentyre-icm-muzy45wewod.jpg</image:loc>
+      <image:title>Luskentyre ICM</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/spikey-muzxrkrz926.jpg</image:loc>
+      <image:title>Spikey</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/south-uist-muzxduu15bc.jpg</image:loc>
+      <image:title>South Uist</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/reflections-of-bath-grant-anthony-muzxkg9jl68.jpg</image:loc>
+      <image:title>Reflections of Bath</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/speicherstadt-balconies.jpg</image:loc>
+      <image:title>Speicherstadt balconies</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/loch-maree-muzx0s79fsh.jpg</image:loc>
+      <image:title>Loch Maree</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/green-staircase-muzx6wxbhfz.jpg</image:loc>
+      <image:title>Green Staircase</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/botallack.jpg</image:loc>
+      <image:title>Botallack</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/one-way.jpg</image:loc>
+      <image:title>One way</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/rings-rising.jpg</image:loc>
+      <image:title>Rings, rising</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/deadvlei.jpg</image:loc>
+      <image:title>Deadvlei</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/xiangqi.jpg</image:loc>
+      <image:title>Xiangqi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/angel.jpg</image:loc>
+      <image:title>Angel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/shadow-line.jpg</image:loc>
+      <image:title>Shadow line</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/sprinkenhof.jpg</image:loc>
+      <image:title>Sprinkenhof</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/first-light.jpg</image:loc>
+      <image:title>First light</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/mulberry-street.jpg</image:loc>
+      <image:title>Mulberry Street</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/dahlia.jpg</image:loc>
+      <image:title>Dahlia</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/triangle.jpg</image:loc>
+      <image:title>Triangle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/lofoten-shore.jpg</image:loc>
+      <image:title>Lofoten shore</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/hydrant.jpg</image:loc>
+      <image:title>Scratch and sniff</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/cathedral-in-motion.jpg</image:loc>
+      <image:title>Cathedral in motion</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/walk.jpg</image:loc>
+      <image:title>Walk</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/ericusspitze-blue-hour.jpg</image:loc>
+      <image:title>Der Spiegel</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/red-dress.jpg</image:loc>
+      <image:title>Red dress</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/bleached.jpg</image:loc>
+      <image:title>Bleached</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/chinatown.jpg</image:loc>
+      <image:title>Chinatown</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/rings.jpg</image:loc>
+      <image:title>Rings</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/storm-over-the-dunes.jpg</image:loc>
+      <image:title>Storm over the dunes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/lanterns.jpg</image:loc>
+      <image:title>Lanterns</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/chilehaus.jpg</image:loc>
+      <image:title>Chilehaus</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/spiral.jpg</image:loc>
+      <image:title>Spiral</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/courtyard-skylight.jpg</image:loc>
+      <image:title>Courtyard skylight</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/debunked-large.jpg</image:loc>
+      <image:title>Debunked</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/cable-large.jpg</image:loc>
+      <image:title>The Cable and the Quiet</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/inherited-large.jpg</image:loc>
+      <image:title>Inherited</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
+      <image:title>Pentimento</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/roots-large.jpg</image:loc>
+      <image:title>The Roots That Breathe</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/deep-large.jpg</image:loc>
+      <image:title>The Deep That Listens</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/noisy-large.jpg</image:loc>
+      <image:title>The Noisy Mind</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/calibrated-large.jpg</image:loc>
+      <image:title>The Calibrated Mind</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pain-large.jpg</image:loc>
+      <image:title>Rewiring Pain</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/debunked/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/debunked-large.jpg</image:loc>
+      <image:title>Debunked</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/the-cable-and-the-quiet/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/cable-large.jpg</image:loc>
+      <image:title>The Cable and the Quiet</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/inherited/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/inherited-large.jpg</image:loc>
+      <image:title>Inherited</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/pentimento/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
+      <image:title>Pentimento</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/the-roots-that-breathe/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/roots-large.jpg</image:loc>
+      <image:title>The Roots That Breathe</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/the-deep-that-listens/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/deep-large.jpg</image:loc>
+      <image:title>The Deep That Listens</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/the-noisy-mind/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/noisy-large.jpg</image:loc>
+      <image:title>The Noisy Mind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/the-calibrated-mind/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/calibrated-large.jpg</image:loc>
+      <image:title>The Calibrated Mind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/rewiring-pain/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pain-large.jpg</image:loc>
+      <image:title>Rewiring Pain</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/copyright.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
 </urlset>
