@@ -1,0 +1,43 @@
+name: Search pages
+
+# Rebuilds the book pages, the photo data search engines read, and sitemap.xml
+# whenever photographs or books change. It only commits if something actually changed.
+# To run it by hand: Actions tab > Search pages > Run workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - photos.json
+      - books/index.html
+      - books/posts.json
+      - books/covers/**
+      - scripts/build_seo.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build pages and sitemap
+        run: python scripts/build_seo.py
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add -A books index.html sitemap.xml
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git commit -m "Search pages: rebuild book pages and sitemap"
+          for i in 1 2 3; do git pull --rebase --quiet && git push && exit 0; sleep 5; done
+          exit 1
