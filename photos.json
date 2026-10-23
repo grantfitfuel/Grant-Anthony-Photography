@@ -176,7 +176,7 @@
       "id": "where-the-river-steals-the-fire-mvlei78zxm2",
       "title": "Where The River Steals The Fire",
       "description": "",
-      "location": "",
+      "location": "The Hermitage, Perthshire",
       "year": "2026",
       "camera": "Canon EOS R5",
       "lens": "RF24-70mm F2.8 L IS USM",
@@ -184,7 +184,10 @@
       "aperture": "f/11",
       "shutter": "1/2 s",
       "iso": "ISO 200",
-      "categories": [],
+      "categories": [
+        "woodland",
+        "landscapes"
+      ],
       "featured": false,
       "file": "images/where-the-river-steals-the-fire-mvlei78zxm2.jpg",
       "thumb": "images/thumbs/where-the-river-steals-the-fire-mvlei78zxm2.jpg",
@@ -196,13 +199,14 @@
       "mw": 1600,
       "mh": 1067,
       "tone": "#7a5e1f",
-      "added": "2026-10-23"
+      "added": "2026-10-23",
+      "instagram": true
     },
     {
       "id": "the-alchemy-of-autumn-mvlei0u6472",
       "title": "The Alchemy of Autumn",
       "description": "",
-      "location": "",
+      "location": "Kinclaven, Perthshire",
       "year": "2026",
       "camera": "Canon EOS R5",
       "lens": "RF70-200mm F2.8 L IS USM",
@@ -210,7 +214,9 @@
       "aperture": "f/11",
       "shutter": "1/30 s",
       "iso": "ISO 3200",
-      "categories": [],
+      "categories": [
+        "woodland"
+      ],
       "featured": false,
       "file": "images/the-alchemy-of-autumn-mvlei0u6472.jpg",
       "thumb": "images/thumbs/the-alchemy-of-autumn-mvlei0u6472.jpg",
@@ -222,13 +228,14 @@
       "mw": 1600,
       "mh": 1600,
       "tone": "#7a691f",
-      "added": "2026-10-23"
+      "added": "2026-10-23",
+      "instagram": true
     },
     {
       "id": "of-moss-stone-and-memory-mvlehtvhzv6",
       "title": "Of Moss, Stone and Memory",
-      "description": "",
-      "location": "",
+      "description": "Wet boulders thick with moss lead down to a dark, quiet stretch of river. Beyond them an old stone bridge sits half hidden among copper and gold trees, and a soft mist hangs over everything. Fallen leaves are scattered across the rocks in the foreground, the first sign of the season turning.",
+      "location": "The Hermitage, Perthshire",
       "year": "2026",
       "camera": "Canon EOS R5",
       "lens": "RF24-70mm F2.8 L IS USM",
@@ -236,7 +243,10 @@
       "aperture": "f/10",
       "shutter": "1/15 s",
       "iso": "ISO 2500",
-      "categories": [],
+      "categories": [
+        "landscapes",
+        "woodland"
+      ],
       "featured": false,
       "file": "images/of-moss-stone-and-memory-mvlehtvhzv6.jpg",
       "thumb": "images/thumbs/of-moss-stone-and-memory-mvlehtvhzv6.jpg",
