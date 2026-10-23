@@ -974,7 +974,7 @@
     {
       "id": "dahlia",
       "title": "Dahlia",
-      "description": "",
+      "description": "A single dahlia, its red centre fading to pink and gold at the petal tips. The garden behind has dissolved into soft green and grey, so nothing competes with the flower.",
       "location": "",
       "year": "",
       "camera": "",
@@ -1024,7 +1024,7 @@
     {
       "id": "lofoten-shore",
       "title": "Lofoten shore",
-      "description": "",
+      "description": "Lofoten, Norway. Smooth rock and wet sand fill the foreground, with weed spread across the beach like a map. The surf softens beyond, and low light catches a jagged ridge of peaks under a heavy sky.",
       "location": "Lofoten, Norway",
       "year": "",
       "camera": "",
@@ -1131,7 +1131,7 @@
     {
       "id": "ericusspitze-blue-hour",
       "title": "Der Spiegel",
-      "description": "",
+      "description": "The Spiegel building at Ericusspitze in Hamburg's HafenCity, at blue hour. The office lights have come on while the sky is still deep blue, and the still water doubles every lit window.",
       "location": "Hamburg",
       "year": "",
       "camera": "",
@@ -1155,7 +1155,7 @@
     {
       "id": "red-dress",
       "title": "Red dress",
-      "description": "",
+      "description": "Deadvlei, Namibia. A figure in a red dress walks across the pale clay pan, well apart from a dead tree, with the dark slope of a dune behind. The red is the only strong colour in the frame.",
       "location": "Deadvlei, Namibia",
       "year": "2026",
       "camera": "Canon EOS R5",
@@ -1180,7 +1180,7 @@
     {
       "id": "bleached",
       "title": "Bleached",
-      "description": "",
+      "description": "Deadvlei, Namibia. A single pale, bare tree stands on bright white ground against a soft, hazy wash of light. At 400 mm almost everything else is left out of the frame.",
       "location": "Deadvlei, Namibia",
       "year": "2026",
       "camera": "Canon EOS R5",
@@ -1205,7 +1205,7 @@
     {
       "id": "chinatown",
       "title": "Chinatown",
-      "description": "",
+      "description": "Chinatown, New York. A crowded pavement in layers: a woman in sunglasses in front, a family just behind her, and the shopfronts and crowd beyond. Yellow posts in the corner balance the frame.",
       "location": "Chinatown, New York",
       "year": "",
       "camera": "",
@@ -1233,7 +1233,7 @@
     {
       "id": "rings",
       "title": "Rings",
-      "description": "",
+      "description": "Hamburg. Glowing rings circle a dark column under a glass roof, with smaller rings hanging above. Looking straight up, the curves stand out against the straight lines of the steel and glass around them.",
       "location": "Hamburg",
       "year": "",
       "camera": "",
@@ -1256,7 +1256,7 @@
     {
       "id": "storm-over-the-dunes",
       "title": "Storm over the dunes",
-      "description": "",
+      "description": "Namibia. A twisted, leafless tree stands in front of orange dunes, while a purple storm sky gathers behind. The bright ground against the dark cloud is down to the weather, not the landscape.",
       "location": "Namibia",
       "year": "2026",
       "camera": "Canon EOS R5",
@@ -1281,7 +1281,7 @@
     {
       "id": "lanterns",
       "title": "Lanterns",
-      "description": "",
+      "description": "New York. Paper lanterns in yellow and pink hang on a line across the street, bright against the dark brick and the fire escapes behind them.",
       "location": "New York",
       "year": "",
       "camera": "",
@@ -1309,7 +1309,7 @@
     {
       "id": "chilehaus",
       "title": "Chilehaus",
-      "description": "",
+      "description": "The Chilehaus in Hamburg at night. Its pointed corner, often likened to a ship's bow, is lit against a black sky, and a passing car has drawn a thin red line along the street at its base. The building is part of the Kontorhaus district, a UNESCO World Heritage Site together with the Speicherstadt.",
       "location": "Hamburg",
       "year": "",
       "camera": "",
@@ -1332,7 +1332,7 @@
     {
       "id": "spiral",
       "title": "Spiral",
-      "description": "",
+      "description": "Hamburg, looking straight up. Concentric rings and radiating beams lead the eye to a disc of light dotted with small openings, in the exact centre of the frame. In black and white it becomes pure pattern.",
       "location": "Hamburg",
       "year": "",
       "camera": "",
@@ -1356,7 +1356,7 @@
     {
       "id": "courtyard-skylight",
       "title": "Courtyard skylight",
-      "description": "",
+      "description": "Hamburg, looking straight up from a brick courtyard. The walls and their windows lean in from every side towards a glass roof, and a round tower breaks into the frame from the lower left corner.",
       "location": "Hamburg",
       "year": "",
       "camera": "",
