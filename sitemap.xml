@@ -2,9 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://grantanthony.co.uk/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/where-the-river-steals-the-fire-mvlei78zxm2.jpg</image:loc>
+      <image:title>Where The River Steals The Fire</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/the-alchemy-of-autumn-mvlei0u6472.jpg</image:loc>
+      <image:title>The Alchemy of Autumn</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/of-moss-stone-and-memory-mvlehtvhzv6.jpg</image:loc>
+      <image:title>Of Moss, Stone and Memory</image:title>
+    </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/lofoten-boat-muzz3lxyria.jpg</image:loc>
       <image:title>Lofoten Boat</image:title>
