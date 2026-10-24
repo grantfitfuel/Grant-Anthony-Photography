@@ -215,6 +215,14 @@
       <image:title>Echoes of the Shattered</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/veilborn2-large.jpg</image:loc>
+      <image:title>Cradle&#x27;s Veil</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/veilborn3-large.jpg</image:loc>
+      <image:title>When Realms Become One</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/noisy-large.jpg</image:loc>
       <image:title>The Noisy Mind</image:title>
     </image:image>
@@ -288,6 +296,24 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/veilborn-large.jpg</image:loc>
       <image:title>Echoes of the Shattered</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/cradles-veil/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/veilborn2-large.jpg</image:loc>
+      <image:title>Cradle&#x27;s Veil</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/when-realms-become-one/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/veilborn3-large.jpg</image:loc>
+      <image:title>When Realms Become One</image:title>
     </image:image>
   </url>
   <url>
