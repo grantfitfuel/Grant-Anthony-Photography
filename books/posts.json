@@ -170,6 +170,52 @@
     "Vaelra had been eating grief for forty-one years.",
     "She was beginning to understand that the line had always been a choice, not a fact."
    ]
+  },
+  "veilborn2": {
+   "title": "Cradle's Veil",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/veilborn2-large.jpg",
+   "theme": {
+    "bg": "#14101e",
+    "fg": "#f4eefb",
+    "accent": "#c9a2ff"
+   },
+   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "opening": [
+    "The echo arrived on a Tuesday, in a crate of eleven, from a recovery site that should not have produced it.",
+    "Tselin had been at the long table since seven. The north-facing windows were bright and cold behind her, and the collection-cloth in front of her held the morning's work: domestic echoes from a merchant's house on the Shardwater, three of them dull and four of them lovely, a cook's afternoon and a child's birthday and a man reading a letter twice. She had logged them. Origin, date-estimate, recovery location, condition. She had set them aside.",
+    "She had opened seven thousand and sixty-one moment-echoes in seventeen years and four months. She noted the number the way she always noted it, without pride, as a fact about the work. What she noted now, and had been noting for six weeks, was that the number no longer felt like a wall built one brick at a time. It felt like what it was: seven thousand and sixty-one people who had stood somewhere and felt something and left it behind without meaning to."
+   ],
+   "lines": [
+    "It was warm the way a hand was warm when someone had just let go of it.",
+    "\"There's an inside,\" Tselin said. \"I didn't know there was an inside.\"",
+    "Nine threads, fraying. One knot, pulled."
+   ]
+  },
+  "veilborn3": {
+   "title": "When Realms Become One",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/veilborn3-large.jpg",
+   "theme": {
+    "bg": "#14101e",
+    "fg": "#f4eefb",
+    "accent": "#c9a2ff"
+   },
+   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "opening": [
+    "At dusk the crystal bridge showed Grannakh.",
+    "It had not always. For the first weeks after the Veil it had shown only what it had always shown, which was Lyrinth: the towers in their impossible geometries, the light coming off every face of them and splitting and going on, so that a person crossing at evening walked through a hundred small rainbows and did not look at any of them, because they had seen them every evening of their lives. Then, in the eighth week, the light had begun to go somewhere else.",
+    "Tselin stood at the eastern rail, where she stood every evening now, and watched it go."
+   ],
+   "lines": [
+    "Tselin's hands were glass to the elbow.",
+    "Korr's letters were the shape of what he was able to say, and what he was able to say had got larger in the Cradle, and it would take a while to get larger still.",
+    "The grey of no people."
+   ]
   }
  },
  "posts": [
