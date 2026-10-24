@@ -18,7 +18,7 @@ AUTHOR_ID = BOOKS + "#author"
 # where the small line above a book's title is not a description of the book, say what it is about instead
 ABOUT = {"the-noisy-mind": "Living with an overactive brain"}
 # genre for search engines where the series line does not say it
-GENRE = {"echoes-of-the-shattered": "Fantasy"}
+GENRE = {"echoes-of-the-shattered": "Fantasy", "cradles-veil": "Fantasy", "when-realms-become-one": "Fantasy"}
 
 
 def read(p):
