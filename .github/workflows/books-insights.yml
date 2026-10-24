@@ -1,0 +1,40 @@
+name: Books Instagram insights
+
+# Every Monday morning, adds up the Instagram numbers for each book across both accounts
+# and opens a GitHub issue with the table. GitHub emails it to you. Nothing is posted.
+# To run it now: Actions tab > Books Instagram insights > Run workflow.
+
+on:
+  schedule:
+    - cron: "41 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back to look"
+        type: string
+        default: "90"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Gather the numbers
+        env:
+          IG_TOKEN_FICTION: ${{ secrets.IG_TOKEN_FICTION }}
+          IG_TOKEN_NONFICTION: ${{ secrets.IG_TOKEN_NONFICTION }}
+          DAYS: ${{ inputs.days || '90' }}
+        run: python scripts/books_insights.py
+      - name: Show it on the run page
+        run: cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Open this week's issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Book interest on Instagram, week of $(date +'%-d %B')" --body-file report.md
