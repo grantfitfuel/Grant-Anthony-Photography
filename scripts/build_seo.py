@@ -278,7 +278,7 @@ def book_page(b, all_books, posts, style):
   {read}
   {more}
 </main>
-<footer><div class="wrap">© {date.today().year} Grant C Anthony.{" Fiction published by Levern Press." if b["fiction"] else ""} <a href="./">All books</a> &middot; <a href="https://www.instagram.com/{handle}/" target="_blank" rel="noopener">@{handle}</a> &middot; <a href="../privacy.html">Privacy</a></div></footer>
+<footer><div class="wrap">© {date.today().year} Grant C Anthony.{" Fiction published by Levern Press." if b["fiction"] else ""} <a href="./">All books</a> &middot; <a href="https://www.instagram.com/{handle}/" target="_blank" rel="noopener">@{handle}</a> &middot; <a href="mailto:grant.anthony@btinternet.com">Contact</a> &middot; <a href="../privacy.html">Privacy</a></div></footer>
 </body>
 </html>
 """
