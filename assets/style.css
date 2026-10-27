@@ -613,3 +613,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .lprog-reset{all:unset;cursor:pointer;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .lesson .lm .done{color:var(--ok)}
 .lesson .lm .qdone{color:var(--accent)}
+
+/* Books link in the menu */
+.nav-links a.nav-books{opacity:1;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:999px;padding:5px 12px;margin:-6px 0}
+.nav-links a.nav-books:hover{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:640px){.nav-links a.nav-books{padding:4px 10px}}
