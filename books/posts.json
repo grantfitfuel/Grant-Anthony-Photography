@@ -241,6 +241,29 @@
     "The city did not hold things in place. It took them in, worked round them, buried them under movement, and kept going.",
     "\"They saw it. They recorded it. That isn't the same thing.\""
    ]
+  },
+  "underpainting": {
+   "title": "Underpainting",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "soon",
+   "cover": "covers/underpainting-large.jpg",
+   "theme": {
+    "bg": "#1b1412",
+    "fg": "#f5efe6",
+    "accent": "#d8b46a"
+   },
+   "tags": "#scottishnoir #tartannoir #crimefiction #paisley #bookstagram",
+   "opening": [
+    "The house in Milngavie had the silence of a place that had been lived in by one person for eleven years and was now, finally, being lived in by nobody at all, and Elaine Sorley had learned, three weekends into clearing it, that this silence had its own weight, different from the ordinary quiet of an empty room.",
+    "She worked through the study first, on the theory that paperwork would be worse the longer she left it, and found her father's filing exactly as she'd have predicted, meticulous in the way of a man who had spent forty years as a quantity surveyor and had never once, in her memory, lost a receipt. Bank statements in date order. Insurance documents in a labelled folder. A will she'd already seen, at the solicitor's, three weeks ago, that had left her the house and its contents with the same brisk clarity he'd have brought to costing a roof.",
+    "The painting was the last thing she had been putting off. It hung on the half-landing, where it had hung for as long as Elaine had been alive, a woman in grey she had said good morning to on the way down to breakfast every day of her childhood, and she had walked past it for three weekends without looking at it properly. On the Sunday she finally lifted it off its hook, surprised by the weight, and carried it to the window to see it in the daylight, a woman looking out from a canvas gone dark with age, dressed in something that might have been Victorian or might simply have been old-fashioned even when it was painted, her expression neither warm nor unwelcoming, just watchful. Behind her on the wallpaper the hook left a pale rectangle, cleaner than the wall around it, the shape of forty years."
+   ],
+   "lines": [
+    "Behind her on the wallpaper the hook left a pale rectangle, cleaner than the wall around it, the shape of forty years.",
+    "\"You do love an orphaned object, don't you. Something nobody else has bothered to properly ask about.\"",
+    "\"I think some things get buried because somebody decided, once, carefully, that burying them was the kinder choice.\""
+   ]
   }
  },
  "posts": [
