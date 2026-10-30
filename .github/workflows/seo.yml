@@ -1,7 +1,7 @@
 name: Search pages
 
 # Rebuilds the book pages, the photo data search engines read, and sitemap.xml
-# whenever photographs or books change. It only commits if something actually changed.
+# whenever photographs, books or notes change. It only commits if something actually changed.
 # To run it by hand: Actions tab > Search pages > Run workflow.
 
 on:
@@ -13,6 +13,10 @@ on:
       - books/posts.json
       - books/covers/**
       - scripts/build_seo.py
+      - books/notes/**
+  # once a day, so notes dated in the future go live on their day
+  schedule:
+    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
