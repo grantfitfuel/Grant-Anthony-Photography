@@ -203,6 +203,10 @@
       <image:title>Pentimento</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/underpainting-large.jpg</image:loc>
+      <image:title>Underpainting</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/clarity-large.jpg</image:loc>
       <image:title>Clarity</image:title>
     </image:image>
@@ -273,6 +277,15 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
       <image:title>Pentimento</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/underpainting/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/underpainting-large.jpg</image:loc>
+      <image:title>Underpainting</image:title>
     </image:image>
   </url>
   <url>
