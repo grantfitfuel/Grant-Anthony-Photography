@@ -4,9 +4,11 @@ Run by .github/workflows/seo.yml whenever photos or books change (or by hand: py
 It writes:
   books/<book>/index.html   one page per book, built from the cards on books/index.html
                             and the excerpts in books/posts.json (posts on hold are left out)
+  books/notes/...           the Notes section, built from the text files in books/notes/posts
+                            (see books/notes/HOW-TO.md); the latest notes also go on books/index.html
   index.html                the structured data block between the seo markers (photos as ImageObjects)
   sitemap.xml               every page, with images
-Everything else is left alone. Running it twice gives the same result.
+Everything else is left alone. Running it twice on the same day gives the same result.
 """
 import html, json, os, re, struct
 from datetime import date
@@ -154,12 +156,12 @@ EXTRA_CSS = """
 .more .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:22px}
 .more a{text-decoration:none;display:block}
 .more img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:4px;box-shadow:0 12px 26px rgba(0,0,0,.4)}
-.more span{display:block;margin-top:8px;font:700 .95rem/1.2 var(--display)}
+.more a span{display:block;margin-top:8px;font:700 .95rem/1.2 var(--display)}
 @media (max-width:760px){.bp-grid{grid-template-columns:1fr;gap:28px}.bp-cover{max-width:240px}}
 """
 
 
-def book_page(b, all_books, posts, style):
+def book_page(b, all_books, posts, style, book_notes=()):
     key, opening, quotes, notes = book_extras(b, posts)
     url = BOOKS + b["slug"] + "/"
     cover_abs = BOOKS + b["cover_large"]
@@ -214,8 +216,11 @@ def book_page(b, all_books, posts, style):
         for label, head, sub in notes[:2]:
             read += f'<div class="note"><span class="label">{esc(label or "Behind the book")}</span><b>{esc(head)}</b><p>{esc(sub)}</p></div>'
         read += "</section>"
+    if book_notes:
+        read += ('<section class="read wrap"><span class="label">Notes</span><h2>Read more</h2><div class="nlist">'
+                 + "".join(note_link(n) for n in book_notes) + "</div></section>")
 
-    same = [o for o in all_books if o["slug"] != b["slug"] and o["fiction"] == b["fiction"]]
+    same =[o for o in all_books if o["slug"] != b["slug"] and o["fiction"] == b["fiction"]]
     more = '<section class="more wrap"><span class="label">More by ' + esc(b["byline"]) + '</span><h2>Other books</h2><div class="row">' + "".join(
         f'<a href="{o["slug"]}/"><img src="{esc(o["cover"])}" alt="Cover of {esc(o["title"])}" width="200" height="300" loading="lazy"><span>{esc(o["title"])}</span></a>'
         for o in same) + "</div></section>"
@@ -258,7 +263,7 @@ def book_page(b, all_books, posts, style):
 <body class="{side}">
 <header class="top"><div class="wrap">
   <a class="mark" href="./">Grant <i>C</i> Anthony</a>
-  <nav><a href="./#fiction">Fiction</a><a href="./#nonfiction">Nonfiction</a><a href="./#about">About</a></nav>
+  {NAV}
 </div></header>
 <main>
   <section class="bp wrap">
@@ -290,10 +295,373 @@ def build_books(changed):
     posts = json.loads(read("books/posts.json"))
     style = re.search(r"<style>(.*?)</style>", page, re.S).group(1).strip()
     books = parse_books(page)
+    notes = load_notes(books)
     for b in books:
-        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style)):
+        mine = [n for n in notes if n["book"] is b]
+        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine)):
             changed.append(f"books/{b['slug']}/index.html")
-    return books
+    build_notes(notes, style, changed)
+    return books, notes
+
+
+# ---------------------------------------------------------------- notes
+
+NAV = '<nav><a href="./#fiction">Fiction</a><a href="./#nonfiction">Nonfiction</a><a href="notes/">Notes</a><a href="./#about">About</a></nav>'
+MONTHS = "January February March April May June July August September October November December".split()
+
+
+def nice_date(d):
+    return f"{d.day} {MONTHS[d.month - 1]} {d.year}"
+
+
+def smart(s):
+    """Curly quotes for text typed with straight ones."""
+    s = re.sub(r'(^|[\s(\[/-])"', "\\1\u201c", s).replace('"', "\u201d")
+    return re.sub(r"(^|[\s(\[/-])'", "\\1\u2018", s).replace("'", "\u2019")
+
+
+def inline(t):
+    """One paragraph of text: links, *italic*, **bold**, curly quotes, everything else escaped."""
+    out, last = "", 0
+    for m in re.finditer(r"\[([^\]]+)\]\(([^)\s]+)\)", t):
+        out += _words(t[last:m.start()])
+        href = m.group(2)
+        ext = ' target="_blank" rel="noopener"' if href.startswith("http") and "grantanthony.co.uk" not in href else ""
+        out += f'<a href="{esc(href)}"{ext}>{_words(m.group(1))}</a>'
+        last = m.end()
+    return out + _words(t[last:])
+
+
+def _words(t):
+    t = esc(smart(t))
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    return re.sub(r"\*(.+?)\*", r"<em>\1</em>", t)
+
+
+def img_src(p):
+    """Where an image path from a note points, as used on the page (base /books/) and as a full address."""
+    if p.startswith("http"):
+        return p, p, None
+    local = p.lstrip("/") if p.startswith("/") else "books/" + p
+    full = SITE + "/" + local
+    return ("/" + local if p.startswith("/") else p), full, local
+
+
+def figure(src, caption):
+    page_src, _, local = img_src(src)
+    w, h = jpeg_size(local) if local and os.path.exists(os.path.join(ROOT, local)) else (None, None)
+    size = f' width="{w}" height="{h}"' if w else ""
+    cap = f"<figcaption>{inline(caption)}</figcaption>" if caption else ""
+    return f'<figure><img src="{esc(page_src)}" alt="{esc(smart(caption))}"{size} loading="lazy">{cap}</figure>'
+
+
+def render_body(text):
+    out = []
+    for block in re.split(r"\n\s*\n", text.strip()):
+        lines = [l.rstrip() for l in block.strip().split("\n")]
+        first = lines[0]
+        if first.startswith("## "):
+            out.append(f"<h2>{inline(first[3:].strip())}</h2>")
+            if len(lines) > 1:
+                out.append("<p>" + inline(" ".join(l.strip() for l in lines[1:])) + "</p>")
+        elif all(l.startswith(">") for l in lines):
+            out.append("<blockquote><p>" + inline(" ".join(l.lstrip("> ").strip() for l in lines)) + "</p></blockquote>")
+        elif len(lines) == 1 and re.fullmatch(r"!\[([^\]]*)\]\(([^)\s]+)\)", first):
+            m = re.fullmatch(r"!\[([^\]]*)\]\(([^)\s]+)\)", first)
+            out.append(figure(m.group(2), m.group(1)))
+        elif all(l.startswith("- ") for l in lines):
+            out.append("<ul>" + "".join(f"<li>{inline(l[2:].strip())}</li>" for l in lines) + "</ul>")
+        else:
+            out.append("<p>" + inline(" ".join(l.strip() for l in lines)) + "</p>")
+    return "\n".join(out)
+
+
+def load_notes(books):
+    """Every published note, newest first. A note is a text file in books/notes/posts:
+    a few 'Name: value' lines, a blank line, then the text. Drafts and notes dated in the future are left out."""
+    folder = os.path.join(ROOT, "books/notes/posts")
+    if not os.path.isdir(folder):
+        return []
+    by_key = {}
+    for b in books:
+        by_key[b["slug"]] = b
+        by_key[b["title"].lower()] = b
+    notes, today = [], date.today()
+    for name in sorted(os.listdir(folder)):
+        if not name.lower().endswith((".md", ".txt")) or name.startswith(".") or name.upper().startswith(("README", "HOW-TO")):
+            continue
+        raw = read("books/notes/posts/" + name).replace("\r\n", "\n").lstrip("\ufeff")
+        head, _, body = raw.partition("\n\n")
+        meta = {}
+        for line in head.split("\n"):
+            k, sep, v = line.partition(":")
+            if sep:
+                meta[k.strip().lower()] = v.strip()
+        try:
+            when = date.fromisoformat(meta.get("date", ""))
+        except ValueError:
+            print(f"Notes: skipped {name}, it needs a line like 'Date: 2026-11-02'")
+            continue
+        if not meta.get("title") or not body.strip():
+            print(f"Notes: skipped {name}, it needs a Title line and some text")
+            continue
+        if meta.get("draft", "").lower() in ("yes", "true", "y"):
+            continue
+        if when > today:
+            print(f"Notes: {name} is scheduled for {when}")
+            continue
+        slug = re.sub(r"[^a-z0-9]+", "-", os.path.splitext(name)[0].lower()).strip("-")
+        book = by_key.get(meta.get("book", "").strip().lower()) or by_key.get(meta.get("book", "").strip().strip("/"))
+        words = len(re.findall(r"[A-Za-z\u2019']+", body))
+        notes.append({
+            "slug": slug, "title": smart(meta["title"]), "date": when, "book": book,
+            "summary": smart(meta.get("summary", "")), "image": meta.get("image", ""),
+            "image_alt": smart(meta.get("image alt", "") or meta.get("caption", "")),
+            "body": body, "minutes": max(1, round(words / 220)), "words": words,
+            "byline": book["byline"] if book else "Grant C Anthony",
+            "fiction": book["fiction"] if book else True,
+        })
+    notes.sort(key=lambda n: (n["date"], n["title"]), reverse=True)
+    return notes
+
+
+def note_thumb(n):
+    """Picture for a note in a list: its own image if it has one, otherwise its book's cover."""
+    if n["image"]:
+        src, alt = img_src(n["image"])[0], n["image_alt"] or n["title"]
+    elif n["book"]:
+        src, alt = n["book"]["cover"], "Cover of " + n["book"]["title"]
+    else:
+        return ""
+    return f'<img src="{esc(src)}" alt="{esc(alt)}" width="120" height="180" loading="lazy">'
+
+
+def note_card(n):
+    about = f' · {esc(n["book"]["title"])}' if n["book"] else ""
+    side = "fic" if n["fiction"] else "nf"
+    return (f'<a class="ncard {side}" href="notes/{n["slug"]}/">{note_thumb(n)}<span class="ntext">'
+            f'<span class="label">{nice_date(n["date"])}{about}</span><b>{esc(n["title"])}</b>'
+            f'<span class="nsum">{esc(n["summary"])}</span><span class="nmore">Read the note</span></span></a>')
+
+
+def note_link(n):
+    return (f'<a class="nline" href="notes/{n["slug"]}/"><b>{esc(n["title"])}</b>'
+            f'<span>{esc(n["summary"])}</span></a>')
+
+
+NOTE_CSS = """
+.np{padding-block:40px 8px}
+.np .crumbs{margin-bottom:22px}
+.np h1{font:800 clamp(2.2rem,6.4vw,4rem)/1 var(--display);letter-spacing:-.03em;margin:10px 0 16px;max-width:20ch;text-wrap:balance}
+.fic .np h1{color:var(--fic)} .nf .np h1{color:var(--nf)}
+.np .stand{font-size:1.25rem;line-height:1.5;color:var(--muted);max-width:56ch;margin:0 0 14px}
+.np .by{font:500 .76rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0}
+.np .by a{text-decoration:none} .np .by a:hover{color:var(--ink)}
+.prose{font-size:1.12rem;line-height:1.7}
+.prose p{margin:0 0 1.15em}
+.prose h2{font:800 1.6rem/1.15 var(--display);letter-spacing:-.02em;margin:1.8em 0 .6em}
+.prose blockquote{margin:1.6em 0;padding:4px 0 4px 22px;border-left:3px solid var(--fic);font-style:italic;font-size:1.2rem}
+.nf .prose blockquote{border-color:var(--nf)}
+.prose blockquote p{margin:0}
+.prose a{color:var(--sun);text-underline-offset:3px}
+.prose ul{padding-left:1.2em;margin:0 0 1.15em} .prose li{margin:0 0 .4em}
+.prose figure,.np figure{margin:1.8em 0}
+.prose figure img,.np figure img{display:block;width:100%;height:auto;border-radius:8px}
+.prose figcaption,.np figcaption{font:500 .74rem/1.5 var(--mono);color:var(--muted);margin-top:10px;letter-spacing:.04em}
+.np figure.hero{max-width:900px;margin:30px 0 0}
+.nbody{display:grid;grid-template-columns:minmax(0,68ch) minmax(230px,280px);gap:64px;justify-content:space-between;align-items:start;padding-bottom:56px}
+.nbody.solo{grid-template-columns:minmax(0,68ch)}
+.nbody .prose{padding-block:18px 0}
+.thebook{position:sticky;top:84px;margin-top:26px;display:grid;gap:18px;padding:22px;border:1px solid var(--rule);border-radius:18px;background:var(--deep)}
+.thebook img{width:100%;max-width:150px;height:auto;border-radius:4px;box-shadow:0 12px 26px rgba(0,0,0,.4);transform:rotate(-2deg)}
+.thebook h2{font:800 1.5rem/1.05 var(--display);letter-spacing:-.02em;margin:6px 0 8px}
+.thebook h2 a{text-decoration:none}
+.thebook p{margin:0 0 14px;font-size:.95rem;line-height:1.5}
+.thebook .page{font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.thebook .page:hover{color:var(--ink)}
+@media (max-width:900px){.nbody{grid-template-columns:minmax(0,1fr);gap:8px}.thebook{position:static;grid-template-columns:110px 1fr;gap:20px;max-width:66ch}}
+.nhead{padding-block:48px 8px}
+.nhead h1{font:800 clamp(3rem,10vw,6rem)/.9 var(--display);letter-spacing:-.035em;margin:8px 0 18px;color:var(--sun)}
+.nhead .intro{max-width:56ch;color:var(--muted);font-size:1.15rem;margin:0}
+.nall{padding-block:28px 72px}
+@media (max-width:640px){.thebook{grid-template-columns:84px 1fr;gap:16px;padding:18px}.prose{font-size:1.06rem}}
+"""
+
+
+def page_head(title, desc, url, og_title, og_desc, image, image_wh, ld_graph, style, og_type="article", extra_meta=""):
+    w, h = image_wh
+    size = (f'<meta property="og:image:width" content="{w}">\n<meta property="og:image:height" content="{h}">\n' if w else "")
+    return f"""<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="/books/">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:site_name" content="Grant C Anthony">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="{esc(og_title)}">
+<meta property="og:description" content="{esc(og_desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{image}">
+{size}{extra_meta}<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(og_title)}">
+<meta name="twitter:description" content="{esc(og_desc)}">
+<meta name="twitter:image" content="{image}">
+<meta name="theme-color" content="#100f24">
+<link rel="icon" href="../assets/favicon.png">
+{ld({"@context": "https://schema.org", "@graph": ld_graph})}
+<style>
+{style}
+{EXTRA_CSS}
+{NOTE_CSS}
+</style>
+</head>
+"""
+
+
+def page_top(side):
+    return f"""<body class="{side}">
+<header class="top"><div class="wrap">
+  <a class="mark" href="./">Grant <i>C</i> Anthony</a>
+  {NAV}
+</div></header>
+<main>
+"""
+
+
+def page_foot(fiction):
+    handle = "grantcanthony" if fiction else "g_c_anthony"
+    return f"""</main>
+<footer><div class="wrap">© {date.today().year} Grant C Anthony.{" Fiction published by Levern Press." if fiction else ""} <a href="./">All books</a> &middot; <a href="notes/">Notes</a> &middot; <a href="https://www.instagram.com/{handle}/" target="_blank" rel="noopener">@{handle}</a> &middot; <a href="mailto:grant.anthony@btinternet.com">Contact</a> &middot; <a href="../privacy.html">Privacy</a></div></footer>
+</body>
+</html>
+"""
+
+
+def note_image(n):
+    """The note's share picture as a full address, with its size: its own image, else its book's cover."""
+    if n["image"]:
+        _, full, local = img_src(n["image"])
+        wh = jpeg_size(local) if local and os.path.exists(os.path.join(ROOT, local)) else (None, None)
+        return full, wh
+    if n["book"]:
+        return BOOKS + n["book"]["cover_large"], jpeg_size("books/" + n["book"]["cover_large"])
+    return BOOKS + "assets/share.jpg", (1200, 630)
+
+
+def note_page(n, notes, style):
+    url = BOOKS + "notes/" + n["slug"] + "/"
+    image, wh = note_image(n)
+    desc = clip(n["summary"] or text_of(render_body(n["body"])))
+    b = n["book"]
+    post = {
+        "@type": "BlogPosting", "@id": url + "#post", "headline": n["title"], "description": desc, "url": url,
+        "datePublished": n["date"].isoformat(), "inLanguage": "en-GB", "wordCount": n["words"], "image": image,
+        "author": {"@type": "Person", "@id": AUTHOR_ID, "name": n["byline"]},
+        "publisher": {"@type": "Person", "@id": AUTHOR_ID, "name": n["byline"]},
+        "mainEntityOfPage": {"@id": url}, "isPartOf": {"@id": BOOKS + "notes/#blog"},
+    }
+    if b:
+        post["about"] = {"@type": "Book", "@id": BOOKS + b["slug"] + "/#book", "name": b["title"]}
+    graph = [
+        {"@type": "WebPage", "@id": url, "url": url, "name": n["title"], "description": desc, "inLanguage": "en-GB",
+         "isPartOf": {"@id": BOOKS}, "primaryImageOfPage": {"@type": "ImageObject", "url": image},
+         "mainEntity": {"@id": url + "#post"}, "breadcrumb": {"@id": url + "#crumbs"}},
+        post,
+        {"@type": "BreadcrumbList", "@id": url + "#crumbs", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Books", "item": BOOKS},
+            {"@type": "ListItem", "position": 2, "name": "Notes", "item": BOOKS + "notes/"},
+            {"@type": "ListItem", "position": 3, "name": n["title"], "item": url}]},
+    ]
+    meta = f'<meta property="article:published_time" content="{n["date"].isoformat()}">\n'
+    out = page_head(f'{n["title"]} | Notes by {n["byline"]}', desc, url, n["title"], clip(n["summary"] or desc, 200),
+                    image, wh, graph, style, "article", meta)
+    out += page_top("fic" if n["fiction"] else "nf")
+    hero = figure(n["image"], n["image_alt"]).replace("<figure>", '<figure class="hero">', 1).replace(' loading="lazy"', "") if n["image"] else ""
+    aside = ""
+    if b:
+        act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Find it on Amazon</a>'
+               if b["out"] and b["buy"] else
+               f'<span class="status due"><small>Expected release</small>{esc(b["status"].replace("Expected release", "").strip())}</span>')
+        aside = f"""
+    <aside class="thebook">
+      <a href="{b["slug"]}/"><img src="{esc(b["cover"])}" alt="Cover of {esc(b["title"])}" width="200" height="300" loading="lazy"></a>
+      <div><span class="label">The book</span><h2><a href="{b["slug"]}/">{esc(b["title"])}</a></h2>
+      <p>{esc(b["tag"] or re.split(r"(?<=[.!?])\s", b["blurb"])[0])}</p>
+      <div class="act">{act}<a class="page" href="{b["slug"]}/">About the book</a></div></div>
+    </aside>"""
+    out += f"""  <article class="wrap">
+  <header class="np">
+    <p class="crumbs"><a href="./">Books</a> / <a href="notes/">Notes</a> / {esc(n["title"])}</p>
+    <span class="label">{nice_date(n["date"])} · {n["minutes"]} min read</span>
+    <h1>{esc(n["title"])}</h1>
+    {f'<p class="stand">{esc(n["summary"])}</p>' if n["summary"] else ""}
+    <p class="by">By <a href="./#about">{esc(n["byline"])}</a></p>
+    {hero}
+  </header>
+  <div class="nbody{"" if b else " solo"}">
+    <div class="prose">
+{render_body(n["body"])}
+    </div>{aside}
+  </div>
+  </article>
+"""
+    others = [o for o in notes if o is not n][:3]
+    if others:
+        out += ('  <section class="mnotes wrap"><span class="label">Notes</span><h2>More notes</h2><div class="ngrid">'
+                + "".join(note_card(o) for o in others) + "</div></section>\n")
+    return out + page_foot(n["fiction"])
+
+
+def notes_index(notes, style):
+    url = BOOKS + "notes/"
+    desc = ("Notes from Grant C Anthony: articles on anxiety, overthinking and the mind, "
+            "the real science and places behind the novels, and news of new books.")
+    blog = {"@type": "Blog", "@id": url + "#blog", "name": "Notes", "url": url, "description": desc, "inLanguage": "en-GB",
+            "author": {"@type": "Person", "@id": AUTHOR_ID, "name": "Grant C Anthony"},
+            "blogPost": [{"@id": BOOKS + "notes/" + n["slug"] + "/#post"} for n in notes]}
+    graph = [{"@type": "WebPage", "@id": url, "url": url, "name": "Notes", "description": desc, "inLanguage": "en-GB",
+              "isPartOf": {"@id": BOOKS}, "mainEntity": {"@id": url + "#blog"}}, blog]
+    out = page_head("Notes | Grant C Anthony Books", desc, url, "Notes from Grant C Anthony",
+                    "On the mind, and the real science and places behind the novels.",
+                    BOOKS + "assets/share.jpg", (1200, 630), graph, style, "website")
+    out += page_top("fic")
+    cards = "".join(note_card(n) for n in notes) or "<p>The first notes are on their way.</p>"
+    out += f"""  <section class="nhead wrap">
+    <p class="crumbs"><a href="./">Books</a> / Notes</p>
+    <h1>Notes</h1>
+    <p class="intro">On anxiety, overthinking and the mind. The real science and the real places behind the novels. And news of what is coming next.</p>
+  </section>
+  <section class="nall wrap"><div class="ngrid">{cards}</div></section>
+"""
+    return out + page_foot(True)
+
+
+def build_notes(notes, style, changed):
+    for n in notes:
+        p = f"books/notes/{n['slug']}/index.html"
+        if write_if_changed(p, note_page(n, notes, style)):
+            changed.append(p)
+    if write_if_changed("books/notes/index.html", notes_index(notes, style)):
+        changed.append("books/notes/index.html")
+    # the latest three on the main books page, between the notes markers
+    page = read("books/index.html")
+    if "<!-- notes:start" in page:
+        inner = ""
+        if notes:
+            inner = ('\n  <section id="notes" class="notes wrap">\n    <div class="shelf-head"><div><span class="label">Notes</span><h2>Notes</h2></div>'
+                     '<p>The mind, the science behind the stories, and the places in them.</p></div>\n    <div class="ngrid">'
+                     + "".join(note_card(n) for n in notes[:3])
+                     + '</div>\n    <p class="nall-link"><a href="notes/">All notes</a></p>\n  </section>\n  ')
+        block = "<!-- notes:start (written by scripts/build_seo.py) -->" + inner + "<!-- notes:end -->"
+        new = re.sub(r"<!-- notes:start.*?<!-- notes:end -->", lambda m: block, page, flags=re.S)
+        if write_if_changed("books/index.html", new):
+            changed.append("books/index.html")
 
 
 # ---------------------------------------------------------------- photography
@@ -341,7 +709,7 @@ def build_photo_data(changed):
 
 # ---------------------------------------------------------------- sitemap
 
-def build_sitemap(books, photos, changed):
+def build_sitemap(books, notes, photos, changed):
     newest = max((p.get("added", "") for p in photos), default="")
     urls = []
 
@@ -364,6 +732,11 @@ def build_sitemap(books, photos, changed):
     urls.append(u(BOOKS, [(BOOKS + b["cover_large"], b["title"]) for b in books], None, "weekly", "0.9"))
     for b in books:
         urls.append(u(BOOKS + b["slug"] + "/", [(BOOKS + b["cover_large"], b["title"])], None, "monthly", "0.8"))
+    if notes:
+        urls.append(u(BOOKS + "notes/", (), notes[0]["date"].isoformat(), "weekly", "0.7"))
+        for n in notes:
+            imgs = [(img_src(n["image"])[1], n["image_alt"] or n["title"])] if n["image"] else []
+            urls.append(u(BOOKS + "notes/" + n["slug"] + "/", imgs, n["date"].isoformat(), "monthly", "0.7"))
     urls.append(u(SITE + "/privacy.html", (), None, "yearly", "0.2"))
     urls.append(u(SITE + "/copyright.html", (), None, "yearly", "0.2"))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -375,8 +748,8 @@ def build_sitemap(books, photos, changed):
 
 if __name__ == "__main__":
     changed = []
-    books = build_books(changed)
+    books, notes = build_books(changed)
     photos = build_photo_data(changed)
-    build_sitemap(books, photos, changed)
-    print(f"{len(books)} book pages, {len(photos)} photographs.")
+    build_sitemap(books, notes, photos, changed)
+    print(f"{len(books)} book pages, {len(notes)} notes, {len(photos)} photographs.")
     print("Changed: " + (", ".join(changed) if changed else "nothing"))
