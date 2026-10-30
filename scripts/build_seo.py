@@ -441,12 +441,12 @@ def note_card(n):
     side = "fic" if n["fiction"] else "nf"
     return (f'<a class="ncard {side}" href="notes/{n["slug"]}/">{note_thumb(n)}<span class="ntext">'
             f'<span class="label">{nice_date(n["date"])}{about}</span><b>{esc(n["title"])}</b>'
-            f'<span class="nsum">{esc(n["summary"])}</span><span class="nmore">Read the note</span></span></a>')
+            f'<span class="nsum">{esc(n["summary"])}</span><span class="nmore">Read the full note <span aria-hidden="true">→</span></span></span></a>')
 
 
 def note_link(n):
     return (f'<a class="nline" href="notes/{n["slug"]}/"><b>{esc(n["title"])}</b>'
-            f'<span>{esc(n["summary"])}</span></a>')
+            f'<span class="nsum">{esc(n["summary"])}</span><span class="nmore">Read the full note <span aria-hidden="true">→</span></span></a>')
 
 
 NOTE_CSS = """
