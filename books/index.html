@@ -540,6 +540,27 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
   .book{grid-template-columns:100px 1fr;gap:18px}
   .blob.a{width:220px;height:220px}
 }
+/* Notes */
+section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
+.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.ncard{display:grid;grid-template-columns:84px 1fr;gap:18px;align-items:start;padding:20px;border:1px solid var(--rule);border-radius:18px;background:var(--deep);text-decoration:none;transition:transform .2s,border-color .2s}
+.ncard:hover{transform:translateY(-3px);border-color:var(--fic)} .ncard.nf:hover{border-color:var(--nf)}
+.ncard img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:4px;box-shadow:0 10px 22px rgba(0,0,0,.4)}
+.ncard .ntext{display:grid;gap:7px;min-width:0}
+.ncard b{font:700 1.3rem/1.1 var(--display);letter-spacing:-.01em;text-wrap:pretty}
+.ncard .nsum{font-size:.95rem;line-height:1.5;color:var(--muted)}
+.ncard .nmore{font:500 .68rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--sun);margin-top:4px}
+.nall-link{margin:26px 0 0}
+.nall-link a{display:inline-block;font:500 .76rem/1 var(--mono);letter-spacing:.06em;text-decoration:none;padding:12px 16px;border-radius:99px;border:1px solid var(--ink)}
+.nall-link a:hover{background:var(--ink);color:var(--night)}
+.nlist{max-width:66ch;border-top:1px solid var(--rule)}
+.nline{display:block;text-decoration:none;padding:16px 0;border-bottom:1px solid var(--rule)}
+.nline b{display:block;font:700 1.25rem/1.15 var(--display);margin-bottom:4px}
+.nline span{color:var(--muted);font-size:.95rem}
+.nline:hover b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.mnotes{border-top:1px solid var(--rule);padding-block:44px 64px}
+.mnotes h2{font:800 1.9rem/1 var(--display);letter-spacing:-.02em;margin:6px 0 22px}
+@media (max-width:640px){.ncard{grid-template-columns:72px 1fr;gap:14px;padding:16px}}
 .book h3 a{text-decoration:none}
 .book h3 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 </style>
@@ -548,7 +569,7 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
 
 <header class="top"><div class="wrap">
   <a class="mark" href="#top">Grant <i>C</i> Anthony</a>
-  <nav><a href="#fiction">Fiction</a><a href="#nonfiction">Nonfiction</a><a href="#about">About</a></nav>
+  <nav><a href="#fiction">Fiction</a><a href="#nonfiction">Nonfiction</a><a href="notes/">Notes</a><a href="#about">About</a></nav>
 </div></header>
 
 <main id="top">
@@ -727,6 +748,14 @@ footer{border-top:1px solid var(--rule);padding-block:24px 96px;color:var(--mute
       </article>
     </div>
   </section>
+
+  <!-- notes:start (written by scripts/build_seo.py) -->
+  <section id="notes" class="notes wrap">
+    <div class="shelf-head"><div><span class="label">Notes</span><h2>Notes</h2></div><p>The mind, the science behind the stories, and the places in them.</p></div>
+    <div class="ngrid"><a class="ncard nf" href="notes/why-your-mind-replays-conversations-at-2am/"><img src="covers/noisy.jpg" alt="Cover of The Noisy Mind" width="120" height="180" loading="lazy"><span class="ntext"><span class="label">30 October 2026 · The Noisy Mind</span><b>Why your mind replays conversations at 2am</b><span class="nsum">You said something slightly wrong at work. Hours later, in the dark, your mind is still going over it. Why that happens, and what helps.</span><span class="nmore">Read the note</span></span></a><a class="ncard fic" href="notes/what-is-a-pentimento/"><img src="covers/pentimento.jpg" alt="Cover of Pentimento" width="120" height="180" loading="lazy"><span class="ntext"><span class="label">30 October 2026 · Pentimento</span><b>What is a pentimento?</b><span class="nsum">The word means repentance. In a painting it’s the trace of something the artist changed their mind about, coming back through the paint years later. It’s also where the Provenance Series begins.</span><span class="nmore">Read the note</span></span></a><a class="ncard fic" href="notes/the-real-science-behind-debunked/"><img src="covers/debunked.jpg" alt="Cover of Debunked" width="120" height="180" loading="lazy"><span class="ntext"><span class="label">30 October 2026 · Debunked</span><b>The real science behind Debunked</b><span class="nsum">A Princeton lab that tried to move machines with the mind. A worldwide network of random number generators. A US Army unit paid to see at a distance. All of it real.</span><span class="nmore">Read the note</span></span></a></div>
+    <p class="nall-link"><a href="notes/">All notes</a></p>
+  </section>
+  <!-- notes:end -->
 
   <section id="about" class="about wrap">
     <div><span class="label">About</span><h2>The author</h2></div>
