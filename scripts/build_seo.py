@@ -649,14 +649,20 @@ def build_notes(notes, style, changed):
             changed.append(p)
     if write_if_changed("books/notes/index.html", notes_index(notes, style)):
         changed.append("books/notes/index.html")
-    # the latest three on the main books page, between the notes markers
+    # the latest three on the main books page, between the notes markers,
+    # always with at least one fiction and one nonfiction note when both exist
+    latest = notes[:3]
+    if len({n["fiction"] for n in latest}) == 1:
+        other = next((n for n in notes if n["fiction"] != latest[0]["fiction"]), None)
+        if other:
+            latest = latest[:2] + [other]
     page = read("books/index.html")
     if "<!-- notes:start" in page:
         inner = ""
         if notes:
             inner = ('\n  <section id="notes" class="notes wrap">\n    <div class="shelf-head"><div><span class="label">Notes</span><h2>Notes</h2></div>'
                      '<p>The mind, the science behind the stories, and the places in them.</p></div>\n    <div class="ngrid">'
-                     + "".join(note_card(n) for n in notes[:3])
+                     + "".join(note_card(n) for n in latest)
                      + '</div>\n    <p class="nall-link"><a href="notes/">All notes</a></p>\n  </section>\n  ')
         block = "<!-- notes:start (written by scripts/build_seo.py) -->" + inner + "<!-- notes:end -->"
         new = re.sub(r"<!-- notes:start.*?<!-- notes:end -->", lambda m: block, page, flags=re.S)
