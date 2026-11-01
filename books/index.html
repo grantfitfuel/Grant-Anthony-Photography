@@ -565,6 +565,38 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
 .mnotes{border-top:1px solid var(--rule);padding-block:44px 64px}
 .mnotes h2{font:800 1.9rem/1 var(--display);letter-spacing:-.02em;margin:6px 0 22px}
 @media (max-width:640px){.ncard{grid-template-columns:72px 1fr;gap:14px;padding:16px}}
+/* Out now: the books on sale, above the shelves */
+section.outnow{padding-block:56px 8px}
+.outnow .shelf-head h2{color:var(--sun)}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,470px),1fr));gap:24px}
+.feat{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:start;padding:26px;border-radius:24px;background:var(--deep);border:1px solid var(--rule)}
+.feat.fic{border-color:color-mix(in srgb,var(--fic) 45%,var(--rule))} .feat.nf{border-color:color-mix(in srgb,var(--nf) 45%,var(--rule))}
+.feat>div{min-width:0}
+.feat .label{display:block;line-height:1.5}
+.feat img{width:100%;height:auto;border-radius:5px;transform:rotate(-2.5deg);box-shadow:10px 14px 0 -2px color-mix(in srgb,var(--fic) 45%,var(--night)),0 18px 40px rgba(0,0,0,.45)}
+.feat.nf img{box-shadow:10px 14px 0 -2px color-mix(in srgb,var(--nf) 40%,var(--night)),0 18px 40px rgba(0,0,0,.45)}
+.feat h3{font:800 clamp(1.7rem,3.2vw,2.3rem)/1 var(--display);letter-spacing:-.02em;margin:6px 0 6px;text-wrap:balance}
+.feat h3 a{text-decoration:none} .feat.fic h3{color:var(--fic)} .feat.nf h3{color:var(--nf)}
+.feat .by{font:500 .7rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+.feat .tag{margin:0 0 10px}
+.feat .blurb{margin:0 0 18px}
+.feat .acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.buybig{display:inline-flex;align-items:center;gap:8px;font:700 .95rem/1 var(--display);text-decoration:none;padding:14px 20px;border-radius:99px;background:var(--sun);color:#221a00;box-shadow:0 8px 24px -10px var(--sun)}
+.buybig:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px var(--sun)}
+.feat .more-link{font:500 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.feat .more-link:hover{color:var(--ink)}
+/* forthcoming books sit quieter on the shelves */
+.book:has(.status.due){grid-template-columns:96px 1fr;gap:20px}
+.book:has(.status.due) h3{font-size:1.4rem}
+.book:has(.status.due) .blurb{font-size:.92rem;color:var(--muted)}
+.book:has(.status.due) .tag{font-size:.9rem}
+.book:has(.status.out) .cover{box-shadow:inset 4px 0 0 rgba(0,0,0,.22),10px 14px 0 -2px var(--shadow,var(--deep)),0 0 0 2px var(--sun)}
+@media (max-width:640px){
+  .feat{grid-template-columns:92px 1fr;gap:16px;padding:18px}
+  .feat .blurb{font-size:.95rem}
+  .buybig{padding:13px 18px;font-size:.9rem}
+  .book:has(.status.due){grid-template-columns:80px 1fr;gap:16px}
+}
 .book h3 a{text-decoration:none}
 .book h3 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 </style>
@@ -592,6 +624,18 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
     <span>Debunked</span><span>✶</span><span>The Cable and the Quiet</span><span>The Noisy Mind</span><span>Pentimento</span><span>Underpainting</span><span>Clarity</span><span>✶</span><span>The Calibrated Mind</span><span>Inherited</span><span>✶</span><span>Rewiring Pain</span><span>The Roots That Breathe</span><span>The Deep That Listens</span><span>Echoes of the Shattered</span><span>Cradle's Veil</span><span>When Realms Become One</span><span>✶</span><span>Levern Press</span>
   </div></div>
 
+  <!-- outnow:start (written by scripts/build_seo.py) -->
+  <section id="out-now" class="outnow wrap">
+    <div class="shelf-head"><div><span class="label">Available now</span><h2>Out now</h2></div><p>Ready to read today, from Amazon.</p></div>
+    <div class="feats">
+      <article class="feat fic"><a href="debunked/"><img src="covers/debunked.jpg" alt="Cover of Debunked" width="480" height="750" loading="lazy"></a><div><span class="label">Fiction · Psychological thriller</span><h3><a href="debunked/">Debunked</a></h3><p class="by">Grant C Anthony</p><p class="tag">Some truths are stranger than fiction. Some lies are better.</p><p class="blurb">Callum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing.</p><div class="acts"><a class="buybig" href="https://www.amazon.co.uk/dp/B0HCK9V3S9" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a><a class="more-link" href="debunked/">About the book</a></div></div></article>
+      <article class="feat nf"><a href="the-noisy-mind/"><img src="covers/noisy.jpg" alt="Cover of The Noisy Mind" width="480" height="750" loading="lazy"></a><div><span class="label">Nonfiction</span><h3><a href="the-noisy-mind/">The Noisy Mind</a></h3><p class="by">G C Anthony</p><p class="blurb">Living with an overactive brain in a world that never switches off. Forty-one short chapters on rumination, sleep, stress, the inner critic and the pull of quick relief, written from inside the experience, with practical ways to turn the volume down.</p><div class="acts"><a class="buybig" href="https://www.amazon.co.uk/dp/B0GX2X7KCN" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a><a class="more-link" href="the-noisy-mind/">About the book</a></div></div></article>
+      <article class="feat nf"><a href="the-calibrated-mind/"><img src="covers/calibrated.jpg" alt="Cover of The Calibrated Mind" width="480" height="750" loading="lazy"></a><div><span class="label">Nonfiction · Anxiety, panic, OCD and trauma</span><h3><a href="the-calibrated-mind/">The Calibrated Mind</a></h3><p class="by">G C Anthony</p><p class="tag">You are not broken. You are miscalibrated.</p><p class="blurb">Your brain is a prediction machine, and anxiety is what happens when its forecasts of danger run hot. A clear guide to how fear is learned, why reassurance and avoidance keep it in place, and how it can be recalibrated.</p><div class="acts"><a class="buybig" href="https://www.amazon.co.uk/dp/B0HBKBW6W9" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a><a class="more-link" href="the-calibrated-mind/">About the book</a></div></div></article>
+      <article class="feat nf"><a href="rewiring-pain/"><img src="covers/pain.jpg" alt="Cover of Rewiring Pain" width="480" height="750" loading="lazy"></a><div><span class="label">Nonfiction · Pain neuroscience</span><h3><a href="rewiring-pain/">Rewiring Pain</a></h3><p class="by">G C Anthony</p><p class="blurb">What the science of the nervous system tells us about persistent pain, and how understanding it can change the way it is felt and lived with.</p><div class="acts"><a class="buybig" href="https://www.amazon.co.uk/dp/B0GNS6TSLJ" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a><a class="more-link" href="rewiring-pain/">About the book</a></div></div></article>
+    </div>
+  </section>
+  <!-- outnow:end -->
+
   <section id="fiction" class="shelf fiction wrap">
     <div class="shelf-head">
       <div><span class="label">Fiction · Levern Press · <a href="https://www.instagram.com/grantcanthony/" target="_blank" rel="noopener">@grantcanthony</a></span><h2>Grant C Anthony</h2></div>
@@ -605,7 +649,7 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
           <h3><a href="debunked/">Debunked</a></h3>
           <p class="tag">Some truths are stranger than fiction. Some lies are better.</p>
           <p class="blurb">Callum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing. Following a run of deaths among fringe consciousness researchers, he finds an operation that turned the strangest science of the last century into a trading edge, and people prepared to kill to keep it.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=Debunked+Grant+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HCK9V3S9" target="_blank" rel="noopener">Find it on Amazon</a></div>
         </div>
       </article>
       <article class="book" id="the-cable-and-the-quiet">
@@ -728,7 +772,7 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
           <p class="series">Second edition · Paperback and Kindle</p>
           <h3><a href="the-noisy-mind/">The Noisy Mind</a></h3>
           <p class="blurb">Living with an overactive brain in a world that never switches off. Forty-one short chapters on rumination, sleep, stress, the inner critic and the pull of quick relief, written from inside the experience, with practical ways to turn the volume down.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=The+Noisy+Mind+G+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GX2X7KCN" target="_blank" rel="noopener">Find it on Amazon</a></div>
         </div>
       </article>
       <article class="book" id="the-calibrated-mind">
@@ -738,7 +782,7 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
           <h3><a href="the-calibrated-mind/">The Calibrated Mind</a></h3>
           <p class="tag">You are not broken. You are miscalibrated.</p>
           <p class="blurb">Your brain is a prediction machine, and anxiety is what happens when its forecasts of danger run hot. A clear guide to how fear is learned, why reassurance and avoidance keep it in place, and how it can be recalibrated.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=The+Calibrated+Mind+G+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HBKBW6W9" target="_blank" rel="noopener">Find it on Amazon</a></div>
         </div>
       </article>
       <article class="book" id="rewiring-pain">
@@ -747,7 +791,7 @@ section.notes{padding-block:64px 24px;border-top:1px solid var(--rule)}
           <p class="series">Pain neuroscience</p>
           <h3><a href="rewiring-pain/">Rewiring Pain</a></h3>
           <p class="blurb">What the science of the nervous system tells us about persistent pain, and how understanding it can change the way it is felt and lived with.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/s?k=Rewiring+Pain+G+C+Anthony" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GNS6TSLJ" target="_blank" rel="noopener">Find it on Amazon</a></div>
         </div>
       </article>
     </div>
