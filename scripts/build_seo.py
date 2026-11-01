@@ -301,6 +301,7 @@ def build_books(changed):
         if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine)):
             changed.append(f"books/{b['slug']}/index.html")
     build_notes(notes, style, changed)
+    build_outnow(books, changed)
     return books, notes
 
 
@@ -640,6 +641,45 @@ def notes_index(notes, style):
   <section class="nall wrap"><div class="ngrid">{cards}</div></section>
 """
     return out + page_foot(True)
+
+
+def short_blurb(text, at_least=140):
+    """Whole sentences from the start of a blurb, enough to pass at_least characters."""
+    out = ""
+    for sent in re.split(r"(?<=[.!?])\s+", text.strip()):
+        out = (out + " " + sent).strip()
+        if len(out) >= at_least:
+            break
+    return out
+
+
+def build_outnow(books, changed):
+    """The books on sale, as big cards between the outnow markers on books/index.html."""
+    page = read("books/index.html")
+    if "<!-- outnow:start" not in page:
+        return
+    out = [b for b in books if b["out"] and b["buy"]]
+    inner = ""
+    if out:
+        cards = ""
+        for b in out:
+            side = "fic" if b["fiction"] else "nf"
+            tag = f'<p class="tag">{esc(b["tag"])}</p>' if b["tag"] else ""
+            # the shelf line, minus format notes such as "Second edition" or "Paperback and Kindle"
+            kind = " · ".join(x for x in b["series"].split(" · ") if not re.search(r"edition|paperback|kindle", x, re.I))
+            label = ("Fiction" if b["fiction"] else "Nonfiction") + (f" · {kind}" if kind else "")
+            cards += (f'\n      <article class="feat {side}"><a href="{b["slug"]}/"><img src="{esc(b["cover"])}" alt="Cover of {esc(b["title"])}" width="480" height="750" loading="lazy"></a>'
+                      f'<div><span class="label">{esc(label)}</span>'
+                      f'<h3><a href="{b["slug"]}/">{esc(b["title"])}</a></h3><p class="by">{esc(b["byline"])}</p>{tag}'
+                      f'<p class="blurb">{esc(short_blurb(b["blurb"]))}</p>'
+                      f'<div class="acts"><a class="buybig" href="{esc(b["buy"])}" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">\u2192</span></a>'
+                      f'<a class="more-link" href="{b["slug"]}/">About the book</a></div></div></article>')
+        inner = ('\n  <section id="out-now" class="outnow wrap">\n    <div class="shelf-head"><div><span class="label">Available now</span><h2>Out now</h2></div>'
+                 '<p>Ready to read today, from Amazon.</p></div>\n    <div class="feats">' + cards + '\n    </div>\n  </section>\n  ')
+    block = "<!-- outnow:start (written by scripts/build_seo.py) -->" + inner + "<!-- outnow:end -->"
+    new = re.sub(r"<!-- outnow:start.*?<!-- outnow:end -->", lambda m: block, page, flags=re.S)
+    if write_if_changed("books/index.html", new):
+        changed.append("books/index.html")
 
 
 def build_notes(notes, style, changed):
