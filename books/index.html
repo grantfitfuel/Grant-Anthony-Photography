@@ -482,8 +482,10 @@ section.shelf{padding-block:64px 24px}
 .status.out{background:var(--sun);border-color:var(--sun);color:#221a00}
 
 .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-.buy{font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:7px 12px;border-radius:99px;border:1px solid var(--sun);color:var(--sun)}
-.buy:hover{background:var(--sun);color:#221a00}
+.buy{display:inline-flex;align-items:center;gap:7px;font:700 .86rem/1 var(--display);text-decoration:none;padding:10px 16px;border-radius:99px;background:var(--sun);color:#221a00;box-shadow:0 6px 18px -8px var(--sun)}
+.buy:hover{transform:translateY(-1px);box-shadow:0 10px 24px -8px var(--sun)}
+/* beside a buy button, "Out now" steps back to an outline so the button leads */
+.status.out:has(+ .buy){background:transparent;color:var(--sun)}
 /* Typeset covers */
 .cover{aspect-ratio:2/3;max-width:100%;position:relative;overflow:hidden;border-radius:6px 12px 12px 6px;padding:12px 11px;display:flex;flex-direction:column;justify-content:space-between;
   background:var(--c1);color:var(--ct);transform:rotate(-3deg);box-shadow:inset 4px 0 0 rgba(0,0,0,.22),10px 14px 0 -2px var(--shadow,var(--deep));transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
@@ -649,7 +651,7 @@ section.outnow{padding-block:56px 8px}
           <h3><a href="debunked/">Debunked</a></h3>
           <p class="tag">Some truths are stranger than fiction. Some lies are better.</p>
           <p class="blurb">Callum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing. Following a run of deaths among fringe consciousness researchers, he finds an operation that turned the strangest science of the last century into a trading edge, and people prepared to kill to keep it.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HCK9V3S9" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HCK9V3S9" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a></div>
         </div>
       </article>
       <article class="book" id="the-cable-and-the-quiet">
@@ -772,7 +774,7 @@ section.outnow{padding-block:56px 8px}
           <p class="series">Second edition · Paperback and Kindle</p>
           <h3><a href="the-noisy-mind/">The Noisy Mind</a></h3>
           <p class="blurb">Living with an overactive brain in a world that never switches off. Forty-one short chapters on rumination, sleep, stress, the inner critic and the pull of quick relief, written from inside the experience, with practical ways to turn the volume down.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GX2X7KCN" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GX2X7KCN" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a></div>
         </div>
       </article>
       <article class="book" id="the-calibrated-mind">
@@ -782,7 +784,7 @@ section.outnow{padding-block:56px 8px}
           <h3><a href="the-calibrated-mind/">The Calibrated Mind</a></h3>
           <p class="tag">You are not broken. You are miscalibrated.</p>
           <p class="blurb">Your brain is a prediction machine, and anxiety is what happens when its forecasts of danger run hot. A clear guide to how fear is learned, why reassurance and avoidance keep it in place, and how it can be recalibrated.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HBKBW6W9" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0HBKBW6W9" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a></div>
         </div>
       </article>
       <article class="book" id="rewiring-pain">
@@ -791,7 +793,7 @@ section.outnow{padding-block:56px 8px}
           <p class="series">Pain neuroscience</p>
           <h3><a href="rewiring-pain/">Rewiring Pain</a></h3>
           <p class="blurb">What the science of the nervous system tells us about persistent pain, and how understanding it can change the way it is felt and lived with.</p>
-          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GNS6TSLJ" target="_blank" rel="noopener">Find it on Amazon</a></div>
+          <div class="act"><span class="status out">Out now</span><a class="buy" href="https://www.amazon.co.uk/dp/B0GNS6TSLJ" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a></div>
         </div>
       </article>
     </div>
