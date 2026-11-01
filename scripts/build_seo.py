@@ -201,7 +201,7 @@ def book_page(b, all_books, posts, style, book_notes=()):
             {"@type": "ListItem", "position": 2, "name": b["title"], "item": url}]},
     ]
 
-    act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Find it on Amazon</a>'
+    act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a>'
            if b["out"] else f'<span class="status due"><small>Expected release</small>{esc(status.replace("Expected release", "").strip())}</span>')
     read = ""
     if opening or quotes or notes:
@@ -586,7 +586,7 @@ def note_page(n, notes, style):
     hero = figure(n["image"], n["image_alt"]).replace("<figure>", '<figure class="hero">', 1).replace(' loading="lazy"', "") if n["image"] else ""
     aside = ""
     if b:
-        act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Find it on Amazon</a>'
+        act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a>'
                if b["out"] and b["buy"] else
                f'<span class="status due"><small>Expected release</small>{esc(b["status"].replace("Expected release", "").strip())}</span>')
         aside = f"""
