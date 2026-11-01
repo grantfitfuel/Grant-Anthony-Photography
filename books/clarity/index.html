@@ -171,8 +171,10 @@ section.shelf{padding-block:64px 24px}
 .status.out{background:var(--sun);border-color:var(--sun);color:#221a00}
 
 .act{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-.buy{font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:7px 12px;border-radius:99px;border:1px solid var(--sun);color:var(--sun)}
-.buy:hover{background:var(--sun);color:#221a00}
+.buy{display:inline-flex;align-items:center;gap:7px;font:700 .86rem/1 var(--display);text-decoration:none;padding:10px 16px;border-radius:99px;background:var(--sun);color:#221a00;box-shadow:0 6px 18px -8px var(--sun)}
+.buy:hover{transform:translateY(-1px);box-shadow:0 10px 24px -8px var(--sun)}
+/* beside a buy button, "Out now" steps back to an outline so the button leads */
+.status.out:has(+ .buy){background:transparent;color:var(--sun)}
 /* Typeset covers */
 .cover{aspect-ratio:2/3;max-width:100%;position:relative;overflow:hidden;border-radius:6px 12px 12px 6px;padding:12px 11px;display:flex;flex-direction:column;justify-content:space-between;
   background:var(--c1);color:var(--ct);transform:rotate(-3deg);box-shadow:inset 4px 0 0 rgba(0,0,0,.22),10px 14px 0 -2px var(--shadow,var(--deep));transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
