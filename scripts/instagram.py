@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Post the next queued photograph to Instagram.
+"""Post to Instagram: a photograph, or a tip carousel.
 
-Run by .github/workflows/instagram.yml. Reads photos.json (written by the Studio),
-picks the first photograph ticked "Share to Instagram" that has not been posted yet,
-prepares an Instagram-sized copy, posts it, and records it in instagram-log.json.
+Run by .github/workflows/instagram.yml.
+  Photo days (Tuesday, Friday): the first photograph ticked "Share to Instagram" in the
+  Studio that has not been posted yet, as a single image with its caption.
+  Tip days (Monday, Thursday): the next post in instagram-tips.json, drawn as a carousel
+  by scripts/ig_tips.py ("Light, explained" series), with a caption and a question.
+Everything posted is recorded in instagram-log.json (tips as tip:<id>).
 
 instagram-log.json belongs to this script only. The Studio never writes it, so a
 Studio publish can never wipe the record and cause a photograph to be posted twice.
@@ -11,6 +14,7 @@ Studio publish can never wipe the record and cause a photograph to be posted twi
 Environment:
   IG_TOKEN        Instagram access token (GitHub secret)
   MODE            "dry-run" (default) or "post"
+  KIND            "auto" (default: by UK day of the week), "photo" or "tip"
   GH_PAT          optional; lets the script save a renewed IG_TOKEN back to the secret
   IG_API_BASE     optional; defaults to https://graph.instagram.com/v23.0 (overridden in tests)
   GITHUB_REPOSITORY, GITHUB_SHA  set by GitHub Actions
@@ -257,6 +261,13 @@ def post(image_url, caption, expected_user):
 # ---------- main ----------
 LOCAL_TZ = "Europe/London"
 LOCAL_HOUR = 18          # scheduled posts go out at 18:00 UK time, summer and winter
+# UK day of the week (Monday = 0) -> what goes out that day
+DAYS = {0: "tip", 1: "photo", 3: "tip", 4: "photo"}
+
+
+def uk_now():
+    from zoneinfo import ZoneInfo
+    return datetime.now(timezone.utc).astimezone(ZoneInfo(LOCAL_TZ))
 
 
 def scheduled_slot_ok(log, now=None):
@@ -279,14 +290,116 @@ def scheduled_slot_ok(log, now=None):
     return True
 
 
+def write_log(log):
+    with open(LOG_PATH, "w", encoding="utf-8") as f:
+        json.dump(log, f, indent=2, ensure_ascii=False); f.write("\n")
+
+
+def post_carousel(image_urls, caption, expected_user):
+    me = call("GET", f"{API}/me", {"fields": "user_id,username", "access_token": TOKEN})
+    user, name = me.get("user_id") or me.get("id"), me.get("username", "")
+    if expected_user and name.lower() != expected_user.lower().lstrip("@"):
+        fail(f"The token belongs to @{name}, not @{expected_user.lstrip('@')}. Nothing was posted.")
+
+    def ready(cid):
+        for _ in range(30):
+            st = call("GET", f"{API}/{cid}", {"fields": "status_code", "access_token": TOKEN}).get("status_code")
+            if st == "FINISHED":
+                return
+            if st in ("ERROR", "EXPIRED"):
+                raise RuntimeError(f"Instagram could not process an image (status {st}).")
+            time.sleep(5)
+        raise RuntimeError("Instagram took too long to process the images.")
+
+    children = []
+    for url in image_urls:
+        c = call("POST", f"{API}/{user}/media", {"image_url": url, "is_carousel_item": "true", "access_token": TOKEN})["id"]
+        ready(c)
+        children.append(c)
+    cid = call("POST", f"{API}/{user}/media", {"media_type": "CAROUSEL", "children": ",".join(children),
+                                                 "caption": caption, "access_token": TOKEN})["id"]
+    ready(cid)
+    mid = call("POST", f"{API}/{user}/media_publish", {"creation_id": cid, "access_token": TOKEN})["id"]
+    link = ""
+    try:
+        link = call("GET", f"{API}/{mid}", {"fields": "permalink", "access_token": TOKEN}).get("permalink", "")
+    except RuntimeError:
+        pass
+    return mid, link, name
+
+
+def post_tip(data, site, log):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import ig_tips
+    tips = load_json(ig_tips.TIPS_PATH, None)
+    if not tips:
+        fail("instagram-tips.json not found.")
+    done = {x["id"] for x in log.get("posted", [])}
+    waiting = [t for t in tips.get("posts", []) if "tip:" + t["id"] not in done]
+    # Only posts you have approved go out ("approved": true in instagram-tips.json)
+    post_ = next((t for t in waiting if t.get("approved") is True), None)
+    if not post_:
+        if not waiting:
+            say("Every tip in instagram-tips.json has been posted. Add more there to keep tip days going.")
+        else:
+            say(f"No approved tips are waiting ({len(waiting)} not yet approved), so nothing is posted today. "
+                "Set \"approved\": true on a post in instagram-tips.json to let it go out.")
+            if MODE != "post":
+                post_ = waiting[0]
+                say("Dry run: showing the next one that is waiting for approval.")
+        if not post_:
+            if MODE == "post" and TOKEN:
+                refresh_token()
+            return
+        if MODE == "post":
+            return
+    out_dir = os.path.join(OUT_DIR, "tips")
+    paths = ig_tips.save(post_, data, tips, out_dir)
+    cap = ig_tips.caption(post_, data, tips, extra_tags=site.get("igHashtags") or "", limit=CAPTION_MAX, max_tags=MAX_TAGS)
+    left = sum(1 for t in waiting if t.get("approved") is True and t is not post_)
+    say(f"Next tip: {post_['title']}  ({len(paths)} slides; {left} more approved after this)")
+    say("----- caption -----\n" + cap + "\n-------------------")
+    if MODE != "post":
+        say("Dry run: nothing was posted. The slides are in the instagram-preview download below.")
+        return
+    if not TOKEN:
+        fail("No IG_TOKEN secret is set. See the Instagram section of the README.")
+    refresh_token()
+    rels = [os.path.relpath(x, ROOT) for x in paths]
+    sha = commit_and_push(rels, f"Instagram: prepare tip {post_['id']}")
+    base = os.environ.get("IG_IMAGE_BASE", f"https://raw.githubusercontent.com/{REPO}/{sha}/").rstrip("/")
+    try:
+        mid, link, name = post_carousel([base + "/" + r for r in rels], cap, site.get("igAccount", ""))
+    except RuntimeError as e:
+        log["lastError"] = {"id": "tip:" + post_["id"], "date": datetime.now(timezone.utc).isoformat(timespec="seconds"), "message": str(e)}
+        write_log(log)
+        commit_and_push(["instagram-log.json"], f"Instagram: failed to post tip {post_['id']}")
+        fail(str(e))
+    log.setdefault("posted", []).append({"id": "tip:" + post_["id"], "kind": "tip", "title": post_["title"],
+                                         "date": datetime.now(timezone.utc).isoformat(timespec="seconds"), "media": mid, "link": link})
+    log.pop("lastError", None)
+    write_log(log)
+    commit_and_push(["instagram-log.json"], f"Instagram: posted tip {post_['id']}")
+    say(f"Posted to @{name}: {link or mid}")
+
+
 def main():
     data = load_json(os.path.join(ROOT, "photos.json"), None)
     if not data:
         fail("photos.json not found.")
     site = data.get("site", {})
     log = load_json(LOG_PATH, {"posted": []})
+    kind = os.environ.get("KIND", "auto") or "auto"
+    if kind == "auto":
+        day = uk_now().weekday()
+        kind = DAYS.get(day)
+        if not kind:
+            say("Nothing is scheduled for today (photos Tuesday and Friday, tips Monday and Thursday).")
+            return
     if os.environ.get("SCHEDULED") == "1" and not scheduled_slot_ok(log):
         return
+    if kind == "tip":
+        return post_tip(data, site, log)
     p = next_photo(data, log)
     if not p:
         say("Nothing queued. Tick 'Share to Instagram' on a photograph in the Studio and publish.")
