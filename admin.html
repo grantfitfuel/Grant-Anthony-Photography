@@ -83,6 +83,21 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
 .steps{margin:0 0 18px;padding-left:20px;color:var(--muted);font-size:14px;max-width:72ch}
 .steps li{margin-bottom:6px}
 .steps b{color:var(--fg);font-weight:500}
+.tipsum{margin:0;font-size:15px}
+.tipsum b{color:var(--accent);font-weight:500}
+.titem h3{font-family:var(--display);font-weight:400;font-size:clamp(24px,3.4vw,32px);line-height:1.15;margin:6px 0 14px}
+.tslides{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-bottom:6px}
+.tslides img{flex:0 0 auto;width:min(260px,72vw);aspect-ratio:4/5;height:auto;max-width:100%;border-radius:6px;background:var(--bg3);scroll-snap-align:start}
+.tnote{font-size:13px;color:var(--muted);margin:0 0 10px}
+.tnote.warn{color:var(--accent)}
+.titem details{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.titem summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.titem pre{white-space:pre-wrap;font:14px/1.6 var(--body);color:var(--fg);margin:12px 0 0}
+.tslide{border:1px solid var(--line);border-radius:10px;padding:14px 14px 2px;margin:12px 0}
+.tslide .lab{display:block;margin-bottom:10px}
+.titem.approved{border-color:rgba(155,211,164,.45)}
+.titem .tog.big{font-size:15px;font-weight:500}
+.titem .tog.big input{width:20px;height:20px}
 </style>
 </head>
 <body>
@@ -102,6 +117,7 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
     <button role="tab" data-tab="photos" aria-selected="true">Photographs</button>
     <button role="tab" data-tab="cats" aria-selected="false">Categories</button>
     <button role="tab" data-tab="learn" aria-selected="false">Learn</button>
+    <button role="tab" data-tab="tips" aria-selected="false">Instagram tips</button>
     <button role="tab" data-tab="site" aria-selected="false">Site details</button>
     <button role="tab" data-tab="conn" aria-selected="false">Connection</button>
   </nav>
@@ -178,6 +194,17 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
     <div class="plist" id="llist"></div>
   </section>
 
+  <!-- INSTAGRAM TIPS -->
+  <section class="panel" data-panel="tips" hidden>
+    <div class="card">
+      <h2>Instagram tips</h2>
+      <p class="help">The "Light, explained" carousels for @gcanth. One goes out every Monday and Thursday at 18:00 UK time, in this order, but <b>only once you approve it</b>. Photographs still go out on Tuesdays and Fridays.</p>
+      <p class="help">Swipe the slides, read the caption, then tick <b>Approved to post</b> and publish. To change the wording, open <b>Edit wording</b>. New slides are drawn a few minutes after you publish.</p>
+      <p class="tipsum" id="tipSum"></p>
+    </div>
+    <div class="plist" id="tlist"></div>
+  </section>
+
   <!-- SITE -->
   <section class="panel" data-panel="site" hidden>
     <div class="card">
@@ -199,7 +226,7 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
     </div>
     <div class="card">
       <h2>Instagram posting</h2>
-      <p class="help">Tick <b>Share to Instagram</b> on a photograph and publish. Every Tuesday and Friday at 18:00 UK time the next one in the queue is posted automatically, in the order the photographs appear in your list. The caption is built from the title, place, year, description and settings, then the link and hashtags below. Setup steps are in the README.</p>
+      <p class="help">Tick <b>Share to Instagram</b> on a photograph and publish. Every Tuesday and Friday at 18:00 UK time the next one in the queue is posted automatically, in the order the photographs appear in your list. Tip posts go out on Mondays and Thursdays; see the Instagram tips tab. The caption is built from the title, place, year, description and settings, then the link and hashtags below. Setup steps are in the README.</p>
       <div class="grid2">
         <div class="field"><label for="sIgAcc">Account to post to (checked before every post)</label><input type="text" id="sIgAcc" maxlength="40" placeholder="gcanth"></div>
         <div class="field"><label for="sIgLink">Line before the hashtags</label><input type="text" id="sIgLink" maxlength="120" placeholder="grantanthony.co.uk"></div>

@@ -52,7 +52,7 @@ Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tue
 - **Shape:** Instagram accepts 4:5 portrait to 1.91:1 landscape. Taller or wider photographs get a plain border (white, black or dark grey; your choice in Site details) rather than a crop. Prepared copies are kept in the `ig` folder.
 - **Status:** each photograph in the Studio shows "Next to post", its place in the queue, "Posted to Instagram" with a link, or the reason the last attempt failed. A photograph under 1080 px wide is flagged, because it will look soft.
 - **Safety:** before every post the job checks the token belongs to the account named in Site details, and stops if it does not.
-- **Tips (Mondays and Thursdays, 18:00 UK):** a carousel in the "Light, explained" series: your photograph with a headline, two or three slides of practical advice, then a question for the comments and a link to the matching free lesson. The posts are in `instagram-tips.json`, in the order they go out: tips, myths, kit care, weekly challenges, discussions, and the settings behind your own photographs. Nothing goes out until you approve it: change `"approved": false` to `"approved": true` on that post (pencil icon on GitHub). Edit the wording there too. If no approved post is waiting on a tip day, nothing is posted. To preview the slides: Actions > Instagram > Run workflow, kind: tip, mode: dry-run, then download "instagram-preview". When all of them have gone out, tip days stop until more are added.
+- **Tips (Mondays and Thursdays, 18:00 UK):** a carousel in the "Light, explained" series: your photograph with a headline, two or three slides of practical advice, then a question for the comments and a link to the matching free lesson. The posts are in `instagram-tips.json`, in the order they go out: tips, myths, kit care, weekly challenges, discussions, and the settings behind your own photographs. Nothing goes out until you approve it: in the Studio, open the **Instagram tips** tab, check the slides and caption, tick **Approved to post** and publish. The wording can be edited there too, and the slides are redrawn a few minutes after you publish (the Tip previews job). If no approved post is waiting on a tip day, nothing is posted. To preview the slides: Actions > Instagram > Run workflow, kind: tip, mode: dry-run, then download "instagram-preview". When all of them have gone out, tip days stop until more are added.
 - **Record:** what has been posted is kept in `instagram-log.json`. Only the posting job writes it. Do not delete it, or photographs will be posted again.
 
 ### One-time setup (about 20 minutes)
@@ -93,6 +93,8 @@ The menu names below were right at the time of writing. Meta changes its screens
 | `scripts/instagram.py` | Prepares and posts the next queued photograph or tip to Instagram |
 | `scripts/ig_tips.py` | Draws the tip carousels and writes their captions |
 | `instagram-tips.json` | The tip and discussion posts, in posting order. Edit freely |
+| `.github/workflows/tip-previews.yml` | Redraws the slide previews shown in the Studio when tips change |
+| `ig/tips-preview/` | Those previews, written by the job. Do not edit |
 | `.github/workflows/instagram.yml` | Runs the Instagram posting on a schedule |
 | `instagram-log.json` | Created by the posting job: what has been posted. Do not edit |
 | `photos.json` | Your titles, text, categories and settings. The Studio page writes this for you |
