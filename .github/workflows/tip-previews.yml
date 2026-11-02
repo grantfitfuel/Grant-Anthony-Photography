@@ -1,0 +1,39 @@
+name: Tip previews
+
+# Redraws the small slide previews the Studio shows in its Instagram tips tab,
+# whenever instagram-tips.json changes (approving or editing a post in the Studio).
+# Only posts whose wording, photograph or order changed are redrawn.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - instagram-tips.json
+      - scripts/ig_tips.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tip-previews
+  cancel-in-progress: false
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet pillow
+      - name: Draw previews
+        run: python scripts/ig_tips.py --previews
+      - name: Save them
+        run: |
+          git add ig/tips-preview
+          if git diff --cached --quiet; then echo "Previews already up to date."; exit 0; fi
+          git -c user.name="Tip previews" -c user.email=actions@users.noreply.github.com commit -m "Tip previews: redraw"
+          for i in 1 2 3 4; do git push && exit 0; git pull --rebase --quiet; sleep $((i*3)); done
+          echo "::error::Could not push the previews."; exit 1
