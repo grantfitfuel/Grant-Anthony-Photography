@@ -24,7 +24,7 @@
       "question": "What is your favourite time of day to shoot, and why?",
       "lesson": "reading-the-light",
       "tags": "#goldenhour #landscapephotography #photographytips #lightandshadow",
-      "approved": false
+      "approved": true
     },
     {
       "id": "sprinkenhof-settings",
@@ -53,7 +53,7 @@
       "question": "Have you tried long exposures at night? What surprised you?",
       "lesson": "night-and-blue-hour",
       "tags": "#longexposure #nightphotography #bluehour #hamburg #architecturephotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "expensive-camera-myth",
