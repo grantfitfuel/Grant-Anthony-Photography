@@ -12,6 +12,8 @@
   const previews = {};                   // id -> object URL for freshly uploaded thumbs
   const confirmFor = new Set();
   let igLog = { posted: [] };            // instagram-log.json, written only by the posting job
+  let tips = null, tipsSaved = "", tipsSha = null;   // instagram-tips.json: the tip carousels
+  let tipIndex = {};                     // ig/tips-preview/index.json, written by the Tip previews job
 
   /* ---------- small utils ---------- */
   function toast(msg, err, ms = 3200) {
@@ -25,7 +27,9 @@
   const textFromB64 = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g, "")), c => c.charCodeAt(0)));
   const blobB64 = blob => blob.arrayBuffer().then(buf => b64FromBytes(new Uint8Array(buf)));
   const clone = o => JSON.parse(JSON.stringify(o));
-  const dirty = () => data && (JSON.stringify(data) !== savedStr || pendingDeletes.length > 0);
+  const photosDirty = () => data && (JSON.stringify(data) !== savedStr || pendingDeletes.length > 0);
+  const tipsDirty = () => !!tips && JSON.stringify(tips) !== tipsSaved;
+  const dirty = () => photosDirty() || tipsDirty();
 
   /* ---------- GitHub API ---------- */
   async function gh(method, path, body, accept) {
@@ -84,7 +88,7 @@
   function merge3(base, mine, theirs) {
     const out = {};
     new Set([...Object.keys(theirs), ...Object.keys(mine)]).forEach(k => {
-      if (k === "photos" || k === "lessons") { out[k] = mergeList(base[k] || [], mine[k] || [], theirs[k] || []); return; }
+      if (k === "photos" || k === "lessons" || k === "posts") { out[k] = mergeList(base[k] || [], mine[k] || [], theirs[k] || []); return; }
       if (k === "site") {
         const s = {}, bs = base.site || {}, ms = mine.site || {}, ts = theirs.site || {};
         new Set([...Object.keys(ts), ...Object.keys(ms)]).forEach(f => { s[f] = (f in ms && !same(ms[f], bs[f])) ? ms[f] : (f in ts ? ts[f] : ms[f]); });
@@ -110,6 +114,37 @@
     }
     throw new Error("photos.json kept changing while publishing. Reload the Studio and try again.");
   }
+  async function getTips() {
+    try {
+      const meta = await gh("GET", contentPath("instagram-tips.json") + "?ref=" + encodeURIComponent(conn.branch));
+      const txt = meta.content ? textFromB64(meta.content) : await gh("GET", contentPath("instagram-tips.json") + "?ref=" + encodeURIComponent(conn.branch), null, "application/vnd.github.raw+json");
+      const j = JSON.parse(txt); j.posts = (j.posts || []).filter(t => t && t.id);
+      return { json: j, sha: meta.sha };
+    } catch (e) { if (e.status === 404) return { json: null, sha: null }; throw e; }
+  }
+  async function writeTips(message) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const cur = await getTips();
+      if (cur.json && tipsSaved && cur.sha !== tipsSha) {
+        const merged = merge3(JSON.parse(tipsSaved), tips, cur.json);
+        if (!same(merged, tips)) { tips = merged; try { renderTips(); } catch (e) {} }
+      }
+      tipsSha = cur.sha;
+      try {
+        const r = await putFile("instagram-tips.json", b64Text(JSON.stringify(tips, null, 2) + "\n"), message, tipsSha);
+        tipsSha = r.content.sha; tipsSaved = JSON.stringify(tips); return;
+      } catch (e) { if (e.status !== 409 && e.status !== 422) throw e; }
+    }
+    throw new Error("instagram-tips.json kept changing while publishing. Reload the Studio and try again.");
+  }
+  async function loadTips() {
+    try { const t = await getTips(); tips = t.json; tipsSha = t.sha; tipsSaved = tips ? JSON.stringify(tips) : ""; }
+    catch (e) { tips = null; tipsSaved = ""; }
+    try {
+      const meta = await gh("GET", contentPath("ig/tips-preview/index.json") + "?ref=" + encodeURIComponent(conn.branch));
+      tipIndex = JSON.parse(textFromB64(meta.content)) || {};
+    } catch (e) { tipIndex = {}; }
+  }
 
   /* ---------- connection ---------- */
   function loadConn() {
@@ -134,6 +169,7 @@
       savedStr = json ? JSON.stringify(data) : "";
       pendingDeletes = [];
       await loadIgLog();
+      await loadTips();
       setStatus("ok", conn.owner + "/" + conn.repo);
       lock(false); renderAll(); if (!silent) { toast("Connected"); showTab("photos"); }
     } catch (e) {
@@ -177,7 +213,7 @@
   document.querySelectorAll("[role=tab]").forEach(t => t.onclick = () => showTab(t.dataset.tab));
 
   /* ---------- rendering ---------- */
-  function renderAll() { renderPhotos(); renderCats(); renderLessons(); renderSite(); updateBar(); }
+  function renderAll() { renderPhotos(); renderCats(); renderLessons(); renderTips(); renderSite(); updateBar(); }
   function updateBar() {
     const d = dirty(); $("savebar").classList.toggle("show", d || busy);
     $("save").disabled = busy || !d; $("discard").disabled = busy || !d;
@@ -349,6 +385,131 @@
     const t = $("lt-" + id); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.select(); }
   };
 
+  /* ---------- Instagram tips ---------- */
+  const TIP_KINDS = { tip: "Tip", myth: "Myth", settings: "Behind the settings", challenge: "Weekly challenge", discussion: "Discussion", care: "Kit care" };
+  // Must match fingerprint() in scripts/ig_tips.py: the parts of a post that change its slides
+  const tipFp = (t, no) => JSON.stringify([no, t.photo || "", t.kicker || "", t.title || "", t.type || "",
+    (t.slides || []).map(s => [s.h || "", s.t || "", s.points || []]), t.question || "", t.lesson || ""]);
+  const tipPosted = t => igLog.posted.filter(x => x.id === "tip:" + t.id).sort((a, b) => a.date < b.date ? 1 : -1)[0];
+  const ord = n => n + (n % 10 === 1 && n % 100 !== 11 ? "st" : n % 10 === 2 && n % 100 !== 12 ? "nd" : n % 10 === 3 && n % 100 !== 13 ? "rd" : "th");
+  const fmtDate = d => new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  const rawUrl = path => `https://raw.githubusercontent.com/${encodeURIComponent(conn.owner)}/${encodeURIComponent(conn.repo)}/${encodeURIComponent(conn.branch)}/${path}`;
+
+  function renderTips() {
+    const L = $("tlist"); if (!L) return; L.textContent = "";
+    if (!tips) {
+      $("tipSum").textContent = "";
+      const e = el("div", "empty"); e.append(el("h3", null, "No tip posts found"), el("p", null, "instagram-tips.json is not in your repository yet."));
+      L.append(e); return;
+    }
+    const posts = tips.posts;
+    const queue = posts.filter(t => !tipPosted(t) && t.approved === true);
+    const waiting = posts.filter(t => !tipPosted(t) && t.approved !== true).length;
+    const done = posts.filter(tipPosted).length;
+    const sum = $("tipSum"); sum.textContent = "";
+    sum.append(el("b", null, queue.length + " approved"), " and waiting · " + waiting + " still to check · " + done + " posted");
+    if (queue.length) sum.append(" · Next: " + queue[0].title);
+    else sum.append(" · Nothing will post on tip days until you approve one.");
+
+    posts.forEach((t, i) => {
+      const no = i + 1, posted = tipPosted(t);
+      const it = el("article", "pitem litem titem" + (t.approved === true && !posted ? " approved" : "")); it.dataset.id = t.id;
+      let state;
+      if (posted) state = "Posted " + fmtDate(posted.date);
+      else if (igLog.lastError && igLog.lastError.id === "tip:" + t.id) state = "Last attempt failed: " + igLog.lastError.message;
+      else if (t.approved === true) { const n = queue.indexOf(t) + 1; state = n === 1 ? "Next to post" : "Approved, " + ord(n) + " in line"; }
+      else state = "Waiting for your approval";
+      it.append(el("p", "eyebrow", "No. " + String(no).padStart(2, "0") + "  ·  " + (TIP_KINDS[t.type] || "Post") + "  ·  " + state));
+      it.append(el("h3", null, t.title || "Untitled"));
+
+      // slides, drawn by the Tip previews job
+      const ix = tipIndex[t.id];
+      if (ix && ix.n) {
+        const strip = el("div", "tslides"); strip.tabIndex = 0; strip.setAttribute("aria-label", "Slides for No. " + no);
+        for (let k = 1; k <= ix.n; k++) {
+          const path = `ig/tips-preview/${t.id}-${k}.jpg`;
+          const im = el("img"); im.alt = "Slide " + k; im.loading = "lazy"; im.width = 540; im.height = 675;
+          im.src = path + "?v=" + ix.v;
+          im.onerror = () => { im.onerror = null; im.src = rawUrl(path) + "?v=" + ix.v; };
+          strip.append(im);
+        }
+        it.append(strip);
+        if (ix.fp !== tipFp(t, no)) it.append(el("p", "tnote warn", tipsDirty() ? "Changed since these slides were drawn. New slides are drawn a few minutes after you publish." : "New slides are being drawn. Reload the Studio in a few minutes to see them."));
+      } else {
+        it.append(el("p", "tnote warn", "Slides not drawn yet. They appear a few minutes after you publish."));
+      }
+      if (ix && ix.caption) {
+        const cd = el("details"); cd.append(el("summary", null, "Caption"), el("pre", null, ix.caption)); it.append(cd);
+      }
+
+      // approve and arrange
+      const tools = el("div", "tools");
+      if (posted) {
+        const ps = el("span", "igstat ok", "Posted " + fmtDate(posted.date) + " ");
+        if (posted.link) { const a = el("a", null, "View"); a.href = posted.link; a.target = "_blank"; a.rel = "noopener"; ps.append(a); }
+        tools.append(ps);
+      } else {
+        const tg = el("label", "tog big"); const cb = el("input"); cb.type = "checkbox"; cb.id = "ta-" + t.id; cb.checked = t.approved === true;
+        cb.onchange = () => { t.approved = cb.checked; renderTips(); touch(); };
+        tg.append(cb, "Approved to post"); tools.append(tg);
+      }
+      tools.append(el("span", "sp"));
+      const mv = (label, d, dis) => { const b = el("button", "b sm", label); b.type = "button"; b.disabled = dis; b.onclick = () => { [posts[i], posts[i + d]] = [posts[i + d], posts[i]]; renderTips(); touch(); }; return b; };
+      tools.append(mv("Move up", -1, i === 0), mv("Move down", 1, i === posts.length - 1));
+      const key = "tip:" + t.id;
+      if (confirmFor.has(key)) {
+        const c = el("div", "confirm"); c.append("Delete this post?");
+        const y = el("button", "b sm danger", "Delete"); y.type = "button"; y.onclick = () => { confirmFor.delete(key); posts.splice(i, 1); renderTips(); touch(); };
+        const n = el("button", "b sm", "Keep"); n.type = "button"; n.onclick = () => { confirmFor.delete(key); renderTips(); };
+        c.append(y, n); tools.append(c);
+      } else { const d = el("button", "b sm danger", "Delete"); d.type = "button"; d.onclick = () => { confirmFor.add(key); renderTips(); }; tools.append(d); }
+      it.append(tools);
+
+      // wording
+      const ed = el("details"); ed.append(el("summary", null, "Edit wording"));
+      if (posted) ed.append(el("p", "tnote", "Already posted. Changes here will not change the post on Instagram."));
+      ed.append(field("Headline on the first slide", input("tt-" + t.id, t.title, v => t.title = v, { max: 80 })));
+      const g = el("div", "grid2");
+      g.append(field("Small label above it", input("tk-" + t.id, t.kicker, v => t.kicker = v, { max: 30, ph: "e.g. Composition" })));
+      const ps = el("select"); ps.id = "tp-" + t.id;
+      data.photos.forEach(p => { const o = el("option", null, p.title || p.id); o.value = p.id; ps.append(o); });
+      if (!data.photos.some(p => p.id === t.photo)) { const o = el("option", null, "Missing photograph"); o.value = t.photo || ""; ps.prepend(o); }
+      ps.value = t.photo || ""; ps.onchange = () => { t.photo = ps.value; touch(); };
+      g.append(field("Photograph on the first slide", ps));
+      ed.append(g);
+      (t.slides || []).forEach((sl, k) => {
+        const box = el("div", "tslide"); box.append(el("span", "lab", "Slide " + (k + 2 + (t.type === "settings" ? 1 : 0))));
+        box.append(field("Heading", input(`th-${t.id}-${k}`, sl.h, v => sl.h = v, { max: 70 })));
+        const isList = Array.isArray(sl.points);
+        const area = input(`tb-${t.id}-${k}`, isList ? sl.points.join("\n") : sl.t, v => {
+          if (Array.isArray(sl.points)) sl.points = v.split("\n").map(x => x.trim()).filter(Boolean); else sl.t = v;
+        }, { area: true, style: "min-height:110px" });
+        box.append(field(isList ? "Points, one per line" : "Text", area));
+        const lt = el("label", "tog"); const lcb = el("input"); lcb.type = "checkbox"; lcb.id = `tl-${t.id}-${k}`; lcb.checked = isList;
+        lcb.onchange = () => {
+          if (lcb.checked) { sl.points = (sl.t || "").split(/\n|(?<=[.!?])\s+/).map(x => x.trim().replace(/\.$/, "")).filter(Boolean); delete sl.t; }
+          else { sl.t = (sl.points || []).map(x => /[.!?]$/.test(x) ? x : x + ".").join(" "); delete sl.points; }
+          renderTips(); touch();
+          const again = $(`tb-${t.id}-${k}`); if (again) { again.closest("details").open = true; again.focus(); }
+        };
+        lt.append(lcb, "Show as a numbered list"); box.append(lt, el("div", null, " "));
+        ed.append(box);
+      });
+      ed.append(field("Question on the last slide", input("tq-" + t.id, t.question, v => t.question = v, { area: true, style: "min-height:64px", max: 160 })));
+      const g2 = el("div", "grid2");
+      const ls = el("select"); ls.id = "tln-" + t.id;
+      const none = el("option", null, "No lesson (links to the site instead)"); none.value = ""; ls.append(none);
+      data.lessons.forEach(l => { const o = el("option", null, l.title || l.id); o.value = l.id; ls.append(o); });
+      ls.value = data.lessons.some(l => l.id === t.lesson) ? t.lesson : "";
+      ls.onchange = () => { t.lesson = ls.value || null; touch(); };
+      g2.append(field("Lesson to link to", ls));
+      g2.append(field("Hashtags for this post", input("tg-" + t.id, t.tags, v => t.tags = v, { ph: "#landscapephotography #photographytips" })));
+      ed.append(g2);
+      it.append(ed);
+      L.append(it);
+    });
+  }
+
   function renderSite() {
     const s = data.site;
     [["sName", "name"], ["sTag", "tagline"], ["sYears", "yearsShooting"], ["sAboutTitle", "aboutTitle"], ["sAbout", "about"], ["sEmail", "email"], ["sInsta", "instagram"]].forEach(([id, k]) => {
@@ -456,7 +617,9 @@
     if (busy || !dirty()) return;
     busy = true; updateBar(); $("saveMsg").innerHTML = "<b>Publishing…</b>";
     try {
-      await writeJson("Update gallery");
+      const tipsChanged = tipsDirty();
+      if (photosDirty()) await writeJson("Update gallery");
+      if (tipsChanged) { $("saveMsg").innerHTML = "<b>Publishing tips…</b>"; await writeTips("Update Instagram tips"); renderTips(); }
       const dels = pendingDeletes.slice();
       for (const p of dels) {
         $("saveMsg").innerHTML = "<b>Removing files…</b>";
@@ -465,13 +628,14 @@
         if (p.medium) await deleteFile(p.medium, `Remove medium size ${p.id}`);
         pendingDeletes = pendingDeletes.filter(x => x !== p);
       }
-      busy = false; toast("Published. Your site updates in about a minute.", false, 5000);
+      busy = false; toast(tipsChanged ? "Published. New tip slides are drawn in a few minutes." : "Published. Your site updates in about a minute.", false, 5000);
     } catch (e) { busy = false; toast(e.message, true, 8000); }
     updateBar();
   };
   $("discard").onclick = () => {
     if (busy) return;
     data = normalise(savedStr ? JSON.parse(savedStr) : clone(DEFAULT)); pendingDeletes = []; confirmFor.clear();
+    if (tips) tips = tipsSaved ? JSON.parse(tipsSaved) : tips;
     renderAll(); toast("Changes discarded");
   };
   addEventListener("beforeunload", e => { if (busy || dirty()) { e.preventDefault(); e.returnValue = ""; } });
