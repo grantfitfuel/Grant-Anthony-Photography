@@ -7,6 +7,7 @@ instagram-tips.json at the top of the site; edit the text there.
 Preview every carousel by hand:
   python scripts/ig_tips.py            writes ig/preview/<id>-1.jpg ... for all posts
   python scripts/ig_tips.py <id>       just one
+  python scripts/ig_tips.py --previews small copies for the Studio in ig/tips-preview/
 
 Slides are 1080 x 1350 (4:5), in the site's colours and fonts:
   1     the photograph, with the series number, the label and the title
@@ -348,10 +349,68 @@ def caption(post, data, tips, extra_tags="", limit=2200, max_tags=30):
     return text + ("\n\n" + tail if tail else "")
 
 
+# ---------- previews for the Studio ----------
+PREVIEW_DIR = os.path.join(ROOT, "ig", "tips-preview")
+
+
+def fingerprint(post, no):
+    """The parts of a post that change its slides, as one string. The Studio builds the
+    same string (assets/admin.js, tipFp) to tell whether a preview is up to date."""
+    slides = [[s.get("h") or "", s.get("t") or "", s.get("points") or []] for s in post.get("slides", [])]
+    return json.dumps([no, post.get("photo") or "", post.get("kicker") or "", post.get("title") or "", post.get("type") or "",
+                       slides, post.get("question") or "", post.get("lesson") or ""], ensure_ascii=False, separators=(",", ":"))
+
+
+def build_previews(data, tips, site_tags=""):
+    """Small copies of every carousel for the Studio, plus index.json with each post's
+    slide count, fingerprint and caption. Only posts that changed are redrawn."""
+    import hashlib
+    os.makedirs(PREVIEW_DIR, exist_ok=True)
+    idx_path = os.path.join(PREVIEW_DIR, "index.json")
+    try:
+        with open(idx_path, encoding="utf-8") as f:
+            old = json.load(f)
+    except (FileNotFoundError, ValueError):
+        old = {}
+    new, drawn = {}, 0
+    for i, post in enumerate(tips.get("posts", [])):
+        fp = fingerprint(post, i + 1)
+        o = old.get(post["id"]) or {}
+        have = all(os.path.exists(os.path.join(PREVIEW_DIR, f"{post['id']}-{k}.jpg")) for k in range(1, (o.get("n") or 0) + 1))
+        n = o.get("n") or 0
+        if not (o.get("fp") == fp and n and have):
+            try:
+                ims = render(post, data, tips)
+            except Exception as e:  # a bad post should not stop the others
+                print(f"::warning::Could not draw '{post['id']}': {e}")
+                continue
+            for k, im in enumerate(ims, 1):
+                im.resize((540, 675), Image.LANCZOS).save(os.path.join(PREVIEW_DIR, f"{post['id']}-{k}.jpg"), "JPEG", quality=80, optimize=True)
+            for k in range(len(ims) + 1, n + 1):
+                try:
+                    os.remove(os.path.join(PREVIEW_DIR, f"{post['id']}-{k}.jpg"))
+                except FileNotFoundError:
+                    pass
+            n, drawn = len(ims), drawn + 1
+        new[post["id"]] = {"n": n, "fp": fp, "v": hashlib.sha1(fp.encode()).hexdigest()[:10],
+                           "caption": caption(post, data, tips, extra_tags=site_tags)}
+    # remove slides of posts that no longer exist
+    keep = {f"{pid}-{k}.jpg" for pid, e in new.items() for k in range(1, e["n"] + 1)}
+    for name in os.listdir(PREVIEW_DIR):
+        if name.endswith(".jpg") and name not in keep:
+            os.remove(os.path.join(PREVIEW_DIR, name))
+    with open(idx_path, "w", encoding="utf-8") as f:
+        json.dump(new, f, indent=1, ensure_ascii=False); f.write("\n")
+    return drawn
+
+
 if __name__ == "__main__":
     with open(os.path.join(ROOT, "photos.json"), encoding="utf-8") as f:
         data = json.load(f)
     tips = load_tips()
+    if sys.argv[1:] == ["--previews"]:
+        print(build_previews(data, tips, (data.get("site") or {}).get("igHashtags") or ""), "posts redrawn")
+        sys.exit(0)
     want = sys.argv[1:] or [x["id"] for x in tips["posts"]]
     out = os.path.join(ROOT, "ig", "preview")
     for post in tips["posts"]:
