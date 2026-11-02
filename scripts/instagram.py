@@ -260,7 +260,7 @@ def post(image_url, caption, expected_user):
 
 # ---------- main ----------
 LOCAL_TZ = "Europe/London"
-LOCAL_HOUR = 18          # scheduled posts go out at 18:00 UK time, summer and winter
+LOCAL_HOUR = 19          # scheduled posts go out at 19:00 UK time, summer and winter
 # UK day of the week (Monday = 0) -> what goes out that day
 DAYS = {0: "tip", 1: "photo", 3: "tip", 4: "photo"}
 
@@ -272,8 +272,8 @@ def uk_now():
 
 def scheduled_slot_ok(log, now=None):
     """GitHub schedules run on UTC, which does not follow the clocks changing.
-    The workflow wakes at 17:00 and 18:00 UTC; this keeps only the run that falls
-    at or after 18:00 UK time, and never posts twice on the same UK day."""
+    The workflow wakes from 18:00 to 23:59 UTC; this keeps only the first run that falls
+    at or after 19:00 UK time, and never posts twice on the same UK day."""
     from zoneinfo import ZoneInfo
     tz = ZoneInfo(LOCAL_TZ)
     now = (now or datetime.now(timezone.utc)).astimezone(tz)
