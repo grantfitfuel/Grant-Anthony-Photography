@@ -1,0 +1,1340 @@
+{
+  "about": "Tip and discussion posts for @gcanth, posted in this order on tip days. Edit any text here. Every post is numbered in the series named in 'series'. Each post: photo (an id from photos.json) for the first slide, kicker (small label), title, slides (each with h, and t or points), question (the last slide and the end of the caption), lesson (optional lesson id, adds a link line), tags. Type 'settings' adds a slide with the photograph's camera settings from photos.json. Nothing posts until its \"approved\" is true: change false to true once you have checked it. Posted ones are recorded in instagram-log.json as tip:<id>; to post one again, give it a new id.",
+  "posts": [
+    {
+      "id": "golden-hour-length",
+      "type": "tip",
+      "photo": "botallack",
+      "kicker": "Light",
+      "title": "Golden hour is rarely an hour",
+      "slides": [
+        {
+          "h": "It depends where you are",
+          "t": "Near the equator the sun climbs steeply, so the warm, low light can be over in 20 minutes or so. In Scotland in winter the sun stays low all day, and on summer evenings the glow can run on for hours."
+        },
+        {
+          "h": "What to do about it",
+          "points": [
+            "Look up sunrise and sunset for the exact place, not your home town",
+            "Arrive 45 minutes early and be set up before the light arrives",
+            "Stay 20 minutes after the sun goes for the afterglow and blue hour"
+          ]
+        }
+      ],
+      "question": "What is your favourite time of day to shoot, and why?",
+      "lesson": "reading-the-light",
+      "tags": "#goldenhour #landscapephotography #photographytips #lightandshadow",
+      "approved": false
+    },
+    {
+      "id": "sprinkenhof-settings",
+      "type": "settings",
+      "photo": "sprinkenhof",
+      "kicker": "Behind the settings",
+      "title": "Thirteen seconds in Hamburg",
+      "slides": [
+        {
+          "h": "What a long shutter does in a city",
+          "points": [
+            "Moving lights turn into lines",
+            "People walking through often vanish or leave a soft trace",
+            "Buildings stay sharp because they do not move"
+          ]
+        },
+        {
+          "h": "What you need",
+          "points": [
+            "A tripod, or a wall to rest the camera on",
+            "The lowest ISO for clean shadows",
+            "A two second self-timer or remote, so pressing the button does not shake the camera"
+          ]
+        }
+      ],
+      "question": "Have you tried long exposures at night? What surprised you?",
+      "lesson": "night-and-blue-hour",
+      "tags": "#longexposure #nightphotography #bluehour #hamburg #architecturephotography",
+      "approved": false
+    },
+    {
+      "id": "expensive-camera-myth",
+      "type": "myth",
+      "photo": "lindisfarne-castle-2-muzz9zliw36",
+      "kicker": "Myth",
+      "title": "You need an expensive camera",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "Light, timing and composition do most of the work. This photograph of Lindisfarne was taken on a Canon 600D, an entry-level camera from 2011."
+        },
+        {
+          "h": "Where the camera does matter",
+          "points": [
+            "Very low light, where bigger sensors stay cleaner",
+            "Fast action, where focus speed counts",
+            "Very large prints, where more pixels help"
+          ]
+        },
+        {
+          "h": "So before you upgrade",
+          "t": "Ask what your camera stops you doing. If the answer is nothing much, spend the money on getting to better light instead."
+        }
+      ],
+      "question": "What is the oldest camera you still use?",
+      "lesson": null,
+      "tags": "#photographytips #photographymyths #canonphotography #lindisfarne #northumberland",
+      "approved": false
+    },
+    {
+      "id": "challenge-one-focal-length",
+      "type": "challenge",
+      "photo": "wall-of-fame-muzyix9iqrv",
+      "kicker": "Weekly challenge",
+      "title": "One focal length for a week",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Pick one focal length: 35 mm or 50 mm are good choices",
+            "If you use a zoom, leave it there all week",
+            "Zoom with your feet instead"
+          ]
+        },
+        {
+          "h": "Why it helps",
+          "t": "With one view of the world you stop reaching for the zoom ring and start looking. You move closer, step back and find angles you would have skipped."
+        }
+      ],
+      "question": "Which focal length are you choosing? Share your favourite and tag @gcanth.",
+      "lesson": null,
+      "tags": "#photochallenge #photographychallenge #35mm #50mm #streetphotography",
+      "approved": false
+    },
+    {
+      "id": "level-horizons",
+      "type": "tip",
+      "photo": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
+      "kicker": "Composition",
+      "title": "Straighten the sea",
+      "slides": [
+        {
+          "h": "Why it matters",
+          "t": "A sloping sea looks like a mistake, because everyone knows water lies flat. Even one degree out is noticeable."
+        },
+        {
+          "h": "In the camera",
+          "points": [
+            "Turn on the electronic level in the viewfinder or screen",
+            "Turn on a grid and line the horizon up with it",
+            "On a tripod, level the head, not just the legs"
+          ]
+        },
+        {
+          "h": "Afterwards",
+          "t": "Use the straighten tool in your editor's crop. Draw along the horizon and it rotates for you. You lose a little from the edges, so leave some room when you shoot."
+        }
+      ],
+      "question": "Does a slightly wonky horizon bother you, or is it fine in the right photograph?",
+      "lesson": "horizon-placement",
+      "tags": "#seascape #landscapephotography #composition #photographytips #lofoten",
+      "approved": false
+    },
+    {
+      "id": "raw-or-jpeg",
+      "type": "discussion",
+      "photo": "south-uist-muzxduu15bc",
+      "kicker": "Discussion",
+      "title": "RAW or JPEG?",
+      "slides": [
+        {
+          "h": "The case for RAW",
+          "points": [
+            "Far more room to recover highlights and shadows",
+            "White balance can be changed freely later",
+            "Nothing is thrown away by the camera"
+          ]
+        },
+        {
+          "h": "The case for JPEG",
+          "points": [
+            "Ready to share straight away",
+            "Much smaller files",
+            "The camera's colour and sharpening are often very good"
+          ]
+        },
+        {
+          "h": "A middle way",
+          "t": "Most cameras can save both. Use the JPEG when it is right and the RAW when you need to fix something."
+        }
+      ],
+      "question": "Which do you shoot, and has the other one ever saved you?",
+      "lesson": "editing-lightly",
+      "tags": "#rawvsjpeg #photographytips #photoediting #lightroom #photographycommunity",
+      "approved": false
+    },
+    {
+      "id": "leading-lines-tip",
+      "type": "tip",
+      "photo": "sprinkenhof",
+      "kicker": "Composition",
+      "title": "Let the lines do the walking",
+      "slides": [
+        {
+          "h": "What a leading line is",
+          "t": "Anything that carries the eye through the frame: a road, a wall, a railing, a shoreline, a row of lights."
+        },
+        {
+          "h": "Making them work",
+          "points": [
+            "Start the line near a corner or the bottom edge",
+            "Make sure it leads to something worth arriving at",
+            "Get low or wide to make the line stronger",
+            "Watch that it does not lead the eye straight out of the frame"
+          ]
+        }
+      ],
+      "question": "Roads, rivers or railings: what is your favourite leading line?",
+      "lesson": "leading-lines",
+      "tags": "#leadinglines #composition #architecturephotography #photographytips #hamburg",
+      "approved": false
+    },
+    {
+      "id": "cold-weather-care",
+      "type": "care",
+      "photo": "lofoten-shore",
+      "kicker": "Kit care",
+      "title": "Cold camera, warm room",
+      "slides": [
+        {
+          "h": "The problem",
+          "t": "Bring a cold camera into a warm room and moisture condenses on the lens and inside the body, just like a cold glass in summer."
+        },
+        {
+          "h": "The fix",
+          "points": [
+            "Before you go inside, seal the camera in a plastic bag or close it in your camera bag",
+            "Let it warm up slowly for an hour or two before opening",
+            "Take the card out first if you want to start editing"
+          ]
+        },
+        {
+          "h": "And outside",
+          "t": "Batteries lose charge quickly in the cold. Carry spares in an inside pocket, and swap them as the one in the camera fades."
+        }
+      ],
+      "question": "What is the coldest place you have taken a camera?",
+      "lesson": null,
+      "tags": "#winterphotography #photographytips #cameracare #lofoten #norway",
+      "approved": false
+    },
+    {
+      "id": "shadow-line-settings",
+      "type": "settings",
+      "photo": "shadow-line",
+      "kicker": "Behind the settings",
+      "title": "400 mm in the desert",
+      "slides": [
+        {
+          "h": "What a long lens does here",
+          "points": [
+            "Picks one shape out of a huge scene",
+            "Squeezes distance, so layers stack up on each other",
+            "Leaves out everything that does not help"
+          ]
+        },
+        {
+          "h": "The shutter speed",
+          "t": "At 400 mm, 1/80 s is far slower than the usual handheld guide of one over the focal length. It needs a tripod or very good stabilisation, and a careful press of the button."
+        }
+      ],
+      "question": "Do you take a long lens for landscapes, or stay wide?",
+      "lesson": "telephoto-landscapes",
+      "tags": "#telephotolandscape #deadvlei #namibia #minimalism #landscapephotography",
+      "approved": false
+    },
+    {
+      "id": "nd-filter-maths",
+      "type": "tip",
+      "photo": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
+      "kicker": "Technique",
+      "title": "ND filters without the maths headache",
+      "slides": [
+        {
+          "h": "Each stop doubles the time",
+          "points": [
+            "3 stops: 1/125 s becomes 1/15 s",
+            "6 stops: 1/125 s becomes 1/2 s",
+            "10 stops: 1/125 s becomes 8 s"
+          ]
+        },
+        {
+          "h": "How to use one",
+          "points": [
+            "Compose and focus without the filter",
+            "Switch to manual focus so it does not hunt",
+            "Note the shutter speed, fit the filter, and work out the new time",
+            "Cover the viewfinder on long exposures to stop light leaking in"
+          ]
+        }
+      ],
+      "question": "Which strength do you use most: 3, 6 or 10 stops?",
+      "lesson": "long-exposure",
+      "tags": "#longexposure #ndfilter #seascape #photographytips #lofoten",
+      "approved": false
+    },
+    {
+      "id": "thirds-myth",
+      "type": "myth",
+      "photo": "reflections-of-bath-grant-anthony-muzxkg9jl68",
+      "kicker": "Myth",
+      "title": "Always use the rule of thirds",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "The rule of thirds is a good habit, not a law. It stops everything landing in the middle by default."
+        },
+        {
+          "h": "When to break it",
+          "points": [
+            "Symmetry and reflections, where the centre is the point",
+            "A small subject in a lot of space, pushed right to the edge",
+            "Patterns that fill the whole frame"
+          ]
+        },
+        {
+          "h": "The real rule",
+          "t": "Put things where you mean them to be. If you can say why the subject sits there, it is probably right."
+        }
+      ],
+      "question": "Rule follower or rule breaker?",
+      "lesson": "rule-of-thirds",
+      "tags": "#ruleofthirds #symmetry #composition #photographytips #bath",
+      "approved": false
+    },
+    {
+      "id": "trust-the-histogram",
+      "type": "tip",
+      "photo": "first-light",
+      "kicker": "Technique",
+      "title": "Trust the histogram, not the screen",
+      "slides": [
+        {
+          "h": "Why the screen lies",
+          "t": "Camera screens are bright, and look brighter still at dawn or at night. A photo that looks fine there can be far too dark at home."
+        },
+        {
+          "h": "Reading the histogram",
+          "points": [
+            "Left side: shadows. Right side: highlights",
+            "A tall spike against the right edge means lost highlights",
+            "Turn on the highlight warning so clipped areas flash"
+          ]
+        },
+        {
+          "h": "A good habit",
+          "t": "Expose as bright as you can without the important highlights flashing. Bright skies at sunrise are the usual problem."
+        }
+      ],
+      "question": "Do you check the histogram, or go by eye?",
+      "lesson": "exposure-triangle",
+      "tags": "#histogram #exposure #photographytips #learnphotography #deadvlei",
+      "approved": false
+    },
+    {
+      "id": "how-much-editing",
+      "type": "discussion",
+      "photo": "storm-over-the-dunes",
+      "kicker": "Discussion",
+      "title": "How much do you edit?",
+      "slides": [
+        {
+          "h": "In this house",
+          "t": "I keep my editing light. Editing is my wife's passion more than mine. Two photographers, two different approaches."
+        },
+        {
+          "h": "Both are fine",
+          "points": [
+            "Light editing keeps you honest about what you saw",
+            "Heavier editing can bring out what you felt",
+            "What matters is that it is your choice, not a habit"
+          ]
+        }
+      ],
+      "question": "Light touch or full edit? And how long do you spend on one photograph?",
+      "lesson": "editing-lightly",
+      "tags": "#photoediting #lightroom #editingstyle #photographycommunity #namibia",
+      "approved": false
+    },
+    {
+      "id": "challenge-blue-hour",
+      "type": "challenge",
+      "photo": "ericusspitze-blue-hour",
+      "kicker": "Weekly challenge",
+      "title": "Blue hour on your doorstep",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Go out just after sunset, somewhere near home",
+            "Find lit windows, street lights or a bridge",
+            "Shoot while the sky is still deep blue, not black"
+          ]
+        },
+        {
+          "h": "Starting settings",
+          "points": [
+            "Tripod, lowest ISO, f/8",
+            "Shutter speeds of a few seconds",
+            "White balance on daylight, or adjust it later from RAW"
+          ]
+        },
+        {
+          "h": "Timing",
+          "t": "Blue hour starts soon after sunset and usually lasts 20 to 40 minutes, longer in Scotland in winter. The best moment is when the sky matches the brightness of the lights."
+        }
+      ],
+      "question": "Share your blue hour shot and tag @gcanth. Where did you go?",
+      "lesson": "night-and-blue-hour",
+      "tags": "#bluehour #photochallenge #cityscape #nightphotography #architecturephotography",
+      "approved": false
+    },
+    {
+      "id": "into-the-sun-tip",
+      "type": "tip",
+      "photo": "loch-maree-muzx0s79fsh",
+      "kicker": "Light",
+      "title": "Shooting straight into the sun",
+      "slides": [
+        {
+          "h": "For a sunstar",
+          "points": [
+            "Use a small aperture, f/11 to f/16",
+            "Let the sun just peep past an edge: a tree, a hill, a building",
+            "Wide lenses usually give the cleanest stars"
+          ]
+        },
+        {
+          "h": "Taming flare",
+          "points": [
+            "Clean the front of the lens first",
+            "Take off any filter you do not need",
+            "Shade the lens with your hand, just out of frame"
+          ]
+        },
+        {
+          "h": "Look after your eyes",
+          "t": "Never look at the sun through an optical viewfinder, and do not leave the camera pointing at it for long. Use the screen to compose."
+        }
+      ],
+      "question": "Sunstars: love them or overused?",
+      "lesson": "into-the-sun",
+      "tags": "#sunstar #backlight #landscapephotography #scotland #lochmaree",
+      "approved": false
+    },
+    {
+      "id": "three-copies",
+      "type": "tip",
+      "photo": "wall-of-fame-muzyix9iqrv",
+      "kicker": "Workflow",
+      "title": "Three copies, three places",
+      "slides": [
+        {
+          "h": "The rule",
+          "t": "Keep every photograph you care about in three copies, each on a different storage point. For example: the computer, an external drive, and one somewhere else entirely."
+        },
+        {
+          "h": "Why one copy must be away from home",
+          "t": "Fire, flood and theft take everything in the house at once. A drive at a relative's house, or cloud storage, survives that."
+        },
+        {
+          "h": "Two traps",
+          "points": [
+            "A sync folder is not a backup: delete a file and it vanishes everywhere",
+            "A backup you have never restored from is a hope, not a backup"
+          ]
+        }
+      ],
+      "question": "Be honest: how many copies of your photographs do you have right now?",
+      "lesson": "organising",
+      "tags": "#backup #photographyworkflow #lightroom #photographytips #liverpool",
+      "approved": false
+    },
+    {
+      "id": "where-to-focus",
+      "type": "tip",
+      "photo": "lofoten-shore",
+      "kicker": "Technique",
+      "title": "Where to focus in a landscape",
+      "slides": [
+        {
+          "h": "The old rule",
+          "t": "Focus about a third of the way into the scene. It is a fair starting point at f/8 to f/11, but it does not always work with a close foreground."
+        },
+        {
+          "h": "A better habit",
+          "points": [
+            "Focus on the nearest thing that must be sharp, or just behind it",
+            "Take the shot, then zoom in on the screen",
+            "Check the foreground and the far hills",
+            "Not both sharp? Close down a stop, or take two frames and blend them"
+          ]
+        }
+      ],
+      "question": "Where do you usually focus for landscapes?",
+      "lesson": "composing-a-landscape",
+      "tags": "#landscapephotography #focus #depthoffield #photographytips #lofoten",
+      "approved": false
+    },
+    {
+      "id": "high-iso-myth",
+      "type": "myth",
+      "photo": "the-alchemy-of-autumn-mvlei0u6472",
+      "kicker": "Myth",
+      "title": "High ISO ruins photographs",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "This one was taken at ISO 3200. Modern sensors handle high ISO far better than older ones did, and today's noise reduction is very good."
+        },
+        {
+          "h": "Blur is worse than noise",
+          "t": "A little grain is easy to forgive. A blurred photograph cannot be fixed. If the shutter speed is too slow to hold, raise the ISO."
+        },
+        {
+          "h": "Keep noise down anyway",
+          "points": [
+            "Expose well: lifting dark shadows later shows the most noise",
+            "Use the lowest ISO the light allows",
+            "Reduce noise first, then judge the sharpening"
+          ]
+        }
+      ],
+      "question": "What is the highest ISO you are happy to use?",
+      "lesson": "sharpening-and-noise",
+      "tags": "#iso #photographymyths #autumn #perthshire #woodlandphotography",
+      "approved": false
+    },
+    {
+      "id": "tripod-question",
+      "type": "discussion",
+      "photo": "green-staircase-muzx6wxbhfz",
+      "kicker": "Discussion",
+      "title": "Tripod: always, sometimes or never?",
+      "slides": [
+        {
+          "h": "For",
+          "points": [
+            "Long exposures and low light",
+            "Slows you down, so you compose more carefully",
+            "Lets you blend frames that line up exactly"
+          ]
+        },
+        {
+          "h": "Against",
+          "points": [
+            "Weight on a long walk",
+            "Not allowed in many buildings",
+            "Image stabilisation now covers much of what it used to"
+          ]
+        }
+      ],
+      "question": "Which camp are you in? And what would make you leave it at home?",
+      "lesson": null,
+      "tags": "#tripod #photographycommunity #longexposure #architecturephotography #hamburg",
+      "approved": false
+    },
+    {
+      "id": "challenge-ten-frames",
+      "type": "challenge",
+      "photo": "spikey-muzxrkrz926",
+      "kicker": "Weekly challenge",
+      "title": "Ten frames, one subject",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Pick one ordinary subject: a door, a bench, a tree",
+            "Take ten genuinely different photographs of it",
+            "Change the height, the distance, the lens, the light"
+          ]
+        },
+        {
+          "h": "Why it works",
+          "t": "The first two frames are the obvious ones. The interesting ones usually come after you think you have run out of ideas."
+        }
+      ],
+      "question": "Post your favourite of the ten and tag @gcanth. Was it the first or the last?",
+      "lesson": "found-details",
+      "tags": "#photochallenge #seeingdifferently #details #urbanphotography #liverpool",
+      "approved": false
+    },
+    {
+      "id": "reflections-tip",
+      "type": "tip",
+      "photo": "reflections-of-bath-grant-anthony-muzxkg9jl68",
+      "kicker": "Composition",
+      "title": "Better reflections",
+      "slides": [
+        {
+          "h": "Finding them",
+          "points": [
+            "Still water is calmest early in the morning",
+            "Puddles work after rain: get the lens close to the surface",
+            "Glass and shiny buildings in cities"
+          ]
+        },
+        {
+          "h": "Shooting them",
+          "points": [
+            "A polariser can remove a reflection, so turn it until the reflection is strongest, or take it off",
+            "A centred horizon suits a mirror image",
+            "The reflection is often a stop or so darker than the subject, so watch the highlights"
+          ]
+        }
+      ],
+      "question": "Where is the best reflection you have found?",
+      "lesson": "reflections",
+      "tags": "#reflections #symmetry #bath #romanbaths #photographytips",
+      "approved": false
+    },
+    {
+      "id": "luskentyre-settings",
+      "type": "settings",
+      "photo": "luskentyre-icm-muzy45wewod",
+      "kicker": "Behind the settings",
+      "title": "Moving the camera on purpose",
+      "slides": [
+        {
+          "h": "What ICM is",
+          "t": "Intentional camera movement: you move the camera while the shutter is open, turning a scene into lines and colour."
+        },
+        {
+          "h": "Why these settings",
+          "points": [
+            "A slow shutter, around 1/4 s, gives time for the movement",
+            "A small aperture and low ISO keep the shutter slow in daylight",
+            "Strong, simple bands of colour, like sand, sea and sky, work best"
+          ]
+        },
+        {
+          "h": "How to start",
+          "t": "Pan smoothly along the horizon as you press the button. Expect most frames to fail. That is normal."
+        }
+      ],
+      "question": "Have you tried ICM? Art or just blur?",
+      "lesson": "icm",
+      "tags": "#icm #intentionalcameramovement #abstractlandscape #luskentyre #isleofharris",
+      "approved": false
+    },
+    {
+      "id": "street-tips",
+      "type": "tip",
+      "photo": "walk",
+      "kicker": "Street",
+      "title": "Three habits for street photography",
+      "slides": [
+        {
+          "h": "Pre-focus",
+          "t": "With a 28 to 35 mm lens at f/8, focus manually at about three metres. Everything from about two metres to well past five will be sharp enough, with no waiting for autofocus."
+        },
+        {
+          "h": "Find the stage first",
+          "t": "Look for good light or an interesting background, then wait for someone to walk into it."
+        },
+        {
+          "h": "Be decent",
+          "points": [
+            "Smile if someone notices you",
+            "Delete a photograph if asked",
+            "Think hard before photographing people at their worst"
+          ]
+        }
+      ],
+      "question": "What is the hardest thing about street photography for you?",
+      "lesson": "street",
+      "tags": "#streetphotography #newyork #photographytips #streetlife #candid",
+      "approved": false
+    },
+    {
+      "id": "cleaning-lens",
+      "type": "care",
+      "photo": "lofoten-boat-muzz3lxyria",
+      "kicker": "Kit care",
+      "title": "Cleaning a lens properly",
+      "slides": [
+        {
+          "h": "In this order",
+          "points": [
+            "Blower first, to lift grit without scratching",
+            "Soft brush for anything left",
+            "Microfibre cloth last, with lens fluid for marks",
+            "Work from the centre outwards"
+          ]
+        },
+        {
+          "h": "Never",
+          "t": "A breath and a shirt sleeve. Sand and salt trapped in fabric can scratch the coating."
+        },
+        {
+          "h": "Spot dust on the sensor",
+          "t": "Photograph a plain sky at f/16. Dark soft spots that sit in the same place on every frame are sensor dust, not the lens."
+        }
+      ],
+      "question": "Lens cloth in the pocket, or something else that gets you through?",
+      "lesson": "cleaning-up",
+      "tags": "#cameracare #photographytips #seascape #lofoten #photographygear",
+      "approved": false
+    },
+    {
+      "id": "woodland-tips",
+      "type": "tip",
+      "photo": "of-moss-stone-and-memory-mvlehtvhzv6",
+      "kicker": "Woodland",
+      "title": "Woodland is easier on a dull day",
+      "slides": [
+        {
+          "h": "Why overcast helps",
+          "t": "Bright sun through trees makes harsh patches of white and black. Cloud evens it out and colours stay rich."
+        },
+        {
+          "h": "Making sense of the chaos",
+          "points": [
+            "Keep bright sky out of the frame",
+            "Use a longer lens to pick out one tree or a group",
+            "A polariser cuts glare on wet leaves and deepens greens",
+            "Mist is a gift: it separates trees into layers"
+          ]
+        }
+      ],
+      "question": "Woodland or wide open landscapes: which do you find harder?",
+      "lesson": "woodland",
+      "tags": "#woodlandphotography #forest #perthshire #thehermitage #autumncolours",
+      "approved": false
+    },
+    {
+      "id": "phone-or-camera",
+      "type": "discussion",
+      "photo": "angel",
+      "kicker": "Discussion",
+      "title": "Phone or camera?",
+      "slides": [
+        {
+          "h": "The phone",
+          "points": [
+            "Always with you",
+            "Superb in good light",
+            "Clever processing does a lot for you"
+          ]
+        },
+        {
+          "h": "The camera",
+          "points": [
+            "Better in low light and at long focal lengths",
+            "Real control over depth of field",
+            "Bigger files for printing"
+          ]
+        },
+        {
+          "h": "Somewhere between",
+          "t": "A small compact sits in the middle. This one was taken on a Leica D-Lux 8, small enough for a pocket."
+        }
+      ],
+      "question": "What took your last favourite photograph?",
+      "lesson": "phone-editing",
+      "tags": "#phonephotography #leica #leicadlux8 #photographycommunity #gateshead",
+      "approved": false
+    },
+    {
+      "id": "never-edit-myth",
+      "type": "myth",
+      "photo": "south-uist-muzxduu15bc",
+      "kicker": "Myth",
+      "title": "Real photographers don't edit",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "Every digital photograph is processed. A JPEG has been edited by the camera: contrast, colour, sharpening, noise reduction. A RAW file has had none of that yet."
+        },
+        {
+          "h": "So the choice is",
+          "t": "Not whether to edit, but who does it: the camera's settings or you. Film photographers made the same choices in the darkroom."
+        },
+        {
+          "h": "Where the line is",
+          "t": "Adjusting light and colour is editing. Adding things that were not there is something else, and it is worth being open about."
+        }
+      ],
+      "question": "Where do you draw the line?",
+      "lesson": "editing-lightly",
+      "tags": "#photographymyths #photoediting #southuist #outerhebrides #lightroom",
+      "approved": false
+    },
+    {
+      "id": "black-and-white-tip",
+      "type": "tip",
+      "photo": "deadvlei",
+      "kicker": "Technique",
+      "title": "Seeing in black and white",
+      "slides": [
+        {
+          "h": "What to look for",
+          "points": [
+            "Strong contrast between light and dark",
+            "Shape and silhouette",
+            "Texture: bark, stone, sand, skin",
+            "Scenes where the colour is distracting rather than helping"
+          ]
+        },
+        {
+          "h": "A camera trick",
+          "t": "Shoot RAW and set the picture style to monochrome. You see black and white on the screen while you shoot, but the file keeps all the colour in case you change your mind."
+        }
+      ],
+      "question": "Do you decide on black and white when you shoot, or later?",
+      "lesson": "black-and-white",
+      "tags": "#blackandwhitephotography #monochrome #deadvlei #namibia #bnw",
+      "approved": false
+    },
+    {
+      "id": "challenge-puddles",
+      "type": "challenge",
+      "photo": "loch-maree-muzx0s79fsh",
+      "kicker": "Weekly challenge",
+      "title": "After the rain",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Next time it rains, go out as it stops",
+            "Find a puddle with something interesting above it",
+            "Get the camera down, an inch or two above the water"
+          ]
+        },
+        {
+          "h": "Tips",
+          "points": [
+            "Flip the result upside down if it looks better",
+            "Wait for ripples to settle",
+            "Street lights and signs make it glow after dark"
+          ]
+        }
+      ],
+      "question": "Wet weather photographs: share yours and tag @gcanth.",
+      "lesson": "reflections",
+      "tags": "#puddlegram #reflections #rainyday #photochallenge #streetphotography",
+      "approved": false
+    },
+    {
+      "id": "fab4-settings",
+      "type": "settings",
+      "photo": "fab4-and-liver-birds-muzy9yxp7yp",
+      "kicker": "Behind the settings",
+      "title": "Handheld in the city",
+      "slides": [
+        {
+          "h": "Why these settings",
+          "points": [
+            "1/160 s is comfortably quick for a mid-range lens held by hand",
+            "f/5.6 keeps a good depth sharp without needing a tripod",
+            "ISO 640 is a small price for a sharp handheld frame"
+          ]
+        },
+        {
+          "h": "A handheld recipe",
+          "t": "Aperture priority at f/5.6 to f/8, auto ISO with a minimum shutter speed of about 1/125 s. The camera looks after the rest while you look at the scene."
+        }
+      ],
+      "question": "Auto ISO: do you trust it?",
+      "lesson": "city-breaks",
+      "tags": "#citybreak #liverpool #beatles #streetphotography #canonr5",
+      "approved": false
+    },
+    {
+      "id": "tides-and-planning",
+      "type": "tip",
+      "photo": "lindisfarne-castle-2-muzz9zliw36",
+      "kicker": "Planning",
+      "title": "Check three things before you go",
+      "slides": [
+        {
+          "h": "The sun",
+          "t": "Where it rises and sets, and when. Light from the side shows texture; behind you it flattens."
+        },
+        {
+          "h": "The tide",
+          "t": "It changes the whole coast. Holy Island at Lindisfarne is cut off twice a day, so the crossing times decide when you can go."
+        },
+        {
+          "h": "The cloud",
+          "t": "Some cloud catches colour at sunset. A solid blanket, or a clear sky, often gives less."
+        }
+      ],
+      "question": "What do you check before a shoot? Any apps you swear by?",
+      "lesson": "planning-a-trip",
+      "tags": "#lindisfarne #holyisland #tides #photographytips #landscapephotography",
+      "approved": false
+    },
+    {
+      "id": "minimalism-tip",
+      "type": "tip",
+      "photo": "bleached",
+      "kicker": "Composition",
+      "title": "Say more with less",
+      "slides": [
+        {
+          "h": "The idea",
+          "t": "One subject and a lot of empty space. The space is not wasted: it is what makes the subject stand out."
+        },
+        {
+          "h": "How to find it",
+          "points": [
+            "Use a long lens to cut the scene down",
+            "Look for plain backgrounds: sky, sand, snow, still water, a wall",
+            "Place the subject off centre and give it room",
+            "Fog and haze do half the work for you"
+          ]
+        }
+      ],
+      "question": "What is the emptiest photograph you have taken that still works?",
+      "lesson": "minimalism",
+      "tags": "#minimalism #minimalphotography #negativespace #deadvlei #namibia",
+      "approved": false
+    },
+    {
+      "id": "why-started",
+      "type": "discussion",
+      "photo": "lofoten-boat-muzz3lxyria",
+      "kicker": "Discussion",
+      "title": "What got you started?",
+      "slides": [
+        {
+          "h": "For me",
+          "t": "My father-in-law. His influence got me going, close to thirty years ago, and I have been taking photographs on and off ever since."
+        },
+        {
+          "h": "What keeps me going",
+          "t": "The experience. Being in the moment, in the flow, where time gets lost and the noise of everyday life is shut out."
+        }
+      ],
+      "question": "Who or what got you into photography?",
+      "lesson": null,
+      "tags": "#photographycommunity #photographer #whyishoot #lofoten #norway",
+      "approved": false
+    },
+    {
+      "id": "crop-for-instagram",
+      "type": "tip",
+      "photo": "triangle",
+      "kicker": "Editing",
+      "title": "Cropping for the feed",
+      "slides": [
+        {
+          "h": "Shapes that work",
+          "points": [
+            "4:5 portrait fills far more of the screen than a landscape",
+            "Square is safe for the profile grid",
+            "Wide landscapes appear small on a phone"
+          ]
+        },
+        {
+          "h": "Plan when you shoot",
+          "t": "If you know a photograph is heading for Instagram, leave space top and bottom for a 4:5 crop, or turn the camera upright."
+        },
+        {
+          "h": "When not to crop",
+          "t": "If cropping cuts something that matters, add a plain border instead. A whole photograph beats a damaged one."
+        }
+      ],
+      "question": "Do you crop for Instagram, or post the full frame?",
+      "lesson": "cropping",
+      "tags": "#instagramtips #cropping #composition #abstractarchitecture #hamburg",
+      "approved": false
+    },
+    {
+      "id": "sunny-day-myth",
+      "type": "myth",
+      "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
+      "kicker": "Myth",
+      "title": "Sunny days are best",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "Bright midday sun is often the hardest light to work with: deep shadows, bleached highlights, flat colour from above."
+        },
+        {
+          "h": "When grey wins",
+          "points": [
+            "Woodland and waterfalls",
+            "Autumn colour, which glows under cloud",
+            "Portraits, with soft, even light",
+            "Detail and texture close up"
+          ]
+        },
+        {
+          "h": "And when it is sunny",
+          "t": "Go early or late, or look for shade, reflections and strong shadows that use the hard light."
+        }
+      ],
+      "question": "Best weather for photography? Wrong answers only, then real ones.",
+      "lesson": "reading-the-light",
+      "tags": "#photographymyths #overcast #waterfall #perthshire #autumn",
+      "approved": false
+    },
+    {
+      "id": "waterfall-shutter",
+      "type": "settings",
+      "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
+      "kicker": "Behind the settings",
+      "title": "How slow for moving water?",
+      "slides": [
+        {
+          "h": "A rough guide",
+          "points": [
+            "1/500 s: water frozen in drops",
+            "1/15 s to 1/2 s: soft, but still with texture",
+            "2 s and longer: smooth like silk"
+          ]
+        },
+        {
+          "h": "Things that help",
+          "points": [
+            "A tripod, and a two second timer",
+            "A polariser to cut glare on wet rocks",
+            "A cloth for spray, and check the lens between frames"
+          ]
+        }
+      ],
+      "question": "Silky or textured water: which do you prefer?",
+      "lesson": "long-exposure",
+      "tags": "#waterfall #longexposure #thehermitage #riverbraan #perthshire",
+      "approved": false
+    },
+    {
+      "id": "challenge-mono-week",
+      "type": "challenge",
+      "photo": "angel",
+      "kicker": "Weekly challenge",
+      "title": "A week in black and white",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Set the camera or phone to show black and white",
+            "Keep it there for every photograph this week",
+            "Shoot RAW if you can, so the colour is still there later"
+          ]
+        },
+        {
+          "h": "What happens",
+          "t": "Without colour you start looking for light, shape and contrast. Many people find it changes how they see colour afterwards too."
+        }
+      ],
+      "question": "Share your best black and white of the week and tag @gcanth.",
+      "lesson": "black-and-white",
+      "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
+      "approved": false
+    },
+    {
+      "id": "telephoto-landscapes-tip",
+      "type": "tip",
+      "photo": "red-dress",
+      "kicker": "Technique",
+      "title": "Take the long lens for landscapes",
+      "slides": [
+        {
+          "h": "What it gives you",
+          "points": [
+            "Picks a small story out of a big scene",
+            "Stacks layers of hills and haze together",
+            "Makes distant things feel close and large"
+          ]
+        },
+        {
+          "h": "Making it sharp",
+          "points": [
+            "Use a tripod and turn stabilisation off if the camera advises it",
+            "Use a timer or remote",
+            "Heat haze softens distant detail: go early, when the air is cool"
+          ]
+        }
+      ],
+      "question": "What is the longest focal length you have used for a landscape?",
+      "lesson": "telephoto-landscapes",
+      "tags": "#telephoto #landscapephotography #deadvlei #namibia #photographytips",
+      "approved": false
+    },
+    {
+      "id": "coast-safety",
+      "type": "care",
+      "photo": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
+      "kicker": "Out and about",
+      "title": "No photograph is worth it",
+      "slides": [
+        {
+          "h": "On the coast",
+          "points": [
+            "Check the tide times and know your way off",
+            "Never turn your back on the sea",
+            "Wet, dark rock is usually slippery"
+          ]
+        },
+        {
+          "h": "Everywhere",
+          "points": [
+            "Tell someone where you are going",
+            "Carry a torch for the walk back after sunset",
+            "Stay on paths: plants and nesting birds come first"
+          ]
+        }
+      ],
+      "question": "Any close calls you have learned from?",
+      "lesson": "seascapes",
+      "tags": "#seascape #photographytips #outdoorsafety #leavenotrace #lofoten",
+      "approved": false
+    },
+    {
+      "id": "prime-or-zoom",
+      "type": "discussion",
+      "photo": "mulberry-street",
+      "kicker": "Discussion",
+      "title": "Prime or zoom?",
+      "slides": [
+        {
+          "h": "Primes",
+          "points": [
+            "Smaller and lighter",
+            "Usually wider apertures for low light and soft backgrounds",
+            "Make you move your feet"
+          ]
+        },
+        {
+          "h": "Zooms",
+          "points": [
+            "One lens covers many situations",
+            "Fewer lens changes in dust and rain",
+            "Frame precisely without moving"
+          ]
+        }
+      ],
+      "question": "If you could keep one lens, which would it be?",
+      "lesson": null,
+      "tags": "#primelens #zoomlens #photographygear #photographycommunity #newyork",
+      "approved": false
+    },
+    {
+      "id": "stops-explained",
+      "type": "tip",
+      "photo": "deadvlei",
+      "kicker": "Technique",
+      "title": "What a stop actually is",
+      "slides": [
+        {
+          "h": "One idea",
+          "t": "A stop is a doubling or halving of light. Every exposure setting moves in stops."
+        },
+        {
+          "h": "In practice",
+          "points": [
+            "Shutter: 1/250 to 1/125 s is one stop more light",
+            "ISO: 100 to 200 is one stop brighter",
+            "Aperture: f/8 to f/5.6 is one stop more light"
+          ]
+        },
+        {
+          "h": "Why it matters",
+          "t": "Change one setting by a stop, change another by a stop the other way, and the brightness stays the same. That is how you trade sharpness, blur and noise."
+        }
+      ],
+      "question": "What took you longest to understand when you started?",
+      "lesson": "exposure-triangle",
+      "tags": "#exposuretriangle #learnphotography #photographytips #deadvlei #namibia",
+      "approved": false
+    },
+    {
+      "id": "straight-verticals",
+      "type": "tip",
+      "photo": "chilehaus",
+      "kicker": "Architecture",
+      "title": "Stop buildings falling over",
+      "slides": [
+        {
+          "h": "Why they lean",
+          "t": "Tilt the camera up and the verticals lean inwards. The building looks as if it is falling backwards."
+        },
+        {
+          "h": "Fixes",
+          "points": [
+            "Keep the camera level and step back",
+            "Use a wider lens and crop away the extra ground",
+            "Correct it afterwards with your editor's perspective or Upright tools"
+          ]
+        },
+        {
+          "h": "Or go all in",
+          "t": "Point straight up and make the lines dramatic. A small lean looks like a mistake; a big one looks deliberate."
+        }
+      ],
+      "question": "Straight verticals or dramatic angles?",
+      "lesson": "architecture",
+      "tags": "#architecturephotography #newyork #tribeca #perspective #photographytips",
+      "approved": false
+    },
+    {
+      "id": "filters-myth",
+      "type": "myth",
+      "photo": "lofoten-shore",
+      "kicker": "Myth",
+      "title": "Editing has replaced filters",
+      "slides": [
+        {
+          "h": "Partly true",
+          "t": "Graduated filters can often be replaced by taking two exposures and blending them, or by careful editing of a RAW file."
+        },
+        {
+          "h": "But not these",
+          "points": [
+            "A polariser removes glare and reflections: no software can see what is under the surface",
+            "An ND filter gives a long exposure in daylight: editing cannot add real movement"
+          ]
+        }
+      ],
+      "question": "Which filter would you never leave behind?",
+      "lesson": "filters",
+      "tags": "#filters #polariser #ndfilter #photographymyths #lofoten",
+      "approved": false
+    },
+    {
+      "id": "challenge-abstract",
+      "type": "challenge",
+      "photo": "spiral",
+      "kicker": "Weekly challenge",
+      "title": "Find an abstract",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Find a pattern, a curve or a repeat in a building near you",
+            "Fill the frame with it: no sky, no context",
+            "The viewer should wonder what it is"
+          ]
+        },
+        {
+          "h": "Where to look",
+          "points": [
+            "Stairwells from above or below",
+            "Car parks, balconies and windows",
+            "Shadows on walls at the end of the day"
+          ]
+        }
+      ],
+      "question": "Post it, tag @gcanth, and let people guess what it is.",
+      "lesson": "abstract",
+      "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
+      "approved": false
+    },
+    {
+      "id": "seascape-waves",
+      "type": "tip",
+      "photo": "botallack",
+      "kicker": "Seascapes",
+      "title": "Timing the waves",
+      "slides": [
+        {
+          "h": "Shutter speeds",
+          "points": [
+            "1/500 s or faster to freeze a breaking wave",
+            "1/4 s to 1 s for trails as water pulls back",
+            "Several seconds for a smooth, misty sea"
+          ]
+        },
+        {
+          "h": "Timing",
+          "t": "Watch a few waves first. Press as a wave starts to run back down the rocks or sand: that is when the best trails form."
+        },
+        {
+          "h": "Keep the lens clean",
+          "t": "Salt spray softens everything. Check and wipe the front of the lens often."
+        }
+      ],
+      "question": "Frozen waves or smooth sea?",
+      "lesson": "seascapes",
+      "tags": "#seascape #waves #cornwall #botallack #longexposure",
+      "approved": false
+    },
+    {
+      "id": "export-for-instagram",
+      "type": "tip",
+      "photo": "fab4-and-liver-birds-muzy9yxp7yp",
+      "kicker": "Editing",
+      "title": "Exporting for Instagram",
+      "slides": [
+        {
+          "h": "Size",
+          "points": [
+            "1080 pixels wide is what Instagram shows",
+            "4:5 portrait: 1080 x 1350 pixels",
+            "Square: 1080 x 1080 pixels"
+          ]
+        },
+        {
+          "h": "Settings",
+          "points": [
+            "Colour space: sRGB, or colours can look dull",
+            "JPEG, high quality",
+            "A little output sharpening for screen"
+          ]
+        }
+      ],
+      "question": "Does Instagram ever spoil your photographs? What helped?",
+      "lesson": "exporting",
+      "tags": "#instagramtips #exporting #lightroom #photoediting #liverpool",
+      "approved": false
+    },
+    {
+      "id": "best-tip",
+      "type": "discussion",
+      "photo": "first-light",
+      "kicker": "Discussion",
+      "title": "One tip you wish you'd known sooner",
+      "slides": [
+        {
+          "h": "One to start",
+          "t": "Go back. The same place in different light, weather or season is a different photograph. Many of the best ones come on the second or third visit."
+        },
+        {
+          "h": "Your turn",
+          "t": "Beginners read these comments too. What would have saved you the most time, money or missed shots?"
+        }
+      ],
+      "question": "What one tip would you give your younger self?",
+      "lesson": null,
+      "tags": "#photographytips #photographycommunity #learnphotography #deadvlei #namibia",
+      "approved": false
+    },
+    {
+      "id": "lofoten-boat-settings",
+      "type": "settings",
+      "photo": "lofoten-boat-muzz3lxyria",
+      "kicker": "Behind the settings",
+      "title": "A simple daylight recipe",
+      "slides": [
+        {
+          "h": "Why these settings work",
+          "points": [
+            "f/11 keeps the scene sharp from front to back",
+            "1/250 s freezes the camera and any movement on the water",
+            "ISO 500 is the small price of having both"
+          ]
+        },
+        {
+          "h": "Try it",
+          "t": "Aperture priority, f/8 to f/11, and watch that the shutter stays at 1/125 s or faster by hand. It covers a lot of daylight landscapes."
+        }
+      ],
+      "question": "What is your go-to setting when you step out of the car?",
+      "lesson": "exposure-triangle",
+      "tags": "#lofoten #norway #photographytips #landscapephotography #fishingboat",
+      "approved": false
+    }
+  ],
+  "series": "Light, explained"
+}

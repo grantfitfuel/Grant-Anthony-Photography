@@ -52,6 +52,7 @@ Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tue
 - **Shape:** Instagram accepts 4:5 portrait to 1.91:1 landscape. Taller or wider photographs get a plain border (white, black or dark grey; your choice in Site details) rather than a crop. Prepared copies are kept in the `ig` folder.
 - **Status:** each photograph in the Studio shows "Next to post", its place in the queue, "Posted to Instagram" with a link, or the reason the last attempt failed. A photograph under 1080 px wide is flagged, because it will look soft.
 - **Safety:** before every post the job checks the token belongs to the account named in Site details, and stops if it does not.
+- **Tips (Mondays and Thursdays, 18:00 UK):** a carousel in the "Light, explained" series: your photograph with a headline, two or three slides of practical advice, then a question for the comments and a link to the matching free lesson. The posts are in `instagram-tips.json`, in the order they go out: tips, myths, kit care, weekly challenges, discussions, and the settings behind your own photographs. Nothing goes out until you approve it: change `"approved": false` to `"approved": true` on that post (pencil icon on GitHub). Edit the wording there too. If no approved post is waiting on a tip day, nothing is posted. To preview the slides: Actions > Instagram > Run workflow, kind: tip, mode: dry-run, then download "instagram-preview". When all of them have gone out, tip days stop until more are added.
 - **Record:** what has been posted is kept in `instagram-log.json`. Only the posting job writes it. Do not delete it, or photographs will be posted again.
 
 ### One-time setup (about 20 minutes)
@@ -71,7 +72,7 @@ The menu names below were right at the time of writing. Meta changes its screens
 - To post straight away, use Run workflow with mode: post. A scheduled post is skipped on a day when something has already been posted, so a manual post on a Tuesday or Friday replaces that evening's one. To change the days or time, ask for the schedule line in `.github/workflows/instagram.yml` to be changed.
 - GitHub can start scheduled runs a few minutes to an hour late when it is busy.
 - GitHub pauses scheduled jobs in a repository with no activity for 60 days. Publishing from the Studio, or any post, counts as activity. If it does pause, the Actions tab shows a button to turn it back on.
-- Instagram may flag accounts that behave like bots. Two posts a week is ordinary use.
+- Instagram may flag accounts that behave like bots. Four posts a week is ordinary use.
 
 ## Good to know
 
@@ -89,7 +90,9 @@ The menu names below were right at the time of writing. Meta changes its screens
 | --- | --- |
 | `index.html` | The public site |
 | `admin.html` | The Studio page |
-| `scripts/instagram.py` | Prepares and posts the next queued photograph to Instagram |
+| `scripts/instagram.py` | Prepares and posts the next queued photograph or tip to Instagram |
+| `scripts/ig_tips.py` | Draws the tip carousels and writes their captions |
+| `instagram-tips.json` | The tip and discussion posts, in posting order. Edit freely |
 | `.github/workflows/instagram.yml` | Runs the Instagram posting on a schedule |
 | `instagram-log.json` | Created by the posting job: what has been posted. Do not edit |
 | `photos.json` | Your titles, text, categories and settings. The Studio page writes this for you |
