@@ -684,6 +684,58 @@
       box.append(row, chips([["1", "Whole frame"], ["3", "Zoom 3x"]], k => { zoom = +k; draw(); }, "3"), cap); draw();
     }
 
+    else if (type === "overdo") {
+      box.setAttribute("aria-label", "Pushing editing sliders too far");
+      svg.remove();
+      const im = view.querySelector(".gimg");
+      const fid = "ovd" + Math.random().toString(36).slice(2, 7);
+      const fs = document.createElementNS(NS, "svg"); fs.setAttribute("width", "0"); fs.setAttribute("height", "0"); fs.setAttribute("aria-hidden", "true"); fs.style.position = "absolute";
+      const f = sv("filter", { id: fid, "color-interpolation-filters": "sRGB", x: "0", y: "0", width: "100%", height: "100%" });
+      // Clarity: an unsharp mask with a wide radius (local contrast, with halos when pushed)
+      const blur = sv("feGaussianBlur", { in: "SourceGraphic", stdDeviation: "10", edgeMode: "duplicate", result: "wide" });
+      const loc = sv("feComposite", { in: "SourceGraphic", in2: "wide", operator: "arithmetic", k1: "0", k2: "1", k3: "0", k4: "0", result: "clar" });
+      // Shadows and Dehaze: a tone curve, then contrast
+      const tone = sv("feComponentTransfer", { in: "clar", result: "toned" });
+      const fr = sv("feFuncR", { type: "gamma", amplitude: "1", exponent: "1", offset: "0" }), fg = sv("feFuncG", { type: "gamma", amplitude: "1", exponent: "1", offset: "0" }), fb = sv("feFuncB", { type: "gamma", amplitude: "1", exponent: "1", offset: "0" });
+      tone.append(fr, fg, fb);
+      const sat = sv("feColorMatrix", { in: "toned", type: "saturate", values: "1" });
+      f.append(blur, loc, tone, sat); fs.append(f); view.append(fs);
+      if (im) im.style.filter = `url(#${fid})`;
+      const row = el("div", "exp-row"); row.style.marginTop = "18px";
+      const lab = el("label", null, "Amount"); const inp = el("input"); inp.type = "range"; inp.min = 0; inp.max = 100; inp.value = 20; inp.id = "ov" + fid; lab.htmlFor = inp.id;
+      const out = el("output"); row.append(lab, inp, out);
+      const NOTES = {
+        sat: ["<b>Natural.</b> Colours as the scene looked.", "<b>A touch richer.</b> Still believable. Most photographs need no more than this.", "<b>Too far.</b> Strong colours go flat and lose their detail: reds and oranges turn to solid patches, and grass looks artificial."],
+        shadows: ["<b>As shot.</b> Deep shadows keep the sense of light.", "<b>Lifted a little.</b> Detail appears in the dark areas and the photograph still has depth.", "<b>Too far.</b> Shadows turn grey, the picture flattens, and noise appears in dark areas. Light needs shade to look like light."],
+        clarity: ["<b>No clarity.</b> Edges look natural.", "<b>A little punch.</b> Midtones gain contrast without visible outlines.", "<b>Too far.</b> Bright and dark outlines appear where sky meets land, and smooth areas look gritty and crunchy."],
+        dehaze: ["<b>No dehaze.</b> Any haze is part of the atmosphere.", "<b>A little.</b> Distance gains contrast while the air still looks like air.", "<b>Too far.</b> The sky goes dark and heavy, colours oversaturate, and the light looks like no real day."],
+        all: ["<b>Natural.</b> A light edit.", "<b>Pushing it.</b> Everything a little stronger. Already louder than the scene was.", "<b>The overcooked look.</b> Halos round every edge, burnt-out highlights, flattened shadows and loud colour. Each slider looked fine on its own; together they wreck the picture."]
+      };
+      let mode = "sat";
+      const draw = () => {
+        const k = +inp.value / 100, w = view.getBoundingClientRect().width || 600, on = m => mode === m || mode === "all";
+        const c = on("clarity") ? 2.2 * k : 0;
+        blur.setAttribute("stdDeviation", (0.02 * w).toFixed(1));
+        loc.setAttribute("k2", (1 + c).toFixed(3)); loc.setAttribute("k3", (-c).toFixed(3));
+        const exp = on("shadows") ? 1 - 0.62 * k : 1;            // gamma below 1 lifts the shadows
+        const dz = on("dehaze") ? k : 0;
+        const amp = 1 + 0.55 * dz, off = -0.2 * dz;                // contrast and a darker sky for dehaze
+        [fr, fg, fb].forEach((fn, i) => { fn.setAttribute("exponent", (exp * (1 + 0.25 * dz) + (i === 2 ? 0.06 * dz : 0)).toFixed(3)); fn.setAttribute("amplitude", amp.toFixed(3)); fn.setAttribute("offset", (off + (on("shadows") ? 0.07 * k : 0)).toFixed(3)); });
+        sat.setAttribute("values", (1 + (on("sat") ? 2.4 * k : 0) + 0.5 * dz).toFixed(3));
+        out.textContent = "+" + Math.round(k * 100);
+        const n = NOTES[mode]; say(k < 0.08 ? n[0] : k <= 0.35 ? n[1] : n[2]);
+      };
+      const hold = el("button", "b sm", "Hold to see the original"); hold.type = "button"; hold.style.marginTop = "12px";
+      hold.style.userSelect = hold.style.webkitUserSelect = "none"; hold.style.webkitTouchCallout = "none"; hold.style.touchAction = "none";
+      hold.addEventListener("contextmenu", e => e.preventDefault());
+      const orig = v => { if (im) im.style.filter = v ? "none" : `url(#${fid})`; };
+      hold.addEventListener("pointerdown", () => orig(true)); ["pointerup", "pointerleave", "pointercancel"].forEach(e => hold.addEventListener(e, () => orig(false)));
+      hold.addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); orig(true); } });
+      hold.addEventListener("keyup", () => orig(false));
+      inp.oninput = draw; new ResizeObserver(draw).observe(view);
+      box.append(row, chips([["sat", "Saturation"], ["shadows", "Shadows"], ["clarity", "Clarity"], ["dehaze", "Dehaze"], ["all", "All of them"]], m => { mode = m; draw(); }, "sat"), hold, cap); draw();
+    }
+
     else if (type === "orton") {
       box.setAttribute("aria-label", "Orton effect demonstration");
       svg.remove();
