@@ -660,35 +660,6 @@
       "approved": false
     },
     {
-      "id": "street-tips",
-      "type": "tip",
-      "photo": "walk",
-      "kicker": "Street",
-      "title": "Three habits for street photography",
-      "slides": [
-        {
-          "h": "Pre-focus",
-          "t": "With a 28 to 35 mm lens at f/8, focus manually at about three metres. Everything from about two metres to well past five will be sharp enough, with no waiting for autofocus."
-        },
-        {
-          "h": "Find the stage first",
-          "t": "Look for good light or an interesting background, then wait for someone to walk into it."
-        },
-        {
-          "h": "Be decent",
-          "points": [
-            "Smile if someone notices you",
-            "Delete a photograph if asked",
-            "Think hard before photographing people at their worst"
-          ]
-        }
-      ],
-      "question": "What is the hardest thing about street photography for you?",
-      "lesson": "street",
-      "tags": "#streetphotography #newyork #photographytips #streetlife #candid",
-      "approved": false
-    },
-    {
       "id": "cleaning-lens",
       "type": "care",
       "photo": "lofoten-boat-muzz3lxyria",
@@ -716,6 +687,35 @@
       "question": "Lens cloth in the pocket, or something else that gets you through?",
       "lesson": "cleaning-up",
       "tags": "#cameracare #photographytips #seascape #lofoten #photographygear",
+      "approved": false
+    },
+    {
+      "id": "street-tips",
+      "type": "tip",
+      "photo": "walk",
+      "kicker": "Street",
+      "title": "Three habits for street photography",
+      "slides": [
+        {
+          "h": "Pre-focus",
+          "t": "With a 28 to 35 mm lens at f/8, focus manually at about three metres. Everything from about two metres to well past five will be sharp enough, with no waiting for autofocus."
+        },
+        {
+          "h": "Find the stage first",
+          "t": "Look for good light or an interesting background, then wait for someone to walk into it."
+        },
+        {
+          "h": "Be decent",
+          "points": [
+            "Smile if someone notices you",
+            "Delete a photograph if asked",
+            "Think hard before photographing people at their worst"
+          ]
+        }
+      ],
+      "question": "What is the hardest thing about street photography for you?",
+      "lesson": "street",
+      "tags": "#streetphotography #newyork #photographytips #streetlife #candid",
       "approved": false
     },
     {
