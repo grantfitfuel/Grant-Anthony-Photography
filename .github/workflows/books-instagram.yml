@@ -3,14 +3,16 @@ name: Books Instagram
 # Posts the next book post from books/posts.json.
 #   Fiction    @grantcanthony  Mondays and Thursdays from 18:00 UK time
 #   Nonfiction @g_c_anthony    Wednesdays and Saturdays from 18:00 UK time
+# A post in books/posts.json with a "date" goes out on that day instead, whatever the weekday.
 # GitHub's scheduler drops and delays runs, so it wakes every 15 minutes from 17:07 to
-# 22:52 UTC on those days. The script picks the account for the day, posts on the first
-# run at or after 18:00 UK time (summer or winter), and every later run that day does nothing.
+# 22:52 UTC every day. The script picks the account for the day (or does nothing on a day with
+# no posts), posts on the first run at or after 18:00 UK time (summer or winter), and every
+# later run that day does nothing.
 # To post now, or see what would go out next: Actions tab > Books Instagram > Run workflow.
 
 on:
   schedule:
-    - cron: "7,22,37,52 17-22 * * 1,3,4,6"
+    - cron: "7,22,37,52 17-22 * * *"
   workflow_dispatch:
     inputs:
       account:

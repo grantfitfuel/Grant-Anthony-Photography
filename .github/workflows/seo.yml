@@ -14,9 +14,10 @@ on:
       - books/covers/**
       - scripts/build_seo.py
       - books/notes/**
-  # once a day, so notes dated in the future go live on their day
+  # once a day, so notes dated in the future go live on their day, and a promotion in
+  # books/posts.json appears and disappears on time (Amazon promotions change at 08:00 UK)
   schedule:
-    - cron: "17 5 * * *"
+    - cron: "17 8 * * *"
   workflow_dispatch:
 
 permissions:
