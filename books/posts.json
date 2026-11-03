@@ -440,37 +440,6 @@
    "caption": "Where The Noisy Mind begins.\n\nIf your mind rarely goes quiet, you are not alone in it, and none of it means something is wrong with you."
   },
   {
-   "id": "fc1-debunked-opening",
-   "book": "debunked",
-   "type": "carousel",
-   "slides": [
-    {
-     "type": "page",
-     "text": "I have watched, in a professional capacity, forty-one people greet on cue for strangers pretending to be their dead husbands. I have a spreadsheet. It has colour-coded tabs.",
-     "attribution": ""
-    },
-    {
-     "type": "page",
-     "text": "A pal once asked, not unkindly, whether I needed a hobby that didn't involve quantifying other people's grief, and I told her the spreadsheet was the hobby, which she found less reassuring than I'd intended.",
-     "attribution": ""
-    },
-    {
-     "type": "page",
-     "text": "None of the forty-one prepared me for my own grandmother.",
-     "attribution": ""
-    },
-    {
-     "type": "page",
-     "text": "An hour before the end she opened her eyes, which by then had been shut so long I'd started addressing my remarks to the general vicinity of her face like a man leaving a voicemail.",
-     "attribution": "Debunked, chapter one"
-    },
-    {
-     "type": "cover"
-    }
-   ],
-   "caption": "Swipe for how Debunked begins.\n\nCallum Ferris debunks psychics for a living. He has a spreadsheet for everything. Then his grandmother says something on her deathbed that no spreadsheet can explain.\n\nDebunked is out now."
-  },
-  {
    "id": "n08-calibrated-alarm",
    "book": "calibrated",
    "type": "talk",
@@ -563,6 +532,37 @@
    "headline": "The strange science is real.",
    "sub": "Princeton ran a lab testing whether minds could nudge machines for nearly thirty years. The Global Consciousness Project has watched random number generators around the world since 1998. The US government paid for remote viewing. Debunked invents the people and the danger. Not the research.",
    "caption": "Everything odd that Callum investigates in Debunked has a real history behind it: the Princeton Engineering Anomalies Research lab, the Global Consciousness Project, the remote-viewing programmes, placebo studies and meditation neuroscience.\n\nThe question the book asks is simple. What if someone found a way to make money from it?"
+  },
+  {
+   "id": "fc1-debunked-opening",
+   "book": "debunked",
+   "type": "carousel",
+   "slides": [
+    {
+     "type": "page",
+     "text": "I have watched, in a professional capacity, forty-one people greet on cue for strangers pretending to be their dead husbands. I have a spreadsheet. It has colour-coded tabs.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "A pal once asked, not unkindly, whether I needed a hobby that didn't involve quantifying other people's grief, and I told her the spreadsheet was the hobby, which she found less reassuring than I'd intended.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "None of the forty-one prepared me for my own grandmother.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "An hour before the end she opened her eyes, which by then had been shut so long I'd started addressing my remarks to the general vicinity of her face like a man leaving a voicemail.",
+     "attribution": "Debunked, chapter one"
+    },
+    {
+     "type": "cover"
+    }
+   ],
+   "caption": "Swipe for how Debunked begins.\n\nCallum Ferris debunks psychics for a living. He has a spreadsheet for everything. Then his grandmother says something on her deathbed that no spreadsheet can explain.\n\nDebunked is out now."
   },
   {
    "id": "n10-noisy-investigation",
@@ -780,6 +780,93 @@
    "text": "A river cannot refuse its slope.",
    "attribution": "The Deep That Listens",
    "caption": "Some things you can only choose to meet.\n\nThe Deep That Listens. Expected release: Winter 2027."
+  },
+  {
+   "id": "fp1-debunked-free-soon",
+   "book": "debunked",
+   "date": "2026-11-09",
+   "type": "cover",
+   "label": "Free on Kindle 13 to 17 November",
+   "tags": "#freekindle #freebooks #kindlebooks",
+   "caption": "Debunked will be free on Kindle for five days, from Friday 13 to Tuesday 17 November.\n\nCallum Ferris makes his living on a Glasgow podcast, taking apart claims of the paranormal. Then his grandmother, on her deathbed, says something she had no way of knowing.\n\nIf you know someone who likes their thrillers with real science in them, tell them to keep the dates free."
+  },
+  {
+   "id": "fp2-debunked-free-tomorrow",
+   "book": "debunked",
+   "date": "2026-11-12",
+   "type": "talk",
+   "label": "Free on Kindle",
+   "headline": "Free from tomorrow.",
+   "tags": "#freekindle #freebooks #kindlebooks",
+   "sub": "Debunked is free on Kindle from Friday 13 to Tuesday 17 November. A podcast sceptic, a deathbed he can’t explain, and a run of deaths among the people who study the mind.",
+   "caption": "From tomorrow, Debunked is free on Kindle for five days, 13 to 17 November.\n\nIf it’s been on your list, now’s the time. And if you read it, an honest review on Amazon or Goodreads is hugely appreciated. It makes a real difference to an independent book."
+  },
+  {
+   "id": "fp3-debunked-free-today",
+   "book": "debunked",
+   "date": "2026-11-13",
+   "type": "carousel",
+   "tags": "#freekindle #freebooks #kindlebooks",
+   "slides": [
+    {
+     "type": "cover",
+     "label": "Free on Kindle today"
+    },
+    {
+     "type": "page",
+     "text": "I have watched, in a professional capacity, forty-one people greet on cue for strangers pretending to be their dead husbands. I have a spreadsheet. It has colour-coded tabs.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "A pal once asked, not unkindly, whether I needed a hobby that didn’t involve quantifying other people’s grief, and I told her the spreadsheet was the hobby, which she found less reassuring than I’d intended.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "None of the forty-one prepared me for my own grandmother.",
+     "attribution": ""
+    },
+    {
+     "type": "talk",
+     "label": "Free on Kindle",
+     "headline": "Free until Tuesday 17 November.",
+     "sub": "Search Debunked by Grant C Anthony on Amazon, or follow the link from grantanthony.co.uk/books."
+    }
+   ],
+   "caption": "Debunked is free on Kindle from today until Tuesday 17 November.\n\nSwipe for the opening pages. If Callum and his spreadsheet get you, the rest of the book is yours for nothing this week.\n\nHonest reviews on Amazon and Goodreads are hugely appreciated."
+  },
+  {
+   "id": "fp4-debunked-two-days",
+   "book": "debunked",
+   "date": "2026-11-16",
+   "type": "quote",
+   "label": "Free on Kindle until Tuesday",
+   "attribution": "Debunked",
+   "tags": "#freekindle #freebooks #kindlebooks",
+   "text": "\"There's your grandfather,\" she said. \"In his good jumper.\"",
+   "caption": "Two days left. Debunked is free on Kindle until Tuesday 17 November.\n\nA sceptic who has explained away every deathbed vision he’s ever met. Then one of them is his grandmother’s.\n\nIf you’ve already read it, thank you. A short honest review on Amazon or Goodreads would mean a lot."
+  },
+  {
+   "id": "fp5-debunked-last-day",
+   "book": "debunked",
+   "date": "2026-11-17",
+   "type": "cover",
+   "label": "Last day free on Kindle",
+   "tags": "#freekindle #freebooks #kindlebooks",
+   "caption": "Last day. Debunked is free on Kindle until the end of today, Tuesday 17 November.\n\nIf it’s been sitting on your list, this is the moment.\n\nHonest reviews on Amazon and Goodreads are hugely appreciated."
+  }
+ ],
+ "promos": [
+  {
+   "book": "debunked",
+   "start": "2026-11-13",
+   "end": "2026-11-17",
+   "label": "Free on Kindle · 13 to 17 November",
+   "headline": "Debunked is free on Kindle",
+   "text": "Free until Tuesday 17 November. A Glasgow podcaster who debunks the paranormal, and a deathbed he can’t explain. Honest reviews on Amazon and Goodreads are hugely appreciated.",
+   "button": "Get it free on Amazon",
+   "url": "https://www.amazon.co.uk/dp/B0HCK9V3S9"
   }
  ]
 }
