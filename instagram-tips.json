@@ -1014,6 +1014,31 @@
       "approved": false
     },
     {
+      "id": "lofoten-boat-settings",
+      "type": "settings",
+      "photo": "lofoten-boat-muzz3lxyria",
+      "kicker": "Behind the settings",
+      "title": "A simple daylight recipe",
+      "slides": [
+        {
+          "h": "Why these settings work",
+          "points": [
+            "f/11 keeps the scene sharp from front to back",
+            "1/250 s freezes the camera and any movement on the water",
+            "ISO 500 is the small price of having both"
+          ]
+        },
+        {
+          "h": "Try it",
+          "t": "Aperture priority, f/8 to f/11, and watch that the shutter stays at 1/125 s or faster by hand. It covers a lot of daylight landscapes."
+        }
+      ],
+      "question": "What is your go-to setting when you step out of the car?",
+      "lesson": "exposure-triangle",
+      "tags": "#lofoten #norway #photographytips #landscapephotography #fishingboat",
+      "approved": true
+    },
+    {
       "id": "waterfall-shutter",
       "type": "settings",
       "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
@@ -1343,31 +1368,6 @@
       "lesson": null,
       "tags": "#photographytips #photographycommunity #learnphotography #deadvlei #namibia",
       "approved": false
-    },
-    {
-      "id": "lofoten-boat-settings",
-      "type": "settings",
-      "photo": "lofoten-boat-muzz3lxyria",
-      "kicker": "Behind the settings",
-      "title": "A simple daylight recipe",
-      "slides": [
-        {
-          "h": "Why these settings work",
-          "points": [
-            "f/11 keeps the scene sharp from front to back",
-            "1/250 s freezes the camera and any movement on the water",
-            "ISO 500 is the small price of having both"
-          ]
-        },
-        {
-          "h": "Try it",
-          "t": "Aperture priority, f/8 to f/11, and watch that the shutter stays at 1/125 s or faster by hand. It covers a lot of daylight landscapes."
-        }
-      ],
-      "question": "What is your go-to setting when you step out of the car?",
-      "lesson": "exposure-triangle",
-      "tags": "#lofoten #norway #photographytips #landscapephotography #fishingboat",
-      "approved": true
     }
   ],
   "series": "Light, explained"
