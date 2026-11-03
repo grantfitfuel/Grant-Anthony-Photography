@@ -684,6 +684,41 @@
       box.append(row, chips([["1", "Whole frame"], ["3", "Zoom 3x"]], k => { zoom = +k; draw(); }, "3"), cap); draw();
     }
 
+    else if (type === "kelvin") {
+      box.setAttribute("aria-label", "White balance in kelvin");
+      svg.remove();
+      const im = view.querySelector(".gimg");
+      const fid = "kv" + Math.random().toString(36).slice(2, 7);
+      const fs = document.createElementNS(NS, "svg"); fs.setAttribute("width", "0"); fs.setAttribute("height", "0"); fs.setAttribute("aria-hidden", "true"); fs.style.position = "absolute";
+      const f = sv("filter", { id: fid, "color-interpolation-filters": "sRGB" }); const cm = sv("feColorMatrix", { type: "matrix" }); f.append(cm); fs.append(f); view.append(fs);
+      if (im) im.style.filter = `url(#${fid})`;
+      const LIGHT = 5200;                                   // the photograph is treated as taken in daylight
+      const row = el("div", "exp-row"); row.style.marginTop = "18px";
+      const lab = el("label", null, "Camera setting"); const inp = el("input"); inp.type = "range"; inp.min = 2500; inp.max = 10000; inp.step = 100; inp.value = LIGHT; inp.id = "k" + fid; lab.htmlFor = inp.id;
+      const out = el("output"); row.append(lab, inp, out);
+      // the scale: what each setting is made for
+      const scale = el("div", "kscale"); scale.setAttribute("aria-hidden", "true");
+      const mark = el("i", "kmark"); scale.append(mark);
+      const PRE = [[3200, "Tungsten"], [4000, "Fluorescent"], [5200, "Daylight"], [6000, "Cloudy"], [7000, "Shade"]];
+      const pos = k => ((k - 2500) / 7500 * 100).toFixed(2) + "%";
+      PRE.forEach(([k, n]) => { const t = el("span", "ktick", n); t.style.left = pos(k); scale.append(t); });
+      const draw = () => {
+        const k = +inp.value, w = Math.log2(k / LIGHT);   // above the light warms, below cools
+        const r = Math.max(0.55, Math.min(1.45, 1 + 0.42 * w)), g = Math.max(0.85, Math.min(1.12, 1 + 0.06 * w)), bl = Math.max(0.5, Math.min(1.6, 1 - 0.52 * w));
+        cm.setAttribute("values", `${r} 0 0 0 0  0 ${g} 0 0 0  0 0 ${bl} 0 0  0 0 0 1 0`);
+        out.textContent = k + " K"; mark.style.left = pos(k);
+        const near = PRE.find(([p]) => Math.abs(p - k) <= 100);
+        const name = near ? "<b>" + near[1] + ", about " + near[0] + " K.</b> " : "<b>" + k + " K.</b> ";
+        say(name + (k < 4600 ? "Set lower than the light, so the camera adds blue. In daylight the photograph turns cold; under warm bulbs it would look neutral." :
+          k <= 5800 ? "Close to daylight. The colours look as they did in sunshine." :
+          "Set higher than the light, so the camera adds warmth. In sunshine the photograph turns orange; in shade or on a grey day it would look neutral."));
+      };
+      inp.oninput = draw;
+      const presets = chips(PRE.map(([k, n]) => [String(k), n]), k => { inp.value = k; draw(); }, String(LIGHT));
+      inp.addEventListener("input", () => presets.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", "false")));
+      box.append(row, scale, presets, cap); draw();
+    }
+
     else if (type === "overdo") {
       box.setAttribute("aria-label", "Pushing editing sliders too far");
       svg.remove();

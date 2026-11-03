@@ -618,3 +618,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .nav-links a.nav-books{opacity:1;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:999px;padding:5px 12px;margin:-6px 0}
 .nav-links a.nav-books:hover{background:var(--accent);color:var(--accent-ink)}
 @media (max-width:640px){.nav-links a.nav-books{padding:4px 10px}}
+
+/* White balance scale */
+.kscale{position:relative;height:46px;margin:14px 0 0;border-radius:4px;background:linear-gradient(90deg,#ff9d3c 0%,#ffc58a 13%,#ffe3c4 27%,#fff3e6 36%,#f4f3ff 48%,#d9e3ff 60%,#bcd0ff 80%,#a9c2ff 100%);opacity:.92}
+.kscale .kmark{position:absolute;top:-4px;bottom:-4px;width:3px;margin-left:-1.5px;background:var(--fg);box-shadow:0 0 0 1px var(--bg);border-radius:2px}
+.kscale .ktick{position:absolute;bottom:4px;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:#1a1a1a;white-space:nowrap}
+.kscale .ktick::before{content:"";position:absolute;left:50%;top:-20px;width:1px;height:14px;background:rgba(0,0,0,.45)}
+@media (max-width:520px){.kscale .ktick{font-size:8px}.kscale .ktick:nth-of-type(odd){bottom:22px}.kscale .ktick:nth-of-type(odd)::before{display:none}}
