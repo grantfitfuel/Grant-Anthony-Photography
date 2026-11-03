@@ -6,12 +6,16 @@ It writes:
                             and the excerpts in books/posts.json (posts on hold are left out)
   books/notes/...           the Notes section, built from the text files in books/notes/posts
                             (see books/notes/HOW-TO.md); the latest notes also go on books/index.html
+  promotions                a band on books/index.html and on the book's page while a promotion in
+                            books/posts.json ("promos") is running; Amazon's dates run midnight to
+                            midnight Pacific time, which is 08:00 UK, so the daily run is at 08:17 UTC
   index.html                the structured data block between the seo markers (photos as ImageObjects)
   sitemap.xml               every page, with images
 Everything else is left alone. Running it twice on the same day gives the same result.
 """
 import html, json, os, re, struct
-from datetime import date
+from datetime import date, datetime, time as dtime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://grantanthony.co.uk"
@@ -161,7 +165,44 @@ EXTRA_CSS = """
 """
 
 
-def book_page(b, all_books, posts, style, book_notes=()):
+PT = ZoneInfo("America/Los_Angeles")
+
+
+def active_promos(posts):
+    """Promotions in books/posts.json running right now. A promotion runs from midnight Pacific time
+    on its start date to midnight Pacific time after its end date, as Amazon's free days and deals do.
+    NOW (an ISO time) overrides the clock, for testing."""
+    now = datetime.fromisoformat(os.environ["NOW"]) if os.environ.get("NOW") else datetime.now(timezone.utc)
+    running = []
+    for pr in posts.get("promos", []):
+        try:
+            start = datetime.combine(date.fromisoformat(pr["start"]), dtime(0), PT)
+            end = datetime.combine(date.fromisoformat(pr["end"]) + timedelta(days=1), dtime(0), PT)
+        except (KeyError, ValueError):
+            print(f"Promotions: skipped one that needs 'start' and 'end' dates like 2026-11-13: {pr}")
+            continue
+        if start <= now < end and pr.get("url") and pr.get("headline"):
+            running.append(pr)
+    return running
+
+
+def promo_band(pr, b):
+    """The yellow band shown while a promotion runs. b is the parsed book, if any."""
+    cover = (f'<a href="{b["slug"]}/"><img src="{esc(b["cover"])}" alt="Cover of {esc(b["title"])}" width="120" height="180"></a>'
+             if b else "")
+    return (f'<aside class="promo" aria-label="Offer"><div class="wrap promo-in">{cover}<div>'
+            f'<span class="plabel">{esc(pr.get("label", ""))}</span><b>{esc(pr["headline"])}</b>'
+            f'<p>{esc(pr.get("text", ""))}</p></div>'
+            f'<a class="pbtn" href="{esc(pr["url"])}" target="_blank" rel="noopener">{esc(pr.get("button") or "See it on Amazon")} '
+            f'<span aria-hidden="true">\u2192</span></a></div></aside>')
+
+
+def promo_book(pr, books, posts):
+    title = posts.get("books", {}).get(pr.get("book"), {}).get("title")
+    return next((b for b in books if b["title"] == title), None)
+
+
+def book_page(b, all_books, posts, style, book_notes=(), promos=()):
     key, opening, quotes, notes = book_extras(b, posts)
     url = BOOKS + b["slug"] + "/"
     cover_abs = BOOKS + b["cover_large"]
@@ -266,6 +307,7 @@ def book_page(b, all_books, posts, style, book_notes=()):
   {NAV}
 </div></header>
 <main>
+  {"".join(promo_band(pr, b) for pr in promos)}
   <section class="bp wrap">
     <p class="crumbs"><a href="./">Books</a> / <a href="./{shelf}">{"Fiction" if b["fiction"] else "Nonfiction"}</a> / {esc(b["title"])}</p>
     <div class="bp-grid">
@@ -296,13 +338,28 @@ def build_books(changed):
     style = re.search(r"<style>(.*?)</style>", page, re.S).group(1).strip()
     books = parse_books(page)
     notes = load_notes(books)
+    running = [(pr, promo_book(pr, books, posts)) for pr in active_promos(posts)]
     for b in books:
         mine = [n for n in notes if n["book"] is b]
-        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine)):
+        offers = [pr for pr, pb in running if pb is b]
+        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine, offers)):
             changed.append(f"books/{b['slug']}/index.html")
     build_notes(notes, style, changed)
     build_outnow(books, changed)
+    build_promo_band(running, changed)
     return books, notes
+
+
+def build_promo_band(running, changed):
+    """Running promotions as a band at the top of books/index.html, between the promo markers."""
+    page = read("books/index.html")
+    if "<!-- promo:start" not in page:
+        return
+    inner = "".join("\n  " + promo_band(pr, b) for pr, b in running)
+    block = "<!-- promo:start (written by scripts/build_seo.py) -->" + (inner + "\n  " if inner else "") + "<!-- promo:end -->"
+    new = re.sub(r"<!-- promo:start.*?<!-- promo:end -->", lambda m: block, page, flags=re.S)
+    if write_if_changed("books/index.html", new):
+        changed.append("books/index.html")
 
 
 # ---------------------------------------------------------------- notes

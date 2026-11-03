@@ -9,6 +9,9 @@ scripts/books_cards.py, posts it, and records it in books/instagram-log.json.
   Nonfiction (@g_c_anthony)    Wednesdays and Saturdays, 18:00 UK time
   (days and handles are set in books/posts.json under "accounts")
 
+A post with a "date" (YYYY-MM-DD) goes out on that day only, at 18:00 UK time, on any day of
+the week, ahead of the queue. If that day is missed it is skipped, never posted late.
+
 books/instagram-log.json belongs to this script only, so editing the queue can never
 wipe the record and cause something to be posted twice.
 
@@ -74,19 +77,40 @@ def now_uk():
 
 
 # ---------- choosing ----------
-def account_for_today(data, now):
+def dated_today(data, log, account, now):
+    """The post set for today's date for this account, if it has not gone out yet."""
+    done = {x["id"] for x in log.get("posted", [])}
+    for p in data["posts"]:
+        book = data["books"].get(p.get("book"), {})
+        if (book.get("account") == account and p.get("date") == now.date().isoformat()
+                and p["id"] not in done and not p.get("hold")):
+            return p
+    return None
+
+
+def account_for_today(data, now, log=None):
+    """The account that posts today: one with a dated post still to go out today first,
+    then the account whose usual day it is and which has not posted yet."""
+    log = log or {"posted": []}
     day = DAYS[now.weekday()]
+    for name in data["accounts"]:
+        if dated_today(data, log, name, now) and not posted_today(log, name, now):
+            return name
     for name, acc in data["accounts"].items():
         if day in acc.get("days", []):
             return name
     return None
 
 
-def next_post(data, log, account):
+def next_post(data, log, account, now=None):
+    now = now or now_uk()
+    dated = dated_today(data, log, account, now)
+    if dated:
+        return dated
     done = {x["id"] for x in log.get("posted", [])}
     for p in data["posts"]:
         book = data["books"].get(p.get("book"), {})
-        if book.get("account") == account and p["id"] not in done and not p.get("hold"):
+        if book.get("account") == account and p["id"] not in done and not p.get("hold") and not p.get("date"):
             return p
     return None
 
@@ -281,7 +305,7 @@ def main():
     if MODE == "check":
         return check_access(data)
     if account == "auto":
-        account = account_for_today(data, now)
+        account = account_for_today(data, now, log)
         if not account:
             say(f"No account posts on {DAYS[now.weekday()]}. Nothing to do on this run.")
             return
@@ -299,7 +323,7 @@ def main():
             say(f"@{acc['handle']} has already posted today (UK time). Nothing to do on this run.")
             return
 
-    p = next_post(data, log, account)
+    p = next_post(data, log, account, now)
     if not p:
         say(f"Nothing left in the queue for @{acc['handle']}. Add posts to books/posts.json.")
         if MODE == "post" and token:
