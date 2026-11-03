@@ -110,6 +110,40 @@
       "approved": true
     },
     {
+      "id": "calm-behind-the-camera",
+      "type": "tip",
+      "photo": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
+      "kicker": "Mindful photography",
+      "title": "The calm behind the camera",
+      "slides": [
+        {
+          "h": "In the flow",
+          "t": "I go out for the experience: being in the moment, in the flow, where time gets lost and the noise of everyday life is shut out. I speak from experience when I say it calms me."
+        },
+        {
+          "h": "Why it works",
+          "points": [
+            "Looking for a photograph keeps your attention on what is in front of you, not on what is in your head",
+            "Flow, being completely absorbed in what you are doing, tends to come when the challenge matches your skill",
+            "A large study in England linked at least two hours a week in nature with better health and wellbeing"
+          ]
+        },
+        {
+          "h": "Try it next time",
+          "points": [
+            "Put your phone on silent and leave it in your pocket",
+            "Spend five minutes just looking before you take a photograph",
+            "Notice the sounds, the air and how the light moves",
+            "Go slowly: one place, one hour, a handful of frames"
+          ]
+        }
+      ],
+      "question": "Does photography calm you too? What does being out with a camera do for you?",
+      "lesson": null,
+      "tags": "#mindfulphotography #mindfulness #flowstate #mentalhealth #naturetherapy #landscapephotography",
+      "approved": false
+    },
+    {
       "id": "level-horizons",
       "type": "tip",
       "photo": "reflections-and-shadows-loften-beach-uns-muzyn980n6g",
