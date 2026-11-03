@@ -684,6 +684,47 @@
       box.append(row, chips([["1", "Whole frame"], ["3", "Zoom 3x"]], k => { zoom = +k; draw(); }, "3"), cap); draw();
     }
 
+    else if (type === "points") {
+      box.setAttribute("aria-label", "Setting the black point and white point");
+      svg.remove();
+      const im = view.querySelector(".gimg");
+      const fid = "bw" + Math.random().toString(36).slice(2, 7);
+      const fs = document.createElementNS(NS, "svg"); fs.setAttribute("width", "0"); fs.setAttribute("height", "0"); fs.setAttribute("aria-hidden", "true"); fs.style.position = "absolute";
+      // 1: the levels change itself
+      const fLev = sv("filter", { id: fid, "color-interpolation-filters": "sRGB" });
+      const ct = sv("feComponentTransfer"); const fn = ["feFuncR", "feFuncG", "feFuncB"].map(n => sv(n, { type: "linear", slope: "1", intercept: "0" })); ct.append(...fn); fLev.append(ct);
+      // 2 and 3: clipping views, as when you hold Alt or Option while dragging in Lightroom
+      const clipView = (id, white) => {
+        const f = sv("filter", { id, "color-interpolation-filters": "sRGB" });
+        const c2 = sv("feComponentTransfer", { result: "lev" }); const f2 = ["feFuncR", "feFuncG", "feFuncB"].map(n => sv(n, { type: "linear", slope: "1", intercept: "0" })); c2.append(...f2);
+        const tv = Array.from({ length: 64 }, (_, i) => white ? (i === 63 ? 1 : 0) : (i === 0 ? 0 : 1)).join(" ");
+        const thr = sv("feComponentTransfer"); ["feFuncR", "feFuncG", "feFuncB"].forEach(n => thr.append(sv(n, { type: "discrete", tableValues: tv })));
+        f.append(c2, thr); return { f, f2 };
+      };
+      const cw = clipView(fid + "w", true), cb = clipView(fid + "b", false);
+      fs.append(fLev, cw.f, cb.f); view.append(fs);
+      const mk = (label, id) => { const row = el("div", "exp-row"); const lab = el("label", null, label); const inp = el("input"); inp.type = "range"; inp.min = 0; inp.max = 100; inp.value = 0; inp.id = id; lab.htmlFor = id; const out = el("output"); row.append(lab, inp, out); return { row, inp, out }; };
+      const W = mk("Whites", "pw" + fid), B = mk("Blacks", "pb" + fid); W.row.style.marginTop = "18px";
+      let view_ = "photo";
+      const draw = () => {
+        const w = +W.inp.value / 100, b = +B.inp.value / 100;
+        const hi = 1 - 0.28 * w, lo = 0.2 * b;              // input levels that become pure white and pure black
+        const slope = 1 / (hi - lo), icpt = -lo / (hi - lo);
+        [fn, cw.f2, cb.f2].forEach(set => set.forEach(x => { x.setAttribute("slope", slope.toFixed(4)); x.setAttribute("intercept", icpt.toFixed(4)); }));
+        W.out.textContent = "+" + Math.round(w * 100); B.out.textContent = (b ? "\u2212" : "") + Math.round(b * 100);
+        if (im) im.style.filter = `url(#${view_ === "photo" ? fid : view_ === "whites" ? fid + "w" : fid + "b"})`;
+        let t;
+        if (view_ === "whites") t = "<b>Whites clipping view.</b> White areas have turned pure white and lost all detail. A few specks on the sun or a reflection are fine; whole patches of cloud are not.";
+        else if (view_ === "blacks") t = "<b>Blacks clipping view.</b> Dark areas have turned pure black. A little true black gives depth; big solid areas lose detail you may want.";
+        else if (w < 0.08 && b < 0.08) t = "<b>As shot.</b> Nothing reaches pure white or pure black, so the photograph looks slightly flat and grey.";
+        else if (w <= 0.45 && b <= 0.45) t = "<b>Set.</b> The brightest areas now touch white and the darkest touch black. Contrast and colour look richer, with no slider labelled Contrast touched.";
+        else t = "<b>Too far.</b> Highlights and shadows are clipping: bright cloud turns to blank white and shadows to solid black. Switch to a clipping view to see where.";
+        say(t);
+      };
+      [W.inp, B.inp].forEach(i => i.oninput = draw);
+      box.append(W.row, B.row, chips([["photo", "Photograph"], ["whites", "Show clipped whites"], ["blacks", "Show clipped blacks"]], v => { view_ = v; draw(); }, "photo"), cap); draw();
+    }
+
     else if (type === "kelvin") {
       box.setAttribute("aria-label", "White balance in kelvin");
       svg.remove();
