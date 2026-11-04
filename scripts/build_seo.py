@@ -9,6 +9,8 @@ It writes:
   promotions                a band on books/index.html and on the book's page while a promotion in
                             books/posts.json ("promos") is running; Amazon's dates run midnight to
                             midnight Pacific time, which is 08:00 UK, so the daily run is at 08:17 UTC
+  review copies             a box under the buy button on a book's page while a review-copy offer in
+                            books/posts.json ("review_copies") is open, up to its "until" date
   index.html                the structured data block between the seo markers (photos as ImageObjects)
   sitemap.xml               every page, with images
 Everything else is left alone. Running it twice on the same day gives the same result.
@@ -197,12 +199,33 @@ def promo_band(pr, b):
             f'<span aria-hidden="true">\u2192</span></a></div></aside>')
 
 
+def active_review_copies(posts):
+    """Review-copy offers in books/posts.json ("review_copies") still open: shown up to and including
+    their "until" date, UK time. NOW (an ISO time) overrides the clock, for testing."""
+    now = datetime.fromisoformat(os.environ["NOW"]) if os.environ.get("NOW") else datetime.now(timezone.utc)
+    today = now.astimezone(ZoneInfo("Europe/London")).date()
+    out = []
+    for rc in posts.get("review_copies", []):
+        try:
+            if today <= date.fromisoformat(rc["until"]) and rc.get("url"):
+                out.append(rc)
+        except (KeyError, ValueError):
+            print(f"Review copies: skipped one that needs an 'until' date like 2026-12-11: {rc}")
+    return out
+
+
+def review_copy_box(rc):
+    return (f'<div class="rcopy"><span class="label">{esc(rc.get("label") or "Free review copies")}</span>'
+            f'<p>{esc(rc.get("text", ""))}</p><a class="rbtn" href="{esc(rc["url"])}" target="_blank" rel="noopener">'
+            f'{esc(rc.get("button") or "Get a review copy")} <span aria-hidden="true">\u2192</span></a></div>')
+
+
 def promo_book(pr, books, posts):
     title = posts.get("books", {}).get(pr.get("book"), {}).get("title")
     return next((b for b in books if b["title"] == title), None)
 
 
-def book_page(b, all_books, posts, style, book_notes=(), promos=()):
+def book_page(b, all_books, posts, style, book_notes=(), promos=(), copies=()):
     key, opening, quotes, notes = book_extras(b, posts)
     url = BOOKS + b["slug"] + "/"
     cover_abs = BOOKS + b["cover_large"]
@@ -319,6 +342,7 @@ def book_page(b, all_books, posts, style, book_notes=(), promos=()):
         {f'<p class="tag">{esc(b["tag"])}</p>' if b["tag"] else ""}
         <p class="blurb">{esc(b["blurb"])}</p>
         <div class="act">{act}</div>
+        {"".join(review_copy_box(rc) for rc in copies)}
       </div>
     </div>
   </section>
@@ -339,10 +363,12 @@ def build_books(changed):
     books = parse_books(page)
     notes = load_notes(books)
     running = [(pr, promo_book(pr, books, posts)) for pr in active_promos(posts)]
+    open_copies = [(rc, promo_book(rc, books, posts)) for rc in active_review_copies(posts)]
     for b in books:
         mine = [n for n in notes if n["book"] is b]
         offers = [pr for pr, pb in running if pb is b]
-        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine, offers)):
+        copies = [rc for rc, rb in open_copies if rb is b]
+        if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine, offers, copies)):
             changed.append(f"books/{b['slug']}/index.html")
     build_notes(notes, style, changed)
     build_outnow(books, changed)
