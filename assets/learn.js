@@ -684,6 +684,40 @@
       box.append(row, chips([["1", "Whole frame"], ["3", "Zoom 3x"]], k => { zoom = +k; draw(); }, "3"), cap); draw();
     }
 
+    else if (type === "double") {
+      box.setAttribute("aria-label", "Double exposure: blending two photographs");
+      svg.remove();
+      const base = view.querySelector(".gimg");
+      const top = el("img", "gimg"); top.alt = ""; top.style.pointerEvents = "none"; view.append(top);
+      const SECOND = [["of-moss-stone-and-memory-mvlehtvhzv6", "Woodland"], ["uttakleiv-beach-2-unsigned-muzytkxpmlc", "Sea"], ["sprinkenhof", "City lights"]].filter(([id]) => photos.some(p => p.id === id));
+      const pick = id => { const p2 = photos.find(p => p.id === id); if (p2) setSrc(top, p2, "(max-width: 900px) 100vw, 900px"); };
+      const row = el("div", "exp-row"); row.style.marginTop = "18px";
+      const lab = el("label", null, "Second exposure"); const inp = el("input"); inp.type = "range"; inp.min = 0; inp.max = 100; inp.value = 100; inp.id = "dx" + Math.random().toString(36).slice(2, 6); lab.htmlFor = inp.id;
+      const out = el("output"); row.append(lab, inp, out);
+      let mode = "bright";
+      const NOTE = {
+        bright: "<b>Bright (Lighten).</b> Each part of the frame keeps whichever exposure is brighter. A dark subject against a pale sky fills with the second photograph, while the sky stays clean. The classic silhouette double exposure.",
+        dark: "<b>Dark (Darken).</b> Each part keeps whichever exposure is darker. Dark shapes from both frames show, and bright areas only survive where both are bright.",
+        average: "<b>Average.</b> Both frames at half strength. Exposure looks after itself, but both pictures can look a little washed out.",
+        additive: "<b>Additive.</b> The light of both frames is added together, as on film. Give each frame about one stop less exposure, or the result is too bright."
+      };
+      const draw = () => {
+        const k = +inp.value / 100;
+        top.style.mixBlendMode = mode === "bright" ? "lighten" : mode === "dark" ? "darken" : mode === "additive" ? "plus-lighter" : "normal";
+        top.style.opacity = (mode === "average" ? 0.5 * k : k).toFixed(3);
+        const dim = mode === "additive" ? (1 - 0.45 * k).toFixed(3) : "1";
+        if (base) base.style.filter = `brightness(${dim})`; top.style.filter = `brightness(${mode === "additive" ? 0.6 : 1})`;
+        out.textContent = Math.round(k * 100) + "%";
+        say(k < 0.05 ? "<b>One exposure.</b> Raise the slider to add the second." : NOTE[mode]);
+      };
+      inp.oninput = draw;
+      if (SECOND.length) pick(SECOND[0][0]);
+      box.append(row,
+        chips([["bright", "Bright"], ["dark", "Dark"], ["average", "Average"], ["additive", "Additive"]], m => { mode = m; draw(); }, "bright"),
+        chips(SECOND, id => { pick(id); draw(); }, SECOND.length ? SECOND[0][0] : ""), cap);
+      draw();
+    }
+
     else if (type === "points") {
       box.setAttribute("aria-label", "Setting the black point and white point");
       svg.remove();
