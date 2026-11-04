@@ -220,6 +220,17 @@ def review_copy_box(rc):
             f'{esc(rc.get("button") or "Get a review copy")} <span aria-hidden="true">\u2192</span></a></div>')
 
 
+def review_copy_line(rc):
+    """The short link to a review-copy offer, for the book's Out now card."""
+    try:
+        until = date.fromisoformat(rc["until"])
+        when = f", until {until.day}\u00a0{MONTHS[until.month - 1]}"
+    except (KeyError, ValueError):
+        when = ""
+    return (f'<p class="rnote"><a href="{esc(rc["url"])}" target="_blank" rel="noopener">'
+            f'{esc(rc.get("label") or "Free review copies")} on Booksprout{when}\u00a0<span aria-hidden="true">\u2192</span></a></p>')
+
+
 def promo_book(pr, books, posts):
     title = posts.get("books", {}).get(pr.get("book"), {}).get("title")
     return next((b for b in books if b["title"] == title), None)
@@ -371,7 +382,7 @@ def build_books(changed):
         if write_if_changed(f"books/{b['slug']}/index.html", book_page(b, books, posts, style, mine, offers, copies)):
             changed.append(f"books/{b['slug']}/index.html")
     build_notes(notes, style, changed)
-    build_outnow(books, changed)
+    build_outnow(books, changed, open_copies)
     build_promo_band(running, changed)
     return books, notes
 
@@ -736,7 +747,7 @@ def short_blurb(text, at_least=140):
     return out
 
 
-def build_outnow(books, changed):
+def build_outnow(books, changed, copies=()):
     """The books on sale, as big cards between the outnow markers on books/index.html."""
     page = read("books/index.html")
     if "<!-- outnow:start" not in page:
@@ -756,7 +767,8 @@ def build_outnow(books, changed):
                       f'<h3><a href="{b["slug"]}/">{esc(b["title"])}</a></h3><p class="by">{esc(b["byline"])}</p>{tag}'
                       f'<p class="blurb">{esc(short_blurb(b["blurb"]))}</p>'
                       f'<div class="acts"><a class="buybig" href="{esc(b["buy"])}" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">\u2192</span></a>'
-                      f'<a class="more-link" href="{b["slug"]}/">About the book</a></div></div></article>')
+                      f'<a class="more-link" href="{b["slug"]}/">About the book</a></div>'
+                      + "".join(review_copy_line(rc) for rc, rb in copies if rb is b) + '</div></article>')
         inner = ('\n  <section id="out-now" class="outnow wrap">\n    <div class="shelf-head"><div><span class="label">Available now</span><h2>Out now</h2></div>'
                  '<p>Ready to read today, from Amazon.</p></div>\n    <div class="feats">' + cards + '\n    </div>\n  </section>\n  ')
     block = "<!-- outnow:start (written by scripts/build_seo.py) -->" + inner + "<!-- outnow:end -->"
