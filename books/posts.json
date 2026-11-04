@@ -868,5 +868,15 @@
    "button": "Get it free on Amazon",
    "url": "https://www.amazon.co.uk/dp/B0HCK9V3S9"
   }
+ ],
+ "review_copies": [
+  {
+   "book": "debunked",
+   "until": "2026-12-11",
+   "url": "https://booksprout.co/reviewer/review-copy/view/334131/debunked",
+   "label": "Free review copies",
+   "text": "Free review copies of Debunked are available through Booksprout until 11 December, for readers who like to share an honest review.",
+   "button": "Get a review copy"
+  }
  ]
 }
