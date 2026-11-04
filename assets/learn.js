@@ -38,9 +38,61 @@
     path = (Array.isArray(site.startHere) && site.startHere.length ? site.startHere : DEFAULT_PATH).map(id => lessons.find(l => l.id === id)).filter(Boolean);
     if (path.length) topics.unshift({ id: "start", name: "Start here" });
     if (!topics.some(t => t.id === topic)) topic = "all";
-    renderTopics(); renderList();
+    buildIndex(); renderSearch(); renderTopics(); renderList();
   }
   let topics = [], topic = "all";
+
+  /* ---------- search ---------- */
+  let query = "", index = [];
+  const SPELL = { color: "colour", colors: "colours", gray: "grey", center: "centre", meter: "metre", fiber: "fibre", favorite: "favourite", organize: "organise", stabilization: "stabilisation", polarizer: "polariser", polarizing: "polarising" };
+  const plain = s => (s || "").replace(/\[\[[^\]]*\]\]/g, " ").replace(/^\s*(?:[-*]|\d+\.|Q:)\s+/gm, "").replace(/\n+/g, ". ").replace(/[#*>_`]/g, " ").replace(/\.\s*\./g, ".").replace(/\s+/g, " ").trim();
+  function buildIndex() {
+    index = lessons.map(l => {
+      const tn = ((topics.find(t => t.id === l.topic) || {}).name || "");
+      const body = plain([l.body, l.cheat, l.challenge].join(" "));
+      return { l, title: l.title.toLowerCase(), summary: (l.summary || "").toLowerCase() + " " + tn.toLowerCase(), body, bodyL: body.toLowerCase() };
+    });
+  }
+  const terms = q => q.toLowerCase().replace(/[^a-z0-9/.\s-]/g, " ").split(/\s+/).filter(w => w.length > 1).map(w => SPELL[w] || w);
+  function search(q) {
+    const ws = terms(q); if (!ws.length) return null;
+    return index.map(x => {
+      let score = 0;
+      for (const w of ws) {
+        const t = x.title.includes(w), s = x.summary.includes(w), n = x.bodyL.split(w).length - 1;
+        if (!t && !s && !n) return null;
+        score += (t ? 20 : 0) + (s ? 6 : 0) + Math.min(n, 12);
+      }
+      const ph = ws.join(" ");
+      if (ws.length > 1) { if (x.title.includes(ph)) score += 40; if (x.bodyL.includes(ph)) score += 15; }
+      return { x, score, ws };
+    }).filter(Boolean).sort((a, b) => b.score - a.score);
+  }
+  function snippet(x, ws) {
+    const pi = ws.length > 1 ? x.bodyL.indexOf(ws.join(" ")) : -1;
+    const i = pi >= 0 ? pi : ws.map(w => x.bodyL.indexOf(w)).filter(i => i >= 0).sort((a, b) => a - b)[0];
+    if (i == null) return null;
+    const a = Math.max(0, x.body.lastIndexOf(" ", Math.max(0, i - 60)) + 1), b = Math.min(x.body.length, i + 110);
+    const text = (a > 0 ? "\u2026" : "") + x.body.slice(a, b).trim() + (b < x.body.length ? "\u2026" : "");
+    const p = el("p", "lsnip");
+    const re = new RegExp("(" + ws.map(w => w.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&")).join("|") + ")", "gi");
+    text.split(re).forEach((part, k) => p.append(k % 2 ? el("mark", null, part) : part));
+    return p;
+  }
+  function renderSearch() {
+    let wrap = $("lsearch");
+    if (wrap) return;
+    wrap = el("div", "lsearch"); wrap.id = "lsearch";
+    const lab = el("label", "sr", "Search lessons"); lab.htmlFor = "lsearchIn";
+    const inp = el("input"); inp.type = "search"; inp.id = "lsearchIn"; inp.placeholder = "Search lessons, e.g. kelvin, tripod, gigs"; inp.autocomplete = "off"; inp.spellcheck = false;
+    const clr = el("button", "lsearch-clear", "Clear"); clr.type = "button"; clr.hidden = true;
+    let t;
+    inp.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { query = inp.value.trim(); clr.hidden = !query; renderList(); }, 120); });
+    inp.addEventListener("keydown", e => { if (e.key === "Escape") { inp.value = ""; query = ""; clr.hidden = true; renderList(); } });
+    clr.onclick = () => { inp.value = ""; query = ""; clr.hidden = true; renderList(); inp.focus(); };
+    wrap.append(lab, inp, clr);
+    $("lessons").before(wrap);
+  }
   function renderTopics() {
     let bar = $("ltopics");
     if (!bar) { bar = el("div", "ltopics"); bar.id = "ltopics"; bar.setAttribute("role", "group"); bar.setAttribute("aria-label", "Filter lessons by topic"); $("lessons").before(bar); }
@@ -48,7 +100,11 @@
     [["all", "All lessons", lessons.length]].concat(topics.map(t => [t.id, t.name, t.id === "start" ? path.length : lessons.filter(l => l.topic === t.id).length])).forEach(([id, name, n]) => {
       const b = el("button"); b.type = "button"; b.dataset.id = id; b.append(name, el("sup", null, pad(n)));
       b.setAttribute("aria-pressed", topic === id);
-      b.onclick = () => { topic = id; [...bar.children].forEach(x => x.setAttribute("aria-pressed", x.dataset.id === id)); renderList(); };
+      b.onclick = () => {
+        topic = id; [...bar.children].forEach(x => x.setAttribute("aria-pressed", x.dataset.id === id));
+        if (query) { query = ""; const si = $("lsearchIn"); if (si) si.value = ""; const c = document.querySelector(".lsearch-clear"); if (c) c.hidden = true; }
+        renderList();
+      };
       bar.append(b);
     });
   }
@@ -68,12 +124,20 @@
   function renderList() {
     const list = $("lessons"); list.textContent = "";
     renderProgLine();
-    (topic === "start" ? path : lessons.filter(l => topic === "all" || l.topic === topic)).forEach((l, i) => {
+    const found = query ? search(query) : null;
+    const bar = $("ltopics"); if (bar) bar.classList.toggle("muted", !!found);
+    let note = $("lsearchNote");
+    if (!note) { note = el("p", "lsearch-note"); note.id = "lsearchNote"; note.setAttribute("aria-live", "polite"); list.before(note); }
+    note.hidden = !found;
+    if (found) note.textContent = found.length ? `${found.length} lesson${found.length === 1 ? " matches" : "s match"} \u201c${query}\u201d` : `No lessons match \u201c${query}\u201d. Try a different word, such as tripod, sunset or editing.`;
+    const shown = found ? found.map(r => r.x.l) : (topic === "start" ? path : lessons.filter(l => topic === "all" || l.topic === topic));
+    shown.forEach((l, i) => {
       const li = el("li", "lesson"); const b = el("button"); b.type = "button";
       const ph = photoFor(l); if (ph && ph.tone) b.style.setProperty("--tone", ph.tone);
       const lt = el("div", "lt"); lt.append(el("h3", null, l.title), el("p", null, l.summary || ""));
+      if (found) { const r = found[i]; if (!r.ws.some(w => r.x.title.includes(w) || r.x.summary.includes(w))) { const sn = snippet(r.x, r.ws); if (sn) lt.append(sn); } }
       const lm = el("div", "lm"); const tn = (topics.find(t => t.id === l.topic) || {}).name;
-      if (topic === "all" && tn) lm.append(el("span", "lvl", tn)); else if (l.level) lm.append(el("span", "lvl", l.level));
+      if ((topic === "all" || found) && tn) lm.append(el("span", "lvl", tn)); else if (l.level) lm.append(el("span", "lvl", l.level));
       lm.append(el("span", null, minutes(l) + " min read"));
       if (prog.read[l.id]) lm.append(el("span", "done", "\u2713 Read"));
       if (prog.quiz[l.id]) lm.append(el("span", "qdone", "Quiz " + prog.quiz[l.id]));

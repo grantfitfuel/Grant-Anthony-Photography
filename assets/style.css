@@ -625,3 +625,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .kscale .ktick{position:absolute;bottom:4px;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:#1a1a1a;white-space:nowrap}
 .kscale .ktick::before{content:"";position:absolute;left:50%;top:-20px;width:1px;height:14px;background:rgba(0,0,0,.45)}
 @media (max-width:520px){.kscale .ktick{font-size:8px}.kscale .ktick:nth-of-type(odd){bottom:22px}.kscale .ktick:nth-of-type(odd)::before{display:none}}
+
+/* Lesson search */
+.lsearch{display:flex;align-items:center;gap:10px;margin:0 0 22px;max-width:560px;border-bottom:1px solid var(--line2);padding:4px 0}
+.lsearch input{flex:1;min-width:0;font:inherit;font-size:16px;color:var(--fg);background:transparent;border:0;padding:10px 0;outline:none;-webkit-appearance:none;appearance:none}
+.lsearch input::placeholder{color:var(--faint)}
+.lsearch input::-webkit-search-cancel-button{display:none}
+.lsearch:focus-within{border-color:var(--accent)}
+.lsearch-clear{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lsearch-clear:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lsearch .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lsearch-note{margin:0 0 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lsearch-note[hidden]{display:none}
+.ltopics.muted{opacity:.35}
+.lsnip{font-size:14px;color:var(--muted);margin:6px 0 0}
+.lsnip mark{background:transparent;color:var(--accent);font-weight:500}
