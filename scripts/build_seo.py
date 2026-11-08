@@ -9,13 +9,15 @@ It writes:
   promotions                a band on books/index.html and on the book's page while a promotion in
                             books/posts.json ("promos") is running; Amazon's dates run midnight to
                             midnight Pacific time, which is 08:00 UK, so the daily run is at 08:17 UTC
+  cover addresses           every covers/... address on the books pages gets ?v=<fingerprint>, which changes
+                            when the image changes, so nobody is shown an old cover from their browser
   review copies             a box under the buy button on a book's page while a review-copy offer in
                             books/posts.json ("review_copies") is open, up to its "until" date
   index.html                the structured data block between the seo markers (photos as ImageObjects)
   sitemap.xml               every page, with images
 Everything else is left alone. Running it twice on the same day gives the same result.
 """
-import html, json, os, re, struct
+import hashlib, html, json, os, re, struct
 from datetime import date, datetime, time as dtime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -34,7 +36,28 @@ def read(p):
         return f.read()
 
 
+_COVER_HASH = {}
+
+
+def cover_version(name):
+    """A short fingerprint of a cover image, so its address changes whenever the picture does."""
+    if name not in _COVER_HASH:
+        path = os.path.join(ROOT, "books", "covers", name)
+        _COVER_HASH[name] = hashlib.md5(open(path, "rb").read()).hexdigest()[:8] if os.path.exists(path) else ""
+    return _COVER_HASH[name]
+
+
+def bust(text):
+    """Add ?v=<fingerprint> to every cover address, so phones and browsers never keep showing an old cover."""
+    def rep(m):
+        v = cover_version(m.group(2))
+        return m.group(1) + m.group(2) + (f"?v={v}" if v else "")
+    return re.sub(r"(covers/)([A-Za-z0-9._-]+?\.(?:jpg|jpeg|png|webp))(?:\?v=[0-9a-f]+)?", rep, text)
+
+
 def write_if_changed(p, text):
+    if p.startswith("books/") and p.endswith(".html"):
+        text = bust(text)
     full = os.path.join(ROOT, p)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     if os.path.exists(full) and read(p) == text:
@@ -104,6 +127,7 @@ def parse_books(page):
             "fiction": nf_at < 0 or m.start() < nf_at,
         }
         b["byline"] = "Grant C Anthony" if b["fiction"] else "G C Anthony"
+        b["cover"] = b["cover"].split("?")[0]
         large = b["cover"].replace(".jpg", "-large.jpg")
         b["cover_large"] = large if os.path.exists(os.path.join(ROOT, "books", large)) else b["cover"]
         books.append(b)
@@ -387,6 +411,9 @@ def build_books(changed):
     build_notes(notes, style, changed)
     build_outnow(books, changed, open_copies)
     build_promo_band(running, changed)
+    # the hand-written cards on books/index.html get versioned cover addresses too
+    if write_if_changed("books/index.html", read("books/index.html")):
+        changed.append("books/index.html")
     return books, notes
 
 
