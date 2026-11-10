@@ -32,7 +32,7 @@ REPO = os.environ.get("GITHUB_REPOSITORY", "")
 LOG_PATH = os.path.join(ROOT, "instagram-log.json")
 OUT_DIR = os.path.join(ROOT, "ig")
 CAPTION_MAX = 2200
-MAX_TAGS = 30
+MAX_TAGS = 5              # Instagram allows five hashtags per post (since December 2025)
 
 
 def say(*a):
@@ -122,8 +122,9 @@ def caption_for(p, site):
     if link:
         parts.append(link)
     tags = []
-    # Tags for every post first, then the tags set for each of the photograph's categories
-    src = (site.get("igHashtags") or "") + " " + camera_tags(p, site) + " " + " ".join((site.get("igCategoryTags") or {}).get(c, "") for c in p.get("categories", []))
+    # Most specific first, as only five are kept: the photograph's category tags,
+    # then the camera tags, then the tags set for every post
+    src = " ".join((site.get("igCategoryTags") or {}).get(c, "") for c in p.get("categories", [])) + " " + camera_tags(p, site) + " " + (site.get("igHashtags") or "")
     for t in src.replace(",", " ").split():
         t = "#" + t.lstrip("#")
         if len(t) > 1 and t.lower() not in [x.lower() for x in tags]:
