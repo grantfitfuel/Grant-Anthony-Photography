@@ -4,15 +4,20 @@ name: Books Instagram
 #   Fiction    @grantcanthony  Mondays and Thursdays from 18:00 UK time
 #   Nonfiction @g_c_anthony    Wednesdays and Saturdays from 18:00 UK time
 # A post in books/posts.json with a "date" goes out on that day instead, whatever the weekday.
-# GitHub's scheduler drops and delays runs, so it wakes every 15 minutes from 17:07 to
-# 22:52 UTC every day. The script picks the account for the day (or does nothing on a day with
-# no posts), posts on the first run at or after 18:00 UK time (summer or winter), and every
-# later run that day does nothing.
+# Quote, talk and excerpt posts go out as Reels (scripts/books_reels.py); if a reel fails, the image goes.
+# GitHub's scheduler drops and delays runs by hours, so it wakes every 15 minutes from 17:07 UTC
+# until 02:52 UTC. A run up to 03:00 UK time still counts as the evening before, so a late timer
+# can't skip a day. The script picks the account for the day (or does nothing on a day with no
+# posts), posts on the first run at or after 18:00 UK time (summer or winter), and every later
+# run that day does nothing.
+# An outside timer (cron-job.org) can also start it at 18:00 UK with scheduled=1 so it posts on time.
 # To post now, or see what would go out next: Actions tab > Books Instagram > Run workflow.
+# A dry run attaches the image (and the reel, if it is one) to the run as "books-instagram-preview".
 
 on:
   schedule:
-    - cron: "7,22,37,52 17-22 * * *"
+    - cron: "7,22,37,52 17-23 * * *"
+    - cron: "7,22,37,52 0-2 * * *"
   workflow_dispatch:
     inputs:
       account:
@@ -40,12 +45,15 @@ concurrency:
 jobs:
   post:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install --quiet pillow
+      - run: pip install --quiet pillow numpy
+      - name: Make sure ffmpeg is there (for reels)
+        run: command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
       - name: Post next book post
         env:
           IG_TOKEN_FICTION: ${{ secrets.IG_TOKEN_FICTION }}
@@ -55,7 +63,7 @@ jobs:
           MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
           SCHEDULED: ${{ (github.event_name == 'schedule' || inputs.scheduled == '1') && '1' || '0' }}
         run: python scripts/books_instagram.py
-      - name: Keep the prepared image for checking
+      - name: Keep the prepared image or reel for checking
         if: always()
         uses: actions/upload-artifact@v4
         with:
