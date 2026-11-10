@@ -48,7 +48,7 @@ The public site updates about a minute after you publish, once GitHub Pages rebu
 
 Tick **Share to Instagram** on a photograph in the Studio and publish. Every Tuesday and Friday at 19:00 UK time, summer and winter, GitHub posts the next ticked photograph, in the order they appear in your list. One photograph per run. Each photograph is only ever posted once.
 
-- **Caption:** title, place and year, description, camera settings (if shown on the site), then the line from Studio > Site details > Instagram posting, the hashtags set there for every post, and the hashtags for each of the photograph's categories (up to 30 in total).
+- **Caption:** title, place and year, description, camera settings (if shown on the site), then the line from Studio > Site details > Instagram posting, and five hashtags (Instagram's limit since December 2025): the photograph's category tags first, then its camera tags, then the tags for every post.
 - **Shape:** Instagram accepts 4:5 portrait to 1.91:1 landscape. Taller or wider photographs get a plain border (white, black or dark grey; your choice in Site details) rather than a crop. Prepared copies are kept in the `ig` folder.
 - **Status:** each photograph in the Studio shows "Next to post", its place in the queue, "Posted to Instagram" with a link, or the reason the last attempt failed. A photograph under 1080 px wide is flagged, because it will look soft.
 - **Safety:** before every post the job checks the token belongs to the account named in Site details, and stops if it does not.

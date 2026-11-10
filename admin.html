@@ -233,7 +233,7 @@ select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1
       </div>
       <div class="field"><label for="sIgTags">Hashtags on every post</label><input type="text" id="sIgTags" placeholder="#photography #canonr5"></div>
       <div class="field"><label for="sIgCams">Hashtags for each camera (one per line: camera = hashtags). Matched against the Camera field of each photograph</label><textarea id="sIgCams" style="min-height:64px" placeholder="Canon EOS R5 = #canonr5"></textarea></div>
-      <p class="help" style="margin:4px 0 10px">Hashtags for each category. A post gets the tags above plus those for each category the photograph is in, up to Instagram's limit of 30.</p>
+      <p class="help" style="margin:4px 0 10px">Hashtags for each category. Instagram allows five hashtags per post, so only the first five are used: the photograph's category tags first, then its camera tags, then the tags for every post.</p>
       <div id="sIgCats"></div>
       <div class="field"><label for="sIgBorder">Border for photos taller than 4:5 or wider than 1.91:1</label><select id="sIgBorder"><option value="#ffffff">White</option><option value="#000000">Black</option><option value="#0d0d0e">Site dark grey</option></select></div>
     </div>
