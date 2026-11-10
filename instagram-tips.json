@@ -1039,6 +1039,60 @@
       "approved": true
     },
     {
+      "id": "challenge-mono-week",
+      "type": "challenge",
+      "photo": "angel",
+      "kicker": "Weekly challenge",
+      "title": "A week in black and white",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Set the camera or phone to show black and white",
+            "Keep it there for every photograph this week",
+            "Shoot RAW if you can, so the colour is still there later"
+          ]
+        },
+        {
+          "h": "What happens",
+          "t": "Without colour you start looking for light, shape and contrast. Many people find it changes how they see colour afterwards too."
+        }
+      ],
+      "question": "Share your best black and white of the week and tag @gcanth.",
+      "lesson": "black-and-white",
+      "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
+      "approved": false
+    },
+    {
+      "id": "challenge-abstract",
+      "type": "challenge",
+      "photo": "spiral",
+      "kicker": "Weekly challenge",
+      "title": "Find an abstract",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Find a pattern, a curve or a repeat in a building near you",
+            "Fill the frame with it: no sky, no context",
+            "The viewer should wonder what it is"
+          ]
+        },
+        {
+          "h": "Where to look",
+          "points": [
+            "Stairwells from above or below",
+            "Car parks, balconies and windows",
+            "Shadows on walls at the end of the day"
+          ]
+        }
+      ],
+      "question": "Post it, tag @gcanth, and let people guess what it is.",
+      "lesson": "abstract",
+      "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
+      "approved": false
+    },
+    {
       "id": "waterfall-shutter",
       "type": "settings",
       "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
@@ -1065,31 +1119,6 @@
       "question": "Silky or textured water: which do you prefer?",
       "lesson": "long-exposure",
       "tags": "#waterfall #longexposure #thehermitage #riverbraan #perthshire",
-      "approved": false
-    },
-    {
-      "id": "challenge-mono-week",
-      "type": "challenge",
-      "photo": "angel",
-      "kicker": "Weekly challenge",
-      "title": "A week in black and white",
-      "slides": [
-        {
-          "h": "The rules",
-          "points": [
-            "Set the camera or phone to show black and white",
-            "Keep it there for every photograph this week",
-            "Shoot RAW if you can, so the colour is still there later"
-          ]
-        },
-        {
-          "h": "What happens",
-          "t": "Without colour you start looking for light, shape and contrast. Many people find it changes how they see colour afterwards too."
-        }
-      ],
-      "question": "Share your best black and white of the week and tag @gcanth.",
-      "lesson": "black-and-white",
-      "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
       "approved": false
     },
     {
@@ -1259,35 +1288,6 @@
       "question": "Which filter would you never leave behind?",
       "lesson": "filters",
       "tags": "#filters #polariser #ndfilter #photographymyths #lofoten",
-      "approved": false
-    },
-    {
-      "id": "challenge-abstract",
-      "type": "challenge",
-      "photo": "spiral",
-      "kicker": "Weekly challenge",
-      "title": "Find an abstract",
-      "slides": [
-        {
-          "h": "The rules",
-          "points": [
-            "Find a pattern, a curve or a repeat in a building near you",
-            "Fill the frame with it: no sky, no context",
-            "The viewer should wonder what it is"
-          ]
-        },
-        {
-          "h": "Where to look",
-          "points": [
-            "Stairwells from above or below",
-            "Car parks, balconies and windows",
-            "Shadows on walls at the end of the day"
-          ]
-        }
-      ],
-      "question": "Post it, tag @gcanth, and let people guess what it is.",
-      "lesson": "abstract",
-      "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
       "approved": false
     },
     {
