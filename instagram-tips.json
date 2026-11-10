@@ -203,33 +203,7 @@
       "question": "Which do you shoot, and has the other one ever saved you?",
       "lesson": "editing-lightly",
       "tags": "#rawvsjpeg #photographytips #photoediting #lightroom #photographycommunity",
-      "approved": false
-    },
-    {
-      "id": "leading-lines-tip",
-      "type": "tip",
-      "photo": "sprinkenhof",
-      "kicker": "Composition",
-      "title": "Let the lines do the walking",
-      "slides": [
-        {
-          "h": "What a leading line is",
-          "t": "Anything that carries the eye through the frame: a road, a wall, a railing, a shoreline, a row of lights."
-        },
-        {
-          "h": "Making them work",
-          "points": [
-            "Start the line near a corner or the bottom edge",
-            "Make sure it leads to something worth arriving at",
-            "Get low or wide to make the line stronger",
-            "Watch that it does not lead the eye straight out of the frame"
-          ]
-        }
-      ],
-      "question": "Roads, rivers or railings: what is your favourite leading line?",
-      "lesson": "leading-lines",
-      "tags": "#leadinglines #composition #architecturephotography #photographytips #hamburg",
-      "approved": false
+      "approved": true
     },
     {
       "id": "cold-weather-care",
@@ -286,6 +260,61 @@
       "approved": false
     },
     {
+      "id": "thirds-myth",
+      "type": "myth",
+      "photo": "reflections-of-bath-grant-anthony-muzxkg9jl68",
+      "kicker": "Myth",
+      "title": "Always use the rule of thirds",
+      "slides": [
+        {
+          "h": "The truth",
+          "t": "The rule of thirds is a good habit, not a law. It stops everything landing in the middle by default."
+        },
+        {
+          "h": "When to break it",
+          "points": [
+            "Symmetry and reflections, where the centre is the point",
+            "A small subject in a lot of space, pushed right to the edge",
+            "Patterns that fill the whole frame"
+          ]
+        },
+        {
+          "h": "The real rule",
+          "t": "Put things where you mean them to be. If you can say why the subject sits there, it is probably right."
+        }
+      ],
+      "question": "Rule follower or rule breaker?",
+      "lesson": "rule-of-thirds",
+      "tags": "#ruleofthirds #symmetry #composition #photographytips #bath",
+      "approved": false
+    },
+    {
+      "id": "leading-lines-tip",
+      "type": "tip",
+      "photo": "sprinkenhof",
+      "kicker": "Composition",
+      "title": "Let the lines do the walking",
+      "slides": [
+        {
+          "h": "What a leading line is",
+          "t": "Anything that carries the eye through the frame: a road, a wall, a railing, a shoreline, a row of lights."
+        },
+        {
+          "h": "Making them work",
+          "points": [
+            "Start the line near a corner or the bottom edge",
+            "Make sure it leads to something worth arriving at",
+            "Get low or wide to make the line stronger",
+            "Watch that it does not lead the eye straight out of the frame"
+          ]
+        }
+      ],
+      "question": "Roads, rivers or railings: what is your favourite leading line?",
+      "lesson": "leading-lines",
+      "tags": "#leadinglines #composition #architecturephotography #photographytips #hamburg",
+      "approved": false
+    },
+    {
       "id": "nd-filter-maths",
       "type": "tip",
       "photo": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
@@ -313,35 +342,6 @@
       "question": "Which strength do you use most: 3, 6 or 10 stops?",
       "lesson": "long-exposure",
       "tags": "#longexposure #ndfilter #seascape #photographytips #lofoten",
-      "approved": false
-    },
-    {
-      "id": "thirds-myth",
-      "type": "myth",
-      "photo": "reflections-of-bath-grant-anthony-muzxkg9jl68",
-      "kicker": "Myth",
-      "title": "Always use the rule of thirds",
-      "slides": [
-        {
-          "h": "The truth",
-          "t": "The rule of thirds is a good habit, not a law. It stops everything landing in the middle by default."
-        },
-        {
-          "h": "When to break it",
-          "points": [
-            "Symmetry and reflections, where the centre is the point",
-            "A small subject in a lot of space, pushed right to the edge",
-            "Patterns that fill the whole frame"
-          ]
-        },
-        {
-          "h": "The real rule",
-          "t": "Put things where you mean them to be. If you can say why the subject sits there, it is probably right."
-        }
-      ],
-      "question": "Rule follower or rule breaker?",
-      "lesson": "rule-of-thirds",
-      "tags": "#ruleofthirds #symmetry #composition #photographytips #bath",
       "approved": false
     },
     {
