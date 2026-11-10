@@ -235,6 +235,40 @@
       "approved": true
     },
     {
+      "id": "guide-lindisfarne",
+      "type": "tip",
+      "photo": "lindisfarne-castle-2-muzz9zliw36",
+      "kicker": "Place guide",
+      "title": "Photographing Lindisfarne",
+      "slides": [
+        {
+          "h": "Plan around the tide",
+          "t": "Holy Island is cut off by the sea twice a day. Check Northumberland County Council's safe crossing times for your date, allow an extra 30 minutes, and never drive onto the causeway when it is closed."
+        },
+        {
+          "h": "What to look for",
+          "points": [
+            "The castle on its crag, from the harbour and the shore",
+            "The old boat sheds near the harbour",
+            "The priory ruins in the village",
+            "The causeway itself as the water comes and goes"
+          ]
+        },
+        {
+          "h": "Make the most of it",
+          "points": [
+            "Stay through high tide, when the day visitors have gone and the island is quiet",
+            "Bring a longer lens for the castle from across the harbour",
+            "Walking routes across the sands need daylight and local knowledge"
+          ]
+        }
+      ],
+      "question": "Have you photographed Holy Island? What would you shoot first?",
+      "lesson": "planning-a-trip",
+      "tags": "#lindisfarne #holyisland #northumberland #lindisfarnecastle #northumberlandcoast",
+      "approved": false
+    },
+    {
       "id": "shadow-line-settings",
       "type": "settings",
       "photo": "shadow-line",
@@ -342,6 +376,40 @@
       "question": "Which strength do you use most: 3, 6 or 10 stops?",
       "lesson": "long-exposure",
       "tags": "#longexposure #ndfilter #seascape #photographytips #lofoten",
+      "approved": false
+    },
+    {
+      "id": "guide-hermitage",
+      "type": "tip",
+      "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
+      "kicker": "Place guide",
+      "title": "Photographing the Hermitage",
+      "slides": [
+        {
+          "h": "What it is",
+          "t": "A woodland walk along the River Braan by Dunkeld, cared for by the National Trust for Scotland. The highlight is Black Linn Falls, seen from Ossian's Hall, a Georgian folly built above the gorge."
+        },
+        {
+          "h": "Photographing the falls",
+          "points": [
+            "1/4 s to 1 s keeps some texture in the water",
+            "A polariser cuts the glare on wet rock and leaves",
+            "Wipe spray off the lens between frames",
+            "Ossian's Hall gets busy: work quickly and let others in"
+          ]
+        },
+        {
+          "h": "When to go",
+          "points": [
+            "Autumn, when the woodland turns",
+            "After rain, when the river is up",
+            "Early on a weekday, before the car park fills"
+          ]
+        }
+      ],
+      "question": "Which Perthshire woodland would you send other photographers to?",
+      "lesson": "woodland",
+      "tags": "#thehermitage #dunkeld #perthshire #blacklinnfalls #riverbraan",
       "approved": false
     },
     {
@@ -465,6 +533,39 @@
       "approved": false
     },
     {
+      "id": "guide-botallack",
+      "type": "tip",
+      "photo": "botallack",
+      "kicker": "Place guide",
+      "title": "Photographing Botallack",
+      "slides": [
+        {
+          "h": "What it is",
+          "t": "Old tin and copper mine buildings on the cliffs near St Just in west Cornwall, part of the Cornwall and West Devon Mining Landscape World Heritage Site."
+        },
+        {
+          "h": "Where to look",
+          "points": [
+            "The Crowns engine houses on the rocks below the cliff path",
+            "The ruined mine buildings along the cliff top",
+            "The coast path towards Levant and Cape Cornwall"
+          ]
+        },
+        {
+          "h": "Light and safety",
+          "points": [
+            "The coast faces west over the Atlantic, so sunset is the classic time",
+            "Stay on the path: the cliffs are sheer and old mine shafts are about",
+            "Wind is strong up there: weigh the tripod down"
+          ]
+        }
+      ],
+      "question": "Cornwall or Scotland for coast photography? Tell me why.",
+      "lesson": "seascapes",
+      "tags": "#botallack #cornwall #stjust #cornishcoast #seascape",
+      "approved": false
+    },
+    {
       "id": "three-copies",
       "type": "tip",
       "photo": "wall-of-fame-muzyix9iqrv",
@@ -574,6 +675,39 @@
       "question": "Which camp are you in? And what would make you leave it at home?",
       "lesson": null,
       "tags": "#tripod #photographycommunity #longexposure #architecturephotography #hamburg",
+      "approved": false
+    },
+    {
+      "id": "guide-uttakleiv",
+      "type": "tip",
+      "photo": "uttakleiv-beach-2-unsigned-muzytkxpmlc",
+      "kicker": "Place guide",
+      "title": "Photographing Uttakleiv",
+      "slides": [
+        {
+          "h": "What it is",
+          "t": "A beach near Leknes in Lofoten, northern Norway, with smooth rocks, mountains across the bay, and the Dragon's Eye: a rock pool that looks like an eye from the right angle."
+        },
+        {
+          "h": "Practical tips",
+          "points": [
+            "The Dragon's Eye can only be reached at low tide, so check the tide table",
+            "Expect other photographers there, especially at sunset",
+            "Look beyond it: other rock pools and rocks where waves wash over"
+          ]
+        },
+        {
+          "h": "When to go",
+          "points": [
+            "Summer for the midnight sun",
+            "Winter for the northern lights, on a clear night",
+            "Sunset, when the light reaches the cliffs"
+          ]
+        }
+      ],
+      "question": "Is Lofoten on your list? What would you want to photograph there?",
+      "lesson": "seascapes",
+      "tags": "#uttakleiv #lofoten #lofotenislands #norway #seascape",
       "approved": false
     },
     {
@@ -1039,60 +1173,6 @@
       "approved": true
     },
     {
-      "id": "challenge-mono-week",
-      "type": "challenge",
-      "photo": "angel",
-      "kicker": "Weekly challenge",
-      "title": "A week in black and white",
-      "slides": [
-        {
-          "h": "The rules",
-          "points": [
-            "Set the camera or phone to show black and white",
-            "Keep it there for every photograph this week",
-            "Shoot RAW if you can, so the colour is still there later"
-          ]
-        },
-        {
-          "h": "What happens",
-          "t": "Without colour you start looking for light, shape and contrast. Many people find it changes how they see colour afterwards too."
-        }
-      ],
-      "question": "Share your best black and white of the week and tag @gcanth.",
-      "lesson": "black-and-white",
-      "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
-      "approved": false
-    },
-    {
-      "id": "challenge-abstract",
-      "type": "challenge",
-      "photo": "spiral",
-      "kicker": "Weekly challenge",
-      "title": "Find an abstract",
-      "slides": [
-        {
-          "h": "The rules",
-          "points": [
-            "Find a pattern, a curve or a repeat in a building near you",
-            "Fill the frame with it: no sky, no context",
-            "The viewer should wonder what it is"
-          ]
-        },
-        {
-          "h": "Where to look",
-          "points": [
-            "Stairwells from above or below",
-            "Car parks, balconies and windows",
-            "Shadows on walls at the end of the day"
-          ]
-        }
-      ],
-      "question": "Post it, tag @gcanth, and let people guess what it is.",
-      "lesson": "abstract",
-      "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
-      "approved": false
-    },
-    {
       "id": "waterfall-shutter",
       "type": "settings",
       "photo": "where-the-river-steals-the-fire-mvlei78zxm2",
@@ -1119,6 +1199,31 @@
       "question": "Silky or textured water: which do you prefer?",
       "lesson": "long-exposure",
       "tags": "#waterfall #longexposure #thehermitage #riverbraan #perthshire",
+      "approved": false
+    },
+    {
+      "id": "challenge-mono-week",
+      "type": "challenge",
+      "photo": "angel",
+      "kicker": "Weekly challenge",
+      "title": "A week in black and white",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Set the camera or phone to show black and white",
+            "Keep it there for every photograph this week",
+            "Shoot RAW if you can, so the colour is still there later"
+          ]
+        },
+        {
+          "h": "What happens",
+          "t": "Without colour you start looking for light, shape and contrast. Many people find it changes how they see colour afterwards too."
+        }
+      ],
+      "question": "Share your best black and white of the week and tag @gcanth.",
+      "lesson": "black-and-white",
+      "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
       "approved": false
     },
     {
@@ -1288,6 +1393,35 @@
       "question": "Which filter would you never leave behind?",
       "lesson": "filters",
       "tags": "#filters #polariser #ndfilter #photographymyths #lofoten",
+      "approved": false
+    },
+    {
+      "id": "challenge-abstract",
+      "type": "challenge",
+      "photo": "spiral",
+      "kicker": "Weekly challenge",
+      "title": "Find an abstract",
+      "slides": [
+        {
+          "h": "The rules",
+          "points": [
+            "Find a pattern, a curve or a repeat in a building near you",
+            "Fill the frame with it: no sky, no context",
+            "The viewer should wonder what it is"
+          ]
+        },
+        {
+          "h": "Where to look",
+          "points": [
+            "Stairwells from above or below",
+            "Car parks, balconies and windows",
+            "Shadows on walls at the end of the day"
+          ]
+        }
+      ],
+      "question": "Post it, tag @gcanth, and let people guess what it is.",
+      "lesson": "abstract",
+      "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
       "approved": false
     },
     {

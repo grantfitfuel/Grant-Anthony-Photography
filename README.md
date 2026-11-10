@@ -92,6 +92,7 @@ The menu names below were right at the time of writing. Meta changes its screens
 | `admin.html` | The Studio page |
 | `scripts/instagram.py` | Prepares and posts the next queued photograph or tip to Instagram |
 | `scripts/ig_tips.py` | Draws the tip carousels and writes their captions |
+| `scripts/ig_reels.py` | Makes vertical reels (MP4) from photographs or a tip, for posting from the Instagram app with music. Not run automatically |
 | `instagram-tips.json` | The tip and discussion posts, in posting order. Edit freely |
 | `.github/workflows/tip-previews.yml` | Redraws the slide previews shown in the Studio when tips change |
 | `ig/tips-preview/` | Those previews, written by the job. Do not edit |
