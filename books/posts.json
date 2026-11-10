@@ -32,7 +32,7 @@
     "fg": "#f4f0f7",
     "accent": "#ff4fa3"
    },
-   "tags": "#psychologicalthriller #thrillerbooks #glasgow #scepticism #debunked"
+   "tags": "#psychologicalthriller #thrillerbooks #scottishbooks #glasgow"
   },
   "inherited": {
    "title": "Inherited",
@@ -45,7 +45,7 @@
     "fg": "#eef2f1",
     "accent": "#2ee6d0"
    },
-   "tags": "#psychologicalthriller #thrillerbooks #glasgow #booksequel",
+   "tags": "#psychologicalthriller #thrillerbooks #booksequel #glasgow",
    "release": "March 2027"
   },
   "pentimento": {
@@ -59,7 +59,7 @@
     "fg": "#f3ead9",
     "accent": "#d8b47a"
    },
-   "tags": "#scottishnoir #tartannoir #crimefiction #paisley #artworld",
+   "tags": "#tartannoir #scottishnoir #crimefiction #paisley",
    "release": "December 2026"
   },
   "roots": {
@@ -73,7 +73,7 @@
     "fg": "#ece6d4",
     "accent": "#c9b26a"
    },
-   "tags": "#epicfantasy #fantasybooks #dragons #booksofinstagram #thedimmingcanopy",
+   "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
    "release": "June 2027"
   },
   "noisy": {
@@ -87,7 +87,7 @@
     "fg": "#f4f4f6",
     "accent": "#ff6a13"
    },
-   "tags": "#overthinking #rumination #anxietyhelp #highlysensitive #mentalhealth"
+   "tags": "#overthinking #rumination #anxietyhelp #mentalhealth"
   },
   "calibrated": {
    "title": "The Calibrated Mind",
@@ -100,7 +100,7 @@
     "fg": "#f5f5f5",
     "accent": "#ff5a1f"
    },
-   "tags": "#anxiety #panic #ocd #neuroscience #predictiveprocessing"
+   "tags": "#anxiety #panic #ocd #neuroscience"
   },
   "pain": {
    "title": "Rewiring Pain",
@@ -113,7 +113,7 @@
     "fg": "#f6efe2",
     "accent": "#f05a28"
    },
-   "tags": "#chronicpain #persistentpain #painscience #neuroscience #painrecovery"
+   "tags": "#chronicpain #persistentpain #painscience #painrecovery"
   },
   "cable": {
    "title": "The Cable and the Quiet",
@@ -126,7 +126,7 @@
     "fg": "#f4ede1",
     "accent": "#f0a85a"
    },
-   "tags": "#literaryfiction #scottishfiction #nhs #generalpractice #grief",
+   "tags": "#literaryfiction #scottishfiction #nhs #grief",
    "release": "Autumn 2027",
    "lines": [
     "Ewan disliked the word temporarily when nobody could identify the conditions under which the temporary state would end.",
@@ -145,7 +145,7 @@
     "fg": "#efe9d8",
     "accent": "#c9a95e"
    },
-   "tags": "#epicfantasy #fantasybooks #dragons #booksofinstagram #thedimmingcanopy",
+   "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
    "release": "Winter 2027"
   },
   "veilborn": {
@@ -159,7 +159,7 @@
     "fg": "#fff1e6",
     "accent": "#ffb03a"
    },
-   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "tags": "#fantasybooks #fantasy #veilborn",
    "opening": [
     "The Archive received the dead.",
     "Not their bodies, Lyrinth had other institutions for bodies, and the dead themselves, in the Archive's taxonomy, were not the point. What the Archive received were their moments: the crystallised instants of experience that certain Glassborn could fix and hold, the way amber fixed insects, the way ice fixed the shape of a footprint until the thaw. Moment-echoes. The dead left them scattered through the fabric of where they had lived, snagged on doorframes and window-glass and the surfaces of still water, and the Archive's work was to collect them, catalogue them, and make them available to those who needed to find something in the past.",
@@ -182,7 +182,7 @@
     "fg": "#f4eefb",
     "accent": "#c9a2ff"
    },
-   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "tags": "#fantasybooks #fantasy #veilborn",
    "opening": [
     "The echo arrived on a Tuesday, in a crate of eleven, from a recovery site that should not have produced it.",
     "Tselin had been at the long table since seven. The north-facing windows were bright and cold behind her, and the collection-cloth in front of her held the morning's work: domestic echoes from a merchant's house on the Shardwater, three of them dull and four of them lovely, a cook's afternoon and a child's birthday and a man reading a letter twice. She had logged them. Origin, date-estimate, recovery location, condition. She had set them aside.",
@@ -205,7 +205,7 @@
     "fg": "#f4eefb",
     "accent": "#c9a2ff"
    },
-   "tags": "#fantasybooks #fantasy #veilborn #bookstagram",
+   "tags": "#fantasybooks #fantasy #veilborn",
    "opening": [
     "At dusk the crystal bridge showed Grannakh.",
     "It had not always. For the first weeks after the Veil it had shown only what it had always shown, which was Lyrinth: the towers in their impossible geometries, the light coming off every face of them and splitting and going on, so that a person crossing at evening walked through a hundred small rainbows and did not look at any of them, because they had seen them every evening of their lives. Then, in the eighth week, the light had begun to go somewhere else.",
@@ -228,7 +228,7 @@
     "fg": "#f2f0ec",
     "accent": "#e2463a"
    },
-   "tags": "#scottishnoir #tartannoir #crimefiction #glasgow #bookstagram",
+   "tags": "#tartannoir #scottishnoir #crimefiction #glasgow",
    "opening": [
     "The road narrowed before the loch appeared, bending through trees that pressed close enough to the verge to make the morning feel darker than it was. Strachan drove with the window cracked despite the cold, a cigarette burning between two fingers of his left hand, the smoke pulled outside whenever the car gathered speed and curling back towards him whenever he slowed. The car was a nine year old Vauxhall with a heater that worked on one setting, which was off. Malik had stopped commenting on the smoke ten minutes earlier. She had not stopped commenting on the heater.",
     "\"I can feel my knees,\" she said.",
@@ -253,7 +253,7 @@
     "fg": "#f5efe6",
     "accent": "#d8b46a"
    },
-   "tags": "#scottishnoir #tartannoir #crimefiction #paisley #bookstagram",
+   "tags": "#tartannoir #scottishnoir #crimefiction #paisley",
    "opening": [
     "The house in Milngavie had the silence of a place that had been lived in by one person for eleven years and was now, finally, being lived in by nobody at all, and Elaine Sorley had learned, three weekends into clearing it, that this silence had its own weight, different from the ordinary quiet of an empty room.",
     "She worked through the study first, on the theory that paperwork would be worse the longer she left it, and found her father's filing exactly as she'd have predicted, meticulous in the way of a man who had spent forty years as a quantity surveyor and had never once, in her memory, lost a receipt. Bank statements in date order. Insurance documents in a labelled folder. A will she'd already seen, at the solicitor's, three weeks ago, that had left her the house and its contents with the same brisk clarity he'd have brought to costing a roof.",
@@ -799,7 +799,8 @@
    "headline": "Free from tomorrow.",
    "tags": "#freekindle #freebooks #kindlebooks",
    "sub": "Debunked is free on Kindle from Friday 13 to Tuesday 17 November. A podcast sceptic, a deathbed he can’t explain, and a run of deaths among the people who study the mind.",
-   "caption": "From tomorrow, Debunked is free on Kindle for five days, 13 to 17 November.\n\nIf it’s been on your list, now’s the time. And if you read it, an honest review on Amazon or Goodreads is hugely appreciated. It makes a real difference to an independent book."
+   "caption": "From tomorrow, Debunked is free on Kindle for five days, 13 to 17 November.\n\nIf it’s been on your list, now’s the time. And if you read it, an honest review on Amazon or Goodreads is hugely appreciated. It makes a real difference to an independent book.",
+   "end": "Free on Kindle · 13 to 17 November"
   },
   {
    "id": "fp3-debunked-free-today",
@@ -845,7 +846,8 @@
    "attribution": "Debunked",
    "tags": "#freekindle #freebooks #kindlebooks",
    "text": "\"There's your grandfather,\" she said. \"In his good jumper.\"",
-   "caption": "Two days left. Debunked is free on Kindle until Tuesday 17 November.\n\nA sceptic who has explained away every deathbed vision he’s ever met. Then one of them is his grandmother’s.\n\nIf you’ve already read it, thank you. A short honest review on Amazon or Goodreads would mean a lot."
+   "caption": "Two days left. Debunked is free on Kindle until Tuesday 17 November.\n\nA sceptic who has explained away every deathbed vision he’s ever met. Then one of them is his grandmother’s.\n\nIf you’ve already read it, thank you. A short honest review on Amazon or Goodreads would mean a lot.",
+   "end": "Free on Kindle until Tuesday"
   },
   {
    "id": "fp5-debunked-last-day",
@@ -855,6 +857,178 @@
    "label": "Last day free on Kindle",
    "tags": "#freekindle #freebooks #kindlebooks",
    "caption": "Last day. Debunked is free on Kindle until the end of today, Tuesday 17 November.\n\nIf it’s been sitting on your list, this is the moment.\n\nHonest reviews on Amazon and Goodreads are hugely appreciated."
+  },
+  {
+   "id": "n13-noisy-replay",
+   "book": "noisy",
+   "type": "quote",
+   "text": "A pause that meant nothing at the time can grow heavier with every replay.",
+   "attribution": "The Noisy Mind",
+   "caption": "It's two in the morning and you're back in the meeting. Not the whole meeting. Just the bit where you said the thing.\n\nThe replay feels like thinking. It isn't. Nothing new arrives on the fortieth lap, and the person across the table went home and forgot about it hours ago.\n\nSend this to someone who replays conversations in bed.\n\nThe Noisy Mind. Out now."
+  },
+  {
+   "id": "nc4-noisy-night",
+   "book": "noisy",
+   "type": "carousel",
+   "slides": [
+    {
+     "type": "talk",
+     "label": "Save this for 2am",
+     "headline": "Why it gets louder at night",
+     "sub": "Four passages from The Noisy Mind for anyone whose mind starts reviewing the day the moment the light goes off. Swipe through."
+    },
+    {
+     "type": "page",
+     "text": "Lying down to sleep, your body's ready to rest but your mind starts reviewing the day anyway, replaying conversations, drafting tomorrow, circling small uncertainties, and it can genuinely feel louder than it did that morning.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "That's part of why rumination tends to peak late at night: you're tired, but you're also finally undistracted, and thoughts that got pushed aside all day come back with more force than before.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Ask yourself, mid-thought, plainly: am I solving something, or just replaying it? If nothing new is coming out of the thinking, you already have your answer, and naming it quietly, this is rumination, tends to loosen the grip more than arguing with it ever does.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "And if your mind is still busy once you're in bed, writing down whatever's unfinished, a worry, a task, an idea, tends to quiet it more than you'd expect, because it reassures your brain that nothing will be lost if it stops holding onto it.",
+     "attribution": "The Noisy Mind"
+    },
+    {
+     "type": "cover"
+    }
+   ],
+   "caption": "Four passages from The Noisy Mind for the hour when everything else has gone quiet.\n\nSave it for the next time you're lying awake going over the day. And send it to the friend who messages you at 1am because they can't switch off.\n\nThe Noisy Mind. Out now."
+  },
+  {
+   "id": "n14-calibrated-relief",
+   "book": "calibrated",
+   "type": "quote",
+   "text": "The brain takes the wrong lesson from that relief. It decides the escape is what kept you safe, and it files both the escape and the original threat as proven.",
+   "attribution": "The Calibrated Mind",
+   "caption": "Checking the door again. Asking if that message sounded rude. Searching a symptom at midnight. The relief is real, and it's exactly what keeps the fear in place.\n\nSend this to someone who's always checking.\n\nThe Calibrated Mind. Out now."
+  },
+  {
+   "id": "nc5-calibrated-reassurance",
+   "book": "calibrated",
+   "type": "carousel",
+   "slides": [
+    {
+     "type": "talk",
+     "label": "Save this",
+     "headline": "Why reassurance makes anxiety worse",
+     "sub": "Swipe for why, and for a kinder way to step off the loop."
+    },
+    {
+     "type": "page",
+     "text": "Checking the door again. Asking if that message sounded rude. Searching a symptom at midnight. The relief is real. It just doesn't last.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Every time checking works, your brain learns the wrong thing. Not 'there was no danger', but 'there was danger, and checking saved me'. The fear never gets tested, so it never fades.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Try delay, not a ban. When the urge to check arrives, put it off for ten minutes. Watch the anxiety rise, then start to come down on its own. That curve is the test your brain has been missing.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Recalibration does not come from reassurance. It does not come from arguing with your thoughts, pushing them down, or trying to switch the feeling off. It comes from giving the system something it cannot ignore, which is new information in a form it has to learn from.",
+     "attribution": "The Calibrated Mind"
+    },
+    {
+     "type": "cover"
+    }
+   ],
+   "caption": "Reassurance brings relief within minutes, and that relief is what keeps the fear in place. Swipe for why, and for a gentler way out.\n\nIf checking or reassurance is taking over your days, talk to your GP about talking therapy. And if a symptom is new or changing, get it looked at first.\n\nSend this to someone who's stuck in the loop.\n\nThe Calibrated Mind. Out now."
+  },
+  {
+   "id": "n15-pain-nail",
+   "book": "pain",
+   "type": "talk",
+   "trial": "auto",
+   "label": "Rewiring Pain",
+   "headline": "The nail went straight through his boot.",
+   "sub": "The pain was so bad he had to be sedated before it could be pulled out. When they took the boot off, the nail had passed cleanly between his toes. His foot was uninjured. The pain was real. The damage wasn't.",
+   "caption": "A case reported in the BMJ in 1995: a builder jumped down onto a 15 cm nail, and the smallest movement of it was agony. His brain saw a nail through his boot and gave him the pain of the worst.\n\nPain is something the brain produces to protect you, not a measurement of damage. That's why it can carry on after an injury has healed, and why it can change.\n\nSend this to someone who's been told their scan is clear.\n\nRewiring Pain. Out now."
+  },
+  {
+   "id": "nc6-pain-scans",
+   "book": "pain",
+   "type": "carousel",
+   "slides": [
+    {
+     "type": "talk",
+     "label": "Rewiring Pain",
+     "headline": "The scan was clear. So why does it still hurt?",
+     "sub": "Swipe for what's actually going on."
+    },
+    {
+     "type": "page",
+     "text": "They may be told that scans are normal or that nothing alarming has been found, yet the pain they experience is anything but normal. The body still hurts. Movement still feels uncertain. Life begins to organise itself around the need to avoid making things worse.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "In persistent pain, tissues may be healed or healing, but the nervous system remains on high alert and the protective response does not switch off.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Think of a smoke alarm that goes off when toast burns. It is not malfunctioning out of malice, it is doing exactly what it was designed to do, just with the volume turned up too high. Persistent pain often works in the same way.",
+     "attribution": ""
+    },
+    {
+     "type": "page",
+     "text": "Overprotective pain feels real because it is real. The sensations are genuine. The distress is genuine. The impact on life is genuine.",
+     "attribution": "Rewiring Pain"
+    },
+    {
+     "type": "cover"
+    }
+   ],
+   "caption": "Normal scans, healed tissue, and it still hurts. That isn't imagined.\n\nNew pain, or pain with other symptoms, needs a proper check first. This is about the pain that has been checked and still won't let go.\n\nSend this to someone who's tired of being told nothing's wrong.\n\nRewiring Pain. Out now."
+  },
+  {
+   "id": "n16-noisy-spotlight",
+   "book": "noisy",
+   "type": "talk",
+   "trial": "auto",
+   "label": "The Noisy Mind",
+   "headline": "Nobody else is replaying it.",
+   "sub": "In a Cornell study, students wore an embarrassing T-shirt into a room of their peers. They guessed half the room had noticed. About a quarter had. The person you're worrying about went home and forgot it.",
+   "caption": "We think we're lit up on a stage. Mostly, people are busy with their own lives. The comment you're still going over was, for them, ten seconds of an ordinary Tuesday.\n\nSend this to someone still thinking about something they said last week.\n\nThe Noisy Mind. Out now."
+  },
+  {
+   "id": "n17-pain-alarm",
+   "book": "pain",
+   "type": "quote",
+   "text": "Persistent pain often reflects an overprotective alarm system rather than ongoing damage.",
+   "attribution": "Rewiring Pain",
+   "caption": "The alarm is sensitive, not accurate. A movement that hurts isn't necessarily doing harm, and a nervous system that has learned pain can learn safety.\n\nSend this to someone who's been living with pain longer than anyone expected.\n\nRewiring Pain. Out now."
+  },
+  {
+   "id": "n18-noisy-message",
+   "book": "noisy",
+   "type": "quote",
+   "trial": "auto",
+   "text": "You've felt this: a message sent in five seconds during a busy afternoon, gone from your mind until it isn't, hours later, replaying itself word by word.",
+   "attribution": "The Noisy Mind",
+   "caption": "Then the rereading starts. Was it too blunt? Did that full stop sound annoyed? Why haven't they replied?\n\nSend this to someone who rereads their own texts.\n\nThe Noisy Mind. Out now."
+  },
+  {
+   "id": "n19-calibrated-surer",
+   "book": "calibrated",
+   "type": "quote",
+   "text": "The model grows surer of a threat the world stopped supplying long ago.",
+   "attribution": "The Calibrated Mind",
+   "caption": "Why an old fear can feel stronger now than when it started. Every check, every escape, every avoided moment takes away the one experience that would turn it down: finding out that the disaster doesn't come.\n\nSend this to someone whose anxiety has outlived its reason.\n\nThe Calibrated Mind. Out now."
   }
  ],
  "promos": [
