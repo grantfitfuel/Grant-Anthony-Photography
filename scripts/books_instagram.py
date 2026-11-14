@@ -13,10 +13,12 @@ A post with a "date" (YYYY-MM-DD) goes out on that day only, at 18:00 UK time, o
 the week, ahead of the queue. GitHub's timer often runs hours late, so a run up to 03:00 UK the
 next morning still counts as the evening before. After that the day is missed and the post is skipped.
 
-Quote, talk and excerpt posts go out as Reels, made by scripts/books_reels.py (moving text over
-the cover, with an original score). If Instagram won't take the reel, the image goes out instead.
-A post can say "format": "image" to stay a picture, and "trial": "auto" to go out as a trial reel
-(shown to non-followers first, shared with followers automatically if it does well).
+Quote, talk and excerpt posts become Reels, made by scripts/books_reels.py (moving text over the
+cover, silent). Reels are posted by hand so you can choose the music: on the reel's day the video is
+put on the site and a GitHub issue opens with the link and the caption (GitHub emails it and shows
+it in the GitHub app). That counts as the account's post for the day. A post can say
+"format": "image" to stay a picture. "reel_posting": "auto" at the top of posts.json would post
+reels automatically again (with "trial": "auto" on a post for a trial reel).
 
 Captions carry at most five hashtags (Instagram's limit): the post's own first, then the book's,
 then the account's.
@@ -57,6 +59,8 @@ REPO = os.environ.get("GITHUB_REPOSITORY", "")
 TZ = ZoneInfo("Europe/London")
 LOCAL_HOUR = 18
 LATE_HOURS = 3     # a run delayed past midnight, up to 03:00 UK, still counts as the evening before
+KEEP_VIDEOS_DAYS = 14   # reels handed to you stay on the site this long, then they are tidied away
+GH_API = os.environ.get("GH_API_BASE", "https://api.github.com")
 CAPTION_MAX = 2200
 MAX_TAGS = 5       # Instagram allows five hashtags per post
 DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -401,6 +405,71 @@ def check_access(data):
     say("\nAll set. Both accounts can post.")
 
 
+# ---------- reels posted by hand ----------
+def open_issue(title, body):
+    tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if not tok or not REPO:
+        raise RuntimeError("No GitHub token to open the issue with (GITHUB_TOKEN).")
+    req = urllib.request.Request(f"{GH_API}/repos/{REPO}/issues", method="POST",
+                                 data=json.dumps({"title": title, "body": body}).encode(),
+                                 headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json",
+                                          "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode())["html_url"]
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"GitHub would not open the issue: {e.code} {e.read().decode()[:200]}")
+    except urllib.error.URLError as e:
+        raise RuntimeError(f"Could not reach GitHub to open the issue: {e.reason}")
+
+
+def hand_over(p, data, account, log, now, video, info, cap):
+    """Put the reel on the site and open a GitHub issue telling you it is ready, with the caption."""
+    acc = data["accounts"][account]
+    book = data["books"][p["book"]]
+    vrel = os.path.relpath(video, ROOT)
+    for x in log.get("posted", []):   # tidy away videos handed over a while ago
+        old = x.get("video")
+        if old and now - datetime.fromisoformat(x["date"]) > timedelta(days=KEEP_VIDEOS_DAYS) \
+                and os.path.exists(os.path.join(ROOT, old)):
+            git("rm", "-q", "--", old)
+    sha = commit_and_push([vrel], f"Books Instagram: reel ready {p['id']}")
+    raw = os.environ.get("IG_IMAGE_BASE", f"https://raw.githubusercontent.com/{REPO}/{sha}/").rstrip("/")
+    url = video_address(vrel, sha, raw)
+    body = "\n".join([
+        f"@{REPO.split('/')[0]}, today's reel for **@{acc['handle']}** is ready to post: {book['title']}, {info['duration']:.0f} seconds, silent.",
+        "",
+        f"1. Open the video: {url}",
+        "   On your phone, tap the share button, then **Save Video**.",
+        f"2. In Instagram (@{acc['handle']}): tap + > Reel, choose the video and add your music.",
+        "3. Paste the caption below.",
+        "4. Tap **Edit cover** and pick a frame near the end, so your grid shows the book.",
+        "5. Close this issue once it's posted.",
+        "",
+        "Caption:",
+        "",
+        "```",
+        cap,
+        "```",
+    ])
+    try:
+        issue = open_issue(f"Reel to post: {book['title']} (@{acc['handle']})", body)
+    except RuntimeError as e:
+        log.setdefault("lastError", {})[account] = {"id": p["id"], "date": now.astimezone(timezone.utc).isoformat(timespec="seconds"), "message": str(e)}
+        write_log(log)
+        commit_and_push([os.path.relpath(LOG_PATH, ROOT)], f"Books Instagram: could not hand over {p['id']}")
+        fail(str(e))
+    log.setdefault("posted", []).append({"id": p["id"], "account": account, "date": now.astimezone(timezone.utc).isoformat(timespec="seconds"),
+                                         "format": "reel, posted by hand", "video": vrel, "link": issue})
+    if isinstance(log.get("lastError"), dict):
+        log["lastError"].pop(account, None)
+        if not log["lastError"]:
+            log.pop("lastError")
+    write_log(log)
+    commit_and_push([os.path.relpath(LOG_PATH, ROOT)], f"Books Instagram: reel handed over {p['id']}")
+    say(f"Reel for @{acc['handle']} is ready for you to post: {issue}")
+
+
 # ---------- main ----------
 def main():
     data = load_json(QUEUE_PATH, None)
@@ -453,7 +522,8 @@ def main():
             video, info = books_reels.save(p, data, OUT_DIR)
         except Exception as e:  # never let the reel stop the post going out
             say(f"::warning::Could not make the reel ({e}). The image will go out instead.")
-    kind = (f"reel, {info['duration']:.0f} seconds" + (", trial" if p.get("trial") else "")) if video else (
+    by_hand = data.get("reel_posting", "by hand") != "auto"
+    kind = (f"reel, {info['duration']:.0f} seconds" + (", for you to post by hand" if by_hand else (", trial" if p.get("trial") else ""))) if video else (
         f"carousel, {len(outs)} slides" if len(outs) > 1 else "image")
     say(f"Next up: {p['id']}  ({kind})")
     say(f"Hashtags: {len(re.findall(r'(?<![\w#])#\w+', cap))}")
@@ -461,6 +531,14 @@ def main():
     if MODE != "post":
         say("Dry run: nothing was posted. Run again with 'post' to publish this one.")
         return
+    if video and by_hand:
+        if token:   # keep the Instagram token fresh even on reel days
+            try:
+                if call("GET", f"{API}/me", {"fields": "username", "access_token": token}).get("username", "").lower() == acc["handle"].lower():
+                    refresh_token(token, acc["secret"])
+            except RuntimeError as e:
+                say(f"::warning::{acc['secret']} was not accepted: {e}")
+        return hand_over(p, data, account, log, now, video, info, cap)
     if not token:
         fail(f"No {acc['secret']} secret is set. See 'Book posts on Instagram' in the README.")
     try:

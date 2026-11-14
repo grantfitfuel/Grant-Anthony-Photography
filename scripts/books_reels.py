@@ -6,8 +6,8 @@ Used by scripts/books_instagram.py at posting time. To preview by hand:
 
 The look: the book's cover, blurred and darkened, drifting slowly behind the words. The words
 arrive a sentence at a time, the first one straight away, then the cover itself appears with
-where to find the book. The music is generated here from scratch for every reel, so there is
-nothing to license and Instagram shows it as original audio.
+where to find the book. Reels are silent. A post with "music": true gets the generated score
+below instead (made here from scratch, so there is nothing to license).
 
 Needs numpy, Pillow and ffmpeg (the system one, or the one in the imageio-ffmpeg package).
 """
@@ -420,11 +420,16 @@ def save(post, data, out_dir):
     p = plan(post, data)
     out = os.path.join(out_dir, post["id"] + ".mp4")
     with tempfile.TemporaryDirectory() as tmp:
-        wav = os.path.join(tmp, "score.wav")
-        score(p, wav)
+        if post.get("music"):
+            wav = os.path.join(tmp, "score.wav")
+            score(p, wav)
+            audio = ["-i", wav]
+        else:
+            # silent: an empty sound track, which Instagram expects a video to have
+            audio = ["-f", "lavfi", "-t", str(p["duration"]), "-i", "anullsrc=r=48000:cl=stereo"]
         cmd = [ffmpeg_exe(), "-y", "-loglevel", "error",
                "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-               "-i", wav,
+               *audio,
                "-vf", "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p",
                "-c:v", "libx264", "-preset", "medium", "-crf", "22", "-maxrate", "5M", "-bufsize", "10M",
                "-profile:v", "high", "-g", "60", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
