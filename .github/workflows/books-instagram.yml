@@ -4,7 +4,8 @@ name: Books Instagram
 #   Fiction    @grantcanthony  Mondays and Thursdays from 18:00 UK time
 #   Nonfiction @g_c_anthony    Wednesdays and Saturdays from 18:00 UK time
 # A post in books/posts.json with a "date" goes out on that day instead, whatever the weekday.
-# Quote, talk and excerpt posts go out as Reels (scripts/books_reels.py); if a reel fails, the image goes.
+# Quote, talk and excerpt posts become Reels (scripts/books_reels.py), which you post by hand with your
+# own music: on the day, the video goes on the site and a GitHub issue opens with the link and caption.
 # GitHub's scheduler drops and delays runs by hours, so it wakes every 15 minutes from 17:07 UTC
 # until 02:52 UTC. A run up to 03:00 UK time still counts as the evening before, so a late timer
 # can't skip a day. The script picks the account for the day (or does nothing on a day with no
@@ -37,6 +38,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: books-instagram
@@ -59,6 +61,7 @@ jobs:
           IG_TOKEN_FICTION: ${{ secrets.IG_TOKEN_FICTION }}
           IG_TOKEN_NONFICTION: ${{ secrets.IG_TOKEN_NONFICTION }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
           ACCOUNT: ${{ github.event_name == 'schedule' && 'auto' || inputs.account }}
           MODE: ${{ github.event_name == 'schedule' && 'post' || inputs.mode }}
           SCHEDULED: ${{ (github.event_name == 'schedule' || inputs.scheduled == '1') && '1' || '0' }}
