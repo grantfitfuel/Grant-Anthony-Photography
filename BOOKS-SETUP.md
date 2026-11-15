@@ -105,20 +105,20 @@ from the book, and the last is the cover. The job draws every slide, then posts 
 
 ## Reels
 
-**Automatic reels.** Quote, talk and excerpt posts in the queue go out as Reels, made at posting time
+**Reels you post yourself.** Quote, talk and excerpt posts in the queue become silent Reels, made
 by `scripts/books_reels.py`: the words arrive a sentence at a time over the blurred cover, then the
-cover itself with where to find the book. The music is generated fresh for each reel, so there is
-nothing to license and Instagram shows it as original audio.
+cover itself with where to find the book. You post them by hand so you can choose the music.
 
-- If Instagram won't take a reel, the same post goes out as an image instead (noted in the log).
-- To keep a post as a picture, add `"format": "image"` to it.
-- `"trial": "auto"` posts it as a trial reel: shown to non-followers first, and shared with your
-  followers automatically if it does well. `"trial": "manual"` lets you decide in the app.
+- On the reel's day, at the usual 18:00, the video goes on the site and a GitHub issue opens called
+  "Reel to post", with the link, the caption ready to copy, and the steps. GitHub emails it and shows
+  it in the GitHub app. That counts as the account's post for the day.
+- Close the issue once it's posted. Videos are tidied off the site after 14 days.
+- To keep a post as a picture instead, add `"format": "image"` to it.
 - `"end"` sets the line above the cover at the end (otherwise "Out now" or "Coming soon").
 - A dry run (Actions > Books Instagram > Run workflow > dry-run) attaches the reel to the run as
   "books-instagram-preview", so you can watch it first.
-- After a reel posts, the run's "books-instagram-preview" download (kept for 7 days) still has the
-  video, ready to post to TikTok or YouTube Shorts.
+- To have reels posted automatically again, add `"reel_posting": "auto",` near the top of
+  `books/posts.json`.
 - To preview by hand: `python scripts/books_reels.py <post id>` (writes `books/instagram/preview/`).
 
 **Reels with a trending sound** are not posted automatically, because only the Instagram app can
