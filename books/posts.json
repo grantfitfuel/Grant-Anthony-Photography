@@ -32,7 +32,14 @@
     "fg": "#f4f0f7",
     "accent": "#ff4fa3"
    },
-   "tags": "#psychologicalthriller #thrillerbooks #scottishbooks #glasgow"
+   "tags": "#psychologicalthriller #thrillerbooks #scottishbooks #glasgow",
+   "reel_images": [
+    "cover@0.38,0.02,0.92,0.50",
+    "books/reels/img-debunked-microphone.jpg",
+    "books/reels/img-debunked-clyde.jpg",
+    "books/reels/img-debunked-bedside.jpg",
+    "cover@0.56,0.08,0.92,0.48"
+   ]
   },
   "inherited": {
    "title": "Inherited",
@@ -46,7 +53,14 @@
     "accent": "#2ee6d0"
    },
    "tags": "#psychologicalthriller #thrillerbooks #booksequel #glasgow",
-   "release": "March 2027"
+   "release": "March 2027",
+   "reel_images": [
+    "cover@0.43,0.02,0.97,0.50",
+    "books/reels/img-inherited-tree.jpg",
+    "books/reels/img-inherited-street.jpg",
+    "books/reels/img-inherited-kit.jpg",
+    "cover@0.60,0.05,0.96,0.45"
+   ]
   },
   "pentimento": {
    "title": "Pentimento",
@@ -59,7 +73,14 @@
     "fg": "#f3ead9",
     "accent": "#d8b47a"
    },
-   "tags": "#tartannoir #scottishnoir #crimefiction #paisley"
+   "tags": "#tartannoir #scottishnoir #crimefiction #paisley",
+   "reel_images": [
+    "cover@0.45,0.30,0.98,0.78",
+    "books/reels/img-pentimento-easel.jpg",
+    "books/reels/img-pentimento-scalpel.jpg",
+    "cover@0.02,0.30,0.54,0.76",
+    "books/reels/img-pentimento-photographs.jpg"
+   ]
   },
   "roots": {
    "title": "The Roots That Breathe",
@@ -73,7 +94,14 @@
     "accent": "#c9b26a"
    },
    "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
-   "release": "June 2027"
+   "release": "June 2027",
+   "reel_images": [
+    "cover@0.28,0.10,0.75,0.60",
+    "books/reels/img-roots-dragon.jpg",
+    "books/reels/img-roots-roots.jpg",
+    "cover@0.34,0.30,0.66,0.66",
+    "books/reels/img-roots-traveller.jpg"
+   ]
   },
   "noisy": {
    "title": "The Noisy Mind",
@@ -86,7 +114,14 @@
     "fg": "#f4f4f6",
     "accent": "#ff6a13"
    },
-   "tags": "#overthinking #rumination #anxietyhelp #mentalhealth"
+   "tags": "#overthinking #rumination #anxietyhelp #mentalhealth",
+   "reel_images": [
+    "cover@0.00,0.10,0.22,0.62",
+    "books/reels/img-noisy-2am.jpg",
+    "books/reels/img-noisy-threads.jpg",
+    "cover@0.00,0.25,0.23,0.60",
+    "books/reels/img-noisy-sea.jpg"
+   ]
   },
   "calibrated": {
    "title": "The Calibrated Mind",
@@ -99,7 +134,14 @@
     "fg": "#f5f5f5",
     "accent": "#ff5a1f"
    },
-   "tags": "#anxiety #panic #ocd #neuroscience"
+   "tags": "#anxiety #panic #ocd #neuroscience",
+   "reel_images": [
+    "cover@0.61,0.08,0.98,0.45",
+    "books/reels/img-calibrated-door.jpg",
+    "books/reels/img-calibrated-rings.jpg",
+    "cover@0.70,0.08,0.97,0.36",
+    "books/reels/img-calibrated-path.jpg"
+   ]
   },
   "pain": {
    "title": "Rewiring Pain",
@@ -112,7 +154,14 @@
     "fg": "#f6efe2",
     "accent": "#f05a28"
    },
-   "tags": "#chronicpain #persistentpain #painscience #painrecovery"
+   "tags": "#chronicpain #persistentpain #painscience #painrecovery",
+   "reel_images": [
+    "cover@0.64,0.60,1.00,1.00",
+    "books/reels/img-pain-boot.jpg",
+    "books/reels/img-pain-nerves.jpg",
+    "cover@0.70,0.65,1.00,0.98",
+    "books/reels/img-pain-walk.jpg"
+   ]
   },
   "cable": {
    "title": "The Cable and the Quiet",
@@ -131,6 +180,13 @@
     "Ewan disliked the word temporarily when nobody could identify the conditions under which the temporary state would end.",
     "Ewan's flat had always been quiet, but that was not the same thing.",
     "His father stood in the doorway with the hall light behind him, smaller in it than Ewan usually let himself notice."
+   ],
+   "reel_images": [
+    "cover@0.33,0.40,0.76,0.88",
+    "books/reels/img-cable-waiting-room.jpg",
+    "books/reels/img-cable-cable.jpg",
+    "cover@0.10,0.45,0.46,0.85",
+    "books/reels/img-cable-river.jpg"
    ]
   },
   "deep": {
@@ -145,7 +201,14 @@
     "accent": "#c9a95e"
    },
    "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
-   "release": "Winter 2027"
+   "release": "Winter 2027",
+   "reel_images": [
+    "cover@0.29,0.17,0.72,0.58",
+    "books/reels/img-deep-lake.jpg",
+    "books/reels/img-deep-stones.jpg",
+    "cover@0.20,0.17,0.56,0.55",
+    "books/reels/img-deep-cave.jpg"
+   ]
   },
   "veilborn": {
    "title": "Echoes of the Shattered",
@@ -168,6 +231,9 @@
     "A Grannakh hillside, read correctly, was a biography.",
     "Vaelra had been eating grief for forty-one years.",
     "She was beginning to understand that the line had always been a choice, not a fact."
+   ],
+   "reel_images": [
+    "cover"
    ]
   },
   "veilborn2": {
@@ -191,6 +257,9 @@
     "It was warm the way a hand was warm when someone had just let go of it.",
     "\"There's an inside,\" Tselin said. \"I didn't know there was an inside.\"",
     "Nine threads, fraying. One knot, pulled."
+   ],
+   "reel_images": [
+    "cover"
    ]
   },
   "veilborn3": {
@@ -214,6 +283,9 @@
     "Tselin's hands were glass to the elbow.",
     "Korr's letters were the shape of what he was able to say, and what he was able to say had got larger in the Cradle, and it would take a while to get larger still.",
     "The grey of no people."
+   ],
+   "reel_images": [
+    "cover"
    ]
   },
   "clarity": {
@@ -239,6 +311,9 @@
     "A tick was a very small thing to carry that much.",
     "The city did not hold things in place. It took them in, worked round them, buried them under movement, and kept going.",
     "\"They saw it. They recorded it. That isn't the same thing.\""
+   ],
+   "reel_images": [
+    "cover"
    ]
   },
   "underpainting": {
@@ -262,6 +337,9 @@
     "Behind her on the wallpaper the hook left a pale rectangle, cleaner than the wall around it, the shape of forty years.",
     "\"You do love an orphaned object, don't you. Something nobody else has bothered to properly ask about.\"",
     "\"I think some things get buried because somebody decided, once, carefully, that burying them was the kinder choice.\""
+   ],
+   "reel_images": [
+    "cover"
    ]
   }
  },
