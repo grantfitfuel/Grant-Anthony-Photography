@@ -191,16 +191,16 @@
       <image:title>Debunked</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
+      <image:title>Pentimento</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/cable-large.jpg</image:loc>
       <image:title>The Cable and the Quiet</image:title>
     </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/inherited-large.jpg</image:loc>
       <image:title>Inherited</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
-      <image:title>Pentimento</image:title>
     </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/underpainting-large.jpg</image:loc>
@@ -253,6 +253,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://grantanthony.co.uk/books/pentimento/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
+      <image:title>Pentimento</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://grantanthony.co.uk/books/the-cable-and-the-quiet/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -268,15 +277,6 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/inherited-large.jpg</image:loc>
       <image:title>Inherited</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://grantanthony.co.uk/books/pentimento/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/books/covers/pentimento-large.jpg</image:loc>
-      <image:title>Pentimento</image:title>
     </image:image>
   </url>
   <url>
