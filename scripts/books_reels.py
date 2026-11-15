@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-"""Make a short Reel (1080 x 1920, 30 fps, MP4) from a quote, talk or excerpt post in books/posts.json.
+"""Make a Reel (1080 x 1920, 30 fps, MP4) from a quote, talk or excerpt post in books/posts.json.
 
-Used by scripts/books_instagram.py at posting time. To preview by hand:
+Used by scripts/books_instagram.py on the post's day. To preview by hand:
   python scripts/books_reels.py n13-noisy-replay      (writes books/instagram/preview/<id>.mp4)
 
-The look: the book's cover, blurred and darkened, drifting slowly behind the words. The words
-arrive a sentence at a time, the first one straight away, then the cover itself appears with
-where to find the book. Reels are silent. A post with "music": true gets the generated score
-below instead (made here from scratch, so there is nothing to license).
+The look: one sentence at a time, in large type, each over its own picture, with slow movement
+on every picture and a dissolve between them. The pictures come from the book's "reel_images" in
+posts.json: details of the cover ("cover@x0,y0,x1,y1", as fractions of the cover) and pictures in
+the repository ("books/reels/img-name.jpg", or with "@0.4" to centre on a point 40% across).
+Every sentence stays up long enough to read comfortably; a long one gets a second picture part of
+the way through. The reel ends on the cover with where to find the book.
+
+Reels are silent, for music to be added in Instagram. A post with "music": true gets the generated
+score below instead (made here from scratch, so there is nothing to license).
 
 Needs numpy, Pillow and ffmpeg (the system one, or the one in the imageio-ffmpeg package).
 """
@@ -23,10 +28,15 @@ SR = 48000
 X0, X1 = 96, W - 150          # keep clear of the like, comment and share buttons on the right
 LABEL_Y = 300                 # below Instagram's top bar, inside the 4:5 feed crop
 Y0, Y1 = 390, 1390            # the words stay inside the feed crop and above the caption
-END = 3.4                     # seconds the end card stays up
-XF = 0.7                      # crossfade into the end card
-MAX_LEN = 22.0                # longest reel, in seconds
+END = 4.0                     # seconds the end card stays up
+XF = 0.8                      # dissolve into the end card
+SHOT_XF = 0.6                 # dissolve between pictures
+SHOT_MAX = 4.8                # a picture stays up about this long at most
+READ_MIN, READ_WPS, READ_PAD = 2.8, 2.4, 1.2   # reading time: at least 2.8 s, 2.4 words a second, plus 1.2 s
+MAX_LEN = 50.0                # longest reel, in seconds
+BASE = 1.16                   # pictures are prepared a little larger than the frame, for the movement
 REEL_TYPES = ("quote", "talk", "excerpt")
+ROOT = os.path.dirname(bc.BOOKS)
 
 
 def ease(t):
@@ -35,10 +45,24 @@ def ease(t):
 
 
 # ---------- words ----------
-def chunks_of(text, most=6):
-    """Split into sentences, the unit the words arrive in. Short ones are joined so there are at most six."""
+def split_long(sentence, most=20):
+    """A long sentence is shown in two parts, broken after a comma, colon or semicolon near its middle."""
+    words = sentence.split()
+    if len(words) <= most:
+        return [sentence]
+    marks = [i for i, w in enumerate(words[:-3]) if i >= 3 and w[-1] in ",;:"]
+    if not marks:
+        return [sentence]
+    i = min(marks, key=lambda k: abs(k - len(words) / 2))
+    return split_long(" ".join(words[:i + 1]), most) + split_long(" ".join(words[i + 1:]), most)
+
+
+def chunks_of(text, most=8):
+    """Split into sentences, the unit the words arrive in. Long sentences are shown in two parts;
+    short ones are joined so there are at most eight."""
     text = bc.smart(" ".join(text.split()))
     parts = [s for s in re.split(r"(?<=[.!?”])\s+(?=[“‘A-Z0-9])", text) if s]
+    parts = [q for s in parts for q in split_long(s)]
     while len(parts) > most:
         i = min(range(len(parts) - 1), key=lambda k: len(parts[k]) + len(parts[k + 1]))
         parts[i:i + 2] = [parts[i] + " " + parts[i + 1]]
@@ -112,140 +136,152 @@ def end_status(post, book):
 
 
 # ---------- the plan for one reel ----------
-def read_time(chunk):
-    return max(1.5, len(chunk.split()) / 3.2 + 0.7)
+def read_time(text):
+    return max(READ_MIN, len(text.split()) / READ_WPS + READ_PAD)
+
+
+def text_block(probe, text, fname, colour, start, smallest, lead, centre, tail=None, tail_colour=None):
+    """One sentence as its own layer, centred on `centre`, inside the safe area."""
+    f, step, lines = layout(probe, [text], fname, X1 - X0, Y1 - Y0 - (90 if tail else 0), start, smallest, lead)
+    h = len(lines) * step + (70 if tail else 0)
+    top = min(max(Y0, centre - h / 2), Y1 - h)
+    layer = text_layer(lines, f, step, X0, top, colour, 0)
+    if tail:
+        y = top + len(lines) * step + 30
+        tl = single(lambda d: d.text((X0, y), tail, font=bc.font("plex-mono-500", 30), fill=tail_colour + (255,)))
+        layer = Image.alpha_composite(layer, tl)
+    return layer
 
 
 def plan(post, data):
-    """Work out every layer of the reel and when it comes and goes.
-    Short quotes build up a sentence at a time. Longer text (a talk's paragraph, an excerpt, a long
-    quote) shows one sentence at a time in large type, each replacing the last, like a trailer."""
+    """Every layer of the reel and when it comes and goes, and which picture is up when."""
     book = data["books"][post["book"]]
     th = book["theme"]
     fg, ac = bc.hexrgb(th["fg"]), bc.hexrgb(th["accent"])
     kind = post["type"]
-    probe = ImageDraw.Draw(Image.new("RGB", (8, 8)))
-    width = X1 - X0
-    layers = []   # dicts: img, t_in, t_out (None = stays), fade
-
-    def keep(img, t_in, t_out=None, fade=0.5):
-        layers.append({"img": img, "t_in": t_in, "t_out": t_out, "fade": fade})
-
-    label = post.get("label") or ("Opening lines" if kind == "excerpt" else ("From " + book["title"] if kind == "quote" else book["title"]))
-    keep(single(lambda d: d.text((X0, LABEL_Y), label.upper(), font=bc.font("plex-mono-500", 34), fill=ac + (255,))), 0.0, fade=0.3)
-
     if kind not in REEL_TYPES:
         raise ValueError(f"{post['id']}: a reel needs a quote, talk or excerpt post, not '{kind}'")
+    probe = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+    label = post.get("label") or ("Opening lines" if kind == "excerpt" else ("From " + book["title"] if kind == "quote" else book["title"]))
+    label_layer = single(lambda d: d.text((X0, LABEL_Y), label.upper(), font=bc.font("plex-mono-500", 34), fill=ac + (255,)))
 
+    # the sentences, in order, each with its own layer
+    items = []
     if kind == "talk":
         head = bc.smart(" ".join(post["headline"].split()))
-        hf, hstep, hlines = layout(probe, [head], "bricolage-800", width, 520, 132, 64, 1.04)
-        hh = len(hlines) * hstep
-        seq = chunks_of(post.get("sub", ""), 6) if post.get("sub") else []
-        box_top, box_h = Y0 + hh + 60, Y1 - Y0 - hh - 60
-        t = read_time(head) if seq else max(2.6, read_time(head))
-        fname, start, smallest, lead, colour = "source-serif-400", 78, 40, 1.3, fg
-        build = False
-        tail = None
+        items.append((head, text_block(probe, head, "bricolage-800", fg, 132, 66, 1.04, 880)))
+        for c in (chunks_of(post["sub"], 8) if post.get("sub") else []):
+            items.append((c, text_block(probe, c, "source-serif-400", fg, 84, 44, 1.28, 940)))
     else:
-        chunks = chunks_of(post["text"], 6)
-        long = kind == "excerpt" or len(post["text"].split()) > 42
-        mark = 0
-        if kind == "quote":
-            mark = 150
-        box_top, box_h = Y0 + mark, Y1 - Y0 - mark - 90
-        if long:
-            seq = chunks
-            fname, start, smallest, lead, colour = "source-serif-400", 84, 42, 1.3, fg
-            build = False
-        else:
-            seq = chunks
-            fname, start, smallest, lead, colour = "source-serif-400", 96, 46, 1.28, fg
-            build = True
-        t = 0.0
+        chunks = chunks_of(post["text"], 8)
         tail = (post.get("attribution") or book["title"]).upper()
+        size = 80 if kind == "quote" else 70
+        for i, c in enumerate(chunks):
+            last = i == len(chunks) - 1
+            items.append((c, text_block(probe, c, "source-serif-400", fg, size, 42, 1.3, 940,
+                                        tail if last else None, ac)))
 
-    # Lay the words out
-    blocks = []   # (layer, bottom edge)
-    top = box_top
-    if build:
-        f, step, lines = layout(probe, seq, fname, width, box_h, start, smallest, lead)
-        bh = len(lines) * step
-        top = box_top + max(0, (box_h - bh) * 0.38)
-        blocks = [(text_layer(lines, f, step, X0, top, colour, i), top + bh) for i in range(len(seq))]
-    elif seq:
-        # one size for every sentence: the largest at which the longest one still fits
-        size = start
-        while size > smallest:
-            if all(len(layout(probe, [c], fname, width, box_h, size, size, lead)[2]) * size * lead <= box_h for c in seq):
-                break
-            size -= 2
-        laid = [layout(probe, [c], fname, width, box_h, size, size, lead) for c in seq]
-        tallest = max(len(lines) * step for f, step, lines in laid)
-        if kind != "talk":
-            top = box_top + max(0, (box_h - tallest) * 0.32)
-        else:
-            # centre the headline and the tallest sentence together
-            top = Y0 + max(0, (Y1 - Y0 - (hh + 60 + tallest)) * 0.4) + hh + 60
-        for f, step, lines in laid:
-            blocks.append((text_layer(lines, f, step, X0, top, colour, 0), top + len(lines) * step))
-
-    if kind == "talk":
-        y_head = (top - hh - 60) if seq else Y0 + (Y1 - Y0 - hh) * 0.35
-        keep(text_layer(hlines, hf, hstep, X0, y_head, ac, 0), 0.0, fade=0.25)
-    if kind == "quote":
-        keep(single(lambda d: d.text((X0 - 10, top - 190), "\u201c", font=bc.font("bricolage-800", 220), fill=ac + (255,))), 0.0, fade=0.25)
-
-    # Timing: the first words are on screen within a quarter of a second (the hook), then each
-    # sentence gets long enough to be read before the next arrives.
-    reads = [read_time(c) for c in seq]
-    budget = MAX_LEN - END - 1.2 - t
-    if reads and sum(reads) > budget:
+    # timing: every sentence gets time to be read; the reel is squeezed only if it would run very long
+    reads = [read_time(t) for t, _ in items]
+    reads[-1] += 0.8
+    budget = MAX_LEN - END
+    if sum(reads) > budget:
         k = budget / sum(reads)
-        reads = [max(1.2, r * k) for r in reads]
-    starts = []
-    for i, (img, bottom) in enumerate(blocks):
-        st = t
-        starts.append(st)
-        out = None if (build or i == len(blocks) - 1) else st + reads[i]
-        keep(img, st, out, fade=0.25 if st == 0 else 0.45)
-        t += reads[i]
-        if not build and i < len(blocks) - 1:
-            t += 0.15
-    if tail:
-        last_bottom = max(b for _, b in blocks)
-        keep(single(lambda d: d.text((X0, last_bottom + 30), tail, font=bc.font("plex-mono-500", 30), fill=ac + (255,))),
-             (starts[-1] + 0.5) if starts else 0.5)
-    if kind == "talk":
-        starts = [0.0] + starts
-    end_at = t + 0.9
+        reads = [max(len(t.split()) / 3.2 + 0.8, r * k) for (t, _), r in zip(items, reads)]
+    texts, shots, t = [], [], 0.0
+    for i, ((txt, layer), r) in enumerate(zip(items, reads)):
+        last = i == len(items) - 1
+        texts.append({"img": layer, "t_in": t, "t_out": None if last else t + r - 0.3, "fade": 0.2 if i == 0 else 0.45})
+        n = max(1, math.ceil(r / SHOT_MAX - 0.15))     # a long sentence gets a second picture
+        for k in range(n):
+            shots.append(t + r * k / n)
+        t += r
+    end_at = t
     total = round(end_at + END, 2)
     return {
-        "book": book, "theme": th, "layers": layers, "starts": starts,
+        "book": book, "theme": th, "label": label_layer, "texts": texts, "shots": shots,
         "end_at": end_at, "duration": total, "status": end_status(post, book),
-        "thumb_ms": int((end_at - 0.25) * 1000), "seed": zlib.crc32(post["id"].encode()),
+        "thumb_ms": int((end_at + 1.8) * 1000), "seed": zlib.crc32(post["id"].encode()),
+        "starts": [x["t_in"] for x in texts],
     }
 
 
 # ---------- pictures ----------
-def backdrop(book):
-    th = book["theme"]
-    path = os.path.join(bc.BOOKS, book.get("cover") or "")
-    bg = bc.hexrgb(th["bg"])
-    if book.get("cover") and os.path.exists(path):
-        cov = Image.open(path).convert("RGB")
-        k = max(W * 1.2 / cov.width, H * 1.2 / cov.height)
-        # blurred hard enough that the cover's own lettering melts into colour and light
-        small = cov.resize((cov.width // 4, cov.height // 4), Image.LANCZOS).filter(ImageFilter.GaussianBlur(9))
-        big = small.resize((round(cov.width * k), round(cov.height * k)), Image.BICUBIC).filter(ImageFilter.GaussianBlur(6))
-        big = Image.blend(big, Image.new("RGB", big.size, bg), 0.5)
-        # darker for bright covers, so the words always stand out
-        mean = float(np.asarray(big.convert("L"), dtype=np.float32).mean())
-        k = min(0.7, 34.0 / max(mean, 1.0))
-        big = Image.eval(big, lambda v: int(v * k))
+def picture_specs(book):
+    """The book's pictures, in order: (path, crop as fractions, centre point)."""
+    out = []
+    for spec in book.get("reel_images") or ["cover"]:
+        name, _, rest = spec.partition("@")
+        if name == "cover":
+            path = os.path.join(bc.BOOKS, book.get("cover") or "")
+            box = tuple(float(v) for v in rest.split(",")) if rest else (0.0, 0.0, 1.0, 1.0)
+            focus = ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2)
+        else:
+            path = os.path.join(ROOT, name)
+            box = (0.0, 0.0, 1.0, 1.0)
+            focus = (float(rest) if rest else 0.5, 0.5)
+        if os.path.exists(path):
+            out.append((path, box, focus))
+        else:
+            print(f"::warning::Reel picture not found, skipped: {spec}")
+    if not out and book.get("cover") and os.path.exists(os.path.join(bc.BOOKS, book["cover"])):
+        out.append((os.path.join(bc.BOOKS, book["cover"]), (0.0, 0.0, 1.0, 1.0), (0.5, 0.5)))
+    return out
+
+
+def prepare(path, box, focus):
+    """Cut the reel's shape out of a picture, staying inside the given box around its centre point,
+    size it a little larger than the frame, and darken bright pictures so the words stay readable."""
+    im = Image.open(path).convert("RGB")
+    sw, sh = im.size
+    x0, y0, x1, y1 = box[0] * sw, box[1] * sh, box[2] * sw, box[3] * sh
+    w, h = x1 - x0, y1 - y0
+    a = W / H
+    if w / h > a:
+        w = h * a          # too wide: narrow it, never grow past the box
     else:
-        big = bc.background(th).resize((round(W * 1.2), round(H * 1.2)))
+        h = w / a          # too tall: shorten it
+    cx = min(max(focus[0] * sw, x0 + w / 2), x1 - w / 2)
+    cy = min(max(focus[1] * sh, y0 + h / 2), y1 - h / 2)
+    im = im.crop((round(cx - w / 2), round(cy - h / 2), round(cx + w / 2), round(cy + h / 2)))
+    big = im.resize((round(W * BASE), round(H * BASE)), Image.LANCZOS)
+    if w < W * BASE * 0.8:   # enlarged a lot: sharpen it back up a little
+        big = big.filter(ImageFilter.UnsharpMask(radius=2, percent=70, threshold=2))
+    lum = np.asarray(big.convert("L"), dtype=np.float32)
+    mid = float(lum[int(lum.shape[0] * 0.3):int(lum.shape[0] * 0.7)].mean())
+    if mid > 80:
+        # bright picture: darken behind the words, less so towards the top and bottom
+        k = 80.0 / mid
+        y = np.linspace(0, 1, big.height, dtype=np.float32)[:, None, None]
+        rows = 1.0 - (1.0 - k) * (0.35 + 0.65 * np.exp(-((y - 0.5) / 0.28) ** 2))
+        big = Image.fromarray(np.clip(np.asarray(big, dtype=np.float32) * rows, 0, 255).astype(np.uint8))
+    elif mid < 55:
+        # very dark picture: lift it a little
+        k = min(1.3, 55.0 / max(mid, 1.0))
+        big = Image.eval(big, lambda v: min(255, int(v * k)))
     return big
+
+
+def scrim():
+    """Darkening that keeps the pictures visible and the words readable: lighter at the top,
+    darkest behind the words, a little lighter again at the bottom."""
+    y = np.linspace(0, 1, H, dtype=np.float32)[:, None]
+    band = np.exp(-((y - 0.5) / 0.26) ** 2)
+    keep = 0.70 - 0.30 * band
+    return np.repeat(keep, W, axis=1)[:, :, None]
+
+
+def moving(big, t, t0, t1, n):
+    """A slow push in or pull out across the picture's time on screen, different for each picture."""
+    bw, bh = big.size
+    prog = ease((t - t0) / max(0.1, t1 - t0))
+    zin = n % 2 == 0
+    z = 1.0 + 0.11 * (prog if zin else 1 - prog)
+    ww, wh = bw / z, bh / z
+    drift = [(1, 0), (-1, 0), (0, 1), (0, -1)][n % 4]
+    cx = bw / 2 + drift[0] * (bw - ww) / 2 * (prog - 0.5)
+    cy = bh / 2 + drift[1] * (bh - wh) / 2 * (prog - 0.5)
+    return big.resize((W, H), Image.BILINEAR, box=(cx - ww / 2, cy - wh / 2, cx + ww / 2, cy + wh / 2))
 
 
 def vignette():
@@ -282,36 +318,49 @@ def end_card(p):
 
 
 def frames(p):
-    big = backdrop(p["book"])
-    bw, bh = big.size
-    vig = vignette()[:, :, None]
+    specs = picture_specs(p["book"])
+    cache = {}
+
+    def pic(i):
+        k = i % len(specs)
+        if k not in cache:
+            cache[k] = prepare(*specs[k])
+        return cache[k]
+
+    keep = scrim() * vignette()[:, :, None]
     shade, top = end_card(p)
+    shots = p["shots"]
     total = p["duration"]
     n = int(round(total * FPS))
     for fi in range(n):
         t = fi / FPS
-        prog = ease(t / total)
-        z = 1.0 + 0.09 * prog
-        ww, wh = W * 1.12 / z, H * 1.12 / z
-        cx, cy = bw / 2 + 18 * math.sin(t * 0.35), bh / 2 - 40 + 80 * prog
-        frame = big.resize((W, H), Image.BILINEAR, box=(cx - ww / 2, cy - wh / 2, cx + ww / 2, cy + wh / 2)).convert("RGBA")
+        i = max(k for k, st in enumerate(shots) if st <= t + 1e-6)
+        t0 = shots[i]
+        t1 = shots[i + 1] if i + 1 < len(shots) else total
+        frame = moving(pic(i), t, t0, t1 + SHOT_XF, i)
+        if i > 0 and t - t0 < SHOT_XF:     # dissolve from the previous picture
+            prev = moving(pic(i - 1), t, shots[i - 1], t0 + SHOT_XF, i - 1)
+            frame = Image.blend(prev, frame, ease((t - t0) / SHOT_XF))
+        arr = np.asarray(frame, dtype=np.float32) * keep
+        frame = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA")
 
         endp = ease((t - p["end_at"]) / XF) if t >= p["end_at"] else 0.0
         words = 1.0 - endp
         if words > 0:
-            for L in p["layers"]:
-                k = ease((t - L["t_in"]) / L["fade"]) if t >= L["t_in"] else 0.0
+            frame = over(frame, p["label"], ease(t / 0.3) * words)
+            for L in p["texts"]:
+                if t < L["t_in"]:
+                    continue
+                k = ease((t - L["t_in"]) / L["fade"])
                 if L["t_out"] is not None and t >= L["t_out"]:
-                    k *= 1.0 - ease((t - L["t_out"]) / 0.35)
+                    k *= 1.0 - ease((t - L["t_out"]) / 0.3)
                 if k > 0.002:
-                    rise = ease((t - L["t_in"]) / L["fade"])
-                    frame = over(frame, L["img"], k * words, dy=int(round(22 * (1 - rise))))
+                    frame = over(frame, L["img"], k * words, dy=int(round(20 * (1 - ease((t - L["t_in"]) / L["fade"])))))
         if endp > 0:
             frame = over(frame, shade, endp)
             rise = ease((t - p["end_at"]) / 0.9)
             frame = over(frame, top, endp, dy=int(round(46 * (1 - rise))))
-        arr = np.asarray(frame.convert("RGB"), dtype=np.float32) * vig
-        yield np.clip(arr, 0, 255).astype(np.uint8).tobytes()
+        yield np.asarray(frame.convert("RGB")).tobytes()
 
 
 def over(base, layer, alpha, dy=0):
@@ -447,7 +496,7 @@ def save(post, data, out_dir):
 
 
 def wants_reel(post):
-    """Quote, talk and excerpt posts go out as reels unless the post says "format": "image"."""
+    """Quote, talk and excerpt posts become reels unless the post says "format": "image"."""
     fmt = post.get("format")
     if fmt in ("image", "reel"):
         return fmt == "reel" and post["type"] in REEL_TYPES
