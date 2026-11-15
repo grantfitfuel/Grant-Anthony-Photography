@@ -52,15 +52,14 @@
    "title": "Pentimento",
    "account": "fiction",
    "byline": "Grant C Anthony",
-   "status": "soon",
+   "status": "out",
    "cover": "covers/pentimento-large.jpg",
    "theme": {
     "bg": "#1d1612",
     "fg": "#f3ead9",
     "accent": "#d8b47a"
    },
-   "tags": "#tartannoir #scottishnoir #crimefiction #paisley",
-   "release": "December 2026"
+   "tags": "#tartannoir #scottishnoir #crimefiction #paisley"
   },
   "roots": {
    "title": "The Roots That Breathe",
@@ -644,7 +643,7 @@
    "id": "f10-pentimento-cover",
    "book": "pentimento",
    "type": "cover",
-   "caption": "Pentimento. Book one of The Provenance Series.\n\nWhen a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions. They lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.\n\nThe past doesn't stay buried. It shows through. Expected release: December 2026."
+   "caption": "Pentimento. Book one of The Provenance Series.\n\nWhen a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions. They lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.\n\nThe past doesn't stay buried. It shows through.\n\nOut now in Kindle, paperback and hardback."
   },
   {
    "id": "fd2-deep-prologue",
@@ -754,7 +753,7 @@
    "type": "quote",
    "text": "Sometimes the surface is just the surface. Sometimes there's nothing hidden underneath it at all, and looking harder just means you're the one putting something there that was never actually part of the object.",
    "attribution": "Leanne, in Pentimento",
-   "caption": "Leanne Boyd restores paper and photographs. She says this to Alec Muir, a man who believes patience always reveals the truth.\n\nPentimento. Expected release: December 2026."
+   "caption": "Leanne Boyd restores paper and photographs. She says this to Alec Muir, a man who believes patience always reveals the truth.\n\nPentimento. Out now in Kindle, paperback and hardback."
   },
   {
    "id": "fd4-deep-watchful",
@@ -1029,6 +1028,15 @@
    "text": "The model grows surer of a threat the world stopped supplying long ago.",
    "attribution": "The Calibrated Mind",
    "caption": "Why an old fear can feel stronger now than when it started. Every check, every escape, every avoided moment takes away the one experience that would turn it down: finding out that the disaster doesn't come.\n\nSend this to someone whose anxiety has outlived its reason.\n\nThe Calibrated Mind. Out now."
+  },
+  {
+   "id": "fl1-pentimento-out-now",
+   "book": "pentimento",
+   "type": "cover",
+   "date": "2026-11-15",
+   "label": "Out now",
+   "caption": "Pentimento is out now, in Kindle, paperback and hardback.\n\nBook one of The Provenance Series. Dr Alec Muir authenticates paintings, and nobody in Scotland is better at seeing what lies beneath. When a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions that lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.\n\nThe past doesn't stay buried. It shows through.\n\nIf you read it, an honest review on Amazon or Goodreads makes a real difference.\n\nSend this to someone who reads Scottish noir.",
+   "tags": "#newrelease #booklaunch"
   }
  ],
  "promos": [
