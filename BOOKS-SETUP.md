@@ -106,9 +106,16 @@ from the book, and the last is the cover. The job draws every slide, then posts 
 ## Reels
 
 **Reels you post yourself.** Quote, talk and excerpt posts in the queue become silent Reels, made
-by `scripts/books_reels.py`: the words arrive a sentence at a time over the blurred cover, then the
-cover itself with where to find the book. You post them by hand so you can choose the music.
+by `scripts/books_reels.py`: one sentence at a time in large type, each over its own picture with
+slow movement and a dissolve between them, then the cover with where to find the book. Every
+sentence stays up long enough to read comfortably, and a long one gets a second picture. You post
+them by hand so you can choose the music.
 
+- Each book's pictures are its `"reel_images"` in `books/posts.json`, used in order: details of the
+  cover (`"cover@x0,y0,x1,y1"`, as fractions of the cover's width and height, kept clear of the
+  title) and tall pictures made for the reels, kept in `books/reels` as `img-book-name.jpg`
+  (`"books/reels/img-debunked-clyde.jpg"`; add `@0.4` to centre on a point 40% across).
+  A book with none uses its cover.
 - On the reel's day, at the usual 18:00, the video goes on the site and a GitHub issue opens called
   "Reel to post", with the link, the caption ready to copy, and the steps. GitHub emails it and shows
   it in the GitHub app. That counts as the account's post for the day.
