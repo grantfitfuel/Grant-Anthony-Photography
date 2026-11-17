@@ -131,5 +131,10 @@
       "media": "18060167924570088",
       "link": "https://www.instagram.com/p/Df0D0Uiic_v/"
     }
-  ]
+  ],
+  "lastError": {
+    "id": "spikey-muzxrkrz926",
+    "date": "2026-11-17T19:01:19+00:00",
+    "message": "Instagram said: Media ID is not available"
+  }
 }
