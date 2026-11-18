@@ -428,23 +428,42 @@ def hand_over(p, data, account, log, now, video, info, cap):
     acc = data["accounts"][account]
     book = data["books"][p["book"]]
     vrel = os.path.relpath(video, ROOT)
+    # the details the save page shows (books/reels/save.html), next to the video
+    drel = os.path.splitext(vrel)[0] + ".json"
+    with open(os.path.join(ROOT, drel), "w", encoding="utf-8") as f:
+        json.dump({"title": book["title"], "handle": acc["handle"], "account": account, "caption": cap},
+                  f, ensure_ascii=False, indent=2)
+        f.write("\n")
     for x in log.get("posted", []):   # tidy away videos handed over a while ago
         old = x.get("video")
-        if old and now - datetime.fromisoformat(x["date"]) > timedelta(days=KEEP_VIDEOS_DAYS) \
-                and os.path.exists(os.path.join(ROOT, old)):
-            git("rm", "-q", "--", old)
-    sha = commit_and_push([vrel], f"Books Instagram: reel ready {p['id']}")
+        if old and now - datetime.fromisoformat(x["date"]) > timedelta(days=KEEP_VIDEOS_DAYS):
+            for f in (old, os.path.splitext(old)[0] + ".json"):
+                if os.path.exists(os.path.join(ROOT, f)):
+                    git("rm", "-q", "--", f)
+    sha = commit_and_push([vrel, drel], f"Books Instagram: reel ready {p['id']}")
     raw = os.environ.get("IG_IMAGE_BASE", f"https://raw.githubusercontent.com/{REPO}/{sha}/").rstrip("/")
     url = video_address(vrel, sha, raw)
+    site = site_base()
+    page = f"{site}/books/reels/save.html?id={urllib.parse.quote(p['id'])}&v={sha[:10]}" if site else ""
+    if page:
+        steps = [
+            f"1. Open this page on your phone: {page}",
+            "2. Tap **Save video**, then **Save Video** in the menu that opens. It goes into Photos.",
+            "3. Tap **Copy caption**.",
+        ]
+    else:
+        steps = [
+            f"1. Open the video: {url}",
+            "2. Download it, then in the Files app open it and tap Share > **Save Video**.",
+            "3. Copy the caption below.",
+        ]
     body = "\n".join([
         f"@{REPO.split('/')[0]}, today's reel for **@{acc['handle']}** is ready to post: {book['title']}, {info['duration']:.0f} seconds, silent.",
         "",
-        f"1. Open the video: {url}",
-        "   On your phone, tap the share button, then **Save Video**.",
-        f"2. In Instagram (@{acc['handle']}): tap + > Reel, choose the video and add your music.",
-        "3. Paste the caption below.",
-        "4. Tap **Edit cover** and pick a frame near the end, so your grid shows the book.",
-        "5. Close this issue once it's posted.",
+        *steps,
+        f"4. In Instagram (@{acc['handle']}): tap + > Reel, choose the video, add your music and paste the caption.",
+        "5. Tap **Edit cover** and pick a frame near the end, so your grid shows the book.",
+        "6. Close this issue once it's posted.",
         "",
         "Caption:",
         "",
