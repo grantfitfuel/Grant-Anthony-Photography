@@ -117,8 +117,11 @@ them by hand so you can choose the music.
   (`"books/reels/img-debunked-clyde.jpg"`; add `@0.4` to centre on a point 40% across).
   A book with none uses its cover.
 - On the reel's day, at the usual 18:00, the video goes on the site and a GitHub issue opens called
-  "Reel to post", with the link, the caption ready to copy, and the steps. GitHub emails it and shows
-  it in the GitHub app. That counts as the account's post for the day.
+  "Reel to post", with a link, the caption and the steps. GitHub emails it and shows it in the
+  GitHub app. That counts as the account's post for the day.
+- The link opens `books/reels/save.html` for that reel: **Save video** puts it in Photos (choose
+  **Save Video** in the menu that opens) and **Copy caption** copies the caption. The job writes the
+  caption next to the video as `books/ig/<post id>.json` for this page.
 - Close the issue once it's posted. Videos are tidied off the site after 14 days.
 - To keep a post as a picture instead, add `"format": "image"` to it.
 - `"end"` sets the line above the cover at the end (otherwise "Out now" or "Coming soon").
