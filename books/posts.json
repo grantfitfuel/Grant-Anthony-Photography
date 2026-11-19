@@ -53,7 +53,6 @@
     "accent": "#2ee6d0"
    },
    "tags": "#psychologicalthriller #thrillerbooks #booksequel #glasgow",
-   "release": "March 2027",
    "reel_images": [
     "cover@0.43,0.02,0.97,0.50",
     "books/reels/img-inherited-tree.jpg",
@@ -94,7 +93,6 @@
     "accent": "#c9b26a"
    },
    "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
-   "release": "June 2027",
    "reel_images": [
     "cover@0.28,0.10,0.75,0.60",
     "books/reels/img-roots-dragon.jpg",
@@ -175,7 +173,6 @@
     "accent": "#f0a85a"
    },
    "tags": "#literaryfiction #scottishfiction #nhs #grief",
-   "release": "Autumn 2027",
    "lines": [
     "Ewan disliked the word temporarily when nobody could identify the conditions under which the temporary state would end.",
     "Ewan's flat had always been quiet, but that was not the same thing.",
@@ -201,7 +198,6 @@
     "accent": "#c9a95e"
    },
    "tags": "#epicfantasy #fantasybooks #dragons #thedimmingcanopy",
-   "release": "Winter 2027",
    "reel_images": [
     "cover@0.29,0.17,0.72,0.58",
     "books/reels/img-deep-lake.jpg",
@@ -653,7 +649,7 @@
    "id": "f09-roots-cover",
    "book": "roots",
    "type": "cover",
-   "caption": "The Roots That Breathe. Book one of The Dimming Canopy.\n\nIn Thessaria the ground has started to go wrong. The fortress of Vaelmoor holds its border with dragon fire, the wandering Telaru listen to the roots, and between them stand the dragon Threnvald and the man bound to him.\n\nExpected release: June 2027."
+   "caption": "The Roots That Breathe. Book one of The Dimming Canopy.\n\nIn Thessaria the ground has started to go wrong. The fortress of Vaelmoor holds its border with dragon fire, the wandering Telaru listen to the roots, and between them stand the dragon Threnvald and the man bound to him.\n\nComing soon."
   },
   {
    "id": "n11-calibrated-tuned",
@@ -667,7 +663,7 @@
    "id": "fd1-deep-cover",
    "book": "deep",
    "type": "cover",
-   "caption": "The Deep That Listens. Book two of The Dimming Canopy.\n\nThe ground beneath Thessaria has begun to stir. Root-Fathers are dying, a listening post has gone silent, and something far older than the war has started to pay attention.\n\nExpected release: Winter 2027."
+   "caption": "The Deep That Listens. Book two of The Dimming Canopy.\n\nThe ground beneath Thessaria has begun to stir. Root-Fathers are dying, a listening post has gone silent, and something far older than the war has started to pay attention.\n\nComing soon."
   },
   {
    "id": "n12-pain-louder",
@@ -707,7 +703,7 @@
      "type": "cover"
     }
    ],
-   "caption": "Swipe for the first page of The Roots That Breathe, book one of The Dimming Canopy.\n\nA dragon, a valley, and the moment before everything changes.\n\nExpected release: June 2027."
+   "caption": "Swipe for the first page of The Roots That Breathe, book one of The Dimming Canopy.\n\nA dragon, a valley, and the moment before everything changes.\n\nComing soon."
   },
   {
    "id": "fq4-cable-quieter",
@@ -715,7 +711,7 @@
    "type": "quote",
    "text": "After she died, there had been people everywhere and yet the place had somehow felt quieter even when it was full.",
    "attribution": "The Cable and the Quiet",
-   "caption": "A house after a death, full of people and somehow quieter.\n\nThe Cable and the Quiet is a novel about grief, and about work, and about what happens when there's no room left between them. Expected release: Autumn 2027."
+   "caption": "A house after a death, full of people and somehow quieter.\n\nThe Cable and the Quiet is a novel about grief, and about work, and about what happens when there's no room left between them. Coming soon."
   },
   {
    "id": "f10-pentimento-cover",
@@ -727,7 +723,7 @@
    "id": "fd2-deep-prologue",
    "book": "deep",
    "type": "carousel",
-   "caption": "Swipe through the opening of The Deep That Listens, book two of The Dimming Canopy.\n\nA lone Listener, a remote post, a goat, and a ground that has never once surprised her.\n\nExpected release: Winter 2027.",
+   "caption": "Swipe through the opening of The Deep That Listens, book two of The Dimming Canopy.\n\nA lone Listener, a remote post, a goat, and a ground that has never once surprised her.\n\nComing soon.",
    "slides": [
     {
      "type": "page",
@@ -765,7 +761,7 @@
    "type": "quote",
    "text": "Somewhere beneath the waiting, for the first time, the ground had begun to listen back.",
    "attribution": "The Roots That Breathe",
-   "caption": "The Telaru don't fight with fire. They listen to the roots.\n\nThe Roots That Breathe, book one of The Dimming Canopy. Expected release: June 2027."
+   "caption": "The Telaru don't fight with fire. They listen to the roots.\n\nThe Roots That Breathe, book one of The Dimming Canopy. Coming soon."
   },
   {
    "id": "f12-inherited-priti",
@@ -773,7 +769,7 @@
    "type": "quote",
    "text": "At some point, Callum, this stops being boundaries and starts being a full-time occupation.",
    "attribution": "Priti, Callum's agent, in Inherited",
-   "caption": "Eighteen months after Debunked, Callum is turning down every offer to talk about the worst year of his life. His agent has noticed.\n\nInherited, the sequel to Debunked. Expected release: March 2027."
+   "caption": "Eighteen months after Debunked, Callum is turning down every offer to talk about the worst year of his life. His agent has noticed.\n\nInherited, the sequel to Debunked. Coming soon."
   },
   {
    "id": "fq5-cable-true",
@@ -781,7 +777,7 @@
    "type": "quote",
    "text": "\"I'll take true over comfortable.\"\n\"That's most of what I've got these days.\"",
    "attribution": "Moira and Ewan, in The Cable and the Quiet",
-   "caption": "The Cable and the Quiet. Expected release: Autumn 2027."
+   "caption": "The Cable and the Quiet. Coming soon."
   },
   {
    "id": "fd3-deep-bank",
@@ -789,7 +785,7 @@
    "type": "quote",
    "text": "I love you in the way the bank loves the river, which is to say, whatever the river does.",
    "attribution": "The Deep That Listens",
-   "caption": "Aereth, to Lyra.\n\nThe Deep That Listens, book two of The Dimming Canopy. Expected release: Winter 2027."
+   "caption": "Aereth, to Lyra.\n\nThe Deep That Listens, book two of The Dimming Canopy. Coming soon."
   },
   {
    "id": "f13-debunked-words",
@@ -823,7 +819,7 @@
      "type": "cover"
     }
    ],
-   "caption": "Eighteen months after Debunked, Callum Ferris is a little bit famous, and not enjoying it.\n\nSwipe for three sightings. Inherited, the sequel to Debunked, has an expected release of March 2027."
+   "caption": "Eighteen months after Debunked, Callum Ferris is a little bit famous, and not enjoying it.\n\nSwipe for three sightings. Inherited, the sequel to Debunked, is coming soon."
   },
   {
    "id": "f14-pentimento-surface",
@@ -837,7 +833,7 @@
    "id": "fd4-deep-watchful",
    "book": "deep",
    "type": "quote",
-   "caption": "The Deep That Listens, book two of The Dimming Canopy. Expected release: Winter 2027.",
+   "caption": "The Deep That Listens, book two of The Dimming Canopy. Coming soon.",
    "text": "Watchful is a different animal from afraid, whatever it looks like from the outside.",
    "attribution": "The Deep That Listens"
   },
@@ -848,7 +844,7 @@
    "label": "World of the Dimming Canopy",
    "headline": "Threnvald Ash-Above-Cloud.",
    "sub": "Every dragon in Thessaria carries a name and an epithet: Threnvald Ash-Above-Cloud, Ryen Wing-Over-Ember. The full name is given once, at a dragon's introduction. After that, only the name.",
-   "caption": "A small piece of how the world of The Dimming Canopy works.\n\nWhat would your dragon epithet be?\n\nThe Roots That Breathe. Expected release: June 2027."
+   "caption": "A small piece of how the world of The Dimming Canopy works.\n\nWhat would your dragon epithet be?\n\nThe Roots That Breathe. Coming soon."
   },
   {
    "id": "fd5-deep-slope",
@@ -856,7 +852,7 @@
    "type": "quote",
    "text": "A river cannot refuse its slope.",
    "attribution": "The Deep That Listens",
-   "caption": "Some things you can only choose to meet.\n\nThe Deep That Listens. Expected release: Winter 2027."
+   "caption": "Some things you can only choose to meet.\n\nThe Deep That Listens. Coming soon."
   },
   {
    "id": "fp1-debunked-free-soon",
