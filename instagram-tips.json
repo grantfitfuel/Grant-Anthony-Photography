@@ -266,7 +266,7 @@
       "question": "Have you photographed Holy Island? What would you shoot first?",
       "lesson": "planning-a-trip",
       "tags": "#lindisfarne #holyisland #northumberland #lindisfarnecastle #northumberlandcoast",
-      "approved": false
+      "approved": true
     },
     {
       "id": "shadow-line-settings",
@@ -291,7 +291,7 @@
       "question": "Do you take a long lens for landscapes, or stay wide?",
       "lesson": "telephoto-landscapes",
       "tags": "#telephotolandscape #deadvlei #namibia #minimalism #landscapephotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "thirds-myth",
@@ -320,7 +320,7 @@
       "question": "Rule follower or rule breaker?",
       "lesson": "rule-of-thirds",
       "tags": "#ruleofthirds #symmetry #composition #photographytips #bath",
-      "approved": false
+      "approved": true
     },
     {
       "id": "leading-lines-tip",
@@ -346,7 +346,7 @@
       "question": "Roads, rivers or railings: what is your favourite leading line?",
       "lesson": "leading-lines",
       "tags": "#leadinglines #composition #architecturephotography #photographytips #hamburg",
-      "approved": false
+      "approved": true
     },
     {
       "id": "nd-filter-maths",
@@ -376,7 +376,7 @@
       "question": "Which strength do you use most: 3, 6 or 10 stops?",
       "lesson": "long-exposure",
       "tags": "#longexposure #ndfilter #seascape #photographytips #lofoten",
-      "approved": false
+      "approved": true
     },
     {
       "id": "guide-hermitage",
@@ -410,7 +410,7 @@
       "question": "Which Perthshire woodland would you send other photographers to?",
       "lesson": "woodland",
       "tags": "#thehermitage #dunkeld #perthshire #blacklinnfalls #riverbraan",
-      "approved": false
+      "approved": true
     },
     {
       "id": "trust-the-histogram",
@@ -439,7 +439,7 @@
       "question": "Do you check the histogram, or go by eye?",
       "lesson": "exposure-triangle",
       "tags": "#histogram #exposure #photographytips #learnphotography #deadvlei",
-      "approved": false
+      "approved": true
     },
     {
       "id": "how-much-editing",
@@ -464,7 +464,7 @@
       "question": "Light touch or full edit? And how long do you spend on one photograph?",
       "lesson": "editing-lightly",
       "tags": "#photoediting #lightroom #editingstyle #photographycommunity #namibia",
-      "approved": false
+      "approved": true
     },
     {
       "id": "challenge-blue-hour",
@@ -497,7 +497,7 @@
       "question": "Share your blue hour shot and tag @gcanth. Where did you go?",
       "lesson": "night-and-blue-hour",
       "tags": "#bluehour #photochallenge #cityscape #nightphotography #architecturephotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "into-the-sun-tip",
@@ -530,7 +530,7 @@
       "question": "Sunstars: love them or overused?",
       "lesson": "into-the-sun",
       "tags": "#sunstar #backlight #landscapephotography #scotland #lochmaree",
-      "approved": false
+      "approved": true
     },
     {
       "id": "guide-botallack",
@@ -563,7 +563,7 @@
       "question": "Cornwall or Scotland for coast photography? Tell me why.",
       "lesson": "seascapes",
       "tags": "#botallack #cornwall #stjust #cornishcoast #seascape",
-      "approved": false
+      "approved": true
     },
     {
       "id": "three-copies",
@@ -591,7 +591,7 @@
       "question": "Be honest: how many copies of your photographs do you have right now?",
       "lesson": "organising",
       "tags": "#backup #photographyworkflow #lightroom #photographytips #liverpool",
-      "approved": false
+      "approved": true
     },
     {
       "id": "where-to-focus",
@@ -617,7 +617,7 @@
       "question": "Where do you usually focus for landscapes?",
       "lesson": "composing-a-landscape",
       "tags": "#landscapephotography #focus #depthoffield #photographytips #lofoten",
-      "approved": false
+      "approved": true
     },
     {
       "id": "high-iso-myth",
@@ -646,7 +646,7 @@
       "question": "What is the highest ISO you are happy to use?",
       "lesson": "sharpening-and-noise",
       "tags": "#iso #photographymyths #autumn #perthshire #woodlandphotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "tripod-question",
@@ -675,7 +675,7 @@
       "question": "Which camp are you in? And what would make you leave it at home?",
       "lesson": null,
       "tags": "#tripod #photographycommunity #longexposure #architecturephotography #hamburg",
-      "approved": false
+      "approved": true
     },
     {
       "id": "guide-uttakleiv",
@@ -708,7 +708,7 @@
       "question": "Is Lofoten on your list? What would you want to photograph there?",
       "lesson": "seascapes",
       "tags": "#uttakleiv #lofoten #lofotenislands #norway #seascape",
-      "approved": false
+      "approved": true
     },
     {
       "id": "challenge-ten-frames",
@@ -733,7 +733,7 @@
       "question": "Post your favourite of the ten and tag @gcanth. Was it the first or the last?",
       "lesson": "found-details",
       "tags": "#photochallenge #seeingdifferently #details #urbanphotography #liverpool",
-      "approved": false
+      "approved": true
     },
     {
       "id": "reflections-tip",
@@ -762,7 +762,7 @@
       "question": "Where is the best reflection you have found?",
       "lesson": "reflections",
       "tags": "#reflections #symmetry #bath #romanbaths #photographytips",
-      "approved": false
+      "approved": true
     },
     {
       "id": "luskentyre-settings",
@@ -791,7 +791,7 @@
       "question": "Have you tried ICM? Art or just blur?",
       "lesson": "icm",
       "tags": "#icm #intentionalcameramovement #abstractlandscape #luskentyre #isleofharris",
-      "approved": false
+      "approved": true
     },
     {
       "id": "cleaning-lens",
@@ -821,7 +821,7 @@
       "question": "Lens cloth in the pocket, or something else that gets you through?",
       "lesson": "cleaning-up",
       "tags": "#cameracare #photographytips #seascape #lofoten #photographygear",
-      "approved": false
+      "approved": true
     },
     {
       "id": "street-tips",
@@ -850,7 +850,7 @@
       "question": "What is the hardest thing about street photography for you?",
       "lesson": "street",
       "tags": "#streetphotography #newyork #photographytips #streetlife #candid",
-      "approved": false
+      "approved": true
     },
     {
       "id": "woodland-tips",
@@ -876,7 +876,7 @@
       "question": "Woodland or wide open landscapes: which do you find harder?",
       "lesson": "woodland",
       "tags": "#woodlandphotography #forest #perthshire #thehermitage #autumncolours",
-      "approved": false
+      "approved": true
     },
     {
       "id": "phone-or-camera",
@@ -909,7 +909,7 @@
       "question": "What took your last favourite photograph?",
       "lesson": "phone-editing",
       "tags": "#phonephotography #leica #leicadlux8 #photographycommunity #gateshead",
-      "approved": false
+      "approved": true
     },
     {
       "id": "never-edit-myth",
@@ -934,7 +934,7 @@
       "question": "Where do you draw the line?",
       "lesson": "editing-lightly",
       "tags": "#photographymyths #photoediting #southuist #outerhebrides #lightroom",
-      "approved": false
+      "approved": true
     },
     {
       "id": "black-and-white-tip",
@@ -960,7 +960,7 @@
       "question": "Do you decide on black and white when you shoot, or later?",
       "lesson": "black-and-white",
       "tags": "#blackandwhitephotography #monochrome #deadvlei #namibia #bnw",
-      "approved": false
+      "approved": true
     },
     {
       "id": "challenge-puddles",
@@ -989,7 +989,7 @@
       "question": "Wet weather photographs: share yours and tag @gcanth.",
       "lesson": "reflections",
       "tags": "#puddlegram #reflections #rainyday #photochallenge #streetphotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "fab4-settings",
@@ -1014,7 +1014,7 @@
       "question": "Auto ISO: do you trust it?",
       "lesson": "city-breaks",
       "tags": "#citybreak #liverpool #beatles #streetphotography #canonr5",
-      "approved": false
+      "approved": true
     },
     {
       "id": "tides-and-planning",
@@ -1039,7 +1039,7 @@
       "question": "What do you check before a shoot? Any apps you swear by?",
       "lesson": "planning-a-trip",
       "tags": "#lindisfarne #holyisland #tides #photographytips #landscapephotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "minimalism-tip",
@@ -1065,7 +1065,7 @@
       "question": "What is the emptiest photograph you have taken that still works?",
       "lesson": "minimalism",
       "tags": "#minimalism #minimalphotography #negativespace #deadvlei #namibia",
-      "approved": false
+      "approved": true
     },
     {
       "id": "why-started",
@@ -1086,7 +1086,7 @@
       "question": "Who or what got you into photography?",
       "lesson": null,
       "tags": "#photographycommunity #photographer #whyishoot #lofoten #norway",
-      "approved": false
+      "approved": true
     },
     {
       "id": "crop-for-instagram",
@@ -1115,7 +1115,7 @@
       "question": "Do you crop for Instagram, or post the full frame?",
       "lesson": "cropping",
       "tags": "#instagramtips #cropping #composition #abstractarchitecture #hamburg",
-      "approved": false
+      "approved": true
     },
     {
       "id": "sunny-day-myth",
@@ -1145,7 +1145,7 @@
       "question": "Best weather for photography? Wrong answers only, then real ones.",
       "lesson": "reading-the-light",
       "tags": "#photographymyths #overcast #waterfall #perthshire #autumn",
-      "approved": false
+      "approved": true
     },
     {
       "id": "lofoten-boat-settings",
@@ -1199,7 +1199,7 @@
       "question": "Silky or textured water: which do you prefer?",
       "lesson": "long-exposure",
       "tags": "#waterfall #longexposure #thehermitage #riverbraan #perthshire",
-      "approved": false
+      "approved": true
     },
     {
       "id": "challenge-mono-week",
@@ -1224,7 +1224,7 @@
       "question": "Share your best black and white of the week and tag @gcanth.",
       "lesson": "black-and-white",
       "tags": "#blackandwhite #monochrome #photochallenge #bnwphotography #streetphotography",
-      "approved": false
+      "approved": true
     },
     {
       "id": "telephoto-landscapes-tip",
@@ -1253,7 +1253,7 @@
       "question": "What is the longest focal length you have used for a landscape?",
       "lesson": "telephoto-landscapes",
       "tags": "#telephoto #landscapephotography #deadvlei #namibia #photographytips",
-      "approved": false
+      "approved": true
     },
     {
       "id": "coast-safety",
@@ -1282,7 +1282,7 @@
       "question": "Any close calls you have learned from?",
       "lesson": "seascapes",
       "tags": "#seascape #photographytips #outdoorsafety #leavenotrace #lofoten",
-      "approved": false
+      "approved": true
     },
     {
       "id": "prime-or-zoom",
@@ -1311,7 +1311,7 @@
       "question": "If you could keep one lens, which would it be?",
       "lesson": null,
       "tags": "#primelens #zoomlens #photographygear #photographycommunity #newyork",
-      "approved": false
+      "approved": true
     },
     {
       "id": "stops-explained",
@@ -1340,7 +1340,7 @@
       "question": "What took you longest to understand when you started?",
       "lesson": "exposure-triangle",
       "tags": "#exposuretriangle #learnphotography #photographytips #deadvlei #namibia",
-      "approved": false
+      "approved": true
     },
     {
       "id": "straight-verticals",
@@ -1369,7 +1369,7 @@
       "question": "Straight verticals or dramatic angles?",
       "lesson": "architecture",
       "tags": "#architecturephotography #newyork #tribeca #perspective #photographytips",
-      "approved": false
+      "approved": true
     },
     {
       "id": "filters-myth",
@@ -1393,7 +1393,7 @@
       "question": "Which filter would you never leave behind?",
       "lesson": "filters",
       "tags": "#filters #polariser #ndfilter #photographymyths #lofoten",
-      "approved": false
+      "approved": true
     },
     {
       "id": "challenge-abstract",
@@ -1422,7 +1422,7 @@
       "question": "Post it, tag @gcanth, and let people guess what it is.",
       "lesson": "abstract",
       "tags": "#abstractarchitecture #abstractphotography #patterns #photochallenge #hamburg",
-      "approved": false
+      "approved": true
     },
     {
       "id": "seascape-waves",
@@ -1451,7 +1451,7 @@
       "question": "Frozen waves or smooth sea?",
       "lesson": "seascapes",
       "tags": "#seascape #waves #cornwall #botallack #longexposure",
-      "approved": false
+      "approved": true
     },
     {
       "id": "export-for-instagram",
@@ -1480,7 +1480,7 @@
       "question": "Does Instagram ever spoil your photographs? What helped?",
       "lesson": "exporting",
       "tags": "#instagramtips #exporting #lightroom #photoediting #liverpool",
-      "approved": false
+      "approved": true
     },
     {
       "id": "best-tip",
@@ -1501,7 +1501,7 @@
       "question": "What one tip would you give your younger self?",
       "lesson": null,
       "tags": "#photographytips #photographycommunity #learnphotography #deadvlei #namibia",
-      "approved": false
+      "approved": true
     }
   ],
   "series": "Light, explained"
