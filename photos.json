@@ -1085,7 +1085,7 @@
         "abstract",
         "architecture"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/cathedral-in-motion.jpg",
       "thumb": "images/thumbs/cathedral-in-motion.jpg",
       "w": 1719,
