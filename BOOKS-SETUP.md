@@ -138,7 +138,5 @@ add one.
 - Open **grantanthony.co.uk/books/reels/** on your phone. Each Reel has **Download video** and
   **Copy caption**, and a **Posted** tick that this phone remembers. The page is not linked from the
   site and asks search engines not to list it.
-- Every Sunday morning the **Books Reels reminder** workflow opens a GitHub issue with that week's
-  two Reels (one per account). GitHub emails it to you. Close the issue once both are up.
 - To post: download the video, copy the caption, then in Instagram tap + > Reel, pick the video,
   tap the music note, choose a sound from Trending, paste the caption, and share.
