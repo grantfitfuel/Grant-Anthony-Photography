@@ -176,7 +176,9 @@ EXTRA_CSS = """
 .bp .act{margin-top:22px}
 .fic .bp h1{color:var(--fic)} .nf .bp h1{color:var(--nf)}
 .read{border-top:1px solid var(--rule);padding-block:44px}
-.read h2,.more h2{font:800 1.9rem/1 var(--display);letter-spacing:-.02em;margin:6px 0 22px}
+.read h2,.more h2,.trailer h2{font:800 1.9rem/1 var(--display);letter-spacing:-.02em;margin:6px 0 22px}
+.trailer{border-top:1px solid var(--rule);padding-block:44px}
+.trailer video{display:block;width:100%;max-width:340px;height:auto;aspect-ratio:9/16;border-radius:14px;background:#000;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
 .read .pages{max-width:66ch}
 .read .pages p{margin:0 0 16px}
 .read .pages p:first-child{font-size:1.18rem}
@@ -293,6 +295,14 @@ def book_page(b, all_books, posts, style, book_notes=(), promos=(), copies=()):
         book["creativeWorkStatus"] = status
     if b["tag"]:
         book["alternativeHeadline"] = b["tag"]
+    # a book trailer, if posts.json names one (books.<key>.trailer)
+    tr = posts["books"][key].get("trailer") if key else None
+    trailer = ""
+    if tr:
+        book["video"] = {"@id": url + "#trailer"}
+        trailer = (f'<section class="trailer wrap"><span class="label">Book trailer</span><h2>Watch the trailer</h2>'
+                   f'<video controls playsinline preload="none" poster="{esc(tr["poster"])}" width="720" height="1280">'
+                   f'<source src="{esc(tr["video"])}" type="video/mp4"></video></section>')
     graph = [
         {"@type": "WebPage", "@id": url, "url": url, "name": title, "description": desc, "inLanguage": "en-GB",
          "isPartOf": {"@id": BOOKS}, "primaryImageOfPage": {"@type": "ImageObject", "url": cover_abs},
@@ -302,6 +312,11 @@ def book_page(b, all_books, posts, style, book_notes=(), promos=(), copies=()):
             {"@type": "ListItem", "position": 1, "name": "Books", "item": BOOKS},
             {"@type": "ListItem", "position": 2, "name": b["title"], "item": url}]},
     ]
+    if tr:
+        graph.append({"@type": "VideoObject", "@id": url + "#trailer", "name": f'{b["title"]} book trailer',
+                      "description": clip(b["tag"] or b["blurb"], 200), "thumbnailUrl": BOOKS + tr["poster"],
+                      "contentUrl": BOOKS + tr["video"], "uploadDate": tr["added"], "duration": f'PT{tr["seconds"]}S',
+                      "inLanguage": "en-GB"})
 
     act = (f'<span class="status out">Out now</span><a class="buy" href="{esc(b["buy"])}" target="_blank" rel="noopener">Buy on Amazon <span aria-hidden="true">→</span></a>'
            if b["out"] else f'<span class="status due"><small>Expected release</small>{esc(status.replace("Expected release", "").strip())}</span>')
@@ -384,6 +399,7 @@ def book_page(b, all_books, posts, style, book_notes=(), promos=(), copies=()):
       </div>
     </div>
   </section>
+  {trailer}
   {read}
   {more}
 </main>
