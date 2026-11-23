@@ -2,9 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://grantanthony.co.uk/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/vestrahorn-mwtqzmb2wmf.jpg</image:loc>
+      <image:title>Vestrahorn</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/petrova-gora-monument-mwtqzmepdqo.jpg</image:loc>
+      <image:title>Petrova Gora Monument</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/hunt-the-rich-mwtqxuoekof.jpg</image:loc>
+      <image:title>Hunt the Rich</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/stone-mwtqxuulpii.jpg</image:loc>
+      <image:title>Stone</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/red-chairs-mwtqxv1j93x.jpg</image:loc>
+      <image:title>Red Chairs</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/bedruthan-steps-mwtqxv6qzgr.jpg</image:loc>
+      <image:title>Bedruthan Steps</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/icy-mwtqxv9kl7h.jpg</image:loc>
+      <image:title>Icy</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/nature-reclaiming-mwtqxvgqcf2.jpg</image:loc>
+      <image:title>Nature Reclaiming</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/a-hallway-to-what-once-was-mwtqxvndpkp.jpg</image:loc>
+      <image:title>A hallway to what once was</image:title>
+    </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/where-the-river-steals-the-fire-mvlei78zxm2.jpg</image:loc>
       <image:title>Where The River Steals The Fire</image:title>
