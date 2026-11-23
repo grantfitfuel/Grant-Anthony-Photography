@@ -188,7 +188,7 @@
         "landscapes",
         "coast"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/vestrahorn-mwtqzmb2wmf.jpg",
       "thumb": "images/thumbs/vestrahorn-mwtqzmb2wmf.jpg",
       "w": 2560,
@@ -218,7 +218,7 @@
         "architecture",
         "urbex"
       ],
-      "featured": false,
+      "featured": true,
       "file": "images/petrova-gora-monument-mwtqzmepdqo.jpg",
       "thumb": "images/thumbs/petrova-gora-monument-mwtqzmepdqo.jpg",
       "w": 1874,
