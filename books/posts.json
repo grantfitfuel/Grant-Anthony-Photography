@@ -66,6 +66,12 @@
    "account": "fiction",
    "byline": "Grant C Anthony",
    "status": "out",
+   "trailer": {
+    "video": "reels/pentimento-trailer.mp4",
+    "poster": "reels/pentimento-trailer.jpg",
+    "seconds": 36,
+    "added": "2026-11-23"
+   },
    "cover": "covers/pentimento-large.jpg",
    "theme": {
     "bg": "#1d1612",
@@ -1122,7 +1128,7 @@
    "headline": "Debunked is free on Kindle",
    "text": "Free until Tuesday 17 November. A Glasgow podcaster who debunks the paranormal, and a deathbed he can’t explain. Honest reviews on Amazon and Goodreads are hugely appreciated.",
    "button": "Get it free on Amazon",
-   "url": "https://www.amazon.co.uk/dp/B0HCK9V3S9"
+   "url": "https://mybook.to/debunked"
   }
  ],
  "review_copies": [
