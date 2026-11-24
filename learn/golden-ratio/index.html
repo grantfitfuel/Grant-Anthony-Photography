@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The golden ratio: a photography lesson | Grant C Anthony</title>
+<meta name="description" content="The spiral and the phi grid, where they come from, and how much weight to give them.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://grantanthony.co.uk/learn/golden-ratio/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grant C Anthony">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="The golden ratio: a photography lesson | Grant C Anthony">
+<meta property="og:description" content="The spiral and the phi grid, where they come from, and how much weight to give them.">
+<meta property="og:url" content="https://grantanthony.co.uk/learn/golden-ratio/">
+<meta property="og:image" content="https://grantanthony.co.uk/images/medium/rings.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1067">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The golden ratio: a photography lesson | Grant C Anthony">
+<meta name="twitter:description" content="The spiral and the phi grid, where they come from, and how much weight to give them.">
+<meta name="twitter:image" content="https://grantanthony.co.uk/images/medium/rings.jpg">
+<meta name="theme-color" content="#0D0D0E">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+body{background:var(--bg);color:var(--fg)}
+.nav{background:rgba(13,13,14,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.sp{max-width:760px;margin:0 auto;padding:calc(clamp(56px,9vw,120px) + 36px) var(--gut) 72px}
+.sp.wide{max-width:1100px}
+.sp h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.sp .lede{font-size:clamp(18px,2.2vw,21px);line-height:1.55;color:var(--fg);opacity:.9;margin:0 0 30px;max-width:62ch}
+.sp h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:46px 0 14px;text-wrap:balance}
+.sp p,.sp li{line-height:1.7;opacity:.9}
+.sp ul,.sp ol{padding-left:22px}.sp li{margin:0 0 8px}
+.sp blockquote{margin:40px 0;padding:0 0 0 22px;border-left:2px solid var(--accent);font-family:var(--display);font-size:clamp(22px,3vw,28px);line-height:1.3}
+.sp figure{margin:34px 0}
+.sp figure img{display:block;width:100%;height:auto;border-radius:4px;background:var(--bg3)}
+.sp figcaption{font-size:14px;color:var(--muted);margin-top:10px}
+.sp figcaption a{color:var(--fg)}
+.sp a{color:var(--accent);text-underline-offset:3px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;border:1px solid var(--line2);border-radius:6px;padding:16px 18px;margin:0 0 34px}
+.cta p{margin:0;flex:1 1 260px;font-size:15px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;border-radius:999px;white-space:nowrap}
+.demo{border:1px dashed var(--line2);border-radius:6px;padding:14px 16px;margin:28px 0;font-size:15px}
+.demo b{color:var(--accent);font-weight:500}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:22px 0;font-size:15px}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.pn{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:56px;padding-top:22px;font-size:15px}
+.pn a{text-decoration:none;color:var(--fg)}.pn small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topic{margin:44px 0 0}.topic h2{margin-top:0}
+.sp .ll{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+.ll a{display:block;text-decoration:none;color:var(--fg);padding:14px 0;border-bottom:1px solid var(--line)}
+.ll b{font-family:var(--display);font-weight:400;font-size:22px;display:block}.ll span{font-size:15px;color:var(--muted)}
+.photo-full{margin:0 0 26px}.photo-full img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:var(--bg2);border-radius:4px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}.tags span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://grantanthony.co.uk/#person",
+   "name": "Grant C Anthony",
+   "url": "https://grantanthony.co.uk/"
+  },
+  {
+   "@type": [
+    "Article",
+    "LearningResource"
+   ],
+   "@id": "https://grantanthony.co.uk/learn/golden-ratio/#lesson",
+   "url": "https://grantanthony.co.uk/learn/golden-ratio/",
+   "headline": "The golden ratio",
+   "description": "The spiral and the phi grid, where they come from, and how much weight to give them.",
+   "image": "https://grantanthony.co.uk/images/medium/rings.jpg",
+   "author": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "publisher": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "inLanguage": "en-GB",
+   "isAccessibleForFree": true,
+   "learningResourceType": "Lesson",
+   "about": "Composition"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Lessons",
+     "item": "https://grantanthony.co.uk/learn/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "The golden ratio",
+     "item": "https://grantanthony.co.uk/learn/golden-ratio/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/" aria-label="Grant C Anthony, home"><img class="sig-nav" src="/assets/signature-sm.png" alt="Grant C Anthony" width="800" height="311"></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a href="/learn/">Learn</a>
+    <a href="/#about" class="hide-sm">About</a>
+    <a href="/books/" class="nav-books">Books</a>
+  </div>
+</nav>
+<main class="sp">
+<p class="eyebrow"><a href="/learn/" style="color:inherit;text-decoration:none">Lessons</a> &middot; Composition</p>
+<h1>The golden ratio</h1>
+<p class="lede">The spiral and the phi grid, where they come from, and how much weight to give them.</p>
+<figure><img src="/images/medium/rings.jpg" srcset="/images/thumbs/rings.jpg 1000w, /images/medium/rings.jpg 1600w, /images/rings.jpg 2576w" sizes="(max-width: 760px) 100vw, 760px" width="2576" height="1718" alt="Rings. Hamburg. Glowing rings circle a dark column under a glass roof, with smaller rings hanging above. Looking straight up, the curves stand out against the straight lines of the steel and glass around them." decoding="async"><figcaption><a href="/photo/rings/">Rings</a> &middot; Hamburg</figcaption></figure>
+<div class="cta"><p>The interactive version has a hands-on demo, a quiz, and keeps track of the lessons you have finished.</p><a class="btn" href="/#l/golden-ratio">Open the interactive lesson</a></div>
+<p>The golden ratio is about 1.618 to 1. Painters and architects have used it for centuries, and photographers borrow it as two composition guides: the golden spiral and the phi grid.</p>
+<p class="demo"><b>Interactive demo:</b> this. <a href="/#l/golden-ratio">Try it in the interactive lesson</a>.</p>
+<h2>Where the number comes from</h2>
+<p>Split a line into two parts so that the whole line divided by the longer part equals the longer part divided by the shorter. Only one ratio works, and it is about 1.618. It is written with the Greek letter phi (φ). Euclid described it around 300 BC.</p>
+<p>It also appears in the Fibonacci sequence, where each number is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13, 21. Divide each number by the one before and the answers close in on phi: 8 ÷ 5 = 1.6, 13 ÷ 8 = 1.625 and 21 ÷ 13 = about 1.615.</p>
+<p>One more property gives you the phi grid. 1 ÷ 1.618 is about 0.618, and 1 minus 0.618 is 0.382.</p>
+<h2>The golden spiral</h2>
+<p>Divide a golden rectangle into a square and a smaller golden rectangle, then keep going. A curve drawn through the squares makes a spiral that tightens towards one point. Line up that point with your subject, and let a curve in the scene, such as a shoreline or a sweep of cloud, follow the spiral round.</p>
+<p>Each square is about 0.618 times the size of the one before, so the spiral grows by a factor of about 1.618 with every quarter turn.</p>
+<p>The spiral can face any of four ways. Flip it to suit the photograph, not the other way round.</p>
+<p>The nautilus shell is often given as an example of the golden spiral in nature. Its spiral does not in fact match the golden ratio, which is a fair reminder that the idea has been oversold.</p>
+<h2>The phi grid</h2>
+<p>The phi grid places its lines at about 38% and 62% of the frame, instead of the thirds at 33% and 67%. The difference is small. It pulls the subject slightly closer to the centre, which can feel calmer than a strict thirds placement.</p>
+<h2>A worked example</h2>
+<p>My camera, a Canon EOS R5, makes files 8192 pixels wide and 5464 pixels tall. Here is where the lines fall across the width, measured from the left edge.</p>
+<ul><li><strong>Thirds:</strong> 8192 ÷ 3 = about 2731 pixels, and 8192 × 2 ÷ 3 = about 5461 pixels</li><li><strong>Phi grid:</strong> 8192 × 0.382 = about 3129 pixels, and 8192 × 0.618 = about 5063 pixels</li><li><strong>The gap:</strong> 3129 minus 2731 is 398 pixels, about 5% of the width</li></ul>
+<p>Down the height, the thirds fall at about 1821 and 3643 pixels (5464 ÷ 3 and 5464 × 2 ÷ 3), and the phi lines at about 2087 and 3377 (5464 × 0.382 and 5464 × 0.618).</p>
+<p>So moving a subject from a thirds line to a phi line shifts it about 400 pixels towards the centre. It is visible, but subtle.</p>
+<p>The frame itself is not a golden rectangle: 8192 ÷ 5464 is about 1.5. To crop to a true golden rectangle and keep the full width, divide the width by 1.618. 8192 ÷ 1.618 = about 5063 pixels tall, so you lose 5464 minus 5063 = 401 rows.</p>
+<h2>Starting settings</h2>
+<ul><li><strong>Mode:</strong> Aperture priority, so attention stays on the point of interest and the curve</li><li><strong>Aperture:</strong> f/8 to f/11 for landscapes and architecture, so the curve and the subject both stay sharp</li><li><strong>Shutter speed:</strong> 1/125 s to 1/250 s handheld, and never slower than one over the focal length</li><li><strong>ISO:</strong> ISO 100 to 400 outdoors; 800 to 3200 under a dim interior roof</li><li><strong>Focus:</strong> Single-point autofocus on the point of interest, not on the curve</li><li><strong>Framing:</strong> Shoot RAW and leave a small margin at the edges for refining the crop</li></ul>
+<p>These are starting points. Take a frame, check the histogram, and adjust one thing at a time.</p>
+<h2>How to see it in the field</h2>
+<p>The spiral is not something to measure at the scene. It is a way of looking for two things together:</p>
+<ul><li>A point of interest: a figure, a tree, a bright window</li><li>A curve that leads towards it: a path, a river, the edge of a dune, a curved wall or stair</li></ul>
+<p>When you find both, place the point off-centre and let the curve sweep in from the opposite side of the frame. A method that works with any camera:</p>
+<ol><li>Compose with the thirds grid on, if your camera has no phi grid option</li><li>Place the subject just inside a thirds intersection, a little towards the centre</li><li>Leave a small margin around the edges, so you have room to refine the placement in the crop</li><li>In editing, turn on the spiral overlay and flip it until the tight end sits on the subject</li><li>Adjust the crop slightly. If the subject and the curve only fit with a heavy crop, go back to thirds</li></ol>
+<figure><img src="/images/medium/rings.jpg" srcset="/images/thumbs/rings.jpg 1000w, /images/medium/rings.jpg 1600w, /images/rings.jpg 2576w" sizes="(max-width: 760px) 100vw, 760px" width="2576" height="1718" alt="Rings. Hamburg. Glowing rings circle a dark column under a glass roof, with smaller rings hanging above. Looking straight up, the curves stand out against the straight lines of the steel and glass around them." loading="lazy" decoding="async"><figcaption><a href="/photo/rings/">Rings</a> &middot; Hamburg</figcaption></figure>
+<p>A lit ring sweeps round a dark column under a glass roof, with smaller rings hanging above it. Strong curves like these are where the spiral overlay is most useful when cropping.</p>
+<h2>Cropping with the overlays</h2>
+<ul><li>Most editing software can show a spiral and phi grid when cropping</li><li>Try it when cropping, not just in camera</li><li>If it does not fit naturally, do not force it</li></ul>
+<p>In Lightroom&#x27;s crop tool, the O key cycles through the overlays, including the golden spiral and the golden ratio grid, which is the phi grid. Shift+O changes the orientation of the spiral.</p>
+<h2>How much it matters</h2>
+<p>Be a little sceptical. There is not much evidence that the golden ratio looks better than other off-centre placements, and plenty of great photographs ignore it entirely. Treat it as one more way of checking a composition, and a useful one for curved subjects.</p>
+<h2>Checking your result</h2>
+<ol><li>In Lightroom&#x27;s crop tool, press O to cycle the overlays to the golden spiral, and Shift+O to change which way it turns</li><li>Check that the point of interest sits near the tight end of the spiral, or near a crossing of the phi grid</li><li>Check that the main curve in the picture roughly follows the spiral. If it fights it, try the thirds grid instead</li><li>Turn the overlay off and look again. If the picture only works with the lines showing, it does not work</li></ol>
+<h2>Common mistakes</h2>
+<ul><li><strong>Forcing it.</strong> Bending the crop to fit the spiral, at the cost of a cramped edge or a cut-off subject</li><li><strong>The wrong orientation.</strong> The spiral should wind in towards the subject. Flip it until the curve in the scene and the curve in the overlay agree</li><li><strong>Treating it as precise.</strong> The phi lines are close to the thirds. A few pixels either way makes no visible difference</li><li><strong>Seeing it everywhere.</strong> With enough curves in a scene and freedom to flip the overlay, almost any picture can be made to fit. That is a reason to use it lightly, not proof that it works</li></ul>
+<h2>Going further</h2>
+<ul><li><strong>Other overlays.</strong> Lightroom also offers diagonal and triangle overlays. They suit pictures built on strong diagonal lines</li><li><strong>Dynamic symmetry.</strong> A related system of grids built from diagonals, worth reading about if the spiral interests you</li><li><strong>Compare blind.</strong> Make two crops of the same picture, one on thirds and one on phi, and ask someone which they prefer without saying which is which</li></ul>
+<blockquote>Guides help you see. They do not take the photograph for you.</blockquote>
+<h2>Your challenge</h2>
+<p>Take five photographs you already like. Crop each with a thirds overlay and then a golden spiral or phi grid, and note which ones each guide improves. Note also how far the subject moved between the two crops.</p>
+<nav class="pn" aria-label="More lessons"><a href="/learn/symmetry-and-patterns/"><small>Previous</small>Symmetry and patterns</a><a href="/learn/composing-a-landscape/" style="text-align:right"><small>Next</small>Composing a landscape</a></nav>
+</main>
+<footer class="foot">
+  <span>&copy; Grant C Anthony</span>
+  <span><a href="/" style="text-decoration:none">Photographs</a> &middot; <a href="/learn/" style="text-decoration:none">Lessons</a> &middot; <a href="/copyright.html" style="text-decoration:none">Copyright</a> &middot; <a href="/privacy.html" style="text-decoration:none">Privacy</a> &middot; <a href="/books/" style="text-decoration:none">Books</a></span>
+</footer>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sharpening and noise: a photography lesson | Grant C Anthony</title>
+<meta name="description" content="Where noise comes from, how to remove it with Denoise or the sliders, how to sharpen without halos, and the order to do it in.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://grantanthony.co.uk/learn/sharpening-and-noise/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grant C Anthony">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Sharpening and noise: a photography lesson | Grant C Anthony">
+<meta property="og:description" content="Where noise comes from, how to remove it with Denoise or the sliders, how to sharpen without halos, and the order to do it in.">
+<meta property="og:url" content="https://grantanthony.co.uk/learn/sharpening-and-noise/">
+<meta property="og:image" content="https://grantanthony.co.uk/images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg">
+<meta property="og:image:width" content="1067">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sharpening and noise: a photography lesson | Grant C Anthony">
+<meta name="twitter:description" content="Where noise comes from, how to remove it with Denoise or the sliders, how to sharpen without halos, and the order to do it in.">
+<meta name="twitter:image" content="https://grantanthony.co.uk/images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg">
+<meta name="theme-color" content="#0D0D0E">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+body{background:var(--bg);color:var(--fg)}
+.nav{background:rgba(13,13,14,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.sp{max-width:760px;margin:0 auto;padding:calc(clamp(56px,9vw,120px) + 36px) var(--gut) 72px}
+.sp.wide{max-width:1100px}
+.sp h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.sp .lede{font-size:clamp(18px,2.2vw,21px);line-height:1.55;color:var(--fg);opacity:.9;margin:0 0 30px;max-width:62ch}
+.sp h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:46px 0 14px;text-wrap:balance}
+.sp p,.sp li{line-height:1.7;opacity:.9}
+.sp ul,.sp ol{padding-left:22px}.sp li{margin:0 0 8px}
+.sp blockquote{margin:40px 0;padding:0 0 0 22px;border-left:2px solid var(--accent);font-family:var(--display);font-size:clamp(22px,3vw,28px);line-height:1.3}
+.sp figure{margin:34px 0}
+.sp figure img{display:block;width:100%;height:auto;border-radius:4px;background:var(--bg3)}
+.sp figcaption{font-size:14px;color:var(--muted);margin-top:10px}
+.sp figcaption a{color:var(--fg)}
+.sp a{color:var(--accent);text-underline-offset:3px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;border:1px solid var(--line2);border-radius:6px;padding:16px 18px;margin:0 0 34px}
+.cta p{margin:0;flex:1 1 260px;font-size:15px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;border-radius:999px;white-space:nowrap}
+.demo{border:1px dashed var(--line2);border-radius:6px;padding:14px 16px;margin:28px 0;font-size:15px}
+.demo b{color:var(--accent);font-weight:500}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:22px 0;font-size:15px}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.pn{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:56px;padding-top:22px;font-size:15px}
+.pn a{text-decoration:none;color:var(--fg)}.pn small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topic{margin:44px 0 0}.topic h2{margin-top:0}
+.sp .ll{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+.ll a{display:block;text-decoration:none;color:var(--fg);padding:14px 0;border-bottom:1px solid var(--line)}
+.ll b{font-family:var(--display);font-weight:400;font-size:22px;display:block}.ll span{font-size:15px;color:var(--muted)}
+.photo-full{margin:0 0 26px}.photo-full img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:var(--bg2);border-radius:4px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}.tags span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://grantanthony.co.uk/#person",
+   "name": "Grant C Anthony",
+   "url": "https://grantanthony.co.uk/"
+  },
+  {
+   "@type": [
+    "Article",
+    "LearningResource"
+   ],
+   "@id": "https://grantanthony.co.uk/learn/sharpening-and-noise/#lesson",
+   "url": "https://grantanthony.co.uk/learn/sharpening-and-noise/",
+   "headline": "Sharpening and noise",
+   "description": "Where noise comes from, how to remove it with Denoise or the sliders, how to sharpen without halos, and the order to do it in.",
+   "image": "https://grantanthony.co.uk/images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg",
+   "author": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "publisher": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "inLanguage": "en-GB",
+   "isAccessibleForFree": true,
+   "learningResourceType": "Lesson",
+   "about": "Editing"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Lessons",
+     "item": "https://grantanthony.co.uk/learn/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Sharpening and noise",
+     "item": "https://grantanthony.co.uk/learn/sharpening-and-noise/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/" aria-label="Grant C Anthony, home"><img class="sig-nav" src="/assets/signature-sm.png" alt="Grant C Anthony" width="800" height="311"></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a href="/learn/">Learn</a>
+    <a href="/#about" class="hide-sm">About</a>
+    <a href="/books/" class="nav-books">Books</a>
+  </div>
+</nav>
+<main class="sp">
+<p class="eyebrow"><a href="/learn/" style="color:inherit;text-decoration:none">Lessons</a> &middot; Editing</p>
+<h1>Sharpening and noise</h1>
+<p class="lede">Where noise comes from, how to remove it with Denoise or the sliders, how to sharpen without halos, and the order to do it in.</p>
+<figure><img src="/images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg" srcset="/images/thumbs/the-caledonian-railway-bridge-muzxyqihvnu.jpg 667w, /images/medium/the-caledonian-railway-bridge-muzxyqihvnu.jpg 1067w, /images/the-caledonian-railway-bridge-muzxyqihvnu.jpg 1707w" sizes="(max-width: 760px) 100vw, 760px" width="1707" height="2560" alt="The Caledonian Railway Bridge. The Caledonian Railway Bridge carries trains over the Clyde into Glasgow Central. From the water&#x27;s edge you see what most people crossing it never do: rows of riveted arches, stone piers rising out of the river, and the whole structure running off into the distance. Most people only notice it as a sound overhead." decoding="async"><figcaption><a href="/photo/the-caledonian-railway-bridge-muzxyqihvnu/">The Caledonian Railway Bridge</a> &middot; Glasgow</figcaption></figure>
+<div class="cta"><p>The interactive version has a hands-on demo, a quiz, and keeps track of the lessons you have finished.</p><a class="btn" href="/#l/sharpening-and-noise">Open the interactive lesson</a></div>
+<p>Sharpening and noise reduction pull in opposite directions. Sharpening adds contrast along edges; noise reduction smooths small specks away. Too much of either ruins a photograph, and they are best judged together, close up, in the right order.</p>
+<p>I edit mainly in Lightroom, so this lesson uses Lightroom Classic&#x27;s names. Everything here lives in the Detail panel of the Develop module, in the Enhance dialog, and in the Export dialog.</p>
+<h2>Starting values</h2>
+<ul><li><strong>Denoise Amount:</strong> 40 to 60 for high ISO RAW files; lower if skin or stone starts to look waxy</li><li><strong>Manual Luminance:</strong> 10 to 30 for moderate noise, with Detail left near its default</li><li><strong>Color noise reduction:</strong> about 25, Lightroom&#x27;s usual default for RAW files</li><li><strong>Sharpening Amount:</strong> 30 to 60</li><li><strong>Radius:</strong> 0.8 to 1.2 pixels; under 1 for fine detail such as foliage, a little over 1 for portraits</li><li><strong>Detail:</strong> 15 to 35</li><li><strong>Masking:</strong> 30 to 80, higher for skies and skin</li><li><strong>Output sharpening:</strong> Screen, Standard, for most web use</li></ul>
+<p>These are starting points. Make the change, then step away and look again before you keep it.</p>
+<h2>What noise is</h2>
+<p>Noise is the fine, random speckle you see in dark, smooth areas: a grainy night sky, a gritty shadow under a bridge. There are two kinds. Luminance noise is speckles of light and dark. Colour noise is blotches of red, green and magenta.</p>
+<p>Noise comes mainly from too little light reaching the sensor. High ISO is what you use when light is short, which is why high ISO photographs are noisier. Raising ISO from 1600 to 6400 is two stops, because 1600 × 2 × 2 is 6400.</p>
+<p>Lifting shadows in editing shows the same noise. Raise Exposure by +2 and you make the picture four times as bright, noise included. A photograph underexposed by two stops at ISO 1600 and brightened by +2 in Lightroom will usually look roughly as noisy as one taken at ISO 6400, sometimes worse. Expose well in the camera and there is less to fix later.</p>
+<h2>Denoise</h2>
+<p>Lightroom Classic&#x27;s Denoise uses an AI model to remove noise while keeping fine detail. It works on RAW files. In current versions of Lightroom Classic it sits in the Noise Reduction section of the Detail panel: turn on Denoise and set the Amount. It is applied to the RAW file itself and can be changed or turned off later, like any other slider.</p>
+<p>Versions from before mid 2025 work differently. There you choose Photo &gt; Enhance, and Lightroom creates a separate DNG file alongside the original, much larger than the RAW. If your version does that, use Denoise on the frames that need it, not on every photograph from a shoot. Either way it takes some seconds per photograph, so it is still worth saving for the frames that need it.</p>
+<p>Start around 50 and look at the preview at 100 percent. Raise it if the speckle remains; lower it if fur, hair, grass or stone starts to look painted.</p>
+<h2>Manual noise reduction</h2>
+<p>For mild noise, or on files Denoise will not accept, use the sliders in the Noise Reduction section of the Detail panel.</p>
+<ul><li><strong>Luminance:</strong> smooths light and dark speckle. Its <strong>Detail</strong> and <strong>Contrast</strong> sliders below it hold back fine detail and texture</li><li><strong>Color:</strong> removes colour blotches. Its <strong>Detail</strong> and <strong>Smoothness</strong> sliders refine the result</li></ul>
+<p>Colour noise is the uglier of the two, and removing it costs little. Luminance noise often looks like film grain, and removing all of it costs fine detail. Accept a little.</p>
+<h2>Capture sharpening</h2>
+<p>Every digital photograph is slightly soft when it leaves the sensor. Capture sharpening restores the crispness. In the Sharpening section of the Detail panel there are four sliders.</p>
+<ul><li><strong>Amount:</strong> how strong the sharpening is</li><li><strong>Radius:</strong> how wide the edge contrast spreads, in pixels. Small for fine detail, larger for broad shapes</li><li><strong>Detail:</strong> how much it sharpens fine texture. Low values sharpen only clear edges; high values sharpen everything, including noise</li><li><strong>Masking:</strong> which areas it sharpens at all. At 0 it sharpens everywhere. Raise it and smooth areas, such as sky and skin, are left alone while edges stay sharp</li></ul>
+<p>Hold Alt or Option while dragging any of these sliders to see a greyscale preview of what it is doing. On Masking, the preview is the most useful: white areas are sharpened, black areas are protected. Drag Masking until the sky is black and only the edges you care about are white.</p>
+<h2>Halos</h2>
+<p>A halo is a bright outline along an edge where dark meets light, often with a dark line on the other side: a pale rim around a tree against the sky, a white edge around a roofline. It comes from too much Amount, too large a Radius, or both. Halos are the surest sign of over-sharpening, and they also come from Clarity and Dehaze.</p>
+<p>To find them, view at 100 percent. Press Z to zoom, or click 1:1 in the Navigator panel, and move to an edge where a dark subject meets a bright sky. At fit-to-screen size halos are often invisible, which is why so many over-sharpened photographs get shared.</p>
+<p class="demo"><b>Interactive demo:</b> sharpening and halos. <a href="/#l/sharpening-and-noise">Try it in the interactive lesson</a>.</p>
+<p>If you see a halo, lower Radius first, then Amount.</p>
+<h2>Output sharpening</h2>
+<p>Capture sharpening restores what the sensor lost. Output sharpening makes up for what resizing and printing lose. Set it in the Export dialog under Output Sharpening: tick Sharpen For and choose Screen, Matte Paper or Glossy Paper, then Low, Standard or High.</p>
+<p>Screen at Standard suits most web use. Matte paper softens fine detail more than glossy, so it takes more. It is applied only to the exported file, so judge it on the export, not in the Develop module. For sizes and formats, see Exporting for screen and print.</p>
+<h2>The order of work</h2>
+<ol><li><strong>Denoise first.</strong> It works on the RAW data, before anything else</li><li><strong>Edit as normal.</strong> Exposure, contrast, colour and masks</li><li><strong>Check noise again.</strong> Lifted shadows may have brought some back</li><li><strong>Capture sharpening.</strong> Set Masking first to protect smooth areas, then Amount, Radius and Detail</li><li><strong>Output sharpening on export.</strong></li></ol>
+<p>Lightroom always applies Denoise before sharpening, whatever order you set them in, but sharpening judged on a noisy picture is usually set wrong. Denoise first, then set sharpening on the clean result.</p>
+<h2>Worked scenarios</h2>
+<ul><li><strong>A city street at night, ISO 6400.</strong> Run Denoise at 50. Keep Color near 25. Sharpen with Amount 40, Radius 1.0, Detail 25, Masking 60, so the wet road and dark sky stay smooth while the signs stay crisp</li><li><strong>A woodland at ISO 100.</strong> Little noise to remove. Sharpen with Amount 50, Radius 0.8, Detail 35, Masking 20, so leaves and bark keep their texture. Check for halos where branches cross bright sky</li><li><strong>A portrait by a window, ISO 800.</strong> Leave Luminance at 10 to 15. Sharpen with Amount 35, Radius 1.1, Masking 70, so the eyes and eyelashes sharpen while the skin stays smooth</li></ul>
+<h2>Common mistakes</h2>
+<ul><li><strong>Judging at fit-to-screen size.</strong> Halos and noise hide. Always check at 100 percent</li><li><strong>Sharpening the noise.</strong> Detail and Amount too high with Masking at 0 turn a clean sky gritty. Raise Masking</li><li><strong>Waxy skin and stone.</strong> Too much Luminance or Denoise. Lower it and accept a little grain</li><li><strong>Sharpening twice for the screen.</strong> Heavy capture sharpening plus High output sharpening on a small web export. Pick one to ease off</li><li><strong>Sharpening a soft photograph.</strong> Sharpening cannot fix missed focus or camera shake. It only makes the blur look crunchy</li></ul>
+<h2>Checking your work</h2>
+<ul><li>View at 100 percent along the highest contrast edges and look for halos</li><li>Hold Alt or Option on the Masking slider to confirm the sky and skin are protected</li><li>Look at a smooth area, such as sky, for speckle, blotches or a waxy look</li><li>Export, then view the exported file at the size people will see it</li></ul>
+<h2>Going further</h2>
+<ul><li><strong>Editing lightly.</strong> Where detail work fits in a full edit</li><li><strong>Editing effects.</strong> Clarity, Texture and Dehaze, which also add halos when pushed</li><li><strong>Exporting for screen and print.</strong> Output sizes and sharpening settings in full</li><li><strong>Night and blue hour in cities.</strong> Shooting in the light where noise matters most</li></ul>
+<blockquote>Sharpen until the edges are crisp at 100 percent. Then take a little back.</blockquote>
+<h2>Your challenge</h2>
+<p>Take a photograph shot at ISO 3200 or higher. Make two versions: one with only the manual Luminance slider at 25, and one using Denoise at 50. Sharpen both with the same settings, holding Alt or Option on the Masking slider until the sky or background is black. Compare them at 100 percent and note which keeps more fine detail.</p>
+<nav class="pn" aria-label="More lessons"><a href="/learn/cleaning-up/"><small>Previous</small>Cleaning up a photograph</a><a href="/learn/editing-effects/" style="text-align:right"><small>Next</small>Editing effects</a></nav>
+</main>
+<footer class="foot">
+  <span>&copy; Grant C Anthony</span>
+  <span><a href="/" style="text-decoration:none">Photographs</a> &middot; <a href="/learn/" style="text-decoration:none">Lessons</a> &middot; <a href="/copyright.html" style="text-decoration:none">Copyright</a> &middot; <a href="/privacy.html" style="text-decoration:none">Privacy</a> &middot; <a href="/books/" style="text-decoration:none">Books</a></span>
+</footer>
+</body>
+</html>

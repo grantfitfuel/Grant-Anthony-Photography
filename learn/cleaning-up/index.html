@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cleaning up a photograph: a photography lesson | Grant C Anthony</title>
+<meta name="description" content="Sensor dust, distractions, colour fringes and leaning lines. How to fix them in Lightroom and Photoshop so nobody notices, and when you should not remove...">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://grantanthony.co.uk/learn/cleaning-up/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grant C Anthony">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Cleaning up a photograph: a photography lesson | Grant C Anthony">
+<meta property="og:description" content="Sensor dust, distractions, colour fringes and leaning lines. How to fix them in Lightroom and Photoshop so nobody notices, and when you should not remove...">
+<meta property="og:url" content="https://grantanthony.co.uk/learn/cleaning-up/">
+<meta property="og:image" content="https://grantanthony.co.uk/images/medium/lindisfarne-castle-2-muzz9zliw36.jpg">
+<meta property="og:image:width" content="1067">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cleaning up a photograph: a photography lesson | Grant C Anthony">
+<meta name="twitter:description" content="Sensor dust, distractions, colour fringes and leaning lines. How to fix them in Lightroom and Photoshop so nobody notices, and when you should not remove...">
+<meta name="twitter:image" content="https://grantanthony.co.uk/images/medium/lindisfarne-castle-2-muzz9zliw36.jpg">
+<meta name="theme-color" content="#0D0D0E">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+body{background:var(--bg);color:var(--fg)}
+.nav{background:rgba(13,13,14,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.sp{max-width:760px;margin:0 auto;padding:calc(clamp(56px,9vw,120px) + 36px) var(--gut) 72px}
+.sp.wide{max-width:1100px}
+.sp h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,76px);line-height:1;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.sp .lede{font-size:clamp(18px,2.2vw,21px);line-height:1.55;color:var(--fg);opacity:.9;margin:0 0 30px;max-width:62ch}
+.sp h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.15;margin:46px 0 14px;text-wrap:balance}
+.sp p,.sp li{line-height:1.7;opacity:.9}
+.sp ul,.sp ol{padding-left:22px}.sp li{margin:0 0 8px}
+.sp blockquote{margin:40px 0;padding:0 0 0 22px;border-left:2px solid var(--accent);font-family:var(--display);font-size:clamp(22px,3vw,28px);line-height:1.3}
+.sp figure{margin:34px 0}
+.sp figure img{display:block;width:100%;height:auto;border-radius:4px;background:var(--bg3)}
+.sp figcaption{font-size:14px;color:var(--muted);margin-top:10px}
+.sp figcaption a{color:var(--fg)}
+.sp a{color:var(--accent);text-underline-offset:3px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;border:1px solid var(--line2);border-radius:6px;padding:16px 18px;margin:0 0 34px}
+.cta p{margin:0;flex:1 1 260px;font-size:15px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink)!important;text-decoration:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;border-radius:999px;white-space:nowrap}
+.demo{border:1px dashed var(--line2);border-radius:6px;padding:14px 16px;margin:28px 0;font-size:15px}
+.demo b{color:var(--accent);font-weight:500}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:22px 0;font-size:15px}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+.pn{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:56px;padding-top:22px;font-size:15px}
+.pn a{text-decoration:none;color:var(--fg)}.pn small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.topic{margin:44px 0 0}.topic h2{margin-top:0}
+.sp .ll{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+.ll a{display:block;text-decoration:none;color:var(--fg);padding:14px 0;border-bottom:1px solid var(--line)}
+.ll b{font-family:var(--display);font-weight:400;font-size:22px;display:block}.ll span{font-size:15px;color:var(--muted)}
+.photo-full{margin:0 0 26px}.photo-full img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain;background:var(--bg2);border-radius:4px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}.tags span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://grantanthony.co.uk/#person",
+   "name": "Grant C Anthony",
+   "url": "https://grantanthony.co.uk/"
+  },
+  {
+   "@type": [
+    "Article",
+    "LearningResource"
+   ],
+   "@id": "https://grantanthony.co.uk/learn/cleaning-up/#lesson",
+   "url": "https://grantanthony.co.uk/learn/cleaning-up/",
+   "headline": "Cleaning up a photograph",
+   "description": "Sensor dust, distractions, colour fringes and leaning lines. How to fix them in Lightroom and Photoshop so nobody notices, and when you should not remove...",
+   "image": "https://grantanthony.co.uk/images/medium/lindisfarne-castle-2-muzz9zliw36.jpg",
+   "author": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "publisher": {
+    "@id": "https://grantanthony.co.uk/#person"
+   },
+   "inLanguage": "en-GB",
+   "isAccessibleForFree": true,
+   "learningResourceType": "Lesson",
+   "about": "Editing"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Lessons",
+     "item": "https://grantanthony.co.uk/learn/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Cleaning up a photograph",
+     "item": "https://grantanthony.co.uk/learn/cleaning-up/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="/" aria-label="Grant C Anthony, home"><img class="sig-nav" src="/assets/signature-sm.png" alt="Grant C Anthony" width="800" height="311"></a>
+  <div class="nav-links">
+    <a href="/#work">Work</a>
+    <a href="/learn/">Learn</a>
+    <a href="/#about" class="hide-sm">About</a>
+    <a href="/books/" class="nav-books">Books</a>
+  </div>
+</nav>
+<main class="sp">
+<p class="eyebrow"><a href="/learn/" style="color:inherit;text-decoration:none">Lessons</a> &middot; Editing</p>
+<h1>Cleaning up a photograph</h1>
+<p class="lede">Sensor dust, distractions, colour fringes and leaning lines. How to fix them in Lightroom and Photoshop so nobody notices, and when you should not remove anything at all.</p>
+<figure><img src="/images/medium/lindisfarne-castle-2-muzz9zliw36.jpg" srcset="/images/thumbs/lindisfarne-castle-2-muzz9zliw36.jpg 667w, /images/medium/lindisfarne-castle-2-muzz9zliw36.jpg 1067w, /images/lindisfarne-castle-2-muzz9zliw36.jpg 1707w" sizes="(max-width: 760px) 100vw, 760px" width="1707" height="2560" alt="Lindisfarne. Lindisfarne Castle stands on its rocky crag on Holy Island, Northumberland, a tidal island cut off from the mainland twice a day when the causeway floods. A two-second exposure blurs the cloud and the water at the shore, while the pebbles in the foreground stay sharp and lead the eye up to the castle." decoding="async"><figcaption><a href="/photo/lindisfarne-castle-2-muzz9zliw36/">Lindisfarne</a> &middot; Lindisfarne, Northumberland</figcaption></figure>
+<div class="cta"><p>The interactive version has a quiz, and keeps track of the lessons you have finished.</p><a class="btn" href="/#l/cleaning-up">Open the interactive lesson</a></div>
+<p>Cleaning up is the unglamorous part of editing: dust spots on the sensor, a crisp packet on the beach, colour fringes along a branch, a horizon that leans. None of it should be noticed. Done well, the photograph simply looks the way it should have looked in the first place.</p>
+<p>I edit mainly in Lightroom, with the occasional small tweak in Photoshop. That split suits cleaning up: Lightroom Classic handles most of it, and Photoshop is there for the jobs Lightroom cannot do cleanly.</p>
+<h2>Starting values</h2>
+<ul><li><strong>Remove tool size:</strong> just larger than the spot, so the fix blends without smearing nearby detail</li><li><strong>Remove tool feather:</strong> low for crisp dust on clear sky, higher for soft-edged blemishes</li><li><strong>Visualize Spots:</strong> on, with the slider raised until dust shows as white rings, then lowered slightly</li><li><strong>Lens profile:</strong> Enable Profile Corrections and Remove Chromatic Aberration both ticked</li><li><strong>Defringe Purple Amount:</strong> 0 to 5, raised only until the fringe turns grey</li><li><strong>Upright:</strong> Auto or Guided for buildings, Level for horizons, with Constrain Crop ticked</li></ul>
+<p>These are starting points. Make the change, then step away and look again before you keep it.</p>
+<h2>An order that saves work</h2>
+<p>Fix the geometry first: lens corrections, then straightening and perspective, then the crop. Clean up last. There is no point removing a spot that the crop will throw away, and lens corrections can move or stretch the edges of the frame.</p>
+<h2>Sensor dust</h2>
+<p>Dust on the sensor shows as soft grey blobs, always in the same place in every frame. It is easiest to see against plain, bright areas such as sky, and it shows most at small apertures. At f/16 or f/22 the light reaches the sensor in a narrow cone, so the shadow of each speck is sharp. At f/4 the same speck may barely show.</p>
+<p>In the Develop module, choose the Remove tool from the tool strip under the Histogram (Q is the shortcut). Tick Visualize Spots in the toolbar beneath the photograph. The picture turns into a black and white outline view, and dust appears as small white rings. Move the Visualize Spots slider until the rings stand out, then click each one with a brush just larger than the spot. Untick Visualize Spots and look at the photograph normally to check every fix blends.</p>
+<p>Within the tool you can choose Remove, Heal or Clone. Heal suits most dust on sky because it matches the surrounding tone. Clone copies a patch exactly, which helps along a hard edge.</p>
+<h2>Synchronising spot removal</h2>
+<p>Because dust sits in the same place on every frame, you can fix one photograph and copy the fixes to the rest. Select the edited frame first, then the others, click Sync, and in the dialog tick only the spot removal settings.</p>
+<p>Do this with care. A fix that blended into sky on one frame may land on a rock, a face or a branch on the next, and copy a patch of sky onto it. Go through every synced frame with Visualize Spots on and at normal view, and remove or move any fix that has landed on detail.</p>
+<h2>Removing distractions</h2>
+<p>Beyond dust, the Remove tool handles larger things: a bin, a sign, a stray walker at the edge. Paint over the whole object and its shadow. Lightroom fills the area using the surroundings.</p>
+<p>The tool has options for how it fills. A content-aware method builds the fill from nearby pixels and works well on sky, water, grass and sand. A generative option, where your version offers it, generates new pixels with an AI model and can cope with larger or more complicated areas. It needs an internet connection, and it gives three variations to choose between. Both can invent detail that was never there, so check the result closely.</p>
+<p>Photoshop gives more control for hard cases.</p>
+<ul><li><strong>Spot Healing Brush:</strong> paint over a small blemish and it blends from the surroundings. Work on an empty layer with Sample All Layers ticked so you can undo any stroke later</li><li><strong>Clone Stamp:</strong> hold Alt or Option and click to set a source, then paint. Use it along straight edges, such as a wall or a horizon, where healing tools smear</li><li><strong>Content-Aware Fill:</strong> select the object, then choose Edit &gt; Content-Aware Fill. A workspace shows which area it is sampling from; paint out any area it should not use, then send the result to a new layer</li></ul>
+<h2>Lens corrections</h2>
+<p>Every lens bends and darkens the picture a little. In the Lens Corrections panel, on the Profile tab, tick Enable Profile Corrections. Lightroom reads the lens from the file and removes its distortion and the darkening in the corners. Tick Remove Chromatic Aberration too. It removes most of the coloured edges caused by the lens bringing different colours to slightly different points.</p>
+<p>What remains is usually purple or green fringing along high contrast edges, such as branches against bright sky. On the Manual tab, under Defringe, raise Purple Amount or Green Amount until the fringe turns grey. Use the Hue sliders to target its exact colour. Too much greys out purple or green things that should be there, such as flowers.</p>
+<h2>Straightening and perspective</h2>
+<p>For a horizon, the Crop tool (R) has an Angle slider and a straighten tool you drag along the horizon. Alternatively, in the Transform panel, click Level under Upright.</p>
+<p>For buildings, Upright offers Auto, Guided, Level, Vertical and Full. Auto and Vertical often correct converging verticals in one click. Guided lets you draw up to four lines along edges that should be straight. Every correction stretches the picture and pushes some of it out of the frame, so leave room around a building when you shoot it. For when to correct and when to leave the lean, see Architecture.</p>
+<h2>The ethics of removing things</h2>
+<p>Removing a crisp packet from a beach is fine in a picture for your wall or your portfolio. It is not fine everywhere.</p>
+<ul><li><strong>Documentary and news photography:</strong> removing or adding anything is not acceptable. The picture is a record</li><li><strong>Competitions:</strong> many, especially in nature and documentary categories, allow only dust removal and basic adjustments. Read the rules before you enter</li><li><strong>Selling or sharing as fact:</strong> if someone will take your photograph as evidence of what was there, be honest about what you removed</li></ul>
+<p>Where it matters, say what you changed.</p>
+<h2>Worked scenarios</h2>
+<ul><li><strong>A dusty sky.</strong> A coast at f/16 shows nine dust spots in the sky. Fix them on one frame with the Remove tool in Heal mode, sync the spot removal to the other 11 frames from the same set, then check all 12. On two frames a fix has landed on a gull; delete those fixes and redo them by hand</li><li><strong>A sign at the edge.</strong> A road sign pokes into the corner of a woodland scene. Cropping it out would cost about a tenth of the width. Instead, paint it out with the Remove tool, then zoom to 100 percent and check the leaves around it for repeated patterns</li><li><strong>A church interior.</strong> Verticals lean inwards. Enable Profile Corrections, click Vertical under Upright, then crop. The pillars stand straight, at the cost of losing some floor and ceiling</li></ul>
+<h2>Common mistakes</h2>
+<ul><li><strong>Cleaning before cropping.</strong> Wasted effort on areas you then crop away</li><li><strong>Blind syncing.</strong> Copied fixes land on detail in other frames. Check every one</li><li><strong>Repeated patterns.</strong> Cloned grass or leaves that repeat. Vary the source, or use a different mode</li><li><strong>Smeared edges.</strong> Healing along a straight edge blurs it. Use Clone or Clone Stamp</li><li><strong>Too much Defringe.</strong> Real purple and green things go grey. Lower the amount</li><li><strong>Removing what the picture is about.</strong> A path or a person can be the point</li></ul>
+<h2>Checking your work</h2>
+<ul><li>Turn Visualize Spots on one last time before you export</li><li>View at 100 percent along every fix and every edge</li><li>Look for repeated patches of texture, which give clones away</li><li>Toggle the before and after view with the backslash key and ask whether anything looks invented</li></ul>
+<h2>Going further</h2>
+<ul><li><strong>Editing lightly.</strong> Where spot removal sits in a full edit</li><li><strong>Architecture.</strong> When to straighten converging verticals and when to leave them</li><li><strong>Composites and sky replacement.</strong> When removing things becomes building a new picture</li><li><strong>Portrait retouching.</strong> Cleaning up faces with the same tools, gently</li></ul>
+<blockquote>The best clean-up is the one nobody sees. The second best is the one you are honest about.</blockquote>
+<h2>Your challenge</h2>
+<p>Find a photograph taken at f/11 or smaller with a plain sky. Turn on Visualize Spots and count the dust spots. Remove them, then sync the fixes to three other frames from the same day and check each one at 100 percent. Note how many synced fixes needed moving.</p>
+<nav class="pn" aria-label="More lessons"><a href="/learn/black-and-white-points/"><small>Previous</small>Black and white points</a><a href="/learn/sharpening-and-noise/" style="text-align:right"><small>Next</small>Sharpening and noise</a></nav>
+</main>
+<footer class="foot">
+  <span>&copy; Grant C Anthony</span>
+  <span><a href="/" style="text-decoration:none">Photographs</a> &middot; <a href="/learn/" style="text-decoration:none">Lessons</a> &middot; <a href="/copyright.html" style="text-decoration:none">Copyright</a> &middot; <a href="/privacy.html" style="text-decoration:none">Privacy</a> &middot; <a href="/books/" style="text-decoration:none">Books</a></span>
+</footer>
+</body>
+</html>
