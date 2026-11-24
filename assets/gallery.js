@@ -2,6 +2,8 @@
   "use strict";
   const $ = id => document.getElementById(id);
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  // alt text for screen readers and search engines: the title, then the description
+  const altOf = p => { const t = (p.title || "Untitled photograph").trim(), d = (p.description || "").trim(); return d ? t + ". " + d : t; };
 
   let site = {}, photos = [], cats = [];
   let filter = "all", list = [], current = -1, view = "print";
@@ -210,7 +212,7 @@
       list.forEach((p, i) => {
         const b = el("button", "tile"); b.type = "button"; b.dataset.i = i;
         b.setAttribute("aria-label", (p.title || "Untitled") + ", open photograph");
-        const img = el("img"); img.alt = p.title || "Untitled photograph"; img.loading = i < 6 ? "eager" : "lazy"; img.decoding = "async";
+        const img = el("img"); img.alt = altOf(p); img.loading = i < 6 ? "eager" : "lazy"; img.decoding = "async";
         img.width = p.tw || p.w; img.height = p.th || p.h;
         img.onload = () => img.classList.add("ready"); img.src = p.thumb || p.file;
         if (img.complete) img.classList.add("ready");
@@ -324,7 +326,7 @@
     $("wallCtl").hidden = view !== "wall";
     const st = $("stageInner"); st.textContent = "";
     if (view === "print") {
-      const img = el("img", "print"); setSrc(img, p, lbSizes(p)); img.alt = p.title || "Untitled photograph"; img.width = p.w; img.height = p.h;
+      const img = el("img", "print"); setSrc(img, p, lbSizes(p)); img.alt = altOf(p); img.width = p.w; img.height = p.h;
       st.append(img);
     } else { st.append(buildScene(p)); renderWallCtl(); }
   }
