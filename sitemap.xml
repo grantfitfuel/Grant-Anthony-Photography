@@ -798,15 +798,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://grantanthony.co.uk/learn/macro/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/images/dahlia.jpg</image:loc>
-      <image:title>Dahlia</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://grantanthony.co.uk/learn/abstract/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
