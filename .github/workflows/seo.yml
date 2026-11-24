@@ -1,6 +1,6 @@
 name: Search pages
 
-# Rebuilds the book pages, the photo data search engines read, and sitemap.xml
+# Rebuilds the book pages, a page for every lesson and photograph, the photo data search engines read, and sitemap.xml
 # whenever photographs, books or notes change. It only commits if something actually changed.
 # To run it by hand: Actions tab > Search pages > Run workflow.
 
@@ -13,6 +13,7 @@ on:
       - books/posts.json
       - books/covers/**
       - scripts/build_seo.py
+      - scripts/build_pages.py
       - books/notes/**
   # once a day, so notes dated in the future go live on their day, and a promotion in
   # books/posts.json appears and disappears on time (Amazon promotions change at 08:00 UK)
@@ -41,8 +42,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add -A books index.html sitemap.xml
+          git add -A books index.html sitemap.xml learn photo
           if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
-          git commit -m "Search pages: rebuild book pages and sitemap"
+          git commit -m "Search pages: rebuild book, lesson and photo pages and sitemap"
           for i in 1 2 3; do git pull --rebase --quiet && git push && exit 0; sleep 5; done
           exit 1
