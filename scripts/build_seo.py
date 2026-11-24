@@ -14,6 +14,7 @@ It writes:
   review copies             a box under the buy button on a book's page while a review-copy offer in
                             books/posts.json ("review_copies") is open, up to its "until" date
   index.html                the structured data block between the seo markers (photos as ImageObjects)
+  learn/, photo/            a plain page for every lesson and photograph (scripts/build_pages.py)
   sitemap.xml               every page, with images
 Everything else is left alone. Running it twice on the same day gives the same result.
 """
@@ -896,7 +897,7 @@ def build_photo_data(changed):
 
 # ---------------------------------------------------------------- sitemap
 
-def build_sitemap(books, notes, photos, changed):
+def build_sitemap(books, notes, photos, changed, lessons=()):
     newest = max((p.get("added", "") for p in photos), default="")
     urls = []
 
@@ -924,6 +925,14 @@ def build_sitemap(books, notes, photos, changed):
         for n in notes:
             imgs = [(img_src(n["image"])[1], n["image_alt"] or n["title"])] if n["image"] else []
             urls.append(u(BOOKS + "notes/" + n["slug"] + "/", imgs, n["date"].isoformat(), "monthly", "0.7"))
+    if lessons:
+        urls.append(u(SITE + "/learn/", (), None, "weekly", "0.8"))
+        cover = {p["id"]: p for p in photos}
+        for l in lessons:
+            c = cover.get(l.get("cover") or "")
+            urls.append(u(f'{SITE}/learn/{l["id"]}/', [(f'{SITE}/{c["file"]}', c.get("title", ""))] if c else [], None, "monthly", "0.7"))
+    for p in photos:
+        urls.append(u(f'{SITE}/photo/{p["id"]}/', [(f'{SITE}/{p["file"]}', p.get("title", ""))], p.get("added") or None, "monthly", "0.6"))
     urls.append(u(SITE + "/privacy.html", (), None, "yearly", "0.2"))
     urls.append(u(SITE + "/copyright.html", (), None, "yearly", "0.2"))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -937,6 +946,8 @@ if __name__ == "__main__":
     changed = []
     books, notes = build_books(changed)
     photos = build_photo_data(changed)
-    build_sitemap(books, notes, photos, changed)
+    from build_pages import build_pages
+    lessons, _ = build_pages(changed, write_if_changed)
+    build_sitemap(books, notes, photos, changed, lessons)
     print(f"{len(books)} book pages, {len(notes)} notes, {len(photos)} photographs.")
     print("Changed: " + (", ".join(changed) if changed else "nothing"))
