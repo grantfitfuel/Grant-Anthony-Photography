@@ -223,6 +223,10 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/not-a-word-of-a-lie-large.jpg</image:loc>
+      <image:title>Not a Word of a Lie</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/debunked-large.jpg</image:loc>
       <image:title>Debunked</image:title>
     </image:image>
@@ -277,6 +281,15 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/books/covers/pain-large.jpg</image:loc>
       <image:title>Rewiring Pain</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/books/not-a-word-of-a-lie/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/books/covers/not-a-word-of-a-lie-large.jpg</image:loc>
+      <image:title>Not a Word of a Lie</image:title>
     </image:image>
   </url>
   <url>
