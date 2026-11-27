@@ -21,6 +21,34 @@
   }
  },
  "books": {
+  "lie": {
+   "title": "Not a Word of a Lie",
+   "account": "fiction",
+   "byline": "Grant C Anthony",
+   "status": "out",
+   "cover": "covers/not-a-word-of-a-lie-large.jpg",
+   "theme": {
+    "bg": "#0d182f",
+    "fg": "#f3ead9",
+    "accent": "#f2b43c"
+   },
+   "tags": "#christmasbooks #christmasreads #funnybooks #scottishbooks",
+   "reel_images": [
+    "cover"
+   ],
+   "opening": [
+    "The donkey bit him at ten past five.",
+    "Davie McGarrity had been church officer at St Fillan’s Parish Church for twenty-two years, and in that time he had been bitten by a Session clerk’s Jack Russell, a toddler at a christening and, memorably, a retired Moderator of the General Assembly who had been sleepwalking in the manse. He had never been bitten by a donkey. It was, he decided, holding his forearm in the falling snow, the most personal of the lot.",
+    "“She doesnae mean it,” said the girl from the petting farm. She was about nineteen and had the look of someone who had driven a horsebox over the moor in a blizzard and would not be doing it again. “Clementine’s just nervous round men.”",
+    "“I’m nervous round her,” said Davie. “We’ve that in common.”",
+    "Clementine regarded him with the flat, ancient contempt of an animal that knew exactly what it was doing. Then she ate a length of tinsel off the stable roof."
+   ],
+   "lines": [
+    "I tried to lie to a man selling double glazing once and I ended up buying a conservatory.",
+    "He did the crossword in the Daily Record in biro, because pencil was for people who expected to be wrong.",
+    "It turned out that people would come a long way, in the West of Scotland, to listen to a man who could not lie to them, even if most of what he said was about his knee."
+   ]
+  },
   "debunked": {
    "title": "Debunked",
    "account": "fiction",
@@ -346,6 +374,42 @@
   }
  },
  "posts": [
+  {
+   "id": "fl2-lie-out-now",
+   "book": "lie",
+   "type": "cover",
+   "date": "2026-11-30",
+   "label": "Out now",
+   "caption": "Not a Word of a Lie is out now.\n\nA Christmas comedy of crime, love and one very offended spirit. It’s Christmas Eve in Carrickmuir, the snow has shut the town in, and there’s a real baby in the nativity manger with a note: keep him safe, not the polis. Senga Rennie wants the baby. And something buried under the kirk since 1647 has woken up, and it climbs inside anyone who tells a lie.\n\nIn the west of Scotland, on Christmas Eve, that is nearly everybody.\n\nIf you read it, an honest review on Amazon or Goodreads makes a real difference."
+  },
+  {
+   "id": "fx1-lie-donkey",
+   "book": "lie",
+   "type": "quote",
+   "format": "image",
+   "date": "2026-12-03",
+   "text": "The donkey bit him at ten past five.",
+   "attribution": "Not a Word of a Lie",
+   "caption": "The first line of Not a Word of a Lie.\n\nIn twenty-two years as church officer, Davie McGarrity has been bitten by a Session clerk’s Jack Russell, a toddler at a christening and a sleepwalking Moderator of the General Assembly. Never a donkey. Until Christmas Eve.\n\nOut now."
+  },
+  {
+   "id": "fx2-lie-dermot",
+   "book": "lie",
+   "type": "quote",
+   "format": "image",
+   "date": "2026-12-10",
+   "text": "I tried to lie to a man selling double glazing once and I ended up buying a conservatory.",
+   "attribution": "Father Dermot, in Not a Word of a Lie",
+   "caption": "Father Dermot Quigley has never told a lie. He can’t even manage “I’m fine, thanks.”\n\nOn Christmas Eve in Carrickmuir, when every lie lets something very old climb inside you, that suddenly matters.\n\nNot a Word of a Lie. Out now."
+  },
+  {
+   "id": "fx3-lie-christmas-eve",
+   "book": "lie",
+   "type": "cover",
+   "date": "2026-12-21",
+   "label": "For Christmas Eve",
+   "caption": "A book for Christmas Eve, about a Christmas Eve that goes very wrong.\n\nA baby in the manger. A tanning-salon gangster in a white fur coat. Two churches that haven’t spoken in a hundred years, one exorcism between them, and a spirit that can’t abide a lie.\n\nNot a Word of a Lie. Out now.\n\nIf you read it, an honest review on Amazon or Goodreads makes a real difference."
+  },
   {
    "id": "f01-debunked-cover",
    "book": "debunked",
