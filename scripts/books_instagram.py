@@ -5,9 +5,11 @@ Run by .github/workflows/books-instagram.yml. Reads books/posts.json, picks the 
 post for that account that has not gone out yet, draws its image with
 scripts/books_cards.py, posts it, and records it in books/instagram-log.json.
 
-  Fiction    (@grantcanthony)  Mondays and Thursdays, 18:00 UK time
+  Fiction    (@grantcanthony)  every second day from 30 November 2026, 18:00 UK time
   Nonfiction (@g_c_anthony)    Wednesdays and Saturdays, 18:00 UK time
-  (days and handles are set in books/posts.json under "accounts")
+  (days and handles are set in books/posts.json under "accounts": "days" for weekdays,
+  or "every": N with "from": "YYYY-MM-DD" for every N days. When both accounts are due
+  the same day, each posts once: the first run posts one, the next run the other.)
 
 A post with a "date" (YYYY-MM-DD) goes out on that day only, at 18:00 UK time, on any day of
 the week, ahead of the queue. GitHub's timer often runs hours late, so a run up to 03:00 UK the
@@ -36,7 +38,7 @@ Environment:
   IG_API_BASE, IG_REFRESH_URL, IG_IMAGE_BASE, NOW   overrides used in tests
 """
 import json, os, re, subprocess, sys, time, urllib.parse, urllib.request, urllib.error
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -121,9 +123,19 @@ def account_for_today(data, now, log=None):
         if dated_today(data, log, name, now) and not posted_today(log, name, now):
             return name
     for name, acc in data["accounts"].items():
-        if day in acc.get("days", []):
+        if is_usual_day(acc, post_day(now)) and not posted_today(log, name, now):
             return name
     return None
+
+
+def is_usual_day(acc, d):
+    """An account posts on its listed weekdays, or, with "every": N and "from": "YYYY-MM-DD",
+    every N days counting from that date."""
+    every = acc.get("every")
+    if every:
+        start = date.fromisoformat(acc.get("from", "2026-01-01"))
+        return d >= start and (d - start).days % int(every) == 0
+    return DAYS[d.weekday()] in acc.get("days", [])
 
 
 def next_post(data, log, account, now=None):
