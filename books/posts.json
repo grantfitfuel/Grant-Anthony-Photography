@@ -802,6 +802,41 @@
    "caption": "Someone pauses half a second too long, or a text comes back shorter than usual.\n\nIf you know what happens next in your head, this book was written for you. The Noisy Mind. Out now."
   },
   {
+   "id": "fx9-lie-new-kindle",
+   "book": "lie",
+   "type": "cover",
+   "date": "2026-12-26",
+   "label": "For your new Kindle",
+   "caption": "Got a new Kindle for Christmas?\n\nStart with a Christmas Eve that goes very wrong: a baby in the manger, two churches that haven’t spoken in a hundred years, and something under the kirk that moves into anyone who tells a lie.\n\nNot a Word of a Lie. Out now in Kindle, paperback and hardback.\n\nIf you read it, an honest review on Amazon or Goodreads makes a real difference."
+  },
+  {
+   "id": "f18-pentimento-picasso",
+   "book": "pentimento",
+   "type": "talk",
+   "label": "Under the surface",
+   "headline": "There’s a man under this Picasso.",
+   "sub": "Picasso painted The Blue Room in 1901 over an earlier portrait. Infrared scans at the Phillips Collection in Washington show a bearded man in a bow tie, his head resting on his hand, three rings on his fingers. Nobody knows who he is.",
+   "caption": "Painters change their minds. Sometimes the first version is still there, just under the surface.\n\nPentimento is a novel about what shows through.\n\nWho do you think the man under the Picasso was?\n\nPentimento, book one of The Provenance Series. Out now."
+  },
+  {
+   "id": "f20-debunked-stargate",
+   "book": "debunked",
+   "type": "talk",
+   "label": "True story",
+   "headline": "The US government paid for psychic spies.",
+   "sub": "Remote viewing research began in 1972 at the Stanford Research Institute. By 1995 the programme had run thousands of sessions. That year an outside review for the CIA found the information too vague to act on, and the programme was shut down.",
+   "caption": "The strange science in Debunked is real. Callum Ferris makes his living taking it apart on a Glasgow podcast. Then his grandmother, on her deathbed, says something she had no way of knowing.\n\nWould you have volunteered to be a remote viewer?\n\nDebunked. Out now."
+  },
+  {
+   "id": "f19-pentimento-vermeer",
+   "book": "pentimento",
+   "type": "talk",
+   "label": "Under the surface",
+   "headline": "Someone painted Cupid out of a Vermeer.",
+   "sub": "Girl Reading a Letter at an Open Window was painted around 1657 to 1659. Tests in Dresden showed the Cupid on the wall behind her was painted over decades after Vermeer died, by someone else. In 2021 he was seen again for the first time in over two and a half centuries.",
+   "caption": "Somebody decided what you were allowed to see, and it stayed that way for centuries.\n\nThat’s the question under Pentimento: who painted over the truth, and why.\n\nWhat would you want uncovered?\n\nPentimento. Out now in Kindle, paperback and hardback."
+  },
+  {
    "id": "f09-roots-cover",
    "book": "roots",
    "type": "cover",
@@ -1269,6 +1304,72 @@
    "label": "Out now",
    "caption": "Pentimento is out now, in Kindle, paperback and hardback.\n\nBook one of The Provenance Series. Dr Alec Muir authenticates paintings, and nobody in Scotland is better at seeing what lies beneath. When a conservation officer is found dead in her Glasgow flat, DI Ellen Docherty starts asking careful questions that lead back to Paisley, to a family house full of altered photographs, and to a man who has done this before.\n\nThe past doesn't stay buried. It shows through.\n\nIf you read it, an honest review on Amazon or Goodreads makes a real difference.\n\nSend this to someone who reads Scottish noir.",
    "tags": "#newrelease #booklaunch"
+  },
+  {
+   "id": "n20-calibrated-january",
+   "book": "calibrated",
+   "type": "cover",
+   "label": "For January",
+   "caption": "A new year, and the same old alarm going off at the wrong things?\n\nThe Calibrated Mind explains anxiety, panic, OCD and trauma-related fear as a brain that predicts danger too readily, and how to retrain it using modern brain science.\n\nYou are not broken. You are miscalibrated.\n\nOut now."
+  },
+  {
+   "id": "n21-noisy-worry-time",
+   "book": "noisy",
+   "type": "talk",
+   "label": "Try this",
+   "headline": "Give your worry an appointment.",
+   "sub": "In 1983, psychologists asked worriers to put off their worrying to one 30-minute slot, at the same time and in the same place, every day. Compared with people given no instructions, they reported worrying less. It is now a standard part of therapy for worry.",
+   "caption": "When the worry turns up at three in the afternoon, tell it: not now, half seven. A lot of it has shrunk by then.\n\nMore in The Noisy Mind.\n\nWhat time would your worry appointment be?"
+  },
+  {
+   "id": "n22-pain-mirror",
+   "book": "pain",
+   "type": "talk",
+   "label": "Rewiring Pain",
+   "headline": "A mirror in a box eased pain in a hand that wasn’t there.",
+   "sub": "In the 1990s, V.S. Ramachandran put a mirror inside a box so amputees saw their remaining hand reflected where the missing one had been. In his 1996 study, painful clenching spasms in the phantom hand eased for four of five patients when they watched the reflection move.",
+   "caption": "If pain lived only in the tissue, a mirror couldn’t change it. Pain is produced by the brain, and the brain listens to what the eyes tell it.\n\nRewiring Pain explains what that means for persistent pain.\n\nDid you know the brain could be reasoned with like this?"
+  },
+  {
+   "id": "n23-calibrated-rubber-hand",
+   "book": "calibrated",
+   "type": "talk",
+   "label": "The Calibrated Mind",
+   "headline": "Your brain will adopt a rubber hand.",
+   "sub": "In a 1998 experiment, people watched a rubber hand being stroked with a paintbrush while their own hidden hand was stroked at the same time. Many began to feel the touch in the rubber hand. The brain goes with its best guess.",
+   "caption": "If your brain can be talked into owning a rubber hand in a few minutes, it can be talked into a world that feels more dangerous than it is.\n\nThat is anxiety in The Calibrated Mind: predictions set too high, and how to reset them.\n\nHave you ever tried this illusion?"
+  },
+  {
+   "id": "n24-noisy-name-it",
+   "book": "noisy",
+   "type": "talk",
+   "label": "Try this",
+   "headline": "Name the feeling.",
+   "sub": "In a 2007 UCLA brain-imaging study, putting a word to the emotion in a face, such as angry or afraid, went with less activity in the amygdala, the brain’s alarm centre. Labelling a feeling seems to turn the volume down.",
+   "caption": "Not “fine”. Not “stressed”. The actual word: dread, embarrassed, lonely, flat.\n\nThe Noisy Mind is about the mind that won’t stop replaying, and how to quieten it.\n\nWhat’s the word for how you feel right now?"
+  },
+  {
+   "id": "n25-pain-nocebo",
+   "book": "pain",
+   "type": "talk",
+   "label": "Rewiring Pain",
+   "headline": "90% of the side effects came with the dummy pills too.",
+   "sub": "In the SAMSON trial, 60 people who had stopped statins because of side effects spent a year taking monthly bottles of statin, identical placebo, or nothing. Ninety per cent of the symptoms they reported on the statin also appeared on the placebo.",
+   "caption": "Expecting harm can produce real symptoms. It’s called the nocebo effect, and it matters for pain as much as for pills.\n\nRewiring Pain looks at why.\n\nAlways speak to your doctor before stopping any medicine.\n\nHad you heard of the nocebo effect?"
+  },
+  {
+   "id": "n26-noisy-january",
+   "book": "noisy",
+   "type": "cover",
+   "label": "For January",
+   "caption": "The Noisy Mind is for anyone whose mind replays the conversation, rereads the text, and keeps checking long after everyone else has moved on.\n\nOut now, in paperback and Kindle.\n\nSend this to the overthinker you love."
+  },
+  {
+   "id": "n27-pain-january",
+   "book": "pain",
+   "type": "cover",
+   "label": "For January",
+   "caption": "Rewiring Pain: how the brain learns pain, and how it can learn safety again.\n\nA plain guide to modern pain science for anyone who has lived with pain longer than anyone expected. Not about pretending pain isn’t real. About understanding what your nervous system has been trying to do.\n\nOut now."
   }
  ],
  "promos": [
