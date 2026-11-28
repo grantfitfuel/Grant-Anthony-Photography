@@ -14,20 +14,24 @@
       <image:title>Petrova Gora Monument</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://grantanthony.co.uk/images/hunt-the-rich-mwtqxuoekof.jpg</image:loc>
-      <image:title>Hunt the Rich</image:title>
+      <image:loc>https://grantanthony.co.uk/images/bedruthan-steps-mwtqxv6qzgr.jpg</image:loc>
+      <image:title>Bedruthan Steps</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/a-hallway-to-what-once-was-mwtqxvndpkp.jpg</image:loc>
+      <image:title>A hallway to what once was</image:title>
     </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/stone-mwtqxuulpii.jpg</image:loc>
       <image:title>Stone</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://grantanthony.co.uk/images/red-chairs-mwtqxv1j93x.jpg</image:loc>
-      <image:title>Red Chairs</image:title>
+      <image:loc>https://grantanthony.co.uk/images/hunt-the-rich-mwtqxuoekof.jpg</image:loc>
+      <image:title>Hunt the Rich</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://grantanthony.co.uk/images/bedruthan-steps-mwtqxv6qzgr.jpg</image:loc>
-      <image:title>Bedruthan Steps</image:title>
+      <image:loc>https://grantanthony.co.uk/images/red-chairs-mwtqxv1j93x.jpg</image:loc>
+      <image:title>Red Chairs</image:title>
     </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/icy-mwtqxv9kl7h.jpg</image:loc>
@@ -36,10 +40,6 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/nature-reclaiming-mwtqxvgqcf2.jpg</image:loc>
       <image:title>Nature Reclaiming</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/images/a-hallway-to-what-once-was-mwtqxvndpkp.jpg</image:loc>
-      <image:title>A hallway to what once was</image:title>
     </image:image>
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/where-the-river-steals-the-fire-mvlei78zxm2.jpg</image:loc>
@@ -876,13 +876,23 @@
     </image:image>
   </url>
   <url>
-    <loc>https://grantanthony.co.uk/photo/hunt-the-rich-mwtqxuoekof/</loc>
+    <loc>https://grantanthony.co.uk/photo/bedruthan-steps-mwtqxv6qzgr/</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://grantanthony.co.uk/images/hunt-the-rich-mwtqxuoekof.jpg</image:loc>
-      <image:title>Hunt the Rich</image:title>
+      <image:loc>https://grantanthony.co.uk/images/bedruthan-steps-mwtqxv6qzgr.jpg</image:loc>
+      <image:title>Bedruthan Steps</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://grantanthony.co.uk/photo/a-hallway-to-what-once-was-mwtqxvndpkp/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/a-hallway-to-what-once-was-mwtqxvndpkp.jpg</image:loc>
+      <image:title>A hallway to what once was</image:title>
     </image:image>
   </url>
   <url>
@@ -896,6 +906,16 @@
     </image:image>
   </url>
   <url>
+    <loc>https://grantanthony.co.uk/photo/hunt-the-rich-mwtqxuoekof/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://grantanthony.co.uk/images/hunt-the-rich-mwtqxuoekof.jpg</image:loc>
+      <image:title>Hunt the Rich</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://grantanthony.co.uk/photo/red-chairs-mwtqxv1j93x/</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -903,16 +923,6 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/red-chairs-mwtqxv1j93x.jpg</image:loc>
       <image:title>Red Chairs</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://grantanthony.co.uk/photo/bedruthan-steps-mwtqxv6qzgr/</loc>
-    <lastmod>2026-11-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/images/bedruthan-steps-mwtqxv6qzgr.jpg</image:loc>
-      <image:title>Bedruthan Steps</image:title>
     </image:image>
   </url>
   <url>
@@ -933,16 +943,6 @@
     <image:image>
       <image:loc>https://grantanthony.co.uk/images/nature-reclaiming-mwtqxvgqcf2.jpg</image:loc>
       <image:title>Nature Reclaiming</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://grantanthony.co.uk/photo/a-hallway-to-what-once-was-mwtqxvndpkp/</loc>
-    <lastmod>2026-11-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <image:image>
-      <image:loc>https://grantanthony.co.uk/images/a-hallway-to-what-once-was-mwtqxvndpkp.jpg</image:loc>
-      <image:title>A hallway to what once was</image:title>
     </image:image>
   </url>
   <url>
