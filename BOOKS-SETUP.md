@@ -3,7 +3,7 @@
 The books site lives at grantanthony.co.uk/books, inside the photography repo.
 Book posts go out automatically:
 
-- Fiction to @grantcanthony on Mondays and Thursdays at 18:00 UK time
+- Fiction to @grantcanthony every second day (from 30 November 2026) at 18:00 UK time
 - Nonfiction to @g_c_anthony on Wednesdays and Saturdays at 18:00 UK time
 
 Photography posts to @gcanth on Tuesdays and Fridays, so no two jobs share a day.
