@@ -1,7 +1,7 @@
 name: Books Instagram
 
 # Posts the next book post from books/posts.json.
-#   Fiction    @grantcanthony  Mondays and Thursdays from 18:00 UK time
+#   Fiction    @grantcanthony  every second day (from 30 November 2026) from 18:00 UK time
 #   Nonfiction @g_c_anthony    Wednesdays and Saturdays from 18:00 UK time
 # A post in books/posts.json with a "date" goes out on that day instead, whatever the weekday.
 # Quote, talk and excerpt posts become Reels (scripts/books_reels.py), which you post by hand with your
